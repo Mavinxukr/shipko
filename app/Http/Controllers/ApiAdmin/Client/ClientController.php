@@ -19,7 +19,7 @@ class ClientController extends Controller
 
     /**
      * @api {get} admin/get-clients  Show All Clients
-     * @apiNameStore Show All Clients
+     * @apiName Show All Clients
      * @apiVersion 1.1.1
      * @apiGroup Admin Client Action
      * @apiPermission Authorization
@@ -35,7 +35,7 @@ class ClientController extends Controller
 
     /**
      * @api {post} admin/store-client  Store Client
-     * @apiNameStore Store Client
+     * @apiName Store Client
      * @apiVersion 1.1.1
      * @apiGroup Admin Client Action
      * @apiPermission Authorization
@@ -61,7 +61,7 @@ class ClientController extends Controller
 
     /**
      * @api {get} admin/get-client/{id}  Show Client By Id
-     * @apiNameStore Show Client By Id
+     * @apiName Show Client By Id
      * @apiVersion 1.1.1
      * @apiGroup Admin Client Action
      * @apiPermission Authorization
@@ -76,7 +76,7 @@ class ClientController extends Controller
 
     /**
      * @api {post} admin/update-client/{id}  Update Client
-     * @apiNameStore Update Client
+     * @apiName Update Client
      * @apiVersion 1.1.1
      * @apiGroup Admin Client Action
      * @apiPermission Authorization
@@ -102,7 +102,7 @@ class ClientController extends Controller
 
     /**
      * @api {delete} admin/delete-client/{id}  Delete Client
-     * @apiNameStore  Delete Client
+     * @apiName  Delete Client
      * @apiVersion 1.1.1
      * @apiGroup Admin Client Action
      * @apiPermission Authorization

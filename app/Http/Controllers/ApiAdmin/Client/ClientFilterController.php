@@ -18,7 +18,7 @@ class ClientFilterController extends Controller
 
     /**
      * @api {get} admin/get-clients-by-filters  Show All Clients By Filters
-     * @apiNameStore Show All Clients By Filters
+     * @apiName Show All Clients By Filters
      * @apiVersion 1.1.1
      * @apiGroup Admin Client Filter
      * @apiParam {Number} id Id
