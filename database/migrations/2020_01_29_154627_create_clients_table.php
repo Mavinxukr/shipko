@@ -20,11 +20,11 @@ class CreateClientsTable extends Migration
             $table->string('email')->unique();
             $table->string('phone');
             $table->string('password');
-            $table->unsignedBigInteger('city_id');
-            $table->unsignedBigInteger('zip_id');
-            $table->unsignedBigInteger('address_id');
+            $table->unsignedBigInteger('city_id')->nullable();
+            $table->unsignedBigInteger('zip_id')->nullable();
+            $table->unsignedBigInteger('address_id')->nullable();
             $table->string('card_number');
-            $table->unsignedBigInteger('country_id');
+            $table->unsignedBigInteger('country_id')->nullable();
             $table->timestamps();
         });
     }

@@ -34,10 +34,11 @@ class ClientRepository implements ClientContract
             ['password'      => bcrypt($request->password)]);
         $location = LocationFacade::resultCreator($request->only(
             ['country','city','zip','address']));
+
         $client->update($location);
         $this->imageCreator($client,'client',$request->image);
         return $this->toJson('Client created successfully', 201,
-                new ClientResource(Client::findOrFail($client->id)));
+                    new ClientResource(Client::findOrFail($client->id)));
     }
 
     public function update(Request $request, int $id)

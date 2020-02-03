@@ -24,6 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        app()->singleton('LocationFacade',function (){return new  LocationService();});
+        app()->singleton('LocationFacade', LocationService::class);
     }
 }

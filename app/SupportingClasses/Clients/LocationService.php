@@ -3,9 +3,7 @@
 
 namespace App\SupportingClasses\Clients;
 
-use App\SupportingClasses\LocationTemplater;
-
-class LocationService extends LocationTemplater
+class LocationService extends LocationTemplateAbstract
 {
     protected function locationCreator(string $modelName, string $name, string $needle): string
     {

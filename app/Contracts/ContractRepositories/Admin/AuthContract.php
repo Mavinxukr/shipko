@@ -3,11 +3,9 @@
 
 namespace App\Contracts\ContratRepositories\Admin;
 
-
-use App\Contracts\vendor\FormattedContract;
 use Illuminate\Http\Request;
 
-interface AuthContract extends FormattedContract
+interface AuthContract
 {
 
     public function login(Request $request) ;
