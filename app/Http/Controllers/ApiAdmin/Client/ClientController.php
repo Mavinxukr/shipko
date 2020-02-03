@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\ApiAdmin\Client;
 
-use App\Contracts\Admin\ClientInterface;
+use App\Contracts\ContratRepositories\Admin\ClientContract;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientRequest;
 use App\Http\Requests\UpdateClientRequest;
-use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
     private $client;
 
-    public function __construct(ClientInterface $client)
+    public function __construct(ClientContract $client)
     {
         $this->client = $client;
     }
@@ -41,7 +40,7 @@ class ClientController extends Controller
      * @apiPermission Authorization
      * @apiParam {String} name Name
      * @apiParam {String} username Username
-     * @apiParam {String} phone Phone exp - +380-00-00-00-000
+     * @apiParam {String} phone Phone exp - 380000000000
      * @apiParam {String} email Email
      * @apiParam {String} password Password
      * @apiParam {String} country Country

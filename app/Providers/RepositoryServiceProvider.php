@@ -2,13 +2,14 @@
 
 namespace App\Providers;
 
-
-use App\Contracts\Admin\AuthInterface;
-use App\Contracts\Admin\ClientFilterInterface;
-use App\Contracts\Admin\ClientInterface;
-use App\Repository\Admin\AuthRepository;
-use App\Repository\Admin\ClientFilterRepository;
-use App\Repository\Admin\ClientRepository;
+use App\Contracts\ContratRepositories\Admin\AuthContract;
+use App\Contracts\ContratRepositories\Admin\ClientContract;
+use App\Contracts\ContratRepositories\Admin\ClientFilterContract;
+use App\Contracts\vendor\ClientService\FileCreatorContract;
+use App\Contracts\vendor\ClientService\LocationServiceContract;
+use App\Repositories\Admin\AuthRepository;
+use App\Repositories\Admin\ClientFilterRepository;
+use App\Repositories\Admin\ClientRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -30,8 +31,8 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        app()->bind(AuthInterface::class,AuthRepository::class);
-        app()->bind(ClientInterface::class,ClientRepository::class);
-        app()->bind(ClientFilterInterface::class,ClientFilterRepository::class);
+        app()->bind(AuthContract::class,AuthRepository::class);
+        app()->bind(ClientContract::class,ClientRepository::class);
+        app()->bind(ClientFilterContract::class,ClientFilterRepository::class);
     }
 }

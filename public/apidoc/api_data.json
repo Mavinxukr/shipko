@@ -70,6 +70,7 @@
     "type": "delete",
     "url": "admin/delete-client/{id}",
     "title": "Delete Client",
+    "name": "Delete_Client",
     "version": "1.1.1",
     "group": "Admin_Client_Action",
     "permission": [
@@ -95,45 +96,13 @@
       }
     ],
     "filename": "app/Http/Controllers/ApiAdmin/Client/ClientController.php",
-    "groupTitle": "Admin_Client_Action",
-    "name": "DeleteAdminDeleteClientId"
-  },
-  {
-    "type": "get",
-    "url": "admin/get-client/{id}",
-    "title": "Show Client By Id",
-    "version": "1.1.1",
-    "group": "Admin_Client_Action",
-    "permission": [
-      {
-        "name": "Authorization"
-      }
-    ],
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>token</p>"
-          }
-        ]
-      }
-    },
-    "sampleRequest": [
-      {
-        "url": "/api-admin/get-client/{id}"
-      }
-    ],
-    "filename": "app/Http/Controllers/ApiAdmin/Client/ClientController.php",
-    "groupTitle": "Admin_Client_Action",
-    "name": "GetAdminGetClientId"
+    "groupTitle": "Admin_Client_Action"
   },
   {
     "type": "get",
     "url": "admin/get-clients",
     "title": "Show All Clients",
+    "name": "Show_All_Clients",
     "version": "1.1.1",
     "group": "Admin_Client_Action",
     "permission": [
@@ -159,13 +128,45 @@
       }
     ],
     "filename": "app/Http/Controllers/ApiAdmin/Client/ClientController.php",
-    "groupTitle": "Admin_Client_Action",
-    "name": "GetAdminGetClients"
+    "groupTitle": "Admin_Client_Action"
+  },
+  {
+    "type": "get",
+    "url": "admin/get-client/{id}",
+    "title": "Show Client By Id",
+    "name": "Show_Client_By_Id",
+    "version": "1.1.1",
+    "group": "Admin_Client_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/get-client/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Client/ClientController.php",
+    "groupTitle": "Admin_Client_Action"
   },
   {
     "type": "post",
     "url": "admin/store-client",
     "title": "Store Client",
+    "name": "Store_Client",
     "version": "1.1.1",
     "group": "Admin_Client_Action",
     "permission": [
@@ -195,7 +196,7 @@
             "type": "String",
             "optional": false,
             "field": "phone",
-            "description": "<p>Phone exp - +380-00-00-00-000</p>"
+            "description": "<p>Phone exp - 380000000000</p>"
           },
           {
             "group": "Parameter",
@@ -274,13 +275,13 @@
       }
     ],
     "filename": "app/Http/Controllers/ApiAdmin/Client/ClientController.php",
-    "groupTitle": "Admin_Client_Action",
-    "name": "PostAdminStoreClient"
+    "groupTitle": "Admin_Client_Action"
   },
   {
     "type": "post",
     "url": "admin/update-client/{id}",
     "title": "Update Client",
+    "name": "Update_Client",
     "version": "1.1.1",
     "group": "Admin_Client_Action",
     "permission": [
@@ -389,63 +390,16 @@
       }
     ],
     "filename": "app/Http/Controllers/ApiAdmin/Client/ClientController.php",
-    "groupTitle": "Admin_Client_Action",
-    "name": "PostAdminUpdateClientId"
+    "groupTitle": "Admin_Client_Action"
   },
   {
     "type": "get",
     "url": "admin/get-clients-by-filters",
     "title": "Show All Clients By Filters",
+    "name": "Show_All_Clients_By_Filters",
     "version": "1.1.1",
     "group": "Admin_Client_Filter",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "id",
-            "description": "<p>Id</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "name",
-            "description": "<p>Name</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "email",
-            "description": "<p>Email</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "phone",
-            "description": "<p>Phone</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "address",
-            "description": "<p>Address</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "card",
-            "description": "<p>Credit card</p>"
-          }
-        ]
-      }
-    },
+    "description": "<p>This is the Description. Allow get params for filters exp: id, name, email, phone, address, card_number</p>",
     "permission": [
       {
         "name": "Authorization"
@@ -469,7 +423,6 @@
       }
     ],
     "filename": "app/Http/Controllers/ApiAdmin/Client/ClientFilterController.php",
-    "groupTitle": "Admin_Client_Filter",
-    "name": "GetAdminGetClientsByFilters"
+    "groupTitle": "Admin_Client_Filter"
   }
 ]

@@ -6,7 +6,7 @@ namespace App\Contracts\vendor;
 
 use Illuminate\Http\Request;
 
-interface TemplateInterface
+interface TemplateContract
 {
     public function index()  ;
     public function show(int $id)  ;

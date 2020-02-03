@@ -26,8 +26,7 @@ class ClientRequest extends FormRequest
         return [
             'name'          => 'required|max:20',
             'username'      => 'required|unique:clients,username',
-            'phone'         =>
-                'required|regex:/^\+[0-9]{3}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{3}$/|unique:clients,phone',
+            'phone'         => 'required|regex:/[0-9]{12}$/|unique:clients,phone',
             'email'         => 'required|unique:clients,email',
             'password'      => 'required|min:6',
             'country'       => 'required',

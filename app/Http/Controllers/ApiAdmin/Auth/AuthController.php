@@ -3,13 +3,10 @@
 
 namespace App\Http\Controllers\ApiAdmin\Auth;
 
-use App\Contracts\Admin\AuthInterface;
+use App\Contracts\ContratRepositories\Admin\AuthContract;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
-use App\Http\Resources\AuthResource;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 
 class AuthController extends Controller
@@ -17,7 +14,7 @@ class AuthController extends Controller
 
     private $login;
 
-    public function __construct(AuthInterface $login)
+    public function __construct(AuthContract $login)
     {
         $this->login = $login;
     }

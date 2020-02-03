@@ -7,16 +7,11 @@ use Illuminate\Http\JsonResponse;
 
 trait FormattedJsonResponse
 {
-    public function toJson(string $message, int $statusCode, bool $statusBool, object $resource = null) : JsonResponse
+    public function toJson(string $message, int $statusCode, object $resource = null)
     {
-        $data = [
-            'status'    => $statusBool,
-            'message'   => $message,
-            'data'      => $resource
-        ];
-        if (is_null($resource)) unset($data['data']);
-
-        return response()->json($data,$statusCode);
+        return !is_null($resource) ?
+                                      $resource->response()->setStatusCode($statusCode,$message):
+                                      response()->json(['message'=> $message], $statusCode);
     }
 }
 

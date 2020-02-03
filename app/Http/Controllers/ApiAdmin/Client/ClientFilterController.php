@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\ApiAdmin\Client;
 
-use App\Contracts\Admin\ClientFilterInterface;
+use App\Contracts\ContratRepositories\Admin\ClientFilterContract;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class ClientFilterController extends Controller
 {
     private $filter;
 
-    public function __construct(ClientFilterInterface $filter)
+    public function __construct(ClientFilterContract $filter)
     {
         $this->filter = $filter;
     }
@@ -21,19 +21,15 @@ class ClientFilterController extends Controller
      * @apiName Show All Clients By Filters
      * @apiVersion 1.1.1
      * @apiGroup Admin Client Filter
-     * @apiParam {Number} id Id
-     * @apiParam {String} name Name
-     * @apiParam {String} email Email
-     * @apiParam {String} phone Phone
-     * @apiParam {String} address Address
-     * @apiParam {String} card Credit card
+     * @apiDescription This is the Description.
+     * Allow get params for filters exp: id, name, email, phone, address, card_number
      * @apiPermission Authorization
      * @apiHeader  Authorization token
      * @apiSampleRequest  admin/get-clients-by-filters
      */
 
-    public function filter(Request $request)
+    public function filter()
     {
-        return $this->filter->generateResponse($request);
+        return $this->filter->generateResponse();
     }
 }
