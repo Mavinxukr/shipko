@@ -424,5 +424,360 @@ define({ "api": [
     ],
     "filename": "app/Http/Controllers/ApiAdmin/Client/ClientFilterController.php",
     "groupTitle": "Admin_Client_Filter"
+  },
+  {
+    "type": "delete",
+    "url": "admin/delete-part/{id}",
+    "title": "Delete Part",
+    "name": "Delete_Part",
+    "version": "1.1.1",
+    "group": "Admin_Part_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/delete-part/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Part/PartController.php",
+    "groupTitle": "Admin_Part_Action"
+  },
+  {
+    "type": "get",
+    "url": "admin/get-part/{id}",
+    "title": "Get Part",
+    "name": "Get_Part",
+    "version": "1.1.1",
+    "group": "Admin_Part_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/get-part/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Part/PartController.php",
+    "groupTitle": "Admin_Part_Action"
+  },
+  {
+    "type": "get",
+    "url": "admin/get-parts",
+    "title": "Get Parts",
+    "name": "Get_Parts",
+    "version": "1.1.1",
+    "group": "Admin_Part_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/get-parts"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Part/PartController.php",
+    "groupTitle": "Admin_Part_Action"
+  },
+  {
+    "type": "delete",
+    "url": "admin/delete-part-images/{id}",
+    "title": "Remove Part Images",
+    "name": "Remove_Part_Images",
+    "version": "1.1.1",
+    "group": "Admin_Part_Action",
+    "description": "<p>Example:  Allow get params for delete images exp: ids=1,2,3,4...</p>",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/delete-part-images/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Part/PartController.php",
+    "groupTitle": "Admin_Part_Action"
+  },
+  {
+    "type": "post",
+    "url": "admin/restore-part-images/{id}",
+    "title": "Restore Part Images",
+    "name": "Restore_Part_Images",
+    "version": "1.1.1",
+    "group": "Admin_Part_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "File",
+            "optional": false,
+            "field": "image",
+            "description": "<p>Client images  exp  - image[0],image[1]</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/restore-part-images/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Part/PartController.php",
+    "groupTitle": "Admin_Part_Action"
+  },
+  {
+    "type": "post",
+    "url": "admin/store-part",
+    "title": "Store Part",
+    "name": "Store_Part",
+    "version": "1.1.1",
+    "group": "Admin_Part_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "client_id",
+            "description": "<p>Client Id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "catalog_number",
+            "description": "<p>Catalog number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "make",
+            "description": "<p>Make</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "vin",
+            "description": "<p>Vin</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "quality",
+            "description": "<p>Quality</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "container",
+            "description": "<p>Container</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "File",
+            "optional": false,
+            "field": "image",
+            "description": "<p>Client images  exp  - image[0],image[1]</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/store-part"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Part/PartController.php",
+    "groupTitle": "Admin_Part_Action"
+  },
+  {
+    "type": "post",
+    "url": "admin/update-part/{id}",
+    "title": "Update Part",
+    "name": "Update_Part",
+    "version": "1.1.1",
+    "group": "Admin_Part_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "client_id",
+            "description": "<p>Client Id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "catalog_number",
+            "description": "<p>Catalog number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "make",
+            "description": "<p>Make</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "vin",
+            "description": "<p>Vin</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "quality",
+            "description": "<p>Quality</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "container",
+            "description": "<p>Container</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/update-part/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Part/PartController.php",
+    "groupTitle": "Admin_Part_Action"
   }
 ] });

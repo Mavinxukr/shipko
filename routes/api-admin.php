@@ -27,7 +27,18 @@ Route::namespace('ApiAdmin')->group(function () {
             Route::delete('delete-client/{id}','ClientController@destroy');
             Route::get('get-clients-by-filters','ClientFilterController@filter' );
         });
+        Route::namespace('Part')->group(function () {
+            Route::post('store-part','PartController@store');
+            Route::get('get-parts','PartController@index');
+            Route::get('get-part/{id}','PartController@show');
+            Route::post('update-part/{id}','PartController@update');
+            Route::delete('delete-part/{id}','PartController@destroy');
+            Route::delete('delete-part-images/{id}','PartController@removeImage');
+            Route::post('restore-part-images/{id}','PartController@restoreImage');
+        });
+        Route::namespace('Auto')->group(function () {
 
+        });
     });
 });
 
