@@ -31,8 +31,10 @@ class PartRepository implements PartContract
     public function store(Request $request)
     {
         $part = Part::create($request->all());
-        foreach ($request->image as $image){
-            $this->imageCreator($part,'part', new Photo, $image);
+        if (!empty($request->image)){
+            foreach ($request->image as $image){
+                $this->imageCreator($part,'part', new Photo, $image);
+            }
         }
         return $this->toJson('Part created successfully',
             200, new PartResource($part));
