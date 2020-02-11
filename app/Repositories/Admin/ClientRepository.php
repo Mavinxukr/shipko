@@ -7,6 +7,7 @@ use App\Contracts\ContratRepositories\Admin\ClientContract;
 use App\Facades\Clients\LocationFacade;
 use App\Http\Resources\ClientResource;
 use App\Models\Client\Client;
+use App\Models\Client\ClientImage;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\Service\ClientService\FileService;
 use Illuminate\Http\Request;
@@ -34,9 +35,10 @@ class ClientRepository implements ClientContract
             ['password'      => bcrypt($request->password)]);
         $location = LocationFacade::resultCreator($request->only(
             ['country','city','zip','address']));
-
         $client->update($location);
-        $this->imageCreator($client,'client',$request->image);
+        if (!empty($request->image)){
+            $this->imageCreator($client,'client',new ClientImage ,$request->image);
+        }
         return $this->toJson('Client created successfully', 201,
                     new ClientResource(Client::findOrFail($client->id)));
     }
@@ -56,8 +58,8 @@ class ClientRepository implements ClientContract
     public function destroy(int $id)
     {
         $client =  Client::findOrFail($id);
-        $this->imageDeleter($client);
-        $this->folderDeleter($client,'client');
+        $this->imageDeleter($client->image);
+        $this->folderDeleter('client');
         $client->delete();
         return $this->toJson('Client deleted successfully', 200,null);
 

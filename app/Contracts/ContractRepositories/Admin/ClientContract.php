@@ -7,4 +7,5 @@ use App\Contracts\vendor\TemplateContract;
 
 interface ClientContract extends TemplateContract
 {
+
 }

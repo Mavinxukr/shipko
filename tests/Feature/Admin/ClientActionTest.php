@@ -10,12 +10,8 @@ use Tests\TestCase;
 class ClientActionTest extends TestCase implements TokenContract
 {
     protected $uri =  'api-admin';
-    private  $user =  [
-        'email'     => 'admin@gmail.com',
-        'password'  => '111111'
-    ];
-
     /** @test */
+
     public function store_client_test()
     {
         $this->withoutExceptionHandling();
@@ -31,35 +27,34 @@ class ClientActionTest extends TestCase implements TokenContract
             'address'  => 'beach street 123',
             'card_number'  => '1234-1234-1234-1311',
             'image' => $file = UploadedFile::fake()->image('random.jpg')
-        ], ['Authorization' => $this->getToken($this->user)]);
-        $this->assertCount(1, Client::all());
+        ], ['Authorization' => $this->getToken()]);
         $response->assertStatus(201);
     }
 
     /** @test */
 
+
     public function get_all_client_test()
     {
         $this->withoutExceptionHandling();
         $response = $this->get("$this->uri/get-clients",
-            ['Authorization' => $this->getToken($this->user)]);
+            ['Authorization' => $this->getToken()]);
         $this->assertCount(1, Client::all());
         $response->assertOk();
 
 
     }
-
     /** @test */
     public function get_client_by_id()
     {
         $client_id  = Client::first()->value('id');
         $this->withoutExceptionHandling();
         $response = $this->get("$this->uri/get-client/$client_id",
-            ['Authorization' => $this->getToken($this->user)]);
-        $this->assertCount(1, Client::all());
+            ['Authorization' => $this->getToken()]);
         $response->assertOk();
     }
     /** @test */
+
     public function update_client_test()
     {
         $client_id  = Client::first()->value('id');
@@ -73,26 +68,26 @@ class ClientActionTest extends TestCase implements TokenContract
             'zip'  => '12345',
             'address'  => 'beach street 123',
             'card_number'  => '1234-1234-0000-1311',
-        ], ['Authorization' => $this->getToken($this->user)]);
-        $this->assertCount(1, Client::all());
+        ], ['Authorization' => $this->getToken()]);
         $response->assertOk();
 
     }
     /** @test */
+
     public function delete_client_test()
     {
         $this->withoutExceptionHandling();
         $client_id  = Client::first()->value('id');
-
         $response = $this->delete("$this->uri/delete-client/$client_id",[
-            ], ['Authorization' => $this->getToken($this->user)]);
-
-        $this->assertCount(0, Client::all());
+            ], ['Authorization' => $this->getToken()]);
         $response->assertOk();
     }
-
-    public function getToken( array $user) :string
+    public function getToken() :string
     {
+        $user =  [
+            'email'     => 'admin@gmail.com',
+            'password'  => '111111'
+        ];
         $responseLogin = $this->post("$this->uri/login",
             $user)->decodeResponseJson();
         $token = $responseLogin['data']['auth']['token'];
