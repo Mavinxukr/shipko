@@ -13,3 +13,4 @@ yarn-error.log
 .idea/
 /public/apidoc
 .DS_Store
+/public/apidoc*
