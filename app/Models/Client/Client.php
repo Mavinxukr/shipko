@@ -37,6 +37,13 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client\Client whereUsername($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client\Client whereZipId($value)
  * @mixin \Eloquent
+ * @property string $card_number
+ * @property-read \App\Models\Client\Address|null $address
+ * @property-read \App\Models\Client\City|null $city
+ * @property-read \App\Models\Client\Country|null $country
+ * @property-read \App\Models\Client\ClientImage $image
+ * @property-read \App\Models\Client\Zip|null $zip
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client\Client whereCardNumber($value)
  */
 class Client extends Model
 {

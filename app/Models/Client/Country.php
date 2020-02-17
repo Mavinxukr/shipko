@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client\Country whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client\Country whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $name
  */
 class Country extends Model
 {

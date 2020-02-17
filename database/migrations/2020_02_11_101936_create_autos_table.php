@@ -15,6 +15,7 @@ class CreateAutosTable extends Migration
     {
         Schema::create('autos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('model_name');
             $table->timestamps();
         });
     }

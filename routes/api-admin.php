@@ -6,9 +6,6 @@ Route::namespace('ApiAdmin')->group(function () {
     Route::post('login','Auth\AuthController@login');
     Route::middleware( ['auth:api','role:admin'])->group(function (){
         Route::post('logout','Auth\AuthController@logout');
-
-        //--------------------------------Client-------------------------------------//
-
         Route::namespace('Client')->group(function () {
             Route::post('store-client','ClientController@store');
             Route::get('get-client/{id}','ClientController@show');
@@ -27,7 +24,13 @@ Route::namespace('ApiAdmin')->group(function () {
             Route::post('restore-part-images/{id}','PartController@restoreImage');
         });
         Route::namespace('Auto')->group(function () {
-            //
+            Route::post('store-auto','AutoController@store');
+            Route::get('get-autos','AutoController@index');
+            Route::get('get-auto/{id}','AutoController@show');
+            Route::delete('delete-auto/{id}','AutoController@delete');
+            Route::post('restore-auto-document/{id}','AutoController@restoreDocument');
+            Route::post('delete-auto-document/{id}','AutoController@deleteDocument');
+            Route::post('update-auto/{id}','AutoController@update');
         });
     });
 });

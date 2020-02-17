@@ -2,13 +2,13 @@
 
 namespace App\Providers;
 
+use App\Contracts\ContractRepositories\Admin\AutoContract;
 use App\Contracts\ContractRepositories\Admin\PartContract;
 use App\Contracts\ContratRepositories\Admin\AuthContract;
 use App\Contracts\ContratRepositories\Admin\ClientContract;
 use App\Contracts\ContratRepositories\Admin\ClientFilterContract;
-use App\Contracts\vendor\ClientService\FileCreatorContract;
-use App\Contracts\vendor\ClientService\LocationServiceContract;
 use App\Repositories\Admin\AuthRepository;
+use App\Repositories\Admin\AutoRepository;
 use App\Repositories\Admin\ClientFilterRepository;
 use App\Repositories\Admin\ClientRepository;
 use App\Repositories\Admin\PartRepository;
@@ -33,9 +33,10 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        app()->bind(AuthContract::class,AuthRepository::class);
-        app()->bind(ClientContract::class,ClientRepository::class);
-        app()->bind(ClientFilterContract::class,ClientFilterRepository::class);
-        app()->bind(PartContract::class,PartRepository::class);
+        $this->app->bind(AuthContract::class,AuthRepository::class);
+        $this->app->bind(ClientContract::class,ClientRepository::class);
+        $this->app->bind(ClientFilterContract::class,ClientFilterRepository::class);
+        $this->app->bind(PartContract::class,PartRepository::class);
+        $this->app->bind(AutoContract::class,AutoRepository::class);
     }
 }

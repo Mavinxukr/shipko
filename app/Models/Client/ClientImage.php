@@ -25,6 +25,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client\ClientImage whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client\ClientImage whereUserId($value)
  * @mixin \Eloquent
+ * @property string $folder_link
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client\ClientImage whereClientId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client\ClientImage whereFolderLink($value)
  */
 class ClientImage extends Model
 {
