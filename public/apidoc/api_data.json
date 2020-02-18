@@ -99,6 +99,96 @@
     "groupTitle": "Admin_Auto_Action"
   },
   {
+    "type": "post",
+    "url": "admin/delete-auto-image/{id}",
+    "title": "Delete document  auto by id",
+    "name": "Delete_document_auto_by_id",
+    "version": "1.1.1",
+    "group": "Admin_Auto_Action",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "ids",
+            "description": "<p>Delete ids</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/delete-auto-image/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Auto/AutoController.php",
+    "groupTitle": "Admin_Auto_Action"
+  },
+  {
+    "type": "post",
+    "url": "admin/restore-auto-document/{id}",
+    "title": "Restore document  auto by id",
+    "name": "Restore_document_auto_by_id",
+    "version": "1.1.1",
+    "group": "Admin_Auto_Action",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": false,
+            "field": "document",
+            "description": "<p>Document</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/restore-auto-document/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Auto/AutoController.php",
+    "groupTitle": "Admin_Auto_Action"
+  },
+  {
     "type": "get",
     "url": "admin/get-autos",
     "title": "Show all autos",
@@ -440,6 +530,268 @@
     "sampleRequest": [
       {
         "url": "/api-admin/store-auto"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Auto/AutoController.php",
+    "groupTitle": "Admin_Auto_Action"
+  },
+  {
+    "type": "post",
+    "url": "admin/update-auto/{id}",
+    "title": "Update Auto",
+    "name": "Update_Auto",
+    "version": "1.1.1",
+    "group": "Admin_Auto_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "model_name",
+            "description": "<p>Model name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "ship",
+            "description": "<p>Ship block has or has not</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "tracking_id",
+            "description": "<p>Tracking id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "container_id",
+            "description": "<p>Container id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "point_load_city",
+            "description": "<p>Point load city</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "point_load_date",
+            "description": "<p>Point load date</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "point_delivery_city",
+            "description": "<p>Point delivery city</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "point_delivery_date",
+            "description": "<p>Point delivery date</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "disassembly",
+            "description": "<p>Disassembly Exp - 1 true, 0 - false</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "lot",
+            "description": "<p>Lot block has or has not</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "doc_type",
+            "description": "<p>Document type</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "odometer",
+            "description": "<p>Odometer</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "highlight",
+            "description": "<p>Highlight</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "pri_damage",
+            "description": "<p>Primary damage</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "sec_damage",
+            "description": "<p>Secondary damage</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "ret_value",
+            "description": "<p>Retail value</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "vin_code",
+            "description": "<p>Vin code</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "sale",
+            "description": "<p>Sale block has or has not</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "location",
+            "description": "<p>Location</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "grid_item",
+            "description": "<p>Grid item</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "sale_name",
+            "description": "<p>Saller name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "ret_date",
+            "description": "<p>Secondary damage</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "feature",
+            "description": "<p>Feature block has or has not</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "body_style",
+            "description": "<p>Body style</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "color",
+            "description": "<p>Color</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "eng_type",
+            "description": "<p>Engine type</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "cylinder",
+            "description": "<p>Cylinder</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "trans",
+            "description": "<p>Transmission</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "drive",
+            "description": "<p>Drive</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "fuel",
+            "description": "<p>Fuel</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "key",
+            "description": "<p>Key</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "note",
+            "description": "<p>Note</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/update-auto/{id}"
       }
     ],
     "filename": "app/Http/Controllers/ApiAdmin/Auto/AutoController.php",
@@ -803,6 +1155,164 @@
     ],
     "filename": "app/Http/Controllers/ApiAdmin/Client/ClientFilterController.php",
     "groupTitle": "Admin_Client_Filter"
+  },
+  {
+    "type": "get",
+    "url": "admin/get-invoices",
+    "title": "Show All Invoices",
+    "name": "Show_All_Invoices",
+    "version": "1.1.1",
+    "group": "Admin_Invoice_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/get-invoices"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Invoice/InvoiceController.php",
+    "groupTitle": "Admin_Invoice_Action"
+  },
+  {
+    "type": "get",
+    "url": "admin/get-invoice/{id}",
+    "title": "Show  Invoice by id",
+    "name": "Show_Invoice_by_id",
+    "version": "1.1.1",
+    "group": "Admin_Invoice_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/get-invoice/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Invoice/InvoiceController.php",
+    "groupTitle": "Admin_Invoice_Action"
+  },
+  {
+    "type": "post",
+    "url": "admin/store-invoice",
+    "title": "Store invoice",
+    "name": "Store_invoice",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name_car",
+            "description": "<p>Name car</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>User id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>Status</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Double",
+            "optional": false,
+            "field": "total_price",
+            "description": "<p>Total price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Double",
+            "optional": false,
+            "field": "paid_price",
+            "description": "<p>Paid price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Double",
+            "optional": false,
+            "field": "outstanding_price",
+            "description": "<p>Outstanding price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": false,
+            "field": "type",
+            "description": "<p>Document type Exp : (auction_picture, warehouse_picture,container_picture <br> car_fax_report , invoice, checklist_report , shipping_damage</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": false,
+            "field": "file",
+            "description": "<p>Document Exp : document[0][file],document[0][type]</p>"
+          }
+        ]
+      }
+    },
+    "version": "1.1.1",
+    "group": "Admin_Invoice_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/store-invoice"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Invoice/InvoiceController.php",
+    "groupTitle": "Admin_Invoice_Action"
   },
   {
     "type": "delete",

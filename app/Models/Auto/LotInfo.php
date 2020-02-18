@@ -31,6 +31,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auto\LotInfo whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auto\LotInfo whereVinCode($value)
  * @mixin \Eloquent
+ * @property int $auto_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auto\LotInfo whereAutoId($value)
  */
 class LotInfo extends Model
 {

@@ -22,7 +22,7 @@ class AutoResource extends JsonResource
             'sale_info'     => new AutoSaleInfoResource($this->saleInfo),
             'feature_info'  => new AutoFeatureInfoResource($this->featureInfo),
             'lot_info'      => new AutoLotInfoResource($this->lotInfo),
-            'document'      => AutoDocumentResource::collection($this->documents)
+            'document'      => DocumentResource::collection($this->documents)
         ];
     }
 }

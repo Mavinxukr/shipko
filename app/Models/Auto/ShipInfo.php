@@ -29,6 +29,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auto\ShipInfo wherePointLoadDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auto\ShipInfo whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $tracking_id
+ * @property int $auto_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auto\ShipInfo whereAutoId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auto\ShipInfo whereTrackingId($value)
  */
 class ShipInfo extends Model
 {

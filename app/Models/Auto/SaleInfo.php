@@ -25,6 +25,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auto\SaleInfo whereSaleName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auto\SaleInfo whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int $auto_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auto\SaleInfo whereAutoId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auto\SaleInfo whereRetDate($value)
  */
 class SaleInfo extends Model
 {

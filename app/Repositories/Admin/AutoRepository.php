@@ -29,8 +29,8 @@ class AutoRepository implements AutoContract
 
     public function store(Request $request)
     {
-        $data = $request->except('model_name');
-        $auto  = Auto::create($request->only('model_name'));
+        $data = $request->except(['model_name','user_id']);
+        $auto  = Auto::create($request->only(['model_name','user_id']));
         $this->updateOrCreateAction($data, $auto);
         return $this->toJson('Auto created successfully',201,
                                                         new AutoResource($auto));
@@ -39,10 +39,10 @@ class AutoRepository implements AutoContract
 
     public function update(Request $request, int $id)
     {
-        $auto =  Auto::findOrFail($id);
-        $auto->model_name = $request->model_name ?? $auto->model_name;
-        $auto->save();
-        $data = array_filter($request->except('model_name'));
+        $auto =  Auto::whereId($id)
+                ->update(array_filter($request->only(['model_name','user_id'])));
+        $data = array_filter($request->except(['model_name','user_id']));
+        $auto = Auto::find($id);
         $this->updateOrCreateAction($data, $auto);
         return $this->toJson('Auto updated successfully',200,
                         new AutoResource($auto));
@@ -53,7 +53,7 @@ class AutoRepository implements AutoContract
        $auto = Auto::findOrFail($id);
        $documents = $auto->documents()->pluck('id')
                                         ->toArray();
-       if (count($documents)) $this->deleteDocument($documents, $auto);
+       if (count($documents)) $this->deleteDocument($documents, $auto,'auto');
        $auto->delete();
        return $this->toJson('Auto deleted successfully',200, null);
 
@@ -62,7 +62,7 @@ class AutoRepository implements AutoContract
     public function restoreImage(Request $request, int  $id)
     {
         $auto = Auto::findOrFail($id);
-        $this->saveDocuments($auto,$request->document);
+        $this->saveDocuments($auto,$request->document,'auto');
         return $this->toJson('Auto document restore successfully',
             200, new AutoResource($auto));
     }
@@ -73,7 +73,7 @@ class AutoRepository implements AutoContract
         $ids = explode(',',$request->ids);
         $documents =  $auto->documents()->find($ids)->pluck('id')
                                                     ->toArray();
-        if (count($documents)) $this->deleteDocument($documents, $auto);
+        if (count($documents)) $this->deleteDocument($documents, $auto,'auto');
         return $this->toJson('Auto document deleted successfully',200,
                                             null);
     }

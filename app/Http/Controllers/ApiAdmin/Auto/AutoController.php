@@ -147,8 +147,8 @@ class AutoController extends Controller
 
 
     /**
-     * @api {post} admin/update-auto/{id}  Store Auto
-     * @apiName Store Auto
+     * @api {post} admin/update-auto/{id}  Update Auto
+     * @apiName Update Auto
      * @apiVersion 1.1.1
      * @apiGroup Admin Auto Action
      * @apiPermission Authorization

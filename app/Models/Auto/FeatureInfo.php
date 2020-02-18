@@ -35,6 +35,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auto\FeatureInfo whereTrans($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auto\FeatureInfo whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int $auto_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auto\FeatureInfo whereAutoId($value)
  */
 class FeatureInfo extends Model
 {

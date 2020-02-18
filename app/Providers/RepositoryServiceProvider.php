@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Contracts\ContractRepositories\Admin\AutoContract;
+use App\Contracts\ContractRepositories\Admin\InvoiceContract;
 use App\Contracts\ContractRepositories\Admin\PartContract;
 use App\Contracts\ContratRepositories\Admin\AuthContract;
 use App\Contracts\ContratRepositories\Admin\ClientContract;
@@ -11,6 +12,7 @@ use App\Repositories\Admin\AuthRepository;
 use App\Repositories\Admin\AutoRepository;
 use App\Repositories\Admin\ClientFilterRepository;
 use App\Repositories\Admin\ClientRepository;
+use App\Repositories\Admin\InvoiceRepository;
 use App\Repositories\Admin\PartRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -38,5 +40,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ClientFilterContract::class,ClientFilterRepository::class);
         $this->app->bind(PartContract::class,PartRepository::class);
         $this->app->bind(AutoContract::class,AutoRepository::class);
+        $this->app->bind(InvoiceContract::class,InvoiceRepository::class);
     }
 }

@@ -27,6 +27,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auto\Document wherePathToFront($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auto\Document whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $type
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auto\Document whereType($value)
  */
 class Document extends Model
 {

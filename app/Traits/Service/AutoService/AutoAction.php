@@ -14,6 +14,6 @@ trait AutoAction
         if (isset($data['lot'])) $auto->lotInfo()->create($data);
         if (isset($data['sale'])) $auto->saleInfo()->create($data);
         if (isset($data['feature'])) $auto->featureInfo()->create($data);
-        if (isset($data['document'])) $this->saveDocuments($auto,$data['document']);
+        if (isset($data['document'])) $this->saveDocuments($auto,$data['document'],'auto');
     }
 }
