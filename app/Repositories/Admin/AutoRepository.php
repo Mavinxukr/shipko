@@ -23,7 +23,7 @@ class AutoRepository implements AutoContract
 
     public function show(int $id)
     {
-        return $this->toJson('Auto show by id successfully',201 ,
+        return $this->toJson('Auto show by id successfully',200 ,
             new AutoResource(Auto::findOrFail($id)));
     }
 

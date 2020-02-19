@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Invoice\Invoice;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class InvoiceResource extends JsonResource
@@ -23,6 +24,11 @@ class InvoiceResource extends JsonResource
             'outstanding_price'         => $this->outstanding_price,
             'user'                      => new ClientResource($this->client),
             'documents'                 => DocumentResource::collection($this->documents),
+            'totalAmount'               => Invoice::whereNotNull('total_price')->sum('total_price'),
+            'totalOutstanding'          => Invoice::whereNotNull('outstanding_price')->sum('outstanding_price'),
+            'totalPaid'                 => Invoice::whereNotNull('paid_price')->sum('paid_price')
         ];
     }
+
+
 }

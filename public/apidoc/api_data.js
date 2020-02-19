@@ -100,7 +100,7 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "admin/delete-auto-image/{id}",
+    "url": "admin/delete-auto-document/{id}",
     "title": "Delete document  auto by id",
     "name": "Delete_document_auto_by_id",
     "version": "1.1.1",
@@ -137,7 +137,7 @@ define({ "api": [
     },
     "sampleRequest": [
       {
-        "url": "/api-admin/delete-auto-image/{id}"
+        "url": "/api-admin/delete-auto-document/{id}"
       }
     ],
     "filename": "app/Http/Controllers/ApiAdmin/Auto/AutoController.php",
@@ -273,6 +273,13 @@ define({ "api": [
             "optional": false,
             "field": "model_name",
             "description": "<p>Model name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>User Id</p>"
           },
           {
             "group": "Parameter",
@@ -419,7 +426,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "ret_date",
-            "description": "<p>Secondary damage</p>"
+            "description": "<p>Retail date</p>"
           },
           {
             "group": "Parameter",
@@ -556,6 +563,13 @@ define({ "api": [
             "optional": false,
             "field": "model_name",
             "description": "<p>Model name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>User Id</p>"
           },
           {
             "group": "Parameter",
@@ -1157,6 +1171,128 @@ define({ "api": [
     "groupTitle": "Admin_Client_Filter"
   },
   {
+    "type": "post",
+    "url": "admin/delete-invoice-image/{id}",
+    "title": "Delete document  invoice by id",
+    "name": "Delete_document_invoice_by_id",
+    "version": "1.1.1",
+    "group": "Admin_Invoice_Action",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "ids",
+            "description": "<p>Delete ids</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/delete-invoice-image/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Invoice/InvoiceController.php",
+    "groupTitle": "Admin_Invoice_Action"
+  },
+  {
+    "type": "delete",
+    "url": "admin/delete-invoice/{id}",
+    "title": "Delete  invoice by id",
+    "name": "Delete_invoice_by_id",
+    "version": "1.1.1",
+    "group": "Admin_Invoice_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/delete-invoice/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Invoice/InvoiceController.php",
+    "groupTitle": "Admin_Invoice_Action"
+  },
+  {
+    "type": "post",
+    "url": "admin/restore-invoice-document/{id}",
+    "title": "Restore document  invoice by id",
+    "name": "Restore_document_invoice_by_id",
+    "version": "1.1.1",
+    "group": "Admin_Invoice_Action",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": false,
+            "field": "document",
+            "description": "<p>Document</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/invoice-auto-document/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Invoice/InvoiceController.php",
+    "groupTitle": "Admin_Invoice_Action"
+  },
+  {
     "type": "get",
     "url": "admin/get-invoices",
     "title": "Show All Invoices",
@@ -1251,21 +1387,21 @@ define({ "api": [
           },
           {
             "group": "Parameter",
-            "type": "Double",
+            "type": "Number",
             "optional": false,
             "field": "total_price",
             "description": "<p>Total price</p>"
           },
           {
             "group": "Parameter",
-            "type": "Double",
+            "type": "Number",
             "optional": false,
             "field": "paid_price",
             "description": "<p>Paid price</p>"
           },
           {
             "group": "Parameter",
-            "type": "Double",
+            "type": "Number",
             "optional": false,
             "field": "outstanding_price",
             "description": "<p>Outstanding price</p>"
@@ -1309,6 +1445,86 @@ define({ "api": [
     "sampleRequest": [
       {
         "url": "/api-admin/store-invoice"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Invoice/InvoiceController.php",
+    "groupTitle": "Admin_Invoice_Action"
+  },
+  {
+    "type": "post",
+    "url": "admin/update-invoice/{id}",
+    "title": "Update invoice",
+    "name": "Update_invoice",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name_car",
+            "description": "<p>Name car</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>User id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>Status</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Double",
+            "optional": false,
+            "field": "total_price",
+            "description": "<p>Total price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Double",
+            "optional": false,
+            "field": "paid_price",
+            "description": "<p>Paid price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Double",
+            "optional": false,
+            "field": "outstanding_price",
+            "description": "<p>Outstanding price</p>"
+          }
+        ]
+      }
+    },
+    "version": "1.1.1",
+    "group": "Admin_Invoice_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/update-invoice/{id}"
       }
     ],
     "filename": "app/Http/Controllers/ApiAdmin/Invoice/InvoiceController.php",

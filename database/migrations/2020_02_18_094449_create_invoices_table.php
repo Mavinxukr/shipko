@@ -15,12 +15,12 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name_car');
-            $table->string('status');
-            $table->double('total_price');
-            $table->double('paid_price');
-            $table->double('outstanding_price');
-            $table->unsignedBigInteger('user_id');
+            $table->string('name_car')->nullable();
+            $table->string('status')->nullable();
+            $table->bigInteger('total_price')->nullable();
+            $table->bigInteger('paid_price')->nullable();
+            $table->bigInteger('outstanding_price')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')

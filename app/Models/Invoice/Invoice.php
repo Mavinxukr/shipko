@@ -50,4 +50,5 @@ class Invoice extends Model
         return $this->hasMany(InvoiceDocument::class);
     }
 
+
 }

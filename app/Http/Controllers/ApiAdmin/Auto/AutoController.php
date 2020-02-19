@@ -37,6 +37,7 @@ class AutoController extends Controller
      * @apiGroup Admin Auto Action
      * @apiPermission Authorization
      * @apiParam {String} model_name Model name
+     * @apiParam {Number} user_id User Id
      * @apiParam {Number} ship Ship block has or has not
      * @apiParam {String} tracking_id Tracking id
      * @apiParam {String} container_id Container id
@@ -57,7 +58,7 @@ class AutoController extends Controller
      * @apiParam {String} location Location
      * @apiParam {String} grid_item Grid item
      * @apiParam {String} sale_name Saller name
-     * @apiParam {String} ret_date Secondary damage
+     * @apiParam {String} ret_date Retail date
      * @apiParam {Number} feature Feature block has or has not
      * @apiParam {String} body_style Body style
      * @apiParam {String} color Color
@@ -129,14 +130,14 @@ class AutoController extends Controller
     }
 
     /**
-     * @api {post} admin/delete-auto-image/{id}  Delete document  auto by id
+     * @api {post} admin/delete-auto-document/{id}  Delete document  auto by id
      * @apiName  Delete document  auto by id
      * @apiVersion 1.1.1
      * @apiGroup  Admin Auto Action
      * @apiParam {String} ids Delete ids
      * @apiPermission Authorization
      * @apiHeader  Authorization token
-     * @apiSampleRequest  admin/delete-auto-image/{id}
+     * @apiSampleRequest  admin/delete-auto-document/{id}
      */
 
 
@@ -153,6 +154,7 @@ class AutoController extends Controller
      * @apiGroup Admin Auto Action
      * @apiPermission Authorization
      * @apiParam {String} model_name Model name
+     * @apiParam {Number} user_id User Id
      * @apiParam {Number} ship Ship block has or has not
      * @apiParam {String} tracking_id Tracking id
      * @apiParam {String} container_id Container id
