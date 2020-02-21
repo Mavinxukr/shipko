@@ -5,13 +5,10 @@ namespace App\Repositories\Admin;
 
 
 use App\Contracts\ContractRepositories\Admin\InvoiceContract;
-use App\Http\Resources\AutoResource;
 use App\Http\Resources\InvoiceResource;
-use App\Models\Auto\Auto;
 use App\Models\Invoice\Invoice;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\Service\AutoService\UploadDocuments;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 class InvoiceRepository implements InvoiceContract
@@ -21,7 +18,8 @@ class InvoiceRepository implements InvoiceContract
     public function index()
     {
         $invoices = Invoice::latest('id')->paginate(10);
-        return $this->toJson('Get All invoice',200, InvoiceResource::collection($invoices));
+        return $this->toJson('Get All invoice',200,
+            InvoiceResource::collection($invoices)->additional($this->amountValue()));
 
     }
 
@@ -77,5 +75,15 @@ class InvoiceRepository implements InvoiceContract
         if (count($documents)) $this->deleteDocument($documents, $invoice,'invoice');
         return $this->toJson('Auto document deleted successfully',200,
             null);
+    }
+
+    public function amountValue() : array
+    {
+        $amount = [];
+        $arrayValues = ['total_price','outstanding_price','paid_price'];
+        foreach ($arrayValues as $item){
+            $amount['amount'][$item] = Invoice::whereNotNull($item)->sum($item);
+        }
+        return $amount;
     }
 }

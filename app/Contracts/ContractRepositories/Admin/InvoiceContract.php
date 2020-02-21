@@ -11,4 +11,5 @@ interface InvoiceContract extends TemplateContract
 {
     public function restoreImage(Request $request, int  $id);
     public function deleteImage(Request $request, int  $id);
+    public function amountValue() : array;
 }
