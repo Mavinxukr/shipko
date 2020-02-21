@@ -16,10 +16,10 @@ class CreateAutosTable extends Migration
         Schema::create('autos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('model_name');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')
+            $table->unsignedBigInteger('client_id');
+            $table->foreign('client_id')
                     ->references('id')
-                    ->on('users')
+                    ->on('clients')
                     ->onDelete('cascade');
             $table->timestamps();
         });

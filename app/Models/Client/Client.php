@@ -51,7 +51,7 @@ class Client extends Model
     protected  $fillable = [
         'name','username','phone',
         'email','password','city_id',
-        'zip_id','address_id','card_number_id',
+        'zip_id','address_id',
         'country_id','card_number'
     ];
 

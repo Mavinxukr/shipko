@@ -24,7 +24,7 @@ class UpdateClientRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'          => 'nullable|max:20',
+            'name'          => 'nullable|max:50',
             'phone'         => 'nullable|regex:/[0-9]{12}$/|unique:clients,phone',
             'email'         => 'nullable|unique:clients,email',
             'country'       => 'nullable',

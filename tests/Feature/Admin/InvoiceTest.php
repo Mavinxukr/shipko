@@ -3,6 +3,7 @@
 namespace Tests\Feature\Admin;
 
 use App\Models\Auto\Auto;
+use App\Models\Client\Client;
 use App\Models\Invoice\Invoice;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -32,8 +33,8 @@ class InvoiceTest extends TestCase
         $document[0]['type'] = 'auction';
         $document[0]['file'] = UploadedFile::fake()->image('random.jpg');
         $response = $this->post("$this->uri/store-invoice",[
-            'name_car'            => 'Mercedes',
-            'user_id'               => 1,
+            'name_car'              => 'Mercedes',
+            'client_id'             => 1,
             'status'                => 'new',
             'total_price'           => 10000,
             'paid_price'            => 14000,
@@ -75,8 +76,8 @@ class InvoiceTest extends TestCase
         $invoice_id = Invoice::first()->value('id');
         $this->withoutExceptionHandling();
         $response = $this->post("$this->uri/update-invoice/$invoice_id",[
-            'name_car'            => 'Mercedes',
-            'user_id'               => 1,
+            'name_car'              => 'Mercedes',
+            'client_id'             => 1,
             'status'                => 'new',
             'total_price'           => 10000,
             'paid_price'            => 14000,

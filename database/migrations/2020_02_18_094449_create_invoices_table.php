@@ -20,10 +20,10 @@ class CreateInvoicesTable extends Migration
             $table->bigInteger('total_price')->nullable();
             $table->bigInteger('paid_price')->nullable();
             $table->bigInteger('outstanding_price')->nullable();
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')
+            $table->unsignedBigInteger('client_id')->nullable();
+            $table->foreign('client_id')
                 ->references('id')
-                ->on('users')
+                ->on('clients')
                 ->onDelete('cascade');
             $table->timestamps();
         });

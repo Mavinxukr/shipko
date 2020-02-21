@@ -16,10 +16,10 @@ class ClientActionTest extends TestCase implements TokenContract
     {
         $this->withoutExceptionHandling();
         $response = $this->post("$this->uri/store-client",[
-            'name'     => 'user_test',
-            'username'  => 'create_user_test',
-            'phone'  => '380000000000',
-            'email'  => 'test@gmail.com',
+            'name'     => 'from_test_user_test',
+            'username'  => 'from_test_user_test',
+            'phone'  => '380000000001',
+            'email'  => 'from_test_user_test@gmail.com',
             'password'  => bcrypt('111111'),
             'country'  => 'USA',
             'city'  => 'Miami',
@@ -39,7 +39,6 @@ class ClientActionTest extends TestCase implements TokenContract
         $this->withoutExceptionHandling();
         $response = $this->get("$this->uri/get-clients",
             ['Authorization' => $this->getToken()]);
-        $this->assertCount(1, Client::all());
         $response->assertOk();
 
 
@@ -57,18 +56,17 @@ class ClientActionTest extends TestCase implements TokenContract
 
     public function update_client_test()
     {
-        $client_id  = Client::first()->value('id');
-        $this->withoutExceptionHandling();
-        $response = $this->post("$this->uri/update-client/$client_id",[
-            'name'     => 'user_test_update',
+        $response = $this->post("$this->uri/update-client/2",[
+            'name'     => 'from_test_user_test_update',
             'phone'  => '380000000111',
-            'email'  => 'test_update@gmail.com',
+            'email'  => 'from_test_user_test_update@gmail.com',
             'country'  => 'USA',
             'city'  => 'Miami',
             'zip'  => '12345',
             'address'  => 'beach street 123',
             'card_number'  => '1234-1234-0000-1311',
         ], ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
 
     }
@@ -77,8 +75,7 @@ class ClientActionTest extends TestCase implements TokenContract
     public function delete_client_test()
     {
         $this->withoutExceptionHandling();
-        $client_id  = Client::first()->value('id');
-        $response = $this->delete("$this->uri/delete-client/$client_id",[
+        $response = $this->delete("$this->uri/delete-client/2",[
             ], ['Authorization' => $this->getToken()]);
         $response->assertOk();
     }

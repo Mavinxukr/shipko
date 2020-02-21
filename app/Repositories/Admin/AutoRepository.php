@@ -29,8 +29,8 @@ class AutoRepository implements AutoContract
 
     public function store(Request $request)
     {
-        $data = $request->except(['model_name','user_id']);
-        $auto  = Auto::create($request->only(['model_name','user_id']));
+        $data = $request->except(['model_name','client_id']);
+        $auto  = Auto::create($request->only(['model_name','client_id']));
         $this->updateOrCreateAction($data, $auto);
         return $this->toJson('Auto created successfully',201,
                                                         new AutoResource($auto));
@@ -40,8 +40,8 @@ class AutoRepository implements AutoContract
     public function update(Request $request, int $id)
     {
         $auto =  Auto::whereId($id)
-                ->update(array_filter($request->only(['model_name','user_id'])));
-        $data = array_filter($request->except(['model_name','user_id']));
+                ->update(array_filter($request->only(['model_name','client_id'])));
+        $data = array_filter($request->except(['model_name','client_id']));
         $auto = Auto::find($id);
         $this->updateOrCreateAction($data, $auto);
         return $this->toJson('Auto updated successfully',200,

@@ -18,6 +18,7 @@ class ClientRepository implements ClientContract
 
     public function index()
     {
+
        $client =   ClientResource::collection(Client::latest('id')->paginate(10));
         return $this->toJson('Client get by id successfully', 200, $client);
 
@@ -52,7 +53,7 @@ class ClientRepository implements ClientContract
             $location);
         $client->save();
         return $this->toJson('Client updated successfully',
-                                    200, new ClientResource(Client::findOrFail($id)));
+                                    200, new ClientResource($client));
 
     }
     public function destroy(int $id)

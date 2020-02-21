@@ -37,7 +37,7 @@ class AutoController extends Controller
      * @apiGroup Admin Auto Action
      * @apiPermission Authorization
      * @apiParam {String} model_name Model name
-     * @apiParam {Number} user_id User Id
+     * @apiParam {Number} client_id Client id
      * @apiParam {Number} ship Ship block has or has not
      * @apiParam {String} tracking_id Tracking id
      * @apiParam {String} container_id Container id
@@ -154,7 +154,7 @@ class AutoController extends Controller
      * @apiGroup Admin Auto Action
      * @apiPermission Authorization
      * @apiParam {String} model_name Model name
-     * @apiParam {Number} user_id User Id
+     * @apiParam {Number} client_id Client id
      * @apiParam {Number} ship Ship block has or has not
      * @apiParam {String} tracking_id Tracking id
      * @apiParam {String} container_id Container id

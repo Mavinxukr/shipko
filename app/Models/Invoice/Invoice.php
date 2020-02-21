@@ -37,12 +37,12 @@ class Invoice extends Model
     protected $fillable = [
         'name_car','status','total_price',
         'paid_price','outstanding_price',
-        'user_id'
+        'client_id'
     ];
 
     public function client()
     {
-        return $this->belongsTo(Client::class,'user_id');
+        return $this->belongsTo(Client::class,'client_id');
     }
 
     public function documents()

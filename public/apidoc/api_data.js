@@ -278,8 +278,8 @@ define({ "api": [
             "group": "Parameter",
             "type": "Number",
             "optional": false,
-            "field": "user_id",
-            "description": "<p>User Id</p>"
+            "field": "client_id",
+            "description": "<p>Client id</p>"
           },
           {
             "group": "Parameter",
@@ -568,8 +568,8 @@ define({ "api": [
             "group": "Parameter",
             "type": "Number",
             "optional": false,
-            "field": "user_id",
-            "description": "<p>User Id</p>"
+            "field": "client_id",
+            "description": "<p>Client id</p>"
           },
           {
             "group": "Parameter",
@@ -1375,8 +1375,8 @@ define({ "api": [
             "group": "Parameter",
             "type": "Number",
             "optional": false,
-            "field": "user_id",
-            "description": "<p>User id</p>"
+            "field": "client_id",
+            "description": "<p>Client id</p>"
           },
           {
             "group": "Parameter",
@@ -1469,8 +1469,8 @@ define({ "api": [
             "group": "Parameter",
             "type": "Number",
             "optional": false,
-            "field": "user_id",
-            "description": "<p>User id</p>"
+            "field": "client_id",
+            "description": "<p>Client id</p>"
           },
           {
             "group": "Parameter",

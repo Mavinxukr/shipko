@@ -22,7 +22,7 @@ class InvoiceResource extends JsonResource
             'total_price'               => $this->total_price,
             'paid_price'                => $this->paid_price,
             'outstanding_price'         => $this->outstanding_price,
-            'user'                      => new ClientResource($this->client),
+            'client'                    => new ClientResource($this->client),
             'documents'                 => DocumentResource::collection($this->documents),
             'totalAmount'               => Invoice::whereNotNull('total_price')->sum('total_price'),
             'totalOutstanding'          => Invoice::whereNotNull('outstanding_price')->sum('outstanding_price'),

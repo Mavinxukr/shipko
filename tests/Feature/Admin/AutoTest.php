@@ -3,6 +3,7 @@
 namespace Tests\Feature\Admin;
 
 use App\Models\Auto\Auto;
+use App\Models\Client\Client;
 use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 
@@ -32,7 +33,7 @@ class AutoTest extends TestCase
         $this->withoutExceptionHandling();
         $response = $this->post("$this->uri/store-auto",[
             'model_name'            => 'Mercedes',
-            'user_id'               => 1,
+            'client_id'             => 1,
             'ship'                  => 1,
             'tracking_id'           => '777-3333-111FJ',
             'container_id'          => '#8899-UI-00',
@@ -99,7 +100,7 @@ class AutoTest extends TestCase
         $this->withoutExceptionHandling();
         $response = $this->post("$this->uri/update-auto/$auto_id",[
             'model_name'            => 'Mercedes',
-            'user_id'               => 1,
+            'client_id'             => 1,
             'ship'                  => 1,
             'tracking_id'           => '777-3333-111FJ',
             'container_id'          => '#8899-UI-00',

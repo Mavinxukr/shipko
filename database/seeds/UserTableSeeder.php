@@ -19,7 +19,7 @@ class UserTableSeeder extends Seeder
                     'role_id'       => 1
                 ]
         ];
-        foreach ($users as $user){;
+        foreach ($users as $user){
             \App\User::create([
                 'name'          => $user['name'],
                 'email'         => $user['email'],

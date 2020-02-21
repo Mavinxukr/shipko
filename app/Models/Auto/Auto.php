@@ -35,7 +35,7 @@ use Illuminate\Database\Eloquent\Model;
 class Auto extends Model
 {
     protected $fillable = [
-        'model_name','user_id'
+        'model_name','client_id'
     ];
 
     public function shipInfo()

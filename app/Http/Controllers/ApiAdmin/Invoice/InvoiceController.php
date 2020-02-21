@@ -52,7 +52,7 @@ class InvoiceController extends Controller
      * @api {post} admin/store-invoice  Store invoice
      * @apiName Store invoice
      * @apiParam {String} name_car Name car
-     * @apiParam {Number} user_id User id
+     * @apiParam {Number} client_id Client id
      * @apiParam {String} status Status
      * @apiParam {Number} total_price Total price
      * @apiParam {Number} paid_price Paid price
@@ -77,7 +77,7 @@ class InvoiceController extends Controller
      * @api {post} admin/update-invoice/{id}  Update invoice
      * @apiName Update invoice
      * @apiParam {String} name_car Name car
-     * @apiParam {Number} user_id User id
+     * @apiParam {Number} client_id Client id
      * @apiParam {String} status Status
      * @apiParam {Double} total_price Total price
      * @apiParam {Double} paid_price Paid price
