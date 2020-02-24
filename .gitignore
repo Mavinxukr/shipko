@@ -14,3 +14,4 @@ yarn-error.log
 /public/apidoc
 .DS_Store
 /public/apidoc*
+script.sh

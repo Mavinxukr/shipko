@@ -31,6 +31,11 @@ Route::namespace('ApiAdmin')->group(function () {
             Route::post('restore-auto-document/{id}','AutoController@restoreDocument');
             Route::post('delete-auto-document/{id}','AutoController@deleteDocument');
             Route::post('update-auto/{id}','AutoController@update');
+
+            Route::post('store-auto-shipping','AutoShippingController@store');
+            Route::get('get-autos-shipping','AutoShippingController@index');
+            Route::get('get-auto-shipping/{id}','AutoShippingController@show');
+            Route::post('update-auto-shipping/{id}','AutoShippingController@update');
         });
         Route::namespace('Invoice')->group(function () {
             Route::get('get-invoices','InvoiceController@index');

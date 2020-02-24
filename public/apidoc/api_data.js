@@ -812,6 +812,167 @@ define({ "api": [
     "groupTitle": "Admin_Auto_Action"
   },
   {
+    "type": "get",
+    "url": "admin/get-autos-shipping",
+    "title": "Show all autos shipping",
+    "name": "Show_all_autos_shipping",
+    "version": "1.1.1",
+    "group": "Admin_Auto_Shipping",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/get-autos-shipping"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Auto/AutoShippingController.php",
+    "groupTitle": "Admin_Auto_Shipping"
+  },
+  {
+    "type": "get",
+    "url": "admin/get-auto-shipping/{id}",
+    "title": "Show  auto shipping by id",
+    "name": "Show_auto_shipping_by_id",
+    "version": "1.1.1",
+    "group": "Admin_Auto_Shipping",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/get-auto-shipping/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Auto/AutoShippingController.php",
+    "groupTitle": "Admin_Auto_Shipping"
+  },
+  {
+    "type": "post",
+    "url": "admin/store-auto-shipping",
+    "title": "Store Auto Shipping",
+    "name": "Store_Auto_Shipping",
+    "version": "1.1.1",
+    "group": "Admin_Auto_Shipping",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "auto_id",
+            "description": "<p>Auto ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>Status (at_loading, on_the_way, at_unloading, finish)</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/store-auto-shipping"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Auto/AutoShippingController.php",
+    "groupTitle": "Admin_Auto_Shipping"
+  },
+  {
+    "type": "post",
+    "url": "admin/update-auto-shipping/{id}",
+    "title": "Update Auto Shipping",
+    "name": "Update_Auto_Shipping",
+    "version": "1.1.1",
+    "group": "Admin_Auto_Shipping",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>Status (at_loading, on_the_way, at_unloading, finish)</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/update-auto-shipping/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Auto/AutoShippingController.php",
+    "groupTitle": "Admin_Auto_Shipping"
+  },
+  {
     "type": "delete",
     "url": "admin/delete-client/{id}",
     "title": "Delete Client",
