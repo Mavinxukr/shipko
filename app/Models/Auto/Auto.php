@@ -61,4 +61,9 @@ class Auto extends Model
     {
         return $this->hasMany(Document::class);
     }
+
+    public function shipping()
+    {
+        return $this->hasOne(Shipping::class);
+    }
 }
