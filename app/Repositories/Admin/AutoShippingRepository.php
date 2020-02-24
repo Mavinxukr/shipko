@@ -32,10 +32,14 @@ class AutoShippingRepository implements AutoShippingContract
 
     public function store(Request $request)
     {
+        $shipping = Auto::whereId($request->auto_id)->first()->shipping;
+        if(!is_null($shipping))
+            return $this->toJson('Auto Shipping already create',400,
+                new AutoShippingResource($shipping));
+
         $shipping  = Shipping::create($request->only(['auto_id','status']));
         return $this->toJson('Auto Shipping created successfully',201,
                                                         new AutoShippingResource($shipping));
-
     }
 
     public function update(Request $request, int $id)
