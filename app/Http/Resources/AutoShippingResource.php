@@ -16,7 +16,6 @@ class AutoShippingResource extends JsonResource
     {
         return [
             'id'        => $this->id,
-            'auto'      => new AutoResource($this->auto),
             'status'    => $this->status,
         ];
     }

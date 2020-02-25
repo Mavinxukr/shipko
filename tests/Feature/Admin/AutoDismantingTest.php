@@ -8,7 +8,7 @@ use App\Models\Client\Client;
 use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 
-class AutoShippingTest extends TestCase
+class AutoDismantingTest extends TestCase
 {
     protected $uri =  'api-admin';
 
@@ -25,22 +25,10 @@ class AutoShippingTest extends TestCase
 
     /** @test */
 
-    public function create_auto_shipping_test()
+    public function get_all_auto_dismanting_test()
     {
         $this->withoutExceptionHandling();
-        $response = $this->post("$this->uri/store-auto-shipping",[
-            'auto_id'            => Auto::first()->value('id'),
-            'status'             => 'at_loading',
-        ], ['Authorization' => $this->getToken()]);
-        $response->assertStatus(201);
-    }
-
-    /** @test */
-
-    public function get_all_auto_shipping_test()
-    {
-        $this->withoutExceptionHandling();
-        $response = $this->get("$this->uri/get-autos-shipping",
+        $response = $this->get("$this->uri/get-autos-dismanting",
             ['Authorization' => $this->getToken()]);
         $response->assertOk();
 
@@ -48,23 +36,23 @@ class AutoShippingTest extends TestCase
 
     /** @test */
 
-    public function get_auto_shipping_by_id_test()
+    public function get_auto_dismanting_by_id_test()
     {
         $auto_id = Auto::first()->value('id');
         $this->withoutExceptionHandling();
-        $response = $this->get("$this->uri/get-auto-shipping/$auto_id",
+        $response = $this->get("$this->uri/get-auto-dismanting/$auto_id",
             ['Authorization' => $this->getToken()]);
         $response->assertOk();
     }
 
     /** @test */
 
-    public function update_auto_shipping_test()
+    public function update_auto_dismanting_test()
     {
         $auto_id = Auto::first()->value('id');
         $this->withoutExceptionHandling();
-        $response = $this->post("$this->uri/update-auto-shipping/$auto_id",[
-            'status'             => 'at_unloading',
+        $response = $this->post("$this->uri/update-auto-dismanting/$auto_id",[
+            'disassembly'             => 1,
         ], ['Authorization' => $this->getToken()]);
         $response->assertStatus(200);
     }
