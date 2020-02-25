@@ -39,11 +39,13 @@ class AutoRepository implements AutoContract
 
     public function update(Request $request, int $id)
     {
-        $auto =  Auto::whereId($id)
-                ->update(array_filter($request->only(['model_name','client_id'])));
-        $data = array_filter($request->except(['model_name','client_id']));
-        $auto = Auto::find($id);
+        $auto =  Auto::findOrFail($id);
+        $auto->update(array_filter($request->only(['model_name','client_id'])));
+        $data = array_filter($request->except(['model_name','client_id']), function ($value){
+            return !is_null($value);
+        });
         $this->updateOrCreateAction($data, $auto);
+        $auto = $auto->fresh();
         return $this->toJson('Auto updated successfully',200,
                         new AutoResource($auto));
     }

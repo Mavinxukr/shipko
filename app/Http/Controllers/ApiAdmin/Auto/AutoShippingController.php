@@ -46,8 +46,8 @@ class AutoShippingController extends Controller
     }
 
     /**
-     * @api {get} admin/get-auto-shipping/{id}  Show  auto shipping by id
-     * @apiName Show  auto shipping by id
+     * @api {get} admin/get-auto-shipping/{id}  Show  auto shipping by Auto ID
+     * @apiName Show auto shipping by Auto id
      * @apiVersion 1.1.1
      * @apiGroup  Admin Auto Shipping
      * @apiPermission Authorization
@@ -61,7 +61,7 @@ class AutoShippingController extends Controller
     }
 
     /**
-     * @api {post} admin/update-auto-shipping/{id}  Update Auto Shipping
+     * @api {post} admin/update-auto-shipping/{id}  Update Auto Shipping by Auto ID
      * @apiName Update Auto Shipping
      * @apiVersion 1.1.1
      * @apiGroup Admin Auto Shipping

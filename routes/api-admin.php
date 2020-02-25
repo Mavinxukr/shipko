@@ -36,6 +36,10 @@ Route::namespace('ApiAdmin')->group(function () {
             Route::get('get-autos-shipping','AutoShippingController@index');
             Route::get('get-auto-shipping/{id}','AutoShippingController@show');
             Route::post('update-auto-shipping/{id}','AutoShippingController@update');
+
+            Route::get('get-autos-dismanting','AutoDismantingController@index');
+            Route::get('get-auto-dismanting/{id}','AutoDismantingController@show');
+            Route::post('update-auto-dismanting/{id}','AutoDismantingController@update');
         });
         Route::namespace('Invoice')->group(function () {
             Route::get('get-invoices','InvoiceController@index');

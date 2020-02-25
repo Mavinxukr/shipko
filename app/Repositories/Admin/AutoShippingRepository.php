@@ -20,41 +20,49 @@ class AutoShippingRepository implements AutoShippingContract
 
     public function index()
     {
-        $shippings = Shipping::latest('id')->paginate(10);
-        return $this->toJson('Auto Shipping show successfully',200 ,AutoShippingResource::collection($shippings));
+        $auto = Auto::latest('id')
+            ->with('shipping')
+            ->has('shipping')
+            ->paginate(10);
+        return $this->toJson('Auto Shipping show successfully',200 ,AutoResource::collection($auto));
     }
 
     public function show(int $id)
     {
         return $this->toJson('Auto Shipping show by id successfully',200 ,
-            new AutoShippingResource(Shipping::findOrFail($id)));
+            new AutoResource(Auto::findOrFail($id)));
     }
 
     public function store(Request $request)
     {
-        $shipping = Auto::whereId($request->auto_id)->first()->shipping;
-        if(!is_null($shipping))
+        $auto = Auto::findOrFail($request->auto_id);
+        if(!is_null($auto->shipping))
             return $this->toJson('Auto Shipping already create',400,
-                new AutoShippingResource($shipping));
+                new AutoResource($auto));
 
-        $shipping  = Shipping::create($request->only(['auto_id','status']));
+        $auto->shipping()->create($request->only(['auto_id','status']));
+
+        $auto = $auto->fresh();
         return $this->toJson('Auto Shipping created successfully',201,
-                                                        new AutoShippingResource($shipping));
+            new AutoResource($auto));
     }
 
     public function update(Request $request, int $id)
     {
-        $shipping = Shipping::whereId($id)->first();
-        $shipping->update(array_filter($request->only(['status'])));
+        $auto = Auto::findOrFail($id);
+        $auto->shipping()->update(array_filter($request->only(['status'])));
+        $auto = $auto->fresh();
         return $this->toJson('Auto Shipping updated successfully',200,
-                        new AutoShippingResource($shipping));
+            new AutoResource($auto));
     }
 
     public function destroy(int $id)
     {
-        $shipping = Shipping::findOrFail($id);
-        $shipping->delete();
-       return $this->toJson('Auto Shipping deleted successfully',200, null);
+        $auto = Auto::findOrFail($id);
+        $auto->shipping()->delete();
+        $auto = $auto->fresh();
+       return $this->toJson('Auto Shipping deleted successfully',200,
+           new AutoResource($auto));
 
     }
 }

@@ -813,6 +813,115 @@
   },
   {
     "type": "get",
+    "url": "admin/get-autos-dismanting",
+    "title": "Show all autos dismanting",
+    "name": "Show_all_autos_dismanting",
+    "version": "1.1.1",
+    "group": "Admin_Auto_Dismanting",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/get-autos-dismanting"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Auto/AutoDismantingController.php",
+    "groupTitle": "Admin_Auto_Dismanting"
+  },
+  {
+    "type": "get",
+    "url": "admin/get-auto-dismanting/{id}",
+    "title": "Show  auto dismanting by Auto ID",
+    "name": "Show_auto_dismanting_by_Auto_ID",
+    "version": "1.1.1",
+    "group": "Admin_Auto_Dismanting",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/get-auto-dismanting/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Auto/AutoDismantingController.php",
+    "groupTitle": "Admin_Auto_Dismanting"
+  },
+  {
+    "type": "post",
+    "url": "admin/update-auto-dismanting/{id}",
+    "title": "Update auto dismanting by Auto ID",
+    "name": "Update_auto_dismanting_by_Auto_ID",
+    "version": "1.1.1",
+    "group": "Admin_Auto_Dismanting",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "disassembly",
+            "description": "<p>Disassembly Exp - 1 true, 0 - false</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/update-auto-dismanting/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Auto/AutoDismantingController.php",
+    "groupTitle": "Admin_Auto_Dismanting"
+  },
+  {
+    "type": "get",
     "url": "admin/get-autos-shipping",
     "title": "Show all autos shipping",
     "name": "Show_all_autos_shipping",
@@ -846,8 +955,8 @@
   {
     "type": "get",
     "url": "admin/get-auto-shipping/{id}",
-    "title": "Show  auto shipping by id",
-    "name": "Show_auto_shipping_by_id",
+    "title": "Show  auto shipping by Auto ID",
+    "name": "Show_auto_shipping_by_Auto_id",
     "version": "1.1.1",
     "group": "Admin_Auto_Shipping",
     "permission": [
@@ -930,7 +1039,7 @@
   {
     "type": "post",
     "url": "admin/update-auto-shipping/{id}",
-    "title": "Update Auto Shipping",
+    "title": "Update Auto Shipping by Auto ID",
     "name": "Update_Auto_Shipping",
     "version": "1.1.1",
     "group": "Admin_Auto_Shipping",
