@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Contracts\ContratRepositories\Admin;
+namespace App\Contracts\ContratRepositories\Client;
 
 use Illuminate\Http\Request;
 

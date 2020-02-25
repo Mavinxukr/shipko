@@ -2154,5 +2154,72 @@
     ],
     "filename": "app/Http/Controllers/ApiAdmin/Part/PartController.php",
     "groupTitle": "Admin_Part_Action"
+  },
+  {
+    "type": "post",
+    "url": "client/login",
+    "title": "Login Client",
+    "name": "Login_Client",
+    "version": "1.1.1",
+    "group": "Client_Auth",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>Password</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/login"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Auth/AuthController.php",
+    "groupTitle": "Client_Auth"
+  },
+  {
+    "type": "post",
+    "url": "client/logout",
+    "title": "Logout Client",
+    "name": "Logout_Client",
+    "version": "1.1.1",
+    "group": "Client_Auth",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/logout"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Auth/AuthController.php",
+    "groupTitle": "Client_Auth"
   }
 ]

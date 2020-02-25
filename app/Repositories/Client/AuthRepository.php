@@ -1,10 +1,11 @@
 <?php
 
 
-namespace App\Repositories\Admin;
+namespace App\Repositories\Client;
 
-use App\Contracts\ContratRepositories\Admin\AuthContract;
+use App\Contracts\ContratRepositories\Client\AuthContract;
 use App\Http\Resources\AuthResource;
+use App\Models\Client\Client;
 use App\Traits\FormattedJsonResponse;
 use Illuminate\Http\Request;
 
@@ -14,17 +15,20 @@ class AuthRepository implements AuthContract
 
     public function login(Request $request)
     {
-        $credentials = request(['email', 'password']);
-        if(!\Auth::attempt($credentials))
+        $client = Client::where('email', $request->email)->first();
+        if($client)
+            $checkPass = $client->checkPassword($request->password);
+        if(!$client || !$checkPass)
             return $this->response('Unauthorized',401,null);
 
+        \Auth::login($client);
         return $this->response('Login success',200,
-                                new AuthResource($request->user()));
+            new AuthResource(\Auth::user()));
     }
 
     public function logout(Request $request): object
     {
-        $request->user()->token()->revoke();
+        $request->user('client')->token()->revoke();
         return $this->response('Logout success',200, null);
     }
 
