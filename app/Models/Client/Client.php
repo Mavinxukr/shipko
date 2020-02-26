@@ -2,6 +2,7 @@
 
 namespace App\Models\Client;
 
+use App\Models\Auto\Auto;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
@@ -83,5 +84,10 @@ class Client extends Authenticatable
     public function checkPassword($password)
     {
         return \Hash::check($password, $this->password);
+    }
+
+    public function autos()
+    {
+        return $this->hasMany(Auto::class);
     }
 }

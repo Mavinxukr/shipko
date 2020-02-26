@@ -2221,5 +2221,69 @@ define({ "api": [
     ],
     "filename": "app/Http/Controllers/ApiClient/Auth/AuthController.php",
     "groupTitle": "Client_Auth"
+  },
+  {
+    "type": "get",
+    "url": "client/get-autos-dismanting",
+    "title": "Show all autos dismanting",
+    "name": "Show_all_autos_dismanting",
+    "version": "1.1.1",
+    "group": "Client_Auto",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/get-autos-dismanting"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Auto/AutoDismantingController.php",
+    "groupTitle": "Client_Auto"
+  },
+  {
+    "type": "get",
+    "url": "client/get-autos-shipping",
+    "title": "Show all autos shipping",
+    "name": "Show_all_autos_shipping",
+    "version": "1.1.1",
+    "group": "Client_Auto",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/get-autos-shipping"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Auto/AutoShippingController.php",
+    "groupTitle": "Client_Auto"
   }
 ] });
