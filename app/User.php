@@ -2,11 +2,6 @@
 
 namespace App;
 
-use App\Models\Client\Address;
-use App\Models\Client\City;
-use App\Models\Client\ClientImage;
-use App\Models\Client\Country;
-use App\Models\Client\Zip;
 use App\Models\Role\Role;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
