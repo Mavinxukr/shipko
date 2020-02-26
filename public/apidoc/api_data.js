@@ -2221,5 +2221,37 @@ define({ "api": [
     ],
     "filename": "app/Http/Controllers/ApiClient/Auth/AuthController.php",
     "groupTitle": "Client_Auth"
+  },
+  {
+    "type": "get",
+    "url": "client/get-autos",
+    "title": "Show all autos",
+    "name": "Show_all_autos",
+    "version": "1.1.1",
+    "group": "Client_Auto_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/get-autos"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Auto/AutoController.php",
+    "groupTitle": "Client_Auto_Action"
   }
 ] });
