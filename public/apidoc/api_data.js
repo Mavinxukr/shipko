@@ -1645,8 +1645,8 @@ define({ "api": [
             "group": "Parameter",
             "type": "Number",
             "optional": false,
-            "field": "client_id",
-            "description": "<p>Client id</p>"
+            "field": "auto_id",
+            "description": "<p>Auto id</p>"
           },
           {
             "group": "Parameter",
@@ -1739,8 +1739,8 @@ define({ "api": [
             "group": "Parameter",
             "type": "Number",
             "optional": false,
-            "field": "client_id",
-            "description": "<p>Client id</p>"
+            "field": "auto_id",
+            "description": "<p>Auto id</p>"
           },
           {
             "group": "Parameter",
@@ -2221,5 +2221,37 @@ define({ "api": [
     ],
     "filename": "app/Http/Controllers/ApiClient/Auth/AuthController.php",
     "groupTitle": "Client_Auth"
+  },
+  {
+    "type": "get",
+    "url": "client/overview",
+    "title": "Client Overview Page",
+    "name": "Client_Overview_Page",
+    "version": "1.1.1",
+    "group": "Client_Overview",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/overview"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Overview/OverviewController.php",
+    "groupTitle": "Client_Overview"
   }
 ] });

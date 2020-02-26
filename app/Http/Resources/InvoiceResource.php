@@ -22,7 +22,7 @@ class InvoiceResource extends JsonResource
             'total_price'               => $this->total_price,
             'paid_price'                => $this->paid_price,
             'outstanding_price'         => $this->outstanding_price,
-            'client'                    => new ClientResource($this->client),
+            'auto'                      => new AutoResource($this->auto),
             'documents'                 => DocumentResource::collection($this->documents),
         ];
     }

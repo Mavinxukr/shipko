@@ -11,6 +11,7 @@ use App\Contracts\ContratRepositories\Admin\AuthContract as AdminAuthContract;
 use App\Contracts\ContratRepositories\Client\AuthContract as ClientAuthContract;
 use App\Contracts\ContratRepositories\Admin\ClientContract;
 use App\Contracts\ContratRepositories\Admin\ClientFilterContract;
+use App\Contracts\ContratRepositories\Client\OverviewContract;
 use App\Repositories\Admin\AuthRepository as AdminAuthRepository;
 use App\Repositories\Client\AuthRepository as ClientAuthRepository;
 use App\Repositories\Admin\AutoDismantingRepository;
@@ -20,6 +21,7 @@ use App\Repositories\Admin\ClientFilterRepository;
 use App\Repositories\Admin\ClientRepository;
 use App\Repositories\Admin\InvoiceRepository;
 use App\Repositories\Admin\PartRepository;
+use App\Repositories\Client\OverviewRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -54,5 +56,6 @@ class RepositoryServiceProvider extends ServiceProvider
 
         //Client
         $this->app->bind(ClientAuthContract::class,ClientAuthRepository::class);
+        $this->app->bind(OverviewContract::class,OverviewRepository::class);
     }
 }
