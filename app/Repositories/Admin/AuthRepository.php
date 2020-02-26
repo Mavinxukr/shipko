@@ -22,7 +22,7 @@ class AuthRepository implements AuthContract
                                 new AuthResource($request->user()));
     }
 
-    public function logout(Request $request): object
+    public function logout(Request $request)
     {
         $request->user()->token()->revoke();
         return $this->response('Logout success',200, null);
