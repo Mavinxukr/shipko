@@ -35,7 +35,6 @@ class InvoiceRepository implements InvoiceContract
         $invoice = Invoice::create($request->except(['type','file']));
         if (isset($document['document'])) $this->saveDocuments($invoice,$document['document'],'invoice');
 
-        dd($invoice);
         return $this->toJson('Invoice created successfully', 201,
                                 new InvoiceResource($invoice));
     }
