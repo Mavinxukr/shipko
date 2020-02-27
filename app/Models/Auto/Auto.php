@@ -2,6 +2,8 @@
 
 namespace App\Models\Auto;
 
+use App\Models\Client\Client;
+use App\Models\Invoice\Invoice;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -65,5 +67,15 @@ class Auto extends Model
     public function shipping()
     {
         return $this->hasOne(Shipping::class);
+    }
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    public function invoice()
+    {
+        return $this->hasOne(Invoice::class);
     }
 }
