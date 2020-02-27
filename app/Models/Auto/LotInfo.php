@@ -37,8 +37,8 @@ use Illuminate\Database\Eloquent\Model;
 class LotInfo extends Model
 {
     protected $fillable = [
-        'doc_type','odometer','highlight',
-        'pri_damage','sec_damage','ret_value',
-        'vin_code','auto_id'
+        'lot_number', 'doc_type','odometer',
+        'highlight', 'pri_damage','sec_damage',
+        'ret_value', 'vin_code','auto_id'
     ];
 }
