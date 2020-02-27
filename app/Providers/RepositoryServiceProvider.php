@@ -20,6 +20,7 @@ use App\Repositories\Admin\ClientFilterRepository;
 use App\Repositories\Admin\ClientRepository;
 use App\Repositories\Admin\InvoiceRepository;
 use App\Repositories\Admin\PartRepository;
+
 //Client
 use App\Contracts\ContratRepositories\Client\AuthContract as ClientAuthContract;
 use App\Repositories\Client\AuthRepository as ClientAuthRepository;
@@ -31,6 +32,8 @@ use App\Contracts\ContractRepositories\Client\AutoDismantingContract as ClientAu
 use App\Repositories\Client\AutoDismantingRepository as ClientAutoDismantingRepository;
 use App\Contracts\ContractRepositories\Client\AutoShippingContract as ClientAutoShippingContract;
 use App\Repositories\Client\AutoShippingRepository as ClientAutoShippingRepository;
+use App\Contracts\ContractRepositories\Client\InvoiceContract as ClientInvoiceContract;
+use App\Repositories\Client\InvoiceRepository as ClientInvoiceRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -68,5 +71,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ClientAutoShippingContract::class, ClientAutoShippingRepository::class);
         $this->app->bind(OverviewContract::class,OverviewRepository::class);
         $this->app->bind(ClientAutoContract::class,ClientAutoRepository::class);
+        $this->app->bind(ClientInvoiceContract::class, ClientInvoiceRepository::class);
     }
 }

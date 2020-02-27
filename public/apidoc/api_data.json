@@ -2238,20 +2238,44 @@
   },
   {
     "type": "get",
-<<<<<<< HEAD
-    "url": "client/get-autos-dismanting",
-    "title": "Show all autos dismanting",
-    "name": "Show_all_autos_dismanting",
+    "url": "client/get-invoices",
+    "title": "Show All Invoices",
+    "name": "Show_All_Invoices",
     "version": "1.1.1",
     "group": "Client_Auto",
-=======
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/get-invoices"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Invoice/InvoiceController.php",
+    "groupTitle": "Client_Auto"
+  },
+  {
+    "type": "get",
     "url": "client/get-autos",
     "title": "Show all autos",
     "name": "Show_all_autos",
     "version": "1.1.1",
     "group": "Client_Auto",
     "description": "<p>This is the Description. Allow get params for filters exp: container, lot_number, model_name, vin, point_load_city</p>",
->>>>>>> dev1
     "permission": [
       {
         "name": "Authorization"
@@ -2271,30 +2295,17 @@
     },
     "sampleRequest": [
       {
-<<<<<<< HEAD
-        "url": "/api-client/get-autos-dismanting"
-      }
-    ],
-    "filename": "app/Http/Controllers/ApiClient/Auto/AutoDismantingController.php",
-=======
         "url": "/api-client/get-autos"
       }
     ],
     "filename": "app/Http/Controllers/ApiClient/Auto/AutoController.php",
->>>>>>> dev1
     "groupTitle": "Client_Auto"
   },
   {
     "type": "get",
-<<<<<<< HEAD
-    "url": "client/get-autos-shipping",
-    "title": "Show all autos shipping",
-    "name": "Show_all_autos_shipping",
-=======
-    "url": "client/get-auto/{id}",
-    "title": "Show  auto by id",
-    "name": "Show_auto_by_id",
->>>>>>> dev1
+    "url": "client/get-autos-dismanting",
+    "title": "Show all autos dismanting",
+    "name": "Show_all_autos_dismanting",
     "version": "1.1.1",
     "group": "Client_Auto",
     "permission": [
@@ -2316,13 +2327,70 @@
     },
     "sampleRequest": [
       {
-<<<<<<< HEAD
+        "url": "/api-client/get-autos-dismanting"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Auto/AutoDismantingController.php",
+    "groupTitle": "Client_Auto"
+  },
+  {
+    "type": "get",
+    "url": "client/get-autos-shipping",
+    "title": "Show all autos shipping",
+    "name": "Show_all_autos_shipping",
+    "version": "1.1.1",
+    "group": "Client_Auto",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
         "url": "/api-client/get-autos-shipping"
       }
     ],
     "filename": "app/Http/Controllers/ApiClient/Auto/AutoShippingController.php",
     "groupTitle": "Client_Auto"
-=======
+  },
+  {
+    "type": "get",
+    "url": "client/get-auto/{id}",
+    "title": "Show  auto by id",
+    "name": "Show_auto_by_id",
+    "version": "1.1.1",
+    "group": "Client_Auto",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
         "url": "/api-client/get-auto/{id}"
       }
     ],
@@ -2360,6 +2428,5 @@
     ],
     "filename": "app/Http/Controllers/ApiClient/Overview/OverviewController.php",
     "groupTitle": "Client_Overview"
->>>>>>> dev1
   }
 ]

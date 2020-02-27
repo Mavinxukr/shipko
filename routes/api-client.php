@@ -14,6 +14,11 @@ Route::namespace('ApiClient')->group(function () {
             Route::get('get-autos-shipping','AutoShippingController@index');
             Route::get('get-autos-dismanting', 'AutoDismantingController@index');
         });
+
+        Route::namespace('Invoice')->group(function () {
+            Route::get('get-invoices', 'InvoiceController@index');
+        });
+
     });
 });
 
