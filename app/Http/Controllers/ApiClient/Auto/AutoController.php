@@ -19,7 +19,7 @@ class AutoController extends Controller
      * @api {get} client/get-autos  Show all autos
      * @apiName Show all autos
      * @apiVersion 1.1.1
-     * @apiGroup  Client Auto Action
+     * @apiGroup  Client Auto
      * @apiPermission Authorization
      * @apiHeader  Authorization token
      * @apiSampleRequest  client/get-autos
@@ -27,5 +27,19 @@ class AutoController extends Controller
     public function index(Request $request)
     {
         return $this->auto->index($request);
+    }
+
+    /**
+     * @api {get} client/get-auto/{id}  Show  auto by id
+     * @apiName Show  auto by id
+     * @apiVersion 1.1.1
+     * @apiGroup  Client Auto
+     * @apiPermission Authorization
+     * @apiHeader  Authorization token
+     * @apiSampleRequest  client/get-auto/{id}
+     */
+    public function show(int $id)
+    {
+        return $this->auto->show($id);
     }
 }

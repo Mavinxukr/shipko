@@ -9,6 +9,7 @@ Route::namespace('ApiClient')->group(function () {
 
         Route::namespace('Auto')->group(function () {
             Route::get('get-autos', 'AutoController@index');
+            Route::get('get-auto/{id}', 'AutoController@show');
         });
     });
 });

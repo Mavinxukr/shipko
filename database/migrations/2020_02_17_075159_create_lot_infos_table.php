@@ -15,6 +15,7 @@ class CreateLotInfosTable extends Migration
     {
         Schema::create('lot_infos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('lot_number')->nullable();
             $table->string('doc_type')->nullable();
             $table->string('odometer')->nullable();
             $table->string('highlight')->nullable();
