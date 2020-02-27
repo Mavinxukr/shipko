@@ -4,6 +4,7 @@
 namespace App\Traits\Service\AutoService;
 
 
+use App\Http\Resources\PopularAutoResource;
 use App\Models\Auto\Auto;
 
 trait AutoAction
@@ -15,5 +16,11 @@ trait AutoAction
         if (isset($data['sale'])) $auto->saleInfo()->updateOrCreate(['auto_id' => $auto->id],$data);
         if (isset($data['feature'])) $auto->featureInfo()->updateOrCreate(['auto_id' => $auto->id],$data);
         if (isset($data['document'])) $this->saveDocuments($auto,$data['document'],'auto');
+    }
+
+    public function getPopular(int $count)
+    {
+        $autos = Auto::latest()->limit($count)->get();
+        return PopularAutoResource::collection($autos);
     }
 }

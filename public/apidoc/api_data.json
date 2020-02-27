@@ -348,6 +348,13 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
+            "field": "lot_number",
+            "description": "<p>Lot Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
             "field": "doc_type",
             "description": "<p>Document type</p>"
           },
@@ -633,6 +640,13 @@
             "optional": false,
             "field": "lot",
             "description": "<p>Lot block has or has not</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "lot_number",
+            "description": "<p>Lot Number</p>"
           },
           {
             "group": "Parameter",
@@ -1645,8 +1659,8 @@
             "group": "Parameter",
             "type": "Number",
             "optional": false,
-            "field": "client_id",
-            "description": "<p>Client id</p>"
+            "field": "auto_id",
+            "description": "<p>Auto id</p>"
           },
           {
             "group": "Parameter",
@@ -1739,8 +1753,8 @@
             "group": "Parameter",
             "type": "Number",
             "optional": false,
-            "field": "client_id",
-            "description": "<p>Client id</p>"
+            "field": "auto_id",
+            "description": "<p>Auto id</p>"
           },
           {
             "group": "Parameter",
@@ -2224,11 +2238,20 @@
   },
   {
     "type": "get",
+<<<<<<< HEAD
     "url": "client/get-autos-dismanting",
     "title": "Show all autos dismanting",
     "name": "Show_all_autos_dismanting",
     "version": "1.1.1",
     "group": "Client_Auto",
+=======
+    "url": "client/get-autos",
+    "title": "Show all autos",
+    "name": "Show_all_autos",
+    "version": "1.1.1",
+    "group": "Client_Auto",
+    "description": "<p>This is the Description. Allow get params for filters exp: container, lot_number, model_name, vin, point_load_city</p>",
+>>>>>>> dev1
     "permission": [
       {
         "name": "Authorization"
@@ -2248,17 +2271,30 @@
     },
     "sampleRequest": [
       {
+<<<<<<< HEAD
         "url": "/api-client/get-autos-dismanting"
       }
     ],
     "filename": "app/Http/Controllers/ApiClient/Auto/AutoDismantingController.php",
+=======
+        "url": "/api-client/get-autos"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Auto/AutoController.php",
+>>>>>>> dev1
     "groupTitle": "Client_Auto"
   },
   {
     "type": "get",
+<<<<<<< HEAD
     "url": "client/get-autos-shipping",
     "title": "Show all autos shipping",
     "name": "Show_all_autos_shipping",
+=======
+    "url": "client/get-auto/{id}",
+    "title": "Show  auto by id",
+    "name": "Show_auto_by_id",
+>>>>>>> dev1
     "version": "1.1.1",
     "group": "Client_Auto",
     "permission": [
@@ -2280,10 +2316,50 @@
     },
     "sampleRequest": [
       {
+<<<<<<< HEAD
         "url": "/api-client/get-autos-shipping"
       }
     ],
     "filename": "app/Http/Controllers/ApiClient/Auto/AutoShippingController.php",
     "groupTitle": "Client_Auto"
+=======
+        "url": "/api-client/get-auto/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Auto/AutoController.php",
+    "groupTitle": "Client_Auto"
+  },
+  {
+    "type": "get",
+    "url": "client/overview",
+    "title": "Client Overview Page",
+    "name": "Client_Overview_Page",
+    "version": "1.1.1",
+    "group": "Client_Overview",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/overview"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Overview/OverviewController.php",
+    "groupTitle": "Client_Overview"
+>>>>>>> dev1
   }
 ]

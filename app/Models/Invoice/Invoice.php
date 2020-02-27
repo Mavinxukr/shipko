@@ -2,8 +2,7 @@
 
 namespace App\Models\Invoice;
 
-use App\Models\Client\Client;
-use App\User;
+use App\Models\Auto\Auto;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -37,18 +36,16 @@ class Invoice extends Model
     protected $fillable = [
         'name_car','status','total_price',
         'paid_price','outstanding_price',
-        'client_id'
+        'auto_id'
     ];
 
-    public function client()
+    public function auto()
     {
-        return $this->belongsTo(Client::class,'client_id');
+        return $this->belongsTo(Auto::class,'auto_id');
     }
 
     public function documents()
     {
         return $this->hasMany(InvoiceDocument::class);
     }
-
-
 }
