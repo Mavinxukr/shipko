@@ -39,7 +39,7 @@ class ClientOverviewResource extends JsonResource
             }
 
         return [
-            'vehicles'          => AutoResource::collection($this->autos),
+            'vehicles'          => $this->autos,
             'latest_shippings'  => $latest_shippings,
             'latest_invoices'   => $latest_invoices,
         ];
