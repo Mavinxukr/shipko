@@ -12,6 +12,7 @@ use App\Filters\AutoFilters\Vin;
 use App\Http\Resources\AutoResource;
 use App\Models\Auto\Auto;
 use App\Traits\FormattedJsonResponse;
+use App\Traits\Service\AutoService\AutoAction;
 use Illuminate\Http\Request;
 use Illuminate\Pipeline\Pipeline;
 
