@@ -4,12 +4,16 @@
 namespace App\Repositories\Client;
 
 use App\Contracts\ContractRepositories\Client\AutoContract;
+use App\Filters\AutoFilters\Container;
+use App\Filters\AutoFilters\Lot;
+use App\Filters\AutoFilters\Model_name;
+use App\Filters\AutoFilters\Point_load_city;
+use App\Filters\AutoFilters\Vin;
 use App\Http\Resources\AutoResource;
 use App\Models\Auto\Auto;
 use App\Traits\FormattedJsonResponse;
-use App\Traits\Service\AutoService\AutoAction;
-use App\Traits\Service\AutoService\UploadDocuments;
 use Illuminate\Http\Request;
+use Illuminate\Pipeline\Pipeline;
 
 class AutoRepository implements AutoContract
 {
@@ -17,8 +21,19 @@ class AutoRepository implements AutoContract
 
     public function index(Request $request)
     {
-        $autos = Auto::latest('id')->paginate(10);
-        return $this->toJson('Auto show successfully',200 ,AutoResource::collection($autos));
+        $pipeline =  app(Pipeline::class)
+            ->send(Auto::query())
+            ->through([
+                Model_name::class,
+                Point_load_city::class,
+                Container::class,
+                Lot::class,
+                Vin::class,
+            ])->thenReturn()
+            ->select('autos.*')
+            ->paginate(10);
+
+        return $this->toJson('All Auto by filters',200, AutoResource::collection($pipeline));
     }
 
     public function show(int $id)
