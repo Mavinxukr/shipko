@@ -5,7 +5,7 @@ namespace App\Repositories\Client;
 
 use App\Contracts\ContractRepositories\Client\AutoContract;
 use App\Filters\AutoFilters\Container;
-use App\Filters\AutoFilters\Lot;
+use App\Filters\AutoFilters\Lot_number;
 use App\Filters\AutoFilters\Model_name;
 use App\Filters\AutoFilters\Point_load_city;
 use App\Filters\AutoFilters\Vin;
@@ -28,7 +28,7 @@ class AutoRepository implements AutoContract
                 Model_name::class,
                 Point_load_city::class,
                 Container::class,
-                Lot::class,
+                Lot_number::class,
                 Vin::class,
             ])->thenReturn()
             ->select('autos.*')

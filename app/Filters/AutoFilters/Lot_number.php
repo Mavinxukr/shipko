@@ -7,12 +7,12 @@ use App\Filters\AbstractFilters;
 use Illuminate\Database\Eloquent\Builder;
 
 
-class Lot extends AbstractFilters
+class Lot_number extends AbstractFilters
 {
     protected function applyFilter(Builder $builders)
     {
         return $builders->whereHas('lotInfo', function (Builder $shipInfo) {
-            return $shipInfo->where('id', request($this->filterName()));
+            return $shipInfo->where('lot_number', request($this->filterName()));
         });
     }
 }
