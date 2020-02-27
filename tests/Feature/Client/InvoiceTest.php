@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\CLient;
+namespace Tests\Feature\Client;
 
 use App\Models\Auto\Auto;
 use App\Models\Client\Client;
