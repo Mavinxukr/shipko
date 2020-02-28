@@ -88,6 +88,6 @@ class Client extends Authenticatable
 
     public function autos()
     {
-        return $this->hasMany(Auto::class, 'client_id', 'id');
+        return $this->hasMany(Auto::class);
     }
 }
