@@ -5,9 +5,9 @@ namespace App\Repositories\Client;
 
 use App\Contracts\ContractRepositories\Client\AutoContract;
 use App\Filters\AutoFilters\Container;
-use App\Filters\AutoFilters\Lot_number;
-use App\Filters\AutoFilters\Model_name;
-use App\Filters\AutoFilters\Point_load_city;
+use App\Filters\AutoFilters\LotNumber;
+use App\Filters\AutoFilters\ModelName;
+use App\Filters\AutoFilters\PointLoadCity;
 use App\Filters\AutoFilters\Vin;
 use App\Http\Resources\AutoResource;
 use App\Models\Auto\Auto;
@@ -25,10 +25,10 @@ class AutoRepository implements AutoContract
         $pipeline =  app(Pipeline::class)
             ->send(Auto::query())
             ->through([
-                Model_name::class,
-                Point_load_city::class,
+                ModelName::class,
+                PointLoadCity::class,
                 Container::class,
-                Lot_number::class,
+                LotNumber::class,
                 Vin::class,
             ])->thenReturn()
             ->select('autos.*')

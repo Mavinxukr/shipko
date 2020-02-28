@@ -19,6 +19,11 @@ Route::namespace('ApiClient')->group(function () {
             Route::get('get-invoices', 'InvoiceController@index');
         });
 
+        Route::namespace('Profile')->group(function () {
+            Route::get('get-profile', 'ProfileController@index');
+            Route::post('update-profile', 'ProfileController@update');
+            Route::post('update-profile-password', 'ProfileController@updatePassword');
+        });
     });
 });
 

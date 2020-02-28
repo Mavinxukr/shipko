@@ -7,7 +7,7 @@ use App\Filters\AbstractFilters;
 use Illuminate\Database\Eloquent\Builder;
 
 
-class Lot_number extends AbstractFilters
+class LotNumber extends AbstractFilters
 {
     protected function applyFilter(Builder $builders)
     {
