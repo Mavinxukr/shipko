@@ -23,6 +23,8 @@ class ProfileTest extends TestCase implements TokenContract
 
     public function update_profile_test()
     {
+        $token = $this->getToken();
+
         $response = $this->post("$this->uri/update-profile",[
             'name'     => 'from_test_user_test_update',
             'phone'  => '380000000111',
@@ -32,7 +34,12 @@ class ProfileTest extends TestCase implements TokenContract
             'zip'  => '12345',
             'address'  => 'beach street 123',
             'card_number'  => '1234-1234-0000-1311',
-        ], ['Authorization' => $this->getToken()]);
+        ], ['Authorization' => $token]);
+
+        $response = $this->post("$this->uri/update-profile",[
+            'email'  => 'client12@gmail.com'
+        ], ['Authorization' => $token]);
+
         $this->withoutExceptionHandling();
         $response->assertOk();
 
@@ -41,11 +48,20 @@ class ProfileTest extends TestCase implements TokenContract
 
     public function update_profile_password_test()
     {
+        $token = $this->getToken();
+
         $response = $this->post("$this->uri/update-profile-password",[
             'old_password'          => '111111',
             'password'              => '11111111',
             'password_confirmation' => '11111111',
-        ], ['Authorization' => $this->getToken()]);
+        ], ['Authorization' => $token]);
+
+        $response = $this->post("$this->uri/update-profile-password",[
+            'old_password'          => '11111111',
+            'password'              => '111111',
+            'password_confirmation' => '111111',
+        ], ['Authorization' => $token]);
+
         $this->withoutExceptionHandling();
         $response->assertOk();
 
