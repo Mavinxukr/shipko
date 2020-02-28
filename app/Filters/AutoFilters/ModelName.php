@@ -7,7 +7,7 @@ use App\Filters\AbstractFilters;
 use Illuminate\Database\Eloquent\Builder;
 
 
-class Model_name extends AbstractFilters
+class ModelName extends AbstractFilters
 {
     protected function applyFilter(Builder $builders)
     {

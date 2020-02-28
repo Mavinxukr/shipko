@@ -34,6 +34,8 @@ use App\Contracts\ContractRepositories\Client\AutoShippingContract as ClientAuto
 use App\Repositories\Client\AutoShippingRepository as ClientAutoShippingRepository;
 use App\Contracts\ContractRepositories\Client\InvoiceContract as ClientInvoiceContract;
 use App\Repositories\Client\InvoiceRepository as ClientInvoiceRepository;
+use App\Contracts\ContratRepositories\Client\ProfileContract;
+use App\Repositories\Client\ProfileRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -72,5 +74,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(OverviewContract::class,OverviewRepository::class);
         $this->app->bind(ClientAutoContract::class,ClientAutoRepository::class);
         $this->app->bind(ClientInvoiceContract::class, ClientInvoiceRepository::class);
+        $this->app->bind(ProfileContract::class,ProfileRepository::class);
     }
 }
