@@ -12,6 +12,12 @@ Route::namespace('ApiClient')->group(function () {
             Route::get('get-autos', 'AutoController@index');
             Route::get('get-auto/{id}', 'AutoController@show');
         });
+
+        Route::namespace('Profile')->group(function () {
+            Route::get('get-profile', 'ProfileController@index');
+            Route::post('update-profile', 'ProfileController@update');
+            Route::post('update-profile-password', 'ProfileController@updatePassword');
+        });
     });
 });
 

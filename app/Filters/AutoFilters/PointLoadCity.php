@@ -7,7 +7,7 @@ use App\Filters\AbstractFilters;
 use Illuminate\Database\Eloquent\Builder;
 
 
-class Point_load_city extends AbstractFilters
+class PointLoadCity extends AbstractFilters
 {
     protected function applyFilter(Builder $builders)
     {
