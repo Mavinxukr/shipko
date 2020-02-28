@@ -348,6 +348,13 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
+            "field": "lot_number",
+            "description": "<p>Lot Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
             "field": "doc_type",
             "description": "<p>Document type</p>"
           },
@@ -633,6 +640,13 @@
             "optional": false,
             "field": "lot",
             "description": "<p>Lot block has or has not</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "lot_number",
+            "description": "<p>Lot Number</p>"
           },
           {
             "group": "Parameter",
@@ -1645,8 +1659,8 @@
             "group": "Parameter",
             "type": "Number",
             "optional": false,
-            "field": "client_id",
-            "description": "<p>Client id</p>"
+            "field": "auto_id",
+            "description": "<p>Auto id</p>"
           },
           {
             "group": "Parameter",
@@ -1739,8 +1753,8 @@
             "group": "Parameter",
             "type": "Number",
             "optional": false,
-            "field": "client_id",
-            "description": "<p>Client id</p>"
+            "field": "auto_id",
+            "description": "<p>Auto id</p>"
           },
           {
             "group": "Parameter",
@@ -2154,5 +2168,265 @@
     ],
     "filename": "app/Http/Controllers/ApiAdmin/Part/PartController.php",
     "groupTitle": "Admin_Part_Action"
+  },
+  {
+    "type": "post",
+    "url": "client/login",
+    "title": "Login Client",
+    "name": "Login_Client",
+    "version": "1.1.1",
+    "group": "Client_Auth",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>Password</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/login"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Auth/AuthController.php",
+    "groupTitle": "Client_Auth"
+  },
+  {
+    "type": "post",
+    "url": "client/logout",
+    "title": "Logout Client",
+    "name": "Logout_Client",
+    "version": "1.1.1",
+    "group": "Client_Auth",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/logout"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Auth/AuthController.php",
+    "groupTitle": "Client_Auth"
+  },
+  {
+    "type": "get",
+    "url": "client/get-invoices",
+    "title": "Show All Invoices",
+    "name": "Show_All_Invoices",
+    "version": "1.1.1",
+    "group": "Client_Auto",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/get-invoices"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Invoice/InvoiceController.php",
+    "groupTitle": "Client_Auto"
+  },
+  {
+    "type": "get",
+    "url": "client/get-autos",
+    "title": "Show all autos",
+    "name": "Show_all_autos",
+    "version": "1.1.1",
+    "group": "Client_Auto",
+    "description": "<p>This is the Description. Allow get params for filters exp: container, lot_number, model_name, vin, point_load_city</p>",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/get-autos"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Auto/AutoController.php",
+    "groupTitle": "Client_Auto"
+  },
+  {
+    "type": "get",
+    "url": "client/get-autos-dismanting",
+    "title": "Show all autos dismanting",
+    "name": "Show_all_autos_dismanting",
+    "version": "1.1.1",
+    "group": "Client_Auto",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/get-autos-dismanting"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Auto/AutoDismantingController.php",
+    "groupTitle": "Client_Auto"
+  },
+  {
+    "type": "get",
+    "url": "client/get-autos-shipping",
+    "title": "Show all autos shipping",
+    "name": "Show_all_autos_shipping",
+    "version": "1.1.1",
+    "group": "Client_Auto",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/get-autos-shipping"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Auto/AutoShippingController.php",
+    "groupTitle": "Client_Auto"
+  },
+  {
+    "type": "get",
+    "url": "client/get-auto/{id}",
+    "title": "Show  auto by id",
+    "name": "Show_auto_by_id",
+    "version": "1.1.1",
+    "group": "Client_Auto",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/get-auto/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Auto/AutoController.php",
+    "groupTitle": "Client_Auto"
+  },
+  {
+    "type": "get",
+    "url": "client/overview",
+    "title": "Client Overview Page",
+    "name": "Client_Overview_Page",
+    "version": "1.1.1",
+    "group": "Client_Overview",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/overview"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Overview/OverviewController.php",
+    "groupTitle": "Client_Overview"
   }
 ]

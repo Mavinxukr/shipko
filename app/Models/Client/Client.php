@@ -2,7 +2,10 @@
 
 namespace App\Models\Client;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Auto\Auto;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 /**
  * App\Models\Client\Client
@@ -45,8 +48,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Models\Client\Zip|null $zip
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client\Client whereCardNumber($value)
  */
-class Client extends Model
+class Client extends Authenticatable
 {
+    use Notifiable, HasApiTokens;
 
     protected  $fillable = [
         'name','username','phone',
@@ -75,5 +79,15 @@ class Client extends Model
     public function image()
     {
         return $this->hasOne(ClientImage::class,'client_id');
+    }
+
+    public function checkPassword($password)
+    {
+        return \Hash::check($password, $this->password);
+    }
+
+    public function autos()
+    {
+        return $this->hasMany(Auto::class);
     }
 }

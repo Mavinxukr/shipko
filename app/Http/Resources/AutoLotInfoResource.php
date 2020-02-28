@@ -15,6 +15,7 @@ class AutoLotInfoResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'lot_number'        => $this->lot_number,
             'doc_type'          => $this->doc_type,
             'odometer'          => $this->odometer,
             'highlight'         => $this->highlight,

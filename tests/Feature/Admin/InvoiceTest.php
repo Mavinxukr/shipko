@@ -29,12 +29,13 @@ class InvoiceTest extends TestCase
 
     public function create_invoice_test()
     {
+        $auto_id = Auto::first()->value('id');
         $document = [];
         $document[0]['type'] = 'auction';
         $document[0]['file'] = UploadedFile::fake()->image('random.jpg');
         $response = $this->post("$this->uri/store-invoice",[
             'name_car'              => 'Mercedes',
-            'client_id'             => 1,
+            'auto_id'               => $auto_id,
             'status'                => 'new',
             'total_price'           => 10000,
             'paid_price'            => 14000,
@@ -73,11 +74,12 @@ class InvoiceTest extends TestCase
     /** @test */
     public function update_invoice_test()
     {
+        $auto_id = Auto::first()->value('id');
         $invoice_id = Invoice::first()->value('id');
         $this->withoutExceptionHandling();
         $response = $this->post("$this->uri/update-invoice/$invoice_id",[
             'name_car'              => 'Mercedes',
-            'client_id'             => 1,
+            'auto_id'               => $auto_id,
             'status'                => 'new',
             'total_price'           => 10000,
             'paid_price'            => 14000,
@@ -104,7 +106,6 @@ class InvoiceTest extends TestCase
         $response->assertOk();
 
     }
-
 
     /** @test */
     public function delete_invoice_document_test()

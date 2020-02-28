@@ -47,6 +47,7 @@ class AutoController extends Controller
      * @apiParam {String} point_delivery_date Point delivery date
      * @apiParam {Number} disassembly Disassembly Exp - 1 true, 0 - false
      * @apiParam {Number} lot Lot block has or has not
+     * @apiParam {String} lot_number Lot Number
      * @apiParam {String} doc_type Document type
      * @apiParam {String} odometer Odometer
      * @apiParam {String} highlight Highlight
@@ -164,6 +165,7 @@ class AutoController extends Controller
      * @apiParam {String} point_delivery_date Point delivery date
      * @apiParam {Number} disassembly Disassembly Exp - 1 true, 0 - false
      * @apiParam {Number} lot Lot block has or has not
+     * @apiParam {String} lot_number Lot Number
      * @apiParam {String} doc_type Document type
      * @apiParam {String} odometer Odometer
      * @apiParam {String} highlight Highlight

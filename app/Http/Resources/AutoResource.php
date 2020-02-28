@@ -6,6 +6,14 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class AutoResource extends JsonResource
 {
+    protected $autos;
+
+    public function __construct($resource, $autos=null)
+    {
+        $this->autos = $autos;
+        parent::__construct($resource);
+    }
+
 
     /**
      * Transform the resource into an array.
@@ -23,8 +31,8 @@ class AutoResource extends JsonResource
             'feature_info'  => new AutoFeatureInfoResource($this->featureInfo),
             'lot_info'      => new AutoLotInfoResource($this->lotInfo),
             'document'      => DocumentResource::collection($this->documents),
-            'shipping'       => new AutoShippingResource($this->shipping)
-
+            'shipping'      => new AutoShippingResource($this->shipping),
+            'vehicles'      => $this->autos,
         ];
     }
 }

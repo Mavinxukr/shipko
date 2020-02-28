@@ -14,16 +14,16 @@ class CreateInvoicesTable extends Migration
     public function up()
     {
         Schema::create('invoices', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->unsigned()->index();
             $table->string('name_car')->nullable();
             $table->string('status')->nullable();
             $table->bigInteger('total_price')->nullable();
             $table->bigInteger('paid_price')->nullable();
             $table->bigInteger('outstanding_price')->nullable();
-            $table->unsignedBigInteger('client_id')->nullable();
-            $table->foreign('client_id')
+            $table->unsignedBigInteger('auto_id')->nullable();
+            $table->foreign('auto_id')
                 ->references('id')
-                ->on('clients')
+                ->on('autos')
                 ->onDelete('cascade');
             $table->timestamps();
         });
