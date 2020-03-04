@@ -20,6 +20,9 @@ class CreateInvoicesTable extends Migration
             $table->bigInteger('total_price')->nullable();
             $table->bigInteger('paid_price')->nullable();
             $table->bigInteger('outstanding_price')->nullable();
+            $table->bigInteger('total_shipping_price')->nullable();
+            $table->bigInteger('paid_shipping_price')->nullable();
+            $table->bigInteger('outstanding_shipping_price')->nullable();
             $table->unsignedBigInteger('auto_id')->nullable();
             $table->foreign('auto_id')
                 ->references('id')
