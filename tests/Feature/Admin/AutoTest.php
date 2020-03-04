@@ -34,6 +34,7 @@ class AutoTest extends TestCase
         $response = $this->post("$this->uri/store-auto",[
             'model_name'            => 'Mercedes',
             'client_id'             => 1,
+            'status'                => "new",
             'ship'                  => 1,
             'tracking_id'           => '777-3333-111FJ',
             'container_id'          => '#8899-UI-00',
@@ -101,6 +102,7 @@ class AutoTest extends TestCase
         $response = $this->post("$this->uri/update-auto/$auto_id",[
             'model_name'            => 'Mercedes',
             'client_id'             => 1,
+            'status'                => 'not_approved',
             'ship'                  => 1,
             'tracking_id'           => '777-3333-111FJ',
             'container_id'          => '#8899-UI-00',

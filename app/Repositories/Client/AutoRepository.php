@@ -8,6 +8,7 @@ use App\Filters\AutoFilters\Container;
 use App\Filters\AutoFilters\LotNumber;
 use App\Filters\AutoFilters\ModelName;
 use App\Filters\AutoFilters\PointLoadCity;
+use App\Filters\AutoFilters\Status;
 use App\Filters\AutoFilters\Vin;
 use App\Http\Resources\AutoResource;
 use App\Models\Auto\Auto;
@@ -30,6 +31,7 @@ class AutoRepository implements AutoContract
                 Container::class,
                 LotNumber::class,
                 Vin::class,
+                Status::class,
             ])->thenReturn()
             ->select('autos.*')
             ->paginate(10);

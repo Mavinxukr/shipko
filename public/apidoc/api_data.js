@@ -283,6 +283,13 @@ define({ "api": [
           },
           {
             "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>Status (new, not_approved, pending, delivered)</p>"
+          },
+          {
+            "group": "Parameter",
             "type": "Number",
             "optional": false,
             "field": "ship",
@@ -577,6 +584,13 @@ define({ "api": [
             "optional": false,
             "field": "client_id",
             "description": "<p>Client id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>Status (new, not_approved, pending, delivered)</p>"
           },
           {
             "group": "Parameter",

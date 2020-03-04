@@ -17,6 +17,8 @@ class CreateAutosTable extends Migration
             $table->bigIncrements('id');
             $table->string('model_name');
             $table->unsignedBigInteger('client_id');
+            $table->enum('status', ['new', 'not_approved', 'pending', 'delivered'])
+                    ->default('new');
             $table->foreign('client_id')
                     ->references('id')
                     ->on('clients')

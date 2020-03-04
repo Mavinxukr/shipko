@@ -38,6 +38,7 @@ class AutoController extends Controller
      * @apiPermission Authorization
      * @apiParam {String} model_name Model name
      * @apiParam {Number} client_id Client id
+     * @apiParam {String} status Status (new, not_approved, pending, delivered)
      * @apiParam {Number} ship Ship block has or has not
      * @apiParam {String} tracking_id Tracking id
      * @apiParam {String} container_id Container id
@@ -156,6 +157,7 @@ class AutoController extends Controller
      * @apiPermission Authorization
      * @apiParam {String} model_name Model name
      * @apiParam {Number} client_id Client id
+     * @apiParam {String} status Status (new, not_approved, pending, delivered)
      * @apiParam {Number} ship Ship block has or has not
      * @apiParam {String} tracking_id Tracking id
      * @apiParam {String} container_id Container id
