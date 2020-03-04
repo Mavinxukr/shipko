@@ -21,7 +21,7 @@ class AutoController extends Controller
      * @apiVersion 1.1.1
      * @apiGroup  Client Auto
      * @apiDescription This is the Description.
-     * Allow get params for filters exp: container, lot_number, model_name, vin, point_load_city
+     * Allow get params for filters exp: container, lot_number, model_name, vin, point_load_city, status
      * @apiPermission Authorization
      * @apiHeader  Authorization token
      * @apiSampleRequest  client/get-autos

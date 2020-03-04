@@ -26,6 +26,7 @@ class AutoResource extends JsonResource
         return [
             'id'            => $this->id,
             'model_name'    => $this->model_name,
+            'status'        => $this->status,
             'ship_info'     => new AutoShipInfoResource($this->shipInfo),
             'sale_info'     => new AutoSaleInfoResource($this->saleInfo),
             'feature_info'  => new AutoFeatureInfoResource($this->featureInfo),

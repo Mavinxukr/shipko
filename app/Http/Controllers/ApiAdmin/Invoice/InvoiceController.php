@@ -57,6 +57,9 @@ class InvoiceController extends Controller
      * @apiParam {Number} total_price Total price
      * @apiParam {Number} paid_price Paid price
      * @apiParam {Number} outstanding_price Outstanding price
+     * @apiParam {Number} total_shipping_price Total Shipping price
+     * @apiParam {Number} paid_shipping_price Paid Shipping price
+     * @apiParam {Number} outstanding_shipping_price Outstanding Shipping price
      * @apiParam {Array} type Document type Exp : (auction_picture, warehouse_picture,container_picture <br>
      *                          car_fax_report , invoice, checklist_report , shipping_damage
      * @apiParam {Array} file Document Exp : document[0][file],document[0][type]
@@ -82,6 +85,9 @@ class InvoiceController extends Controller
      * @apiParam {Double} total_price Total price
      * @apiParam {Double} paid_price Paid price
      * @apiParam {Double} outstanding_price Outstanding price
+     * @apiParam {Double} total_shipping_price Total Shipping price
+     * @apiParam {Double} paid_shipping_price Paid Shipping price
+     * @apiParam {Double} outstanding_shipping_price Outstanding Shipping price
      * @apiVersion 1.1.1
      * @apiGroup Admin Invoice Action
      * @apiPermission Authorization
