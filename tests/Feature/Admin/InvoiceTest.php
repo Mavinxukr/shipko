@@ -43,6 +43,7 @@ class InvoiceTest extends TestCase
             'total_shipping_price'           => 10000,
             'paid_shipping_price'            => 14000,
             'outstanding_shipping_price'     => 43000,
+            'status_shipping'       => 'unpaid',
             'document'              => $document
         ], ['Authorization' => $this->getToken()]);
         $this->withoutExceptionHandling();
@@ -90,6 +91,7 @@ class InvoiceTest extends TestCase
             'total_shipping_price'           => 10000,
             'paid_shipping_price'            => 14000,
             'outstanding_shipping_price'     => 43000,
+            'status_shipping'       => 'unpaid',
         ], ['Authorization' => $this->getToken()]);
         $response->assertStatus(200);
     }

@@ -37,7 +37,7 @@ class Invoice extends Model
         'name_car','status','total_price',
         'paid_price','outstanding_price',
         'total_shipping_price', 'paid_shipping_price','outstanding_shipping_price',
-        'auto_id'
+        'status_shipping', 'auto_id',
     ];
 
     public function auto()
