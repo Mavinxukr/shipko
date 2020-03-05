@@ -222,6 +222,50 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "admin/get-autos-by-container",
+    "title": "Show all autos by container",
+    "name": "Show_all_autos_by_container",
+    "version": "1.1.1",
+    "group": "Admin_Auto_Action",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "optional": false,
+            "field": "tracking_id",
+            "description": "<p>Tracking or Container ID</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/get-autos-by-container"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Auto/AutoController.php",
+    "groupTitle": "Admin_Auto_Action"
+  },
+  {
+    "type": "get",
     "url": "admin/get-auto/{id}",
     "title": "Show  auto by id",
     "name": "Show_auto_by_id",

@@ -17,6 +17,21 @@ class AutoController extends Controller
     }
 
     /**
+     * @api {get} admin/get-autos-by-container  Show all autos by container
+     * @apiName Show all autos by container
+     * @apiVersion 1.1.1
+     * @apiGroup  Admin Auto Action
+     * @apiParam tracking_id Tracking or Container ID
+     * @apiPermission Authorization
+     * @apiHeader  Authorization token
+     * @apiSampleRequest  admin/get-autos-by-container
+     */
+    public function autoByContainer(Request $request)
+    {
+        return $this->auto->autoByContainer($request);
+    }
+
+    /**
      * @api {get} admin/get-autos  Show all autos
      * @apiName Show all autos
      * @apiVersion 1.1.1

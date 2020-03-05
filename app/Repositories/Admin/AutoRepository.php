@@ -4,16 +4,33 @@
 namespace App\Repositories\Admin;
 
 use App\Contracts\ContractRepositories\Admin\AutoContract;
+use App\Http\Resources\AutoByTrackingIdResource;
 use App\Http\Resources\AutoResource;
 use App\Models\Auto\Auto;
+use App\Models\Auto\ShipInfo;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\Service\AutoService\AutoAction;
 use App\Traits\Service\AutoService\UploadDocuments;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class AutoRepository implements AutoContract
 {
     use FormattedJsonResponse, UploadDocuments,AutoAction;
+
+    public function autoByContainer(Request $request)
+    {
+        $shipInfo = ShipInfo::where('tracking_id', $request->tracking_id)
+            ->with('auto')
+            ->get();
+        foreach ($shipInfo as $item){
+            $autos[] = $item->auto;
+        }
+
+
+        return $this->toJson('Auto get by container successfully',200 ,
+            new AutoByTrackingIdResource($autos, $shipInfo->first()));
+    }
 
     public function index()
     {
