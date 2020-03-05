@@ -24,7 +24,7 @@ class AutoShippingRepository implements AutoShippingContract
             ->with('shipping')
             ->has('shipping')
             ->paginate(10);
-        return $this->toJson('Auto Shipping show successfully',200 ,AutoResource::collection($auto));
+        return $this->toJson('Auto Shipping show successfully',200 ,                   AutoResource::collection($auto));
     }
 
     public function show(int $id)
@@ -35,16 +35,18 @@ class AutoShippingRepository implements AutoShippingContract
 
     public function store(Request $request)
     {
-        $auto = Auto::findOrFail($request->auto_id);
-        if(!is_null($auto->shipping))
-            return $this->toJson('Auto Shipping already create',400,
-                new AutoResource($auto));
+        $auto_id = json_decode($request->auto_id, 1);
+        $autos = Auto::whereIn('id', $auto_id)->get();
 
-        $auto->shipping()->create($request->only(['auto_id','status']));
+        foreach ($autos as $auto){
+            if(is_null($auto->shipping)){
+                $auto->shipping()->create(['status' => 'at_loading']);
+                $auto = $auto->fresh();
+            }
+        }
 
-        $auto = $auto->fresh();
         return $this->toJson('Auto Shipping created successfully',201,
-            new AutoResource($auto));
+            AutoResource::collection($autos));
     }
 
     public function update(Request $request, int $id)

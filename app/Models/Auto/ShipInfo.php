@@ -46,4 +46,9 @@ class ShipInfo extends Model
     protected $casts = [
         'disassembly' => 'boolean'
     ];
+
+    public function auto()
+    {
+        return $this->belongsTo(Auto::class);
+    }
 }
