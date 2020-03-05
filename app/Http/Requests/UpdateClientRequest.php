@@ -26,7 +26,7 @@ class UpdateClientRequest extends FormRequest
         return [
             'name'          => 'nullable|max:50',
             'phone'         => 'nullable|regex:/[0-9]{12}$/|unique:clients,phone',
-            'email'         => 'nullable|unique:clients,email',
+            'email'         => 'nullable|unique:clients,email,' . $this->user()->id,
             'country'       => 'nullable',
             'city'          => 'nullable',
             'zip'           => 'nullable|numeric',

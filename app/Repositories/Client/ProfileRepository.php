@@ -24,20 +24,15 @@ class ProfileRepository implements ProfileContract
     public function update(Request $request)
     {
         $client = $request->user();
-
-        $location_data['country'] = !is_null($request->country)
-            ? $request->country : $client->country;
-        $location_data['city'] = !is_null($request->city)
-            ? $request->city : $client->city;
-        $location_data['zip'] = !is_null($request->zip)
-            ? $request->zip : $client->zip;
-        $location_data['address'] = !is_null($request->address)
-            ? $request->address : $client->address;
-        $location =  LocationFacade::resultCreator($location_data);
-
         $client->update(
-            array_filter($request->only(['name','phone','email','card_number'])) +
-            $location);
+            array_filter($request->only(['name','phone','email','card_number']))
+        );
+
+        if(!empty(array_filter($request->only(['country','city','zip','address'])))){
+            $location =  LocationFacade::resultCreator($request->only(['country','city','zip','address']));
+            $client->update($location);
+        }
+
         $client->save();
 
         if (!empty($request->image)){
