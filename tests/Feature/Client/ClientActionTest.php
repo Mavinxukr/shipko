@@ -20,6 +20,20 @@ class ClientActionTest extends TestCase
 
     /** @test */
 
+    public function client_register_test()
+    {
+        $this->withoutExceptionHandling();
+        $response = $this->post("/$this->uri/register", [
+            'name' => 'test_client',
+            'email' => 'test_client@gmail.com',
+            'password' => '111111',
+            'password_confirmation' => '111111'
+        ]);
+        $response->assertOk();
+    }
+
+    /** @test */
+
     public function client_login_test()
     {
         $this->withoutExceptionHandling();

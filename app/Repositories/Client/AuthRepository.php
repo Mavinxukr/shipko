@@ -13,6 +13,14 @@ class AuthRepository implements AuthContract
 {
     use FormattedJsonResponse;
 
+    public function register(Request $request)
+    {
+        $client = Client::create($request->all());
+        \Auth::login($client);
+        return $this->response('Register success',200,
+            new AuthResource(\Auth::user()));
+    }
+
     public function login(Request $request)
     {
         $client = Client::where('email', $request->email)->first();

@@ -2529,6 +2529,55 @@ define({ "api": [
     "groupTitle": "Client_Auth"
   },
   {
+    "type": "post",
+    "url": "client/register",
+    "title": "Register Client",
+    "name": "Register_Client",
+    "version": "1.1.1",
+    "group": "Client_Auth",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>Password</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password_confirmation",
+            "description": "<p>Password Confirmation</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/register"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Auth/AuthController.php",
+    "groupTitle": "Client_Auth"
+  },
+  {
     "type": "get",
     "url": "client/get-invoices",
     "title": "Show All Invoices",
