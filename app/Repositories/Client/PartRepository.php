@@ -20,7 +20,13 @@ class PartRepository implements PartContract
     {
         $client = \request()->user();
         $parts = $client->parts()->latest('id')->paginate(10);
-        return $this->toJson('Get all client parts successfully', 200, PartResource::collection($parts));
+
+        $catalog_numbers = Part::select('catalog_number')->distinct()->get();
+        $vin_numbers = Part::select('vin')->distinct()->get();
+        return $this->toJson('Get all client parts successfully', 200, PartResource::collection($parts)->additional([
+            'catalog_numbers'   => $catalog_numbers,
+            'vin_numbers'       => $vin_numbers,
+        ]));
     }
 
     public function show(int $id)
