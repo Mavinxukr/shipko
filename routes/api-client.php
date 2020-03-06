@@ -15,6 +15,16 @@ Route::namespace('ApiClient')->group(function () {
             Route::get('get-autos-dismanting', 'AutoDismantingController@index');
         });
 
+        Route::namespace('Part')->group(function () {
+            Route::post('store-part','PartController@store');
+            Route::get('get-parts','PartController@index');
+            Route::get('get-part/{id}','PartController@show');
+            Route::post('update-part/{id}','PartController@update');
+            Route::delete('delete-part/{id}','PartController@destroy');
+            Route::delete('delete-part-images/{id}','PartController@removeImage');
+            Route::post('restore-part-images/{id}','PartController@restoreImage');
+        });
+
         Route::namespace('Invoice')->group(function () {
             Route::get('get-invoices', 'InvoiceController@index');
         });
