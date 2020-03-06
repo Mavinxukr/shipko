@@ -2295,6 +2295,38 @@ define({ "api": [
     "groupTitle": "Client_Action"
   },
   {
+    "type": "get",
+    "url": "client/notifications",
+    "title": "Show all notifications",
+    "name": "Show_all_notifications",
+    "version": "1.1.1",
+    "group": "Client_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/notifications"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Notification/NotificationController.php",
+    "groupTitle": "Client_Action"
+  },
+  {
     "type": "post",
     "url": "client/update-profile",
     "title": "Update Profile",
@@ -2459,6 +2491,50 @@ define({ "api": [
       }
     ],
     "filename": "app/Http/Controllers/ApiClient/Profile/ProfileController.php",
+    "groupTitle": "Client_Action"
+  },
+  {
+    "type": "post",
+    "url": "client/notifications",
+    "title": "Update notifications status",
+    "name": "Update_notifications_status",
+    "version": "1.1.1",
+    "group": "Client_Action",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Notifications ID example: [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/notifications"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Notification/NotificationController.php",
     "groupTitle": "Client_Action"
   },
   {
