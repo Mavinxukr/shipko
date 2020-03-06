@@ -1076,14 +1076,7 @@
             "type": "String",
             "optional": false,
             "field": "auto_id",
-            "description": "<p>Auto ID</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "status",
-            "description": "<p>Status (at_loading, on_the_way, at_unloading, finish)</p>"
+            "description": "<p>Auto ID example: [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]</p>"
           }
         ]
       }

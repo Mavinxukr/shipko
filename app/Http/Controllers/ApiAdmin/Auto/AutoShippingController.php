@@ -35,8 +35,7 @@ class AutoShippingController extends Controller
      * @apiVersion 1.1.1
      * @apiGroup Admin Auto Shipping
      * @apiPermission Authorization
-     * @apiParam {String} auto_id Auto ID
-     * @apiParam {Number} status Status (at_loading, on_the_way, at_unloading, finish)
+     * @apiParam {String} auto_id Auto ID example: ["1", "2", "3"]
      * @apiHeader  Authorization token
      * @apiSampleRequest  admin/store-auto-shipping
      */
