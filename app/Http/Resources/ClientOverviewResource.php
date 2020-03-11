@@ -34,7 +34,7 @@ class ClientOverviewResource extends JsonResource
         $latest_invoices = null;
         if(!is_null($this->client_autos))
             foreach ($this->client_autos as $auto){
-                $latest_shippings[] = new AutoShippingResource($auto->shipping);
+                $latest_shippings[] = new AutoResource($auto);
                 $latest_invoices[] = new InvoiceResource($auto->invoice);
             }
 
