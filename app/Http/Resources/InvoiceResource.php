@@ -26,6 +26,7 @@ class InvoiceResource extends JsonResource
             'paid_shipping_price'       => $this->paid_shipping_price,
             'outstanding_shipping_price'=> $this->outstanding_shipping_price,
             'status_shipping'           => $this->status_shipping,
+            'date'                      => $this->created_at,
             'auto'                      => new AutoResource($this->auto),
             'documents'                 => DocumentResource::collection($this->documents),
         ];
