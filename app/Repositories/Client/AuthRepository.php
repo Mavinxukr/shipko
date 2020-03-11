@@ -15,7 +15,9 @@ class AuthRepository implements AuthContract
 
     public function register(Request $request)
     {
-        $client = Client::create($request->all());
+        $client = Client::create($request->except('password') + [
+            'password' => bcrypt($request->password),
+            ]);
         \Auth::login($client);
         return $this->response('Register success',200,
             new AuthResource(\Auth::user()));
