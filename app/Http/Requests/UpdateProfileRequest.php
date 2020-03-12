@@ -26,7 +26,7 @@ class UpdateProfileRequest extends FormRequest
         return [
             'name'          => 'nullable|max:50',
             'phone'         =>
-                'nullable|regex:/[1-9]{1}-[0-9]{4}-[0-9]{3}-[0-9]{2}-[0-9]{2}$/|unique:clients,phone,' . $this->user()->phone,
+                'nullable|regex:/[1-9]{1}-[0-9]{4}-[0-9]{3}-[0-9]{2}-[0-9]{2}$/|unique:clients,phone,' . $this->user()->id,
             'email'         => 'nullable|unique:clients,email,' . $this->user()->id,
             'country'       => 'nullable',
             'city'          => 'nullable',
