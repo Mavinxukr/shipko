@@ -46,6 +46,9 @@ class ProfileController extends Controller
      * @apiParam {String} zip Zip
      * @apiParam {String} address Address
      * @apiParam {String} card_number Card number exp - 1234-1234-1234-1234
+     * @apiParam {String} old_password Current Password
+     * @apiParam {String} password New Password
+     * @apiParam {String} password_confirmation Password confirmation
      * @apiParam {File} image Client image
      * @apiHeader  Authorization token
      * @apiSampleRequest  client/update-profile
@@ -56,7 +59,7 @@ class ProfileController extends Controller
         return $this->client->update($request);
     }
 
-    /**
+    /*
      * @api {post} client/update-profile-password  Update Profile Password
      * @apiName Update Profile Password
      * @apiVersion 1.1.1
@@ -69,10 +72,10 @@ class ProfileController extends Controller
      * @apiSampleRequest  client/update-profile-password
      */
 
-    public function updatePassword (Request $request)
+    /*public function updatePassword (Request $request)
     {
         return $this->client->updatePassword($request);
-    }
+    }*/
 
 
 }

@@ -2374,6 +2374,27 @@ define({ "api": [
           },
           {
             "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "old_password",
+            "description": "<p>Current Password</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>New Password</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password_confirmation",
+            "description": "<p>Password confirmation</p>"
+          },
+          {
+            "group": "Parameter",
             "type": "File",
             "optional": false,
             "field": "image",
@@ -2397,65 +2418,6 @@ define({ "api": [
     "sampleRequest": [
       {
         "url": "/api-client/update-profile"
-      }
-    ],
-    "filename": "app/Http/Controllers/ApiClient/Profile/ProfileController.php",
-    "groupTitle": "Client_Action"
-  },
-  {
-    "type": "post",
-    "url": "client/update-profile-password",
-    "title": "Update Profile Password",
-    "name": "Update_Profile_Password",
-    "version": "1.1.1",
-    "group": "Client_Action",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "old_password",
-            "description": "<p>Current Password</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "password",
-            "description": "<p>New Password</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "password_confirmation",
-            "description": "<p>Password confirmation</p>"
-          }
-        ]
-      }
-    },
-    "permission": [
-      {
-        "name": "Authorization"
-      }
-    ],
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>token</p>"
-          }
-        ]
-      }
-    },
-    "sampleRequest": [
-      {
-        "url": "/api-client/update-profile-password"
       }
     ],
     "filename": "app/Http/Controllers/ApiClient/Profile/ProfileController.php",

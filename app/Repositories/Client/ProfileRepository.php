@@ -24,6 +24,16 @@ class ProfileRepository implements ProfileContract
     public function update(Request $request)
     {
         $client = $request->user();
+
+        if($request->has('password') && !is_null($request->password)){
+            if($client->checkPassword($request->old_password)){
+                $client->update(['password' => bcrypt($request->password)]);
+            }else{
+                return $this->toJson('Password not correct',
+                    400, null);
+            }
+        }
+
         $client->update(
             array_filter($request->only(['name','phone','email','card_number']))
         );
@@ -46,7 +56,7 @@ class ProfileRepository implements ProfileContract
     }
 
 
-    public function updatePassword(Request $request)
+    /*public function updatePassword(Request $request)
     {
         $client = $request->user();
 
@@ -59,5 +69,5 @@ class ProfileRepository implements ProfileContract
 
         return $this->toJson('Entered not correct',
             400, null);
-    }
+    }*/
 }
