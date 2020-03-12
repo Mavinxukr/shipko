@@ -40,7 +40,7 @@ class ClientController extends Controller
      * @apiPermission Authorization
      * @apiParam {String} name Name
      * @apiParam {String} username Username
-     * @apiParam {String} phone Phone exp - 380000000000
+     * @apiParam {String} phone Phone exp - +3-8000-000-00-00
      * @apiParam {String} email Email
      * @apiParam {String} password Password
      * @apiParam {String} country Country
@@ -81,7 +81,7 @@ class ClientController extends Controller
      * @apiPermission Authorization
      * @apiParam {String} name Name
      * @apiParam {String} username Username
-     * @apiParam {String} phone Phone exp - +380-00-00-00-000
+     * @apiParam {String} phone Phone exp - +3-8000-000-00-00
      * @apiParam {String} email Email
      * @apiParam {String} password Password
      * @apiParam {String} country Country

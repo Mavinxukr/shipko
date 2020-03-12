@@ -39,7 +39,7 @@ class ProfileController extends Controller
      * @apiPermission Authorization
      * @apiParam {String} name Name
      * @apiParam {String} username Username
-     * @apiParam {String} phone Phone exp - +380-00-00-00-000
+     * @apiParam {String} phone Phone exp - +3-8000-000-00-00
      * @apiParam {String} email Email
      * @apiParam {String} country Country
      * @apiParam {String} city City
