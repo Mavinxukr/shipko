@@ -7,6 +7,9 @@ Route::namespace('ApiClient')->group(function () {
     Route::post('login','Auth\AuthController@login');
     Route::middleware( ['auth:client'])->group(function () {
         Route::get('overview', 'Overview\OverviewController@index');
+        Route::get('notifications', 'Notification\NotificationController@index');
+        Route::post('notifications/create', 'Notification\NotificationController@store');
+        Route::post('notifications', 'Notification\NotificationController@update');
         Route::post('logout', 'Auth\AuthController@logout');
         Route::namespace('Auto')->group(function () {
             Route::get('get-autos', 'AutoController@index');
@@ -33,7 +36,7 @@ Route::namespace('ApiClient')->group(function () {
         Route::namespace('Profile')->group(function () {
             Route::get('get-profile', 'ProfileController@index');
             Route::post('update-profile', 'ProfileController@update');
-            Route::post('update-profile-password', 'ProfileController@updatePassword');
+            //Route::post('update-profile-password', 'ProfileController@updatePassword');
         });
     });
 });

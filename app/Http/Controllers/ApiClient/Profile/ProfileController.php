@@ -4,7 +4,6 @@ namespace App\Http\Controllers\ApiClient\Profile;
 
 use App\Contracts\ContratRepositories\Client\ProfileContract;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateClientRequest;
 use App\Http\Requests\UpdateProfileRequest;
 use Illuminate\Http\Request;
 

@@ -3,6 +3,7 @@
 namespace App\Models\Client;
 
 use App\Models\Auto\Auto;
+use App\Models\Notification\Notification;
 use App\Models\Part\Part;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -95,5 +96,10 @@ class Client extends Authenticatable
     public function parts()
     {
         return $this->hasMany(Part::class);
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
     }
 }

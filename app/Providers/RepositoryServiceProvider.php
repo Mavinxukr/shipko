@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Contracts\ContratRepositories\Client\NotificationContract;
+use App\Repositories\Client\NotificationRepository;
 use Illuminate\Support\ServiceProvider;
 //Admin
 use App\Contracts\ContractRepositories\Admin\AutoContract as AdminAutoContract;
@@ -79,5 +81,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ClientInvoiceContract::class, ClientInvoiceRepository::class);
         $this->app->bind(ProfileContract::class,ProfileRepository::class);
         $this->app->bind(ClientPartContract::class, ClientPartRepository::class);
+        $this->app->bind(NotificationContract::class, NotificationRepository::class);
     }
 }
