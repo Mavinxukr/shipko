@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ApiClient\Profile;
 use App\Contracts\ContratRepositories\Client\ProfileContract;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateClientRequest;
+use App\Http\Requests\UpdateProfileRequest;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -54,7 +55,7 @@ class ProfileController extends Controller
      * @apiSampleRequest  client/update-profile
      */
 
-    public function update (UpdateClientRequest $request)
+    public function update (UpdateProfileRequest $request)
     {
         return $this->client->update($request);
     }

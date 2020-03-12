@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateClientRequest extends FormRequest
+class UpdateProfileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -32,6 +32,7 @@ class UpdateClientRequest extends FormRequest
             'zip'           => 'nullable|numeric',
             'address'       => 'nullable',
             'card_number'   => ['nullable','regex:/^[1-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$/'],
+            'password'      => 'nullable|confirmed',
         ];
     }
 }
