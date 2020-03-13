@@ -34,6 +34,7 @@ class UpdateProfileRequest extends FormRequest
             'address'       => 'nullable',
             'card_number'   => ['nullable','regex:/^[1-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$/'],
             'password'      => 'nullable|confirmed',
+            'image'         => 'nullable|image|mimes:jpeg,png,jpg,bmp',
         ];
     }
 }
