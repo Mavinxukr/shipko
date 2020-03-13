@@ -49,7 +49,7 @@ class ClientRepository implements ClientContract
         $client = Client::findOrFail($id);
         $location =  LocationFacade::resultCreator($request->only(['country','city','zip','address']));
         $client->update(
-            array_filter($request->only(['name','phone','email','card_number'])) +
+            array_filter($request->only(['name','phone','username','email','card_number'])) +
             $location);
         $client->save();
         return $this->toJson('Client updated successfully',

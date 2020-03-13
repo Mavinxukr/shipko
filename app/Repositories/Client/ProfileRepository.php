@@ -35,7 +35,7 @@ class ProfileRepository implements ProfileContract
         }
 
         $client->update(
-            array_filter($request->only(['name','phone','email','card_number']))
+            array_filter($request->only(['name','phone','username','email','card_number']))
         );
 
         if(!empty(array_filter($request->only(['country','city','zip','address'])))){
