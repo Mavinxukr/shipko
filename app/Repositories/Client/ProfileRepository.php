@@ -51,7 +51,7 @@ class ProfileRepository implements ProfileContract
         }
 
         return $this->toJson('Client updated successfully',
-                                    200, new ClientResource($client));
+                                    200, new ClientResource($client->fresh()));
 
     }
 
