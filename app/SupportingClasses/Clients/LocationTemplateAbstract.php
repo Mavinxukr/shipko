@@ -17,7 +17,8 @@ namespace App\SupportingClasses\Clients;
      {
          $data = [];
          foreach ($params as $key => $val) {
-             $data[$key.'_id'] = $this->locationCreator($key,$val,'id');
+             if(!is_null($val))
+                $data[$key.'_id'] = $this->locationCreator($key,$val,'id');
          }
          return $data;
      }
