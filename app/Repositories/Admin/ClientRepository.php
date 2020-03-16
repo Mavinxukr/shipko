@@ -18,8 +18,10 @@ class ClientRepository implements ClientContract
 
     public function index()
     {
+        $parPage = \request('countpage') ? \request('countpage') : 10;
 
-       $client =   ClientResource::collection(Client::latest('id')->paginate(10));
+       $client =   ClientResource::collection(Client::latest('id')
+           ->paginate($parPage));
 
         return $this->toJson('Client get by id successfully', 200, $client, true);
 
