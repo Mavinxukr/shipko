@@ -41,8 +41,7 @@ trait FormattedJsonResponse
             'message'   => $message,
             'status'    => $status,
             'code'      => $statusCode,
-            'data'      => $resource,
-            'links'     => $links
+            'data'      => ['data' => $resource, 'links' => $links],
         ], $statusCode);
     }
 }
