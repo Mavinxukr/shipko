@@ -20,7 +20,8 @@ class ClientRepository implements ClientContract
     {
 
        $client =   ClientResource::collection(Client::latest('id')->paginate(10));
-        return $this->toJson('Client get by id successfully', 200, $client);
+
+        return $this->toJson('Client get by id successfully', 200, $client, true);
 
     }
     public function show(int $id)

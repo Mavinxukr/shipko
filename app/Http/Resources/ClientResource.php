@@ -21,7 +21,7 @@ class ClientResource extends Resource
             'zip'           =>  $this->zip->name ?? null,
             'address'       =>  $this->address->name ?? null,
             'image'         =>  !is_null($this->image) ? $this->image->path_to_front : null,
-            'date_register' =>  $this->created_at->format('d-m-Y'),
+            'date_register' =>  $this->created_at->format('d.m.Y'),
             ];
     }
 
