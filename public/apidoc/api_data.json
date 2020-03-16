@@ -1276,7 +1276,7 @@
             "type": "String",
             "optional": false,
             "field": "phone",
-            "description": "<p>Phone exp - 380000000000</p>"
+            "description": "<p>Phone exp - +3-8000-000-00-00</p>"
           },
           {
             "group": "Parameter",
@@ -1391,7 +1391,7 @@
             "type": "String",
             "optional": false,
             "field": "phone",
-            "description": "<p>Phone exp - +380-00-00-00-000</p>"
+            "description": "<p>Phone exp - +3-8000-000-00-00</p>"
           },
           {
             "group": "Parameter",
@@ -2410,7 +2410,7 @@
             "type": "String",
             "optional": false,
             "field": "phone",
-            "description": "<p>Phone exp - +380-00-00-00-000</p>"
+            "description": "<p>Phone exp - +3-8000-000-00-00</p>"
           },
           {
             "group": "Parameter",
