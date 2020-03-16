@@ -10,20 +10,18 @@ use App\Models\Client\Client;
 use App\Models\Client\ClientImage;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\Service\ClientService\FileService;
+use App\Traits\SortCollection;
 use Illuminate\Http\Request;
 
 class ClientRepository implements ClientContract
 {
-    use FormattedJsonResponse, FileService;
+    use FormattedJsonResponse, FileService, SortCollection;
 
     public function index()
     {
-        $parPage = \request('countpage') ? \request('countpage') : 10;
-
-       $client =   ClientResource::collection(Client::latest('id')
-           ->paginate($parPage));
-
-        return $this->toJson('Client get by id successfully', 200, $client, true);
+        $clients = $this->getWithSort(Client::query(),
+            \request('countpage'), \request('order_type'), \request('order_by'));
+        return $this->toJson('Client get by id successfully', 200, ClientResource::collection($clients), true);
 
     }
     public function show(int $id)
