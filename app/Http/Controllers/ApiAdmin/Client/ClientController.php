@@ -6,6 +6,7 @@ use App\Contracts\ContratRepositories\Admin\ClientContract;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientRequest;
 use App\Http\Requests\UpdateClientRequest;
+use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
@@ -21,11 +22,12 @@ class ClientController extends Controller
      * @apiName Show All Clients
      * @apiVersion 1.1.1
      * @apiGroup Admin Client Action
+     * @apiDescription (countpage - for set Item PerPage, order_type - (asc, desc),
+     * order_by - column name for sort, search - for search by (name, email))
      * @apiPermission Authorization
      * @apiHeader  Authorization token
      * @apiSampleRequest  admin/get-clients
      */
-
 
     public function index()
     {
@@ -97,6 +99,22 @@ class ClientController extends Controller
     public function update (UpdateClientRequest $request, int  $id)
     {
         return $this->client->update($request,$id);
+    }
+
+    /**
+     * @api {post} admin/delete-client  Multiple Delete Client
+     * @apiName  Multiple Delete Client
+     * @apiVersion 1.1.1
+     * @apiGroup Admin Client Action
+     * @apiParam {Array} client_id Array of Clients ID
+     * @apiPermission Authorization
+     * @apiHeader  Authorization token
+     * @apiSampleRequest  admin/delete-client
+     */
+
+    public function delete(Request $request)
+    {
+        return $this->client->delete($request);
     }
 
     /**

@@ -11,6 +11,7 @@ Route::namespace('ApiAdmin')->group(function () {
             Route::get('get-client/{id}','ClientController@show');
             Route::get('get-clients','ClientController@index');
             Route::post('update-client/{id}','ClientController@update');
+            Route::post('delete-client','ClientController@delete');
             Route::delete('delete-client/{id}','ClientController@destroy');
             Route::get('get-clients-by-filters','ClientFilterController@filter' );
         });

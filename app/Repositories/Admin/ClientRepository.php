@@ -19,7 +19,15 @@ class ClientRepository implements ClientContract
 
     public function index()
     {
-        $clients = $this->getWithSort(Client::query(),
+        $search = \request('search');
+        if(!is_null($search)){
+            $model = Client::query()->where('name', 'like', "%$search%")
+                ->orWhere('email', 'like', "%$search%");
+        }else{
+            $model = Client::query();
+        }
+
+        $clients = $this->getWithSort($model,
             \request('countpage'), \request('order_type'), \request('order_by'));
         return $this->toJson('Client get by id successfully', 200, ClientResource::collection($clients), true);
 
@@ -57,6 +65,19 @@ class ClientRepository implements ClientContract
                                     200, new ClientResource($client));
 
     }
+
+    public function delete(Request $request)
+    {
+        $clients =  Client::whereIn('id', $request->client_id);
+        foreach ($clients as $client){
+            $this->imageDeleter($client->image);
+            $this->folderDeleter('client');
+        }
+        $clients->delete();
+        return $this->toJson('Clients deleted successfully', 200,null);
+
+    }
+
     public function destroy(int $id)
     {
         $client =  Client::findOrFail($id);
