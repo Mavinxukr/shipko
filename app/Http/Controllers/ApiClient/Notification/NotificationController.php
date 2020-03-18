@@ -57,7 +57,7 @@ class NotificationController extends Controller
      * @apiName Update notifications status
      * @apiVersion 1.1.1
      * @apiGroup  Client Action
-     * @apiParam id Notifications ID example: ["1", "2", "3"]
+     * @apiParam type Notifications Type (auto, auto_for_dismanting, parts, shipping, invoices)
      * @apiPermission Authorization
      * @apiHeader  Authorization token
      * @apiSampleRequest  client/notifications

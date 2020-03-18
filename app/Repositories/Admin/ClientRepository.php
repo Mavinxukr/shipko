@@ -63,7 +63,9 @@ class ClientRepository implements ClientContract
         $this->imageDeleter($client->image);
         $this->folderDeleter('client');
         $client->delete();
-        return $this->toJson('Client deleted successfully', 200,null);
+
+        return $this->toJson('Client deleted successfully', 200,
+            ClientResource::collection(Client::all()));
 
     }
 

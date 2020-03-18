@@ -1276,7 +1276,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "phone",
-            "description": "<p>Phone exp - 380000000000</p>"
+            "description": "<p>Phone exp - +3-8000-000-00-00</p>"
           },
           {
             "group": "Parameter",
@@ -1391,7 +1391,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "phone",
-            "description": "<p>Phone exp - +380-00-00-00-000</p>"
+            "description": "<p>Phone exp - +3-8000-000-00-00</p>"
           },
           {
             "group": "Parameter",
@@ -2410,7 +2410,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "phone",
-            "description": "<p>Phone exp - +380-00-00-00-000</p>"
+            "description": "<p>Phone exp - +3-8000-000-00-00</p>"
           },
           {
             "group": "Parameter",
@@ -2518,8 +2518,8 @@ define({ "api": [
           {
             "group": "Parameter",
             "optional": false,
-            "field": "id",
-            "description": "<p>Notifications ID example: [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]</p>"
+            "field": "type",
+            "description": "<p>Notifications Type (auto, auto_for_dismanting, parts, shipping, invoices)</p>"
           }
         ]
       }
