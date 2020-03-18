@@ -74,7 +74,8 @@ class ClientRepository implements ClientContract
             $this->folderDeleter('client');
         }
         $clients->delete();
-        return $this->toJson('Clients deleted successfully', 200,null);
+        return $this->toJson('Clients deleted successfully', 200,
+            ClientResource::collection(Client::all()));
 
     }
 
