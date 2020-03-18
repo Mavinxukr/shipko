@@ -1179,12 +1179,58 @@ define({ "api": [
     "groupTitle": "Admin_Client_Action"
   },
   {
+    "type": "post",
+    "url": "admin/delete-client",
+    "title": "Multiple Delete Client",
+    "name": "Multiple_Delete_Client",
+    "version": "1.1.1",
+    "group": "Admin_Client_Action",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": false,
+            "field": "client_id",
+            "description": "<p>Array of Clients ID</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/delete-client"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Client/ClientController.php",
+    "groupTitle": "Admin_Client_Action"
+  },
+  {
     "type": "get",
     "url": "admin/get-clients",
     "title": "Show All Clients",
     "name": "Show_All_Clients",
     "version": "1.1.1",
     "group": "Admin_Client_Action",
+    "description": "<p>(countpage - for set Item PerPage, order_type - (asc, desc), order_by - column name for sort, search - for search by (name, email))</p>",
     "permission": [
       {
         "name": "Authorization"
