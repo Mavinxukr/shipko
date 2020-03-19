@@ -18,7 +18,7 @@ trait FormattedJsonResponse
                            object $resource = null, bool $paginated = false)
     {
         $status = false;
-        if($statusCode == 200)
+        if($statusCode >= 200 && $statusCode <= 302)
             $status = true;
 
         $links = null;
