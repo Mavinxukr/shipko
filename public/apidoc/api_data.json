@@ -2564,8 +2564,8 @@
           {
             "group": "Parameter",
             "optional": false,
-            "field": "id",
-            "description": "<p>Notifications ID example: [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]</p>"
+            "field": "type",
+            "description": "<p>Notifications Type (auto, auto_for_dismanting, parts, shipping, invoices)</p>"
           }
         ]
       }
