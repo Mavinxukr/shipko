@@ -36,6 +36,9 @@ class AutoController extends Controller
      * @apiName Show all autos
      * @apiVersion 1.1.1
      * @apiGroup  Admin Auto Action
+     * @apiDescription (client_id - for all autos byclient, countpage - for set Item PerPage,
+     * order_type - (asc, desc), order_by - column name for sort,
+     * search - for search by (name, email))
      * @apiPermission Authorization
      * @apiHeader  Authorization token
      * @apiSampleRequest  admin/get-autos

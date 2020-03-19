@@ -9,6 +9,13 @@ class ClientResource extends Resource
 
     public function toArray($request)
     {
+        $country       =  $this->country->name ?? "";
+        $city          =  $this->city->name ?? "";
+        $zip           =  $this->zip->name ?? "";
+        $address       =  $this->address->name ?? "";
+
+        $full_address = $country . " " . $city . " " . $address . " " . $zip;
+
         return  [
             'id'            =>  $this->id,
             'name'          =>  $this->name,
@@ -22,6 +29,7 @@ class ClientResource extends Resource
             'address'       =>  $this->address->name ?? null,
             'image'         =>  !is_null($this->image) ? $this->image->path_to_front : null,
             'date_register' =>  $this->created_at->format('d.m.Y'),
+            'full_address'  =>  $full_address,
             ];
     }
 

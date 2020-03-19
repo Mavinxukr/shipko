@@ -11,12 +11,13 @@ use App\Models\Auto\ShipInfo;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\Service\AutoService\AutoAction;
 use App\Traits\Service\AutoService\UploadDocuments;
+use App\Traits\SortCollection;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class AutoRepository implements AutoContract
 {
-    use FormattedJsonResponse, UploadDocuments,AutoAction;
+    use FormattedJsonResponse, UploadDocuments,AutoAction, SortCollection;
 
     public function autoByContainer(Request $request)
     {
@@ -34,7 +35,29 @@ class AutoRepository implements AutoContract
 
     public function index()
     {
-        $autos = Auto::latest('id')->paginate(10);
+        $search = \request('search');
+        $status = \request('status');
+        $client = \request('client_id');
+
+        if(!is_null($search)){
+            $model = Auto::query()->where('model_name', 'like', "%$search%");
+        }else{
+            $model = Auto::query();
+        }
+
+        if(!is_null($client)){
+            $model->whereHas('client', function (Builder $query) use($client){
+               $query->where('id', $client);
+            });
+        }
+
+        if(!is_null($status)){
+            $model->where('status', $status);
+        }
+
+        $autos = $this->getWithSort($model,
+            \request('countpage'), \request('order_type'), \request('order_by'));
+
         return $this->toJson('Auto show successfully',200 ,AutoResource::collection($autos));
     }
 
