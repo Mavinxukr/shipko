@@ -34,7 +34,7 @@ class ClientRequest extends FormRequest
             'zip'           => 'required|numeric',
             'address'       => 'required',
             'card_number'   => ['required','regex:/^[1-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$/','unique:clients,card_number'],
-            'image'         => 'nullable|image|mimes:jpeg,jpg,png'
+            //'image'         => 'nullable|image|mimes:jpeg,jpg,png'
         ];
     }
 }

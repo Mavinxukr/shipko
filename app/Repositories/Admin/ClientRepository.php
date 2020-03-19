@@ -46,7 +46,7 @@ class ClientRepository implements ClientContract
         $location = LocationFacade::resultCreator($request->only(
             ['country','city','zip','address']));
         $client->update($location);
-        if (!is_null($request->image)){
+        if (!empty($request->image)){
             $this->imageCreator($client,'client',new ClientImage ,$request->image);
         }
         return $this->toJson('Client created successfully', 201,
