@@ -27,12 +27,14 @@ class AutoResource extends JsonResource
             'id'            => $this->id,
             'model_name'    => $this->model_name,
             'status'        => $this->status,
+            'created_at'    => $this->created_at->format('d/m/Y'),
             'ship_info'     => new AutoShipInfoResource($this->shipInfo),
             'sale_info'     => new AutoSaleInfoResource($this->saleInfo),
             'feature_info'  => new AutoFeatureInfoResource($this->featureInfo),
             'lot_info'      => new AutoLotInfoResource($this->lotInfo),
             'document'      => DocumentResource::collection($this->documents),
             'shipping'      => new AutoShippingResource($this->shipping),
+            'invoice'       => new InvoiceResource($this->invoice),
             'vehicles'      => $this->autos,
         ];
     }
