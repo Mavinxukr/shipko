@@ -23,11 +23,13 @@ class UpdateClientRequest extends FormRequest
      */
     public function rules()
     {
+        dd($this->id);
+
         return [
             'name'          => 'nullable|max:50',
             'phone'         =>
-                'nullable|regex:/[1-9]{1}-[0-9]{4}-[0-9]{3}-[0-9]{2}-[0-9]{2}$/|unique:clients,phone,'  . $this->user()->id,
-            'email'         => 'nullable|unique:clients,email,' . $this->user()->id,
+                'nullable|regex:/[1-9]{1}-[0-9]{4}-[0-9]{3}-[0-9]{2}-[0-9]{2}$/|unique:clients,phone,'  . $this->id,
+            'email'         => 'nullable|unique:clients,email,' . $this->id,
             'country'       => 'nullable',
             'city'          => 'nullable',
             'zip'           => 'nullable|numeric',
