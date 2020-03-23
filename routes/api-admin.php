@@ -29,7 +29,8 @@ Route::namespace('ApiAdmin')->group(function () {
             Route::get('get-autos','AutoController@index');
             Route::get('get-autos-by-container','AutoController@autoByContainer');
             Route::get('get-auto/{id}','AutoController@show');
-            Route::delete('delete-auto/{id}','AutoController@delete');
+            Route::post('delete-auto','AutoController@delete');
+            Route::delete('delete-auto/{id}','AutoController@destroy');
             Route::post('restore-auto-document/{id}','AutoController@restoreDocument');
             Route::post('delete-auto-document/{id}','AutoController@deleteDocument');
             Route::post('update-auto/{id}','AutoController@update');

@@ -117,6 +117,22 @@ class AutoController extends Controller
     }
 
     /**
+     * @api {post} admin/delete-auto  Multiple Delete Auto
+     * @apiName  Multiple Delete Auto
+     * @apiVersion 1.1.1
+     * @apiGroup Admin Auto Action
+     * @apiParam {Array} auto_id Array of Autos ID
+     * @apiPermission Authorization
+     * @apiHeader  Authorization token
+     * @apiSampleRequest  admin/delete-auto
+     */
+
+    public function delete(Request $request)
+    {
+        return $this->auto->delete($request);
+    }
+
+    /**
      * @api {delete} admin/delete-auto/{id}  Delete  auto by id
      * @apiName Delete  auto by id
      * @apiVersion 1.1.1
@@ -126,7 +142,7 @@ class AutoController extends Controller
      * @apiSampleRequest  admin/delete-auto/{id}
      */
 
-    public function delete(int $id)
+    public function destroy(int $id)
     {
         return $this->auto->destroy($id);
     }

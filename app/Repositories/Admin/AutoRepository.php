@@ -58,7 +58,8 @@ class AutoRepository implements AutoContract
         $autos = $this->getWithSort($model,
             \request('countpage'), \request('order_type'), \request('order_by'));
 
-        return $this->toJson('Auto show successfully',200 ,AutoResource::collection($autos));
+        return $this->toJson('Auto show successfully',200 ,
+            AutoResource::collection($autos), true);
     }
 
     public function show(int $id)
@@ -90,6 +91,18 @@ class AutoRepository implements AutoContract
                         new AutoResource($auto));
     }
 
+    public function delete(Request $request)
+    {
+        $autos =  Auto::whereIn('id', $request->auto_id);
+        foreach ($autos as $auto){
+            $documents = $auto->documents()->pluck('id')
+                ->toArray();
+            if (count($documents)) $this->deleteDocument($documents, $auto,'auto');
+        }
+        $autos->delete();
+        return $this->toJson('Autos deleted successfully', 200, null);
+    }
+
     public function destroy(int $id)
     {
        $auto = Auto::findOrFail($id);
@@ -98,7 +111,6 @@ class AutoRepository implements AutoContract
        if (count($documents)) $this->deleteDocument($documents, $auto,'auto');
        $auto->delete();
        return $this->toJson('Auto deleted successfully',200, null);
-
     }
 
     public function restoreImage(Request $request, int  $id)
