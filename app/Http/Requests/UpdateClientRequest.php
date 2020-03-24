@@ -23,8 +23,6 @@ class UpdateClientRequest extends FormRequest
      */
     public function rules()
     {
-        dd($this->id);
-
         return [
             'name'          => 'nullable|max:50',
             'phone'         =>
