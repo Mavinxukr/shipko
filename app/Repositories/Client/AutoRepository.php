@@ -36,7 +36,7 @@ class AutoRepository implements AutoContract
             ->select('autos.*')
             ->paginate(10);
 
-        return $this->toJson('All Auto by filters',200, AutoResource::collection($pipeline));
+        return $this->toJson('All Auto by filters',200, AutoResource::collection($pipeline), true);
     }
 
     public function show(int $id)
