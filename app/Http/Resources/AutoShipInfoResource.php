@@ -24,6 +24,7 @@ class AutoShipInfoResource extends JsonResource
             'point_delivery_city'   => $this->point_delivery_city,
             'point_delivery_date'   => $this->point_delivery_date,
             'disassembly'           => $this->disassembly,
+            'damage_status'         => $this->damage_status,
         ];
     }
 }
