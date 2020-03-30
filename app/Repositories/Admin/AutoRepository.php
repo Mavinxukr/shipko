@@ -39,10 +39,12 @@ class AutoRepository implements AutoContract
         $status = \request('status');
         $client = \request('client_id');
 
+        $model = Auto::query();
+
         if(!is_null($search)){
-            $model = Auto::query()->where('model_name', 'like', "%$search%");
-        }else{
-            $model = Auto::query();
+            $model->whereHas('lotInfo', function (Builder $query) use($search){
+                $query->where('vin_code', 'like', "%$search%" );
+            });
         }
 
         if(!is_null($client)){

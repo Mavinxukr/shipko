@@ -14,11 +14,13 @@ trait SortCollection
         $orderType  = !is_null($orderType) ? strtolower($orderType) : 'desc';
         $oderBy     = !is_null($oderBy) ? $oderBy : 'id';
 
-        if($orderType == 'asc'){
+        $model->orderBy($oderBy, $orderType);
+
+        /*if($orderType == 'asc'){
             $model->orderBy($oderBy);
         }else{
             $model->orderByDesc($oderBy);
-        }
+        }*/
 
         return $model->paginate($parPage);
     }

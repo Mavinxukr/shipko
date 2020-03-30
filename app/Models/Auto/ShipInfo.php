@@ -40,7 +40,7 @@ class ShipInfo extends Model
         'container_id','point_load_city',
         'point_load_date','point_delivery_city',
         'point_delivery_date','disassembly','tracking_id',
-        'auto_id'
+        'auto_id', 'damage_status'
     ];
 
     protected $casts = [
