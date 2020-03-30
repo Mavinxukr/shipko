@@ -16,9 +16,9 @@ class DocumentResource extends JsonResource
     {
         return [
             'id'    => $this->id,
+            'name'  => $this->name,
             'type'  => $this->type,
             'link'  => $this->path_to_front
-
         ];
     }
 }
