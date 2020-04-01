@@ -14,16 +14,17 @@ use App\Http\Resources\AutoResource;
 use App\Models\Auto\Auto;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\Service\AutoService\AutoAction;
+use App\Traits\SortCollection;
 use Illuminate\Http\Request;
 use Illuminate\Pipeline\Pipeline;
 
 class AutoRepository implements AutoContract
 {
-    use FormattedJsonResponse, AutoAction;
+    use FormattedJsonResponse, AutoAction, SortCollection;
 
     public function index(Request $request)
     {
-        $pipeline =  app(Pipeline::class)
+        $model =  app(Pipeline::class)
             ->send(Auto::query())
             ->through([
                 ModelName::class,
@@ -33,10 +34,12 @@ class AutoRepository implements AutoContract
                 Vin::class,
                 Status::class,
             ])->thenReturn()
-            ->select('autos.*')
-            ->paginate(10);
+            ->select('autos.*');
 
-        return $this->toJson('All Auto by filters',200, AutoResource::collection($pipeline), true);
+        $autos = $this->getWithSort($model,
+            \request('countpage'), \request('order_type'), \request('order_by'));
+
+        return $this->toJson('All Auto by filters',200, AutoResource::collection($autos), true);
     }
 
     public function show(int $id)
