@@ -40,7 +40,7 @@ trait FormattedJsonResponse
 
         $data['data'] = $resource;
         $data['links'] = $links;
-        if($resource->additional){
+        if(!is_null($resource) && $resource->additional){
             $data['additional'] = $resource->additional;
         }
         return response()->json([
