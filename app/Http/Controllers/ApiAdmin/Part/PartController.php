@@ -25,7 +25,7 @@ class PartController extends Controller
      * @apiParam {String} client_id Client Id
      * @apiParam {String} catalog_number Catalog number
      * @apiParam {String} name Name
-     * @apiParam {String} make Make
+     * @apiParam {String} auto Auto
      * @apiParam {String} vin Vin
      * @apiParam {Number} quality Quality
      * @apiParam {String} container Container
@@ -78,7 +78,7 @@ class PartController extends Controller
      * @apiParam {String} client_id Client Id
      * @apiParam {String} catalog_number Catalog number
      * @apiParam {String} name Name
-     * @apiParam {String} make Make
+     * @apiParam {String} auto Auto
      * @apiParam {String} vin Vin
      * @apiParam {Number} quality Quality
      * @apiParam {String} container Container

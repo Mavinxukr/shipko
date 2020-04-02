@@ -24,10 +24,11 @@ class PartController extends Controller
      * @apiPermission Authorization
      * @apiParam {String} catalog_number Catalog number
      * @apiParam {String} name Name
-     * @apiParam {String} make Make
+     * @apiParam {String} auto Auto
      * @apiParam {String} vin Vin
      * @apiParam {Number} quality Quality
      * @apiParam {String} container Container
+     * @apiParam {String} comment Comment
      * @apiParam {File} image Client images  exp  - image[0],image[1]
      * @apiHeader  Authorization token
      * @apiSampleRequest  client/store-part
@@ -76,10 +77,11 @@ class PartController extends Controller
      * @apiPermission Authorization
      * @apiParam {String} catalog_number Catalog number
      * @apiParam {String} name Name
-     * @apiParam {String} make Make
+     * @apiParam {String} auto Auto
      * @apiParam {String} vin Vin
      * @apiParam {Number} quality Quality
      * @apiParam {String} container Container
+     * @apiParam {String} comment Comment
      * @apiHeader  Authorization token
      * @apiSampleRequest  client/update-part/{id}
      */

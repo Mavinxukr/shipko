@@ -145,6 +145,51 @@
   },
   {
     "type": "post",
+    "url": "admin/delete-auto",
+    "title": "Multiple Delete Auto",
+    "name": "Multiple_Delete_Auto",
+    "version": "1.1.1",
+    "group": "Admin_Auto_Action",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": false,
+            "field": "auto_id",
+            "description": "<p>Array of Autos ID</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/delete-auto"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Auto/AutoController.php",
+    "groupTitle": "Admin_Auto_Action"
+  },
+  {
+    "type": "post",
     "url": "admin/restore-auto-document/{id}",
     "title": "Restore document  auto by id",
     "name": "Restore_document_auto_by_id",
@@ -195,6 +240,7 @@
     "name": "Show_all_autos",
     "version": "1.1.1",
     "group": "Admin_Auto_Action",
+    "description": "<p>(client_id - for all autos byclient, countpage - for set Item PerPage, order_type - (asc, desc), order_by - column name for sort, search - for search by (vin_code))</p>",
     "permission": [
       {
         "name": "Authorization"
@@ -2167,8 +2213,8 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "make",
-            "description": "<p>Make</p>"
+            "field": "auto",
+            "description": "<p>Auto</p>"
           },
           {
             "group": "Parameter",
@@ -2261,8 +2307,8 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "make",
-            "description": "<p>Make</p>"
+            "field": "auto",
+            "description": "<p>Auto</p>"
           },
           {
             "group": "Parameter",
@@ -3111,8 +3157,8 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "make",
-            "description": "<p>Make</p>"
+            "field": "auto",
+            "description": "<p>Auto</p>"
           },
           {
             "group": "Parameter",
@@ -3134,6 +3180,13 @@
             "optional": false,
             "field": "container",
             "description": "<p>Container</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "comment",
+            "description": "<p>Comment</p>"
           },
           {
             "group": "Parameter",
@@ -3198,8 +3251,8 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "make",
-            "description": "<p>Make</p>"
+            "field": "auto",
+            "description": "<p>Auto</p>"
           },
           {
             "group": "Parameter",
@@ -3221,6 +3274,13 @@
             "optional": false,
             "field": "container",
             "description": "<p>Container</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "comment",
+            "description": "<p>Comment</p>"
           }
         ]
       }
