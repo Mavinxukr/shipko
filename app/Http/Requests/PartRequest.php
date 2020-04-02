@@ -27,7 +27,7 @@ class PartRequest extends FormRequest
             'client_id'         => 'required',
             'catalog_number'    => 'required',
             'name'              => 'required',
-            'make'              => 'required',
+            'auto'              => 'required',
             'vin'               => 'required',
             'quality'           => 'required|numeric',
             'container'         => 'required',
