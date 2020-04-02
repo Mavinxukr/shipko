@@ -24,8 +24,14 @@ class PartRepository implements PartContract
         $parts = $this->getWithSort($model,
             \request('countpage'), \request('order_type'), \request('order_by'));
 
+        $catalog_numbers = Part::select('catalog_number')->distinct()->get();
+        $vin_numbers = Part::select('vin')->distinct()->get();
+
         return $this->toJson('Client get by id successfully', 200,
-            PartResource::collection($parts), true);
+            PartResource::collection($parts)->additional([
+                'catalog_numbers'   => $catalog_numbers,
+                'vin_numbers'       => $vin_numbers,
+            ]), true);
     }
 
     public function show(int $id)
