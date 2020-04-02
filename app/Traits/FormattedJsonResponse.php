@@ -34,14 +34,20 @@ trait FormattedJsonResponse
                 "to"                => $resource->lastItem(),
                 "total"             => $resource->total()
             ];
+
+
         }
 
-
+        $data['data'] = $resource;
+        $data['links'] = $links;
+        if($resource->additional){
+            $data['additional'] = $resource->additional;
+        }
         return response()->json([
             'message'   => $message,
             'status'    => $status,
             'code'      => $statusCode,
-            'data'      => ['data' => $resource, 'links' => $links],
+            'data'      => $data,
         ], $statusCode);
     }
 }

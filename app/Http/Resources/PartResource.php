@@ -24,6 +24,7 @@ class PartResource extends JsonResource
             'quality'       => $this->quality,
             'container'     => $this->container,
             'comment'       => $this->comment,
+            'status'        => $this->status,
             'images'        => PartImagesResource::collection($this->images)
         ];
     }
