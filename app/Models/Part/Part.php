@@ -40,8 +40,8 @@ class Part extends Model
 {
     protected $fillable = [
         'client_id','catalog_number',
-        'name','make','vin','quality',
-        'container'
+        'name','auto','vin','quality',
+        'container', 'comment',
     ];
 
     public function images()

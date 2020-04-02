@@ -131,7 +131,7 @@ class AutoRepository implements AutoContract
                                                     ->toArray();
         if (count($documents)) $this->deleteDocument($documents, $auto,'auto');
         return $this->toJson('Auto document deleted successfully',200,
-                                            null);
+            new AutoResource($auto->fresh()));
     }
 
 }

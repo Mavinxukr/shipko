@@ -19,10 +19,11 @@ class PartResource extends JsonResource
             'client_id'     => $this->client_id,
             'catalog_number'=> $this->catalog_number,
             'name'          => $this->name,
-            'make'          => $this->make,
+            'auto'          => $this->auto,
             'vin'           => $this->vin,
             'quality'       => $this->quality,
             'container'     => $this->container,
+            'comment'       => $this->comment,
             'images'        => PartImagesResource::collection($this->images)
         ];
     }

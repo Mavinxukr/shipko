@@ -10,16 +10,22 @@ use App\Models\Part\Part;
 use App\Models\Part\Photo;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\Service\ClientService\FileService;
+use App\Traits\SortCollection;
 use Illuminate\Http\Request;
 
 class PartRepository implements PartContract
 {
-    use FormattedJsonResponse, FileService;
+    use FormattedJsonResponse, FileService, SortCollection;
 
     public function index()
     {
-        $client =   PartResource::collection(Part::latest('id')->paginate(10));
-        return $this->toJson('Client get by id successfully', 200, $client);
+        $model = Part::latest('id');
+
+        $parts = $this->getWithSort($model,
+            \request('countpage'), \request('order_type'), \request('order_by'));
+
+        return $this->toJson('Client get by id successfully', 200,
+            PartResource::collection($parts), true);
     }
 
     public function show(int $id)
