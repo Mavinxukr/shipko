@@ -37,7 +37,7 @@ class AutoShippingRepository implements AutoShippingContract
         $autos = $this->getWithSort($model,
             \request('countpage'), \request('order_type'), \request('order_by'));
 
-        return $this->toJson('Auto Shipping show successfully',200 ,                   AutoResource::collection($autos));
+        return $this->toJson('Auto Shipping show successfully',200 ,                   AutoResource::collection($autos), true);
     }
 
     public function show(int $id)

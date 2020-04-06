@@ -33,7 +33,7 @@ class InvoiceRepository implements InvoiceContract
 
 
         return $this->toJson('Get All invoice',200,
-            InvoiceResource::collection($invoices)->additional($this->amountValue()));
+            InvoiceResource::collection($invoices)->additional($this->amountValue()), true);
 
     }
 
