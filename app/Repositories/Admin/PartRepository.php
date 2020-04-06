@@ -25,9 +25,7 @@ class PartRepository implements PartContract
         $model = Part::latest('id');
 
         if(!is_null($search)){
-            $model->whereHas('lotInfo', function (Builder $query) use($search){
-                $query->where('vin_code', 'like', "%$search%" );
-            });
+            $model->where('vin', 'like', "%$search%" );
         }
 
         $parts = $this->getWithSort($model,
