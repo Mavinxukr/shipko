@@ -11,6 +11,7 @@ use App\Models\Part\Photo;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\Service\ClientService\FileService;
 use App\Traits\SortCollection;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class PartRepository implements PartContract
@@ -20,7 +21,15 @@ class PartRepository implements PartContract
     public function index()
     {
         $client = \request()->user();
+        $search = \request('search');
+
         $model = $client->parts()->latest('id');
+
+        if(!is_null($search)){
+            $model->whereHas('lotInfo', function (Builder $query) use($search){
+                $query->where('vin_code', 'like', "%$search%" );
+            });
+        }
 
         $parts = $this->getWithSort($model,
             \request('countpage'), \request('order_type'), \request('order_by'));
