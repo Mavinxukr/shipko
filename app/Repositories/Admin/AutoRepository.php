@@ -95,13 +95,14 @@ class AutoRepository implements AutoContract
 
     public function delete(Request $request)
     {
-        $autos =  Auto::whereIn('id', $request->auto_id);
+        $autos =  Auto::whereIn('id', $request->auto_id)->get();
         foreach ($autos as $auto){
             $documents = $auto->documents()->pluck('id')
                 ->toArray();
             if (count($documents)) $this->deleteDocument($documents, $auto,'auto');
+            $auto->delete();
         }
-        $autos->delete();
+
         return $this->toJson('Autos deleted successfully', 200, null);
     }
 
