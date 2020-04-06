@@ -53,7 +53,7 @@ class PartRepository implements PartContract
         $vin_numbers = Part::select('vin')->distinct()->get();
 
         return $this->toJson('Part created successfully',
-            200, (new PartResource($part))->additional([
+            200, (new PartResource($part->fresh()))->additional([
             'catalog_numbers'   => $catalog_numbers,
             'vin_numbers'       => $vin_numbers,
         ]));
