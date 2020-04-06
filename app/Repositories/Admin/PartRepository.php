@@ -48,8 +48,15 @@ class PartRepository implements PartContract
                 $this->imageCreator($part,'part', new Photo, $image);
             }
         }
+
+        $catalog_numbers = Part::select('catalog_number')->distinct()->get();
+        $vin_numbers = Part::select('vin')->distinct()->get();
+
         return $this->toJson('Part created successfully',
-            200, new PartResource($part));
+            200, (new PartResource($part))->additional([
+            'catalog_numbers'   => $catalog_numbers,
+            'vin_numbers'       => $vin_numbers,
+        ]));
     }
 
     public function update(Request $request, int $id)
