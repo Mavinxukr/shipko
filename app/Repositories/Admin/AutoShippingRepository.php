@@ -9,22 +9,35 @@ use App\Http\Resources\AutoResource;
 use App\Http\Resources\AutoShippingResource;
 use App\Models\Auto\Auto;
 use App\Models\Auto\Shipping;
+use App\Models\Invoice\Invoice;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\Service\AutoService\AutoAction;
 use App\Traits\Service\AutoService\UploadDocuments;
+use App\Traits\SortCollection;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class AutoShippingRepository implements AutoShippingContract
 {
-    use FormattedJsonResponse;
+    use FormattedJsonResponse, SortCollection;
 
     public function index()
     {
-        $auto = Auto::latest('id')
+        $search = \request('search');
+        $model = Auto::latest('id')
             ->with('shipping')
-            ->has('shipping')
-            ->paginate(10);
-        return $this->toJson('Auto Shipping show successfully',200 ,                   AutoResource::collection($auto));
+            ->has('shipping');
+
+        if(!is_null($search)){
+            $model->whereHas('lotInfo', function (Builder $autoQuery) use ($search) {
+                    $autoQuery->where('vin_code', 'like', "%$search%");
+                });
+        }
+
+        $autos = $this->getWithSort($model,
+            \request('countpage'), \request('order_type'), \request('order_by'));
+
+        return $this->toJson('Auto Shipping show successfully',200 ,                   AutoResource::collection($autos));
     }
 
     public function show(int $id)

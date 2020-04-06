@@ -11,6 +11,7 @@ use App\Models\Client\ClientImage;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\Service\ClientService\FileService;
 use App\Traits\SortCollection;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class ClientRepository implements ClientContract
@@ -20,11 +21,16 @@ class ClientRepository implements ClientContract
     public function index()
     {
         $search = \request('search');
+
+        $model = Client::query();
+
         if(!is_null($search)){
-            $model = Client::query()->where('name', 'like', "%$search%")
+            $model->whereHas('autos', function (Builder $query) use($search){
+                $query->whereHas('lotInfo', function (Builder $autoQuery) use($search){
+                    $autoQuery->where('vin_code', 'like', "%$search%");
+                });
+            })->orWhere('name', 'like', "%$search%")
                 ->orWhere('email', 'like', "%$search%");
-        }else{
-            $model = Client::query();
         }
 
         $clients = $this->getWithSort($model,

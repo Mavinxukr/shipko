@@ -8,16 +8,30 @@ use App\Contracts\ContractRepositories\Client\InvoiceContract;
 use App\Http\Resources\InvoiceResource;
 use App\Models\Invoice\Invoice;
 use App\Traits\FormattedJsonResponse;
+use App\Traits\SortCollection;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class InvoiceRepository implements InvoiceContract
 {
-    use FormattedJsonResponse;
+    use FormattedJsonResponse, SortCollection;
 
     public function index(Request $request)
     {
         $user = $request->user();
-        $invoices = $user->autos()->latest('id')->with('invoice')->has('invoice')->paginate(10)->pluck('invoice');
+        $search = \request('search');
+        $model = $user->autos()->latest('id')->with('invoice')->has('invoice');
+
+        if(!is_null($search)){
+            $model->whereHas('lotInfo', function (Builder $autoQuery) use ($search) {
+                $autoQuery->where('vin_code', 'like', "%$search%");
+            });
+        }
+
+        $invoices = $this->getWithSort($model,
+            \request('countpage'), \request('order_type'), \request('order_by'))->pluck('invoice');
+
+
         return $this->toJson('Get All invoice',200,
             InvoiceResource::collection($invoices)->additional($this->amountValue()));
 

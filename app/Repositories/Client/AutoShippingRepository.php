@@ -6,19 +6,33 @@ namespace App\Repositories\Client;
 use App\Contracts\ContractRepositories\Client\AutoShippingContract;
 use App\Http\Resources\AutoResource;
 use App\Traits\FormattedJsonResponse;
+use App\Traits\SortCollection;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class AutoShippingRepository implements AutoShippingContract
 {
-    use FormattedJsonResponse;
+    use FormattedJsonResponse, SortCollection;
 
     public function index(Request $request)
     {
         $user = $request->user();
-        $auto = $user->autos()
+        $search = \request('search');
+        $model = $user->autos()
             ->with('shipping')
-            ->has('shipping')
-            ->paginate(10);
-        return $this->toJson('Auto Shipping show successfully',200 ,AutoResource::collection($auto));
+            ->has('shipping');
+
+
+        if(!is_null($search)){
+            $model->whereHas('lotInfo', function (Builder $autoQuery) use ($search) {
+                $autoQuery->where('vin_code', 'like', "%$search%");
+            });
+        }
+
+        $autos = $this->getWithSort($model,
+            \request('countpage'), \request('order_type'), \request('order_by'));
+
+
+        return $this->toJson('Auto Shipping show successfully',200 ,AutoResource::collection($autos));
     }
 }
