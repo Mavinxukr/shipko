@@ -88,7 +88,6 @@ class PartRepository implements PartContract
         foreach ($part->images() as $image){
             $this->imageDeleter($image);
         }
-        $this->folderDeleter('part');
         $part->delete();
         return $this->toJson('Part deleted successfully', 200,null);
     }
@@ -101,7 +100,6 @@ class PartRepository implements PartContract
             $this->imageDeleter($image);
             $image->delete();
         }
-        $this->folderDeleter('part');
         return $this->toJson('Part images deleted successfully', 200,null);
     }
 
