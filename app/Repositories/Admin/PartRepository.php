@@ -96,7 +96,7 @@ class PartRepository implements PartContract
     public function removeImage(array $ids, int $id)
     {
         $part = Part::findOrFail($id);
-        $images = $part->images()->WhereIn('id', $ids);
+        $images = $part->images()->WhereIn('id', $ids)->get();
         foreach ($images as $image){
             $this->imageDeleter($image);
             $image->delete();
