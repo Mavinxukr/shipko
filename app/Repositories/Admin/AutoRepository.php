@@ -28,8 +28,7 @@ class AutoRepository implements AutoContract
             $autos[] = $item->auto;
         }
 
-
-        return $this->toJson('Auto get by container successfully',200 ,
+        return $this->toJson('Auto get by container successfully',200,
             new AutoByTrackingIdResource($autos, $shipInfo->first()));
     }
 
@@ -58,7 +57,9 @@ class AutoRepository implements AutoContract
         }
 
         $autos = $this->getWithSort($model,
-            \request('countpage'), \request('order_type'), \request('order_by'));
+            \request('countpage'),
+            \request('order_type'),
+            \request('order_by'));
 
         return $this->toJson('Auto show successfully',200 ,
             AutoResource::collection($autos), true);
@@ -76,7 +77,7 @@ class AutoRepository implements AutoContract
         $auto  = Auto::create($request->only(['model_name','client_id', 'status']));
         $this->updateOrCreateAction($data, $auto);
         return $this->toJson('Auto created successfully',201,
-                                                        new AutoResource($auto));
+            new AutoResource($auto));
 
     }
 
@@ -90,7 +91,7 @@ class AutoRepository implements AutoContract
         $this->updateOrCreateAction($data, $auto);
         $auto = $auto->fresh();
         return $this->toJson('Auto updated successfully',200,
-                        new AutoResource($auto));
+                new AutoResource($auto));
     }
 
     public function delete(Request $request)

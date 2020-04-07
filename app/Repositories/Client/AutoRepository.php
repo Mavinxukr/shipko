@@ -37,7 +37,9 @@ class AutoRepository implements AutoContract
             ->select('autos.*');
 
         $autos = $this->getWithSort($model,
-            \request('countpage'), \request('order_type'), \request('order_by'));
+            \request('countpage'),
+            \request('order_type'),
+            \request('order_by'));
 
         return $this->toJson('All Auto by filters',200, AutoResource::collection($autos), true);
     }

@@ -29,14 +29,16 @@ class AutoDismantingRepository implements AutoDismantingContract
         }
 
         $autos = $this->getWithSort($model,
-            \request('countpage'), \request('order_type'), \request('order_by'));
+            \request('countpage'),
+            \request('order_type'),
+            \request('order_by'));
 
         return $this->toJson('Auto Dismanting show successfully',200 ,AutoResource::collection($autos), true);
     }
 
     public function show(int $id)
     {
-        return $this->toJson('Auto Dismanting show by id successfully',200 ,
+        return $this->toJson('Auto Dismanting show successfully', 200,
             new AutoResource(Auto::findOrFail($id)));
     }
 

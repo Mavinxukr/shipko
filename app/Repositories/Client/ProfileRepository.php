@@ -54,20 +54,4 @@ class ProfileRepository implements ProfileContract
                                     200, new ClientResource($client->fresh()));
 
     }
-
-
-    /*public function updatePassword(Request $request)
-    {
-        $client = $request->user();
-
-        if($client->checkPassword($request->old_password)){
-            $client->update(['password' => bcrypt($request->password)]);
-
-            return $this->toJson('Client password updated successfully',
-                200, null);
-        }
-
-        return $this->toJson('Entered not correct',
-            400, null);
-    }*/
 }

@@ -31,7 +31,9 @@ class InvoiceRepository implements InvoiceContract
         }
 
         $invoices = $this->getWithSort($model,
-            \request('countpage'), \request('order_type'), \request('order_by'));
+            \request('countpage'),
+            \request('order_type'),
+            \request('order_by'));
 
         return $this->toJson('Get All invoice',200,
             InvoiceResource::collection($invoices)->additional($this->amountValue()), true);

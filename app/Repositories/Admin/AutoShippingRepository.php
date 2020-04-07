@@ -35,7 +35,9 @@ class AutoShippingRepository implements AutoShippingContract
         }
 
         $autos = $this->getWithSort($model,
-            \request('countpage'), \request('order_type'), \request('order_by'));
+            \request('countpage'),
+            \request('order_type'),
+            \request('order_by'));
 
         return $this->toJson('Auto Shipping show successfully',200 ,                   AutoResource::collection($autos), true);
     }
@@ -54,7 +56,6 @@ class AutoShippingRepository implements AutoShippingContract
         foreach ($autos as $auto){
             if(is_null($auto->shipping)){
                 $auto->shipping()->create(['status' => 'at_loading']);
-                $auto = $auto->fresh();
             }
         }
 

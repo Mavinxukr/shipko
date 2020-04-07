@@ -21,7 +21,6 @@ class ClientRepository implements ClientContract
     public function index()
     {
         $search = \request('search');
-
         $model = Client::query();
 
         if(!is_null($search)){
@@ -34,14 +33,16 @@ class ClientRepository implements ClientContract
         }
 
         $clients = $this->getWithSort($model,
-            \request('countpage'), \request('order_type'), \request('order_by'));
+            \request('countpage'),
+            \request('order_type'),
+            \request('order_by'));
+
         return $this->toJson('Client get by id successfully', 200, ClientResource::collection($clients), true);
 
     }
     public function show(int $id)
     {
-        $client = Client::findOrFail($id);
-        return $this->toJson('Client get by id successfully', 200, new ClientResource($client));
+        return $this->toJson('Client get by id successfully', 200, new ClientResource(Client::findOrFail($id)));
     }
 
     public function store(Request $request)

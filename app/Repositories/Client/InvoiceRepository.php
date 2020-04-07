@@ -18,9 +18,12 @@ class InvoiceRepository implements InvoiceContract
 
     public function index(Request $request)
     {
-        $user = $request->user();
         $search = \request('search');
-        $model = $user->autos()->latest('id')->with('invoice')->has('invoice');
+        $model = $request->user()
+            ->autos()
+            ->latest('id')
+            ->with('invoice')
+            ->has('invoice');
 
         if(!is_null($search)){
             $model->whereHas('lotInfo', function (Builder $autoQuery) use ($search) {
@@ -29,7 +32,10 @@ class InvoiceRepository implements InvoiceContract
         }
 
         $invoices = $this->getWithSort($model,
-            \request('countpage'), \request('order_type'), \request('order_by'))->pluck('invoice');
+            \request('countpage'),
+            \request('order_type'),
+            \request('order_by'))
+            ->pluck('invoice');
 
 
         return $this->toJson('Get All invoice',200,

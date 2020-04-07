@@ -17,9 +17,9 @@ class AutoDismantingRepository implements AutoDismantingContract
 
     public function index(Request $request)
     {
-        $user = $request->user();
         $search = \request('search');
-        $model = $user->autos()
+        $model = $request->user()
+            ->autos()
             ->with('shipping')
             ->has('shipping');
 
@@ -30,8 +30,11 @@ class AutoDismantingRepository implements AutoDismantingContract
         }
 
         $autos = $this->getWithSort($model,
-            \request('countpage'), \request('order_type'), \request('order_by'));
+            \request('countpage'),
+            \request('order_type'),
+            \request('order_by'));
 
-        return $this->toJson('Auto Dismanting show successfully',200 ,AutoResource::collection($autos), true);
+        return $this->toJson('Auto Dismanting show successfully',200 ,
+            AutoResource::collection($autos), true);
     }
 }
