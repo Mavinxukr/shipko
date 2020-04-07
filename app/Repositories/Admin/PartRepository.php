@@ -70,9 +70,16 @@ class PartRepository implements PartContract
 
     public function update(Request $request, int $id)
     {
-        Part::updateOrCreate(['id'=> $id],array_filter($request->all()));
+        $part = Part::findOrFail($id);
+        $part->update(array_filter($request->all()));
+        if (!empty($request->image)){
+            foreach ($request->image as $image){
+                $this->imageCreator($part,'part', new Photo, $image);
+            }
+        }
+
         return $this->toJson('Part get by id successfully', 200,
-            (new PartResource(Part::findOrFail($id)))->additional($this->additional));
+            (new PartResource($part->fresh()))->additional($this->additional));
     }
 
     public function destroy(int $id)
