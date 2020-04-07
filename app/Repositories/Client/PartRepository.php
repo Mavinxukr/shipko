@@ -18,27 +18,33 @@ class PartRepository implements PartContract
 {
     use FormattedJsonResponse, FileService, SortCollection;
 
+    public $additional;
+
+    public function __construct()
+    {
+        $catalog_numbers = Part::select('catalog_number')->distinct()->get();
+        $vin_numbers = Part::select('vin')->distinct()->get();
+        $this->additional = [
+            'catalog_numbers'   => $catalog_numbers,
+            'vin_numbers'       => $vin_numbers,
+        ];
+    }
+
     public function index()
     {
-        $client = \request()->user();
         $search = \request('search');
-
-        $model = $client->parts()->latest('id');
+        $model = \request()->user()->parts()->latest('id');
 
         if(!is_null($search)){
             $model->where('vin', 'like', "%$search%" );
         }
 
         $parts = $this->getWithSort($model,
-            \request('countpage'), \request('order_type'), \request('order_by'));
+            \request('countpage'),
+            \request('order_type'),
+            \request('order_by'));
 
-        $catalog_numbers = Part::select('catalog_number')->distinct()->get();
-        $vin_numbers = Part::select('vin')->distinct()->get();
-
-        return $this->toJson('Get all client parts successfully', 200, PartResource::collection($parts)->additional([
-            'catalog_numbers'   => $catalog_numbers,
-            'vin_numbers'       => $vin_numbers,
-        ]), true);
+        return $this->toJson('Get all client parts successfully', 200, PartResource::collection($parts)->additional($this->additional), true);
     }
 
     public function show(int $id)
@@ -56,21 +62,15 @@ class PartRepository implements PartContract
             }
         }
 
-        $catalog_numbers = Part::select('catalog_number')->distinct()->get();
-        $vin_numbers = Part::select('vin')->distinct()->get();
-
-        return $this->toJson('Part created successfully',
-            200, (new PartResource($part->fresh()))->additional([
-                'catalog_numbers'   => $catalog_numbers,
-                'vin_numbers'       => $vin_numbers,
-            ]));
+        return $this->toJson('Part created successfully', 200,
+            (new PartResource($part->fresh()))->additional($this->additional));
     }
 
     public function update(Request $request, int $id)
     {
         Part::updateOrCreate(['id'=> $id],array_filter($request->except('client_id')));
         return $this->toJson('Part get by id successfully', 200,
-                                            new PartResource(Part::findOrFail($id)));
+            (new PartResource(Part::findOrFail($id)))->additional($this->additional));
     }
 
     public function destroy(int $id)
