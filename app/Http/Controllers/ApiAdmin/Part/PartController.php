@@ -107,12 +107,11 @@ class PartController extends Controller
     }
 
     /**
-     * @api {delete} admin/delete-part-images/{id}  Remove Part Images
+     * @api {post} admin/delete-part-images/{id}  Remove Part Images
      * @apiName Remove Part Images
      * @apiVersion 1.1.1
      * @apiGroup Admin Part Action
-     * @apiDescription
-     * Example:  Allow get params for delete images exp: ids=1,2,3,4...
+     * @apiParam ids IDs of images (1,2,3,...)
      * @apiPermission Authorization
      * @apiHeader  Authorization token
      * @apiSampleRequest  admin/delete-part-images/{id}

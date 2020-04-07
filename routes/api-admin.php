@@ -21,7 +21,7 @@ Route::namespace('ApiAdmin')->group(function () {
             Route::get('get-part/{id}','PartController@show');
             Route::post('update-part/{id}','PartController@update');
             Route::delete('delete-part/{id}','PartController@destroy');
-            Route::delete('delete-part-images/{id}','PartController@removeImage');
+            Route::post('delete-part-images/{id}','PartController@removeImage');
             Route::post('restore-part-images/{id}','PartController@restoreImage');
         });
         Route::namespace('Auto')->group(function () {

@@ -2096,13 +2096,24 @@
     "groupTitle": "Admin_Part_Action"
   },
   {
-    "type": "delete",
+    "type": "post",
     "url": "admin/delete-part-images/{id}",
     "title": "Remove Part Images",
     "name": "Remove_Part_Images",
     "version": "1.1.1",
     "group": "Admin_Part_Action",
-    "description": "<p>Example:  Allow get params for delete images exp: ids=1,2,3,4...</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "optional": false,
+            "field": "ids",
+            "description": "<p>IDs of images (1,2,3,...)</p>"
+          }
+        ]
+      }
+    },
     "permission": [
       {
         "name": "Authorization"
