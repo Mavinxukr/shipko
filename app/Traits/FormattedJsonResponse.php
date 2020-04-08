@@ -17,6 +17,7 @@ trait FormattedJsonResponse
         $links = null;
         if($paginated){
             $links = [
+                "current_page"      => $resource->currentPage(),
                 "first_page_url"    => $resource->url(1),
                 "from"              => $resource->firstItem(),
                 "last_page"         => $resource->lastPage(),
