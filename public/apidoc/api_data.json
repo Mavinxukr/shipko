@@ -2944,6 +2944,58 @@
     "groupTitle": "Client_Auto"
   },
   {
+    "type": "post",
+    "url": "client/store-note",
+    "title": "Store note",
+    "name": "Store_note",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "auto_id",
+            "description": "<p>Auto id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "comment",
+            "description": "<p>Comment</p>"
+          }
+        ]
+      }
+    },
+    "version": "1.1.1",
+    "group": "Client_Auto",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/store-note"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Auto/AutoNoteController.php",
+    "groupTitle": "Client_Auto"
+  },
+  {
     "type": "get",
     "url": "client/overview",
     "title": "Client Overview Page",

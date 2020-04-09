@@ -39,6 +39,7 @@ class AutoResource extends JsonResource
             'invoice'       => new InvoiceResource($this->invoice),
             'vehicles'      => $this->autos,
             'image'         => new DocumentResource($avatar),
+            'notes'         => AutoNoteResource::collection($this->notes),
         ];
     }
 }

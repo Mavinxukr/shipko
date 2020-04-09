@@ -11,6 +11,9 @@ Route::namespace('ApiClient')->group(function () {
         Route::post('notifications/create', 'Notification\NotificationController@store');
         Route::post('notifications', 'Notification\NotificationController@update');
         Route::post('logout', 'Auth\AuthController@logout');
+
+        Route::post('store-note', 'Auto\AutoNoteController@store');
+
         Route::namespace('Auto')->group(function () {
             Route::get('get-autos', 'AutoController@index');
             Route::get('get-auto/{id}', 'AutoController@show');

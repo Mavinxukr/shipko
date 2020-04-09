@@ -78,4 +78,9 @@ class Auto extends Model
     {
         return $this->hasOne(Invoice::class);
     }
+
+    public function notes()
+    {
+        return $this->hasMany(AutoNotes::class);
+    }
 }
