@@ -22,17 +22,22 @@ class PartRepository implements PartContract
 
     public function __construct()
     {
-        $catalog_numbers = Part::select('catalog_number')->distinct()->get();
-        $vin_numbers = Part::select('vin')->distinct()->get();
+        $catalogNumbers = Part::select('catalog_number')->distinct()->get();
+        $vinNumbers = Part::select('vin')->distinct()->get();
         $this->additional = [
-            'catalog_numbers'   => $catalog_numbers,
-            'vin_numbers'       => $vin_numbers,
+            'catalog_numbers'   => $catalogNumbers,
+            'vin_numbers'       => $vinNumbers,
         ];
     }
 
     public function index()
     {
+        $status = \request('status');
         $model = \request()->user()->parts()->latest('id');
+
+        if(!is_null($status)){
+            $model->where('status', $status);
+        }
 
         $parts = $this->getWithSort($model,
             \request('countpage'),

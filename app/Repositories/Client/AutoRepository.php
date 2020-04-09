@@ -41,7 +41,9 @@ class AutoRepository implements AutoContract
             \request('order_type'),
             \request('order_by'));
 
-        return $this->toJson('All Auto by filters',200, AutoResource::collection($autos), true);
+        $modelName = Auto::select('model_name')->distinct()->get();
+
+        return $this->toJson('All Auto by filters',200, AutoResource::collection($autos)->additional(['model_name' => $modelName]), true);
     }
 
     public function show(int $id)
