@@ -2250,6 +2250,13 @@ define({ "api": [
           },
           {
             "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>Status</p>"
+          },
+          {
+            "group": "Parameter",
             "type": "File",
             "optional": false,
             "field": "image",
@@ -2341,6 +2348,13 @@ define({ "api": [
             "optional": false,
             "field": "container",
             "description": "<p>Container</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>Status</p>"
           }
         ]
       }
