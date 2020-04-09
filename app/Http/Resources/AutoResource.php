@@ -23,6 +23,8 @@ class AutoResource extends JsonResource
      */
     public function toArray($request)
     {
+        $avatar = $this->documents()->where('type', 'auction_picture')->first();
+
         return [
             'id'            => $this->id,
             'model_name'    => $this->model_name,
@@ -36,6 +38,7 @@ class AutoResource extends JsonResource
             'shipping'      => new AutoShippingResource($this->shipping),
             'invoice'       => new InvoiceResource($this->invoice),
             'vehicles'      => $this->autos,
+            'image'         => new DocumentResource($avatar),
         ];
     }
 }
