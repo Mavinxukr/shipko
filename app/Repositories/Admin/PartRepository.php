@@ -33,10 +33,20 @@ class PartRepository implements PartContract
     public function index()
     {
         $search = \request('search');
+        $status = \request('status');
         $model = Part::latest('id');
 
         if(!is_null($search)){
-            $model->where('vin', 'like', "%$search%" );
+            $model->where('vin', 'like', "%$search%" )
+                ->orWhere('catalog_number', 'like', "%$search%" )
+                ->orWhere('name', 'like', "%$search%" )
+                ->orWhere('auto', 'like', "%$search%" )
+                ->orWhere('quality', 'like', "%$search%" )
+                ->orWhere('comment', 'like', "%$search%" );
+        }
+
+        if(!is_null($status)){
+            $model->where('status', $status);
         }
 
         $parts = $this->getWithSort($model,

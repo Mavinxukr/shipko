@@ -32,12 +32,7 @@ class PartRepository implements PartContract
 
     public function index()
     {
-        $search = \request('search');
         $model = \request()->user()->parts()->latest('id');
-
-        if(!is_null($search)){
-            $model->where('vin', 'like', "%$search%" );
-        }
 
         $parts = $this->getWithSort($model,
             \request('countpage'),

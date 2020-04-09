@@ -23,7 +23,7 @@ class CreateModelsPartPartsTable extends Migration
             $table->string('quality');
             $table->string('container');
             $table->text('comment')->nullable();
-            $table->string('status')->default('received');
+            $table->string('status')->default('in_warehouse');
             $table->timestamps();
         });
     }
