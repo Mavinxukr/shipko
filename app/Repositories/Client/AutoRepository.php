@@ -25,7 +25,7 @@ class AutoRepository implements AutoContract
     public function index(Request $request)
     {
         $model =  app(Pipeline::class)
-            ->send($request->user()->autos())
+            ->send(Auto::where('client_id', $request->user()->id))
             ->through([
                 ModelName::class,
                 PointLoadCity::class,
