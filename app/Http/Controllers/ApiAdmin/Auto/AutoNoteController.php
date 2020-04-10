@@ -21,7 +21,7 @@ class AutoNoteController extends Controller
      * @apiParam {Number} auto_id Auto id
      * @apiParam {String} comment Comment
      * @apiVersion 1.1.1
-     * @apiGroup Client Auto
+     * @apiGroup Admin Auto Action
      * @apiPermission Authorization
      * @apiHeader  Authorization token
      * @apiSampleRequest  client/store-note
