@@ -16,8 +16,8 @@ class AutoShipInfoResource extends JsonResource
     {
         return [
             'tracking_id'           => $this->tracking_id,
-            'container_id'          => $this->container_id,
             'point_load'            =>[$this->point_load_city, $this->point_load_date],
+            'container_id'          => $this->container_id,
             'point_delivery'        =>[$this->point_delivery_city, $this->point_delivery_date],
             'point_load_city'       => $this->point_load_city,
             'point_load_date'       => $this->point_load_date,
