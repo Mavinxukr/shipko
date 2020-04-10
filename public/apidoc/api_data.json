@@ -648,6 +648,58 @@
   },
   {
     "type": "post",
+    "url": "admin/store-note",
+    "title": "Store note",
+    "name": "Store_note",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "auto_id",
+            "description": "<p>Auto id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "comment",
+            "description": "<p>Comment</p>"
+          }
+        ]
+      }
+    },
+    "version": "1.1.1",
+    "group": "Admin_Auto_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/store-note"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Auto/AutoNoteController.php",
+    "groupTitle": "Admin_Auto_Action"
+  },
+  {
+    "type": "post",
     "url": "admin/update-auto/{id}",
     "title": "Update Auto",
     "name": "Update_Auto",
@@ -2945,58 +2997,6 @@
       }
     ],
     "filename": "app/Http/Controllers/ApiClient/Auto/AutoController.php",
-    "groupTitle": "Client_Auto"
-  },
-  {
-    "type": "post",
-    "url": "admin/store-note",
-    "title": "Store note",
-    "name": "Store_note",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "auto_id",
-            "description": "<p>Auto id</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "comment",
-            "description": "<p>Comment</p>"
-          }
-        ]
-      }
-    },
-    "version": "1.1.1",
-    "group": "Client_Auto",
-    "permission": [
-      {
-        "name": "Authorization"
-      }
-    ],
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>token</p>"
-          }
-        ]
-      }
-    },
-    "sampleRequest": [
-      {
-        "url": "/api-client/store-note"
-      }
-    ],
-    "filename": "app/Http/Controllers/ApiAdmin/Auto/AutoNoteController.php",
     "groupTitle": "Client_Auto"
   },
   {
