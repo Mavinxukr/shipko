@@ -24,6 +24,7 @@ class AutoShippingRepository implements AutoShippingContract
     public function index()
     {
         $search = \request('search');
+        $port = \request('port');
         $model = Auto::latest('id')
             ->with('shipping')
             ->has('shipping');
@@ -32,6 +33,12 @@ class AutoShippingRepository implements AutoShippingContract
             $model->whereHas('lotInfo', function (Builder $autoQuery) use ($search) {
                     $autoQuery->where('vin_code', 'like', "%$search%");
                 });
+        }
+
+        if(!is_null($port)){
+            $model->whereHas('shipInfo', function (Builder $query) use ($port){
+                $query->where('point_load_city', $port);
+            });
         }
 
         $autos = $this->getWithSort($model,

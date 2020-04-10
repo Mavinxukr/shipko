@@ -18,6 +18,7 @@ class AutoDismantingRepository implements AutoDismantingContract
     public function index()
     {
         $search = \request('search');
+        $port = \request('port');
         $model = Auto::latest('id')
             ->with('shipping')
             ->has('shipping');
@@ -25,6 +26,12 @@ class AutoDismantingRepository implements AutoDismantingContract
         if(!is_null($search)){
             $model->whereHas('lotInfo', function (Builder $autoQuery) use ($search) {
                 $autoQuery->where('vin_code', 'like', "%$search%");
+            });
+        }
+
+        if(!is_null($port)){
+            $model->whereHas('shipInfo', function (Builder $query) use ($port){
+                $query->where('point_load_city', $port);
             });
         }
 

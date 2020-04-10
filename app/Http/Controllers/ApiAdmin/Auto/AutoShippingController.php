@@ -20,6 +20,9 @@ class AutoShippingController extends Controller
      * @apiName Show all autos shipping
      * @apiVersion 1.1.1
      * @apiGroup  Admin Auto Shipping
+     * @apiDescription (countpage - for set Item PerPage, order_type - (asc, desc),
+     * order_by - column name for sort, port - for filter by port
+     * search - for search by (vin_code))
      * @apiPermission Authorization
      * @apiHeader  Authorization token
      * @apiSampleRequest  admin/get-autos-shipping

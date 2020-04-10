@@ -936,6 +936,7 @@ define({ "api": [
     "name": "Show_all_autos_dismanting",
     "version": "1.1.1",
     "group": "Admin_Auto_Dismanting",
+    "description": "<p>(countpage - for set Item PerPage, order_type - (asc, desc), order_by - column name for sort, port - for filter by port search - for search by (vin_code))</p>",
     "permission": [
       {
         "name": "Authorization"
@@ -1045,6 +1046,7 @@ define({ "api": [
     "name": "Show_all_autos_shipping",
     "version": "1.1.1",
     "group": "Admin_Auto_Shipping",
+    "description": "<p>(countpage - for set Item PerPage, order_type - (asc, desc), order_by - column name for sort, port - for filter by port search - for search by (vin_code))</p>",
     "permission": [
       {
         "name": "Authorization"
@@ -2854,6 +2856,7 @@ define({ "api": [
     "name": "Show_all_autos_dismanting",
     "version": "1.1.1",
     "group": "Client_Auto",
+    "description": "<p>(countpage - for set Item PerPage, order_type - (asc, desc), order_by - column name for sort, port - for filter by port search - for search by (vin_code))</p>",
     "permission": [
       {
         "name": "Authorization"
@@ -2886,6 +2889,7 @@ define({ "api": [
     "name": "Show_all_autos_shipping",
     "version": "1.1.1",
     "group": "Client_Auto",
+    "description": "<p>(countpage - for set Item PerPage, order_type - (asc, desc), order_by - column name for sort, port - for filter by port search - for search by (vin_code))</p>",
     "permission": [
       {
         "name": "Authorization"

@@ -20,6 +20,9 @@ class AutoDismantingController extends Controller
      * @apiName Show all autos dismanting
      * @apiVersion 1.1.1
      * @apiGroup  Client Auto
+     * @apiDescription (countpage - for set Item PerPage, order_type - (asc, desc),
+     * order_by - column name for sort, port - for filter by port
+     * search - for search by (vin_code))
      * @apiPermission Authorization
      * @apiHeader  Authorization token
      * @apiSampleRequest  client/get-autos-dismanting
