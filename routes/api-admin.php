@@ -6,6 +6,9 @@ Route::namespace('ApiAdmin')->group(function () {
     Route::post('login','Auth\AuthController@login');
     Route::middleware( ['auth:api','role:admin'])->group(function (){
         Route::post('logout','Auth\AuthController@logout');
+
+        Route::post('store-note', 'Auto\AutoNoteController@store');
+
         Route::namespace('Client')->group(function () {
             Route::post('store-client','ClientController@store');
             Route::get('get-client/{id}','ClientController@show');

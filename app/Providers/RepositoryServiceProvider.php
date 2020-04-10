@@ -2,10 +2,7 @@
 
 namespace App\Providers;
 
-use App\Contracts\ContratRepositories\Client\AutoNoteContract;
-use App\Contracts\ContratRepositories\Client\NotificationContract;
-use App\Repositories\Client\AutoNoteRepository;
-use App\Repositories\Client\NotificationRepository;
+
 use Illuminate\Support\ServiceProvider;
 //Admin
 use App\Contracts\ContractRepositories\Admin\AutoContract as AdminAutoContract;
@@ -24,6 +21,9 @@ use App\Repositories\Admin\ClientFilterRepository;
 use App\Repositories\Admin\ClientRepository;
 use App\Repositories\Admin\InvoiceRepository;
 use App\Repositories\Admin\PartRepository as AdminPartRepository;
+use App\Contracts\ContratRepositories\Admin\AutoNoteContract as AdminAutoNoteContract;
+use App\Repositories\Admin\AutoNoteRepository as AdminAutoNoteRepository;
+
 
 //Client
 use App\Contracts\ContratRepositories\Client\AuthContract as ClientAuthContract;
@@ -42,6 +42,10 @@ use App\Contracts\ContratRepositories\Client\ProfileContract;
 use App\Repositories\Client\ProfileRepository;
 use App\Contracts\ContractRepositories\Client\PartContract as ClientPartContract;
 use App\Repositories\Client\PartRepository as ClientPartRepository;
+use App\Contracts\ContratRepositories\Client\AutoNoteContract;
+use App\Contracts\ContratRepositories\Client\NotificationContract;
+use App\Repositories\Client\AutoNoteRepository;
+use App\Repositories\Client\NotificationRepository;
 
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -72,6 +76,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(InvoiceContract::class,InvoiceRepository::class);
         $this->app->bind(AutoShippingContract::class,AutoShippingRepository::class);
         $this->app->bind(AutoDismantingContract::class,AutoDismantingRepository::class);
+        $this->app->bind(AdminAutoNoteContract::class, AdminAutoNoteRepository::class);
 
 
         //Client
