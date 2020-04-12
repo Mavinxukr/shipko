@@ -28,7 +28,7 @@ class AdminActionTest extends TestCase
             'email'     => 'admin@gmail.com',
             'password'  => '111111'
         ])->decodeResponseJson();
-        $token = $responseLogin['data']['auth']['token'];
+        $token = $responseLogin['data']['data']['auth']['token'];
         $responseLogout = $this->post("$this->uri/logout",[],['Authorization' => $token]);
         $responseLogout->assertOk();
     }

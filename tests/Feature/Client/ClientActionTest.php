@@ -15,7 +15,7 @@ class ClientActionTest extends TestCase
         ];
         $responseLogin = $this->post("$this->uri/login",
             $user)->decodeResponseJson();
-        return $responseLogin['data']['auth']['token'];
+        return $responseLogin['data']['data']['auth']['token'];
     }
 
     /** @test */
@@ -53,7 +53,7 @@ class ClientActionTest extends TestCase
             'email'     => 'client12@gmail.com',
             'password'  => '111111'
         ])->decodeResponseJson();
-        $token = $responseLogin['data']['auth']['token'];
+        $token = $responseLogin['data']['data']['auth']['token'];
         $responseLogout = $this->post("$this->uri/logout",[],['Authorization' => $token]);
         $responseLogout->assertOk();
     }

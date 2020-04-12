@@ -23,7 +23,7 @@ class PartTest extends TestCase implements TokenContract
             'client_id'         => '12345',
             'catalog_number'    => 'new12344_99',
             'name'              => 'hello_test',
-            'make'              => 'VW',
+            'auto'              => 'VW',
             'vin'               => '74749393',
             'quality'           => '12',
             'container'         => '#23232',
@@ -62,7 +62,7 @@ class PartTest extends TestCase implements TokenContract
             'client_id'             => '12345',
             'catalog_number'        => 'new12344_99',
             'name'                  => 'hello_test',
-            'make'                  => 'VW',
+            'auto'                  => 'VW',
             'vin'                   => '74749393',
             'quality'               => 12,
             'container'             => '#23232',
@@ -93,7 +93,7 @@ class PartTest extends TestCase implements TokenContract
     {
         $this->withoutExceptionHandling();
         $part = Part::first()->value('id');
-        $response = $this->delete("$this->uri/delete-part-images/$part?ids=1,2,3",[
+        $response = $this->post("$this->uri/delete-part-images/$part?ids=1,2,3",[
         ], ['Authorization' => $this->getToken()]);
         $response->assertOk();
     }
@@ -116,6 +116,6 @@ class PartTest extends TestCase implements TokenContract
         ];
         $responseLogin = $this->post("$this->uri/login",
             $user)->decodeResponseJson();
-        return $responseLogin['data']['auth']['token'];
+        return $responseLogin['data']['data']['auth']['token'];
     }
 }

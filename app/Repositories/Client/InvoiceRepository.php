@@ -19,23 +19,23 @@ class InvoiceRepository implements InvoiceContract
     public function index(Request $request)
     {
         $search = \request('search');
-        $model = $request->user()
-            ->autos()
-            ->latest('id')
-            ->with('invoice')
-            ->has('invoice');
+        $model = Invoice::whereHas('auto',
+            function (Builder $query) use ($request, $search) {
+                $query->where('client_id', $request->user()->id);
 
-        if(!is_null($search)){
-            $model->whereHas('lotInfo', function (Builder $autoQuery) use ($search) {
-                $autoQuery->where('vin_code', 'like', "%$search%");
-            });
-        }
+                if(!is_null($search)){
+                    $query->whereHas('lotInfo',
+                        function (Builder $autoQuery) use ($search) {
+                            $autoQuery
+                                ->where('vin_code', 'like', "%$search%");
+                    });
+                }
+        });
 
         $invoices = $this->getWithSort($model,
             \request('countpage'),
             \request('order_type'),
-            \request('order_by'))
-            ->pluck('invoice');
+            \request('order_by'));
 
 
         return $this->toJson('Get All invoice',200,

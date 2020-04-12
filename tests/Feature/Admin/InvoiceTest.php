@@ -22,7 +22,7 @@ class InvoiceTest extends TestCase
         ];
         $responseLogin = $this->post("$this->uri/login",
             $user)->decodeResponseJson();
-        return $responseLogin['data']['auth']['token'];
+        return $responseLogin['data']['data']['auth']['token'];
     }
 
     /** @test */

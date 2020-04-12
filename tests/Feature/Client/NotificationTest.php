@@ -40,7 +40,7 @@ class NotificationTest extends TestCase implements TokenContract
         ];
         $responseLogin = $this->post("$this->uri/login",
             $user)->decodeResponseJson();
-        $token = $responseLogin['data']['auth']['token'];
+        $token = $responseLogin['data']['data']['auth']['token'];
         return $token;
     }
 }
