@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Repositories\Client;
+namespace App\Repositories\Admin;
 
 use App\Contracts\ContratRepositories\Client\AuthContract;
 use App\Contracts\ContratRepositories\Client\AutoNoteContract;

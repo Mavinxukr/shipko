@@ -1652,6 +1652,206 @@ define({ "api": [
     "groupTitle": "Admin_Client_Filter"
   },
   {
+    "type": "delete",
+    "url": "admin/delete-group/{id}",
+    "title": "Delete Group",
+    "name": "Delete_Group",
+    "version": "1.1.1",
+    "group": "Admin_Groups_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/delete-group/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Group/GroupController.php",
+    "groupTitle": "Admin_Groups_Action"
+  },
+  {
+    "type": "get",
+    "url": "admin/get-groups",
+    "title": "Show All Groups",
+    "name": "Show_All_Groups",
+    "version": "1.1.1",
+    "group": "Admin_Groups_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/get-groups"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Group/GroupController.php",
+    "groupTitle": "Admin_Groups_Action"
+  },
+  {
+    "type": "get",
+    "url": "admin/get-group/{id}",
+    "title": "Show Group By Id",
+    "name": "Show_Group_By_Id",
+    "version": "1.1.1",
+    "group": "Admin_Groups_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/get-group/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Group/GroupController.php",
+    "groupTitle": "Admin_Groups_Action"
+  },
+  {
+    "type": "post",
+    "url": "admin/store-group",
+    "title": "Store Group",
+    "name": "Store_Group",
+    "version": "1.1.1",
+    "group": "Admin_Groups_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "price",
+            "description": "<p>Price</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/store-group"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Group/GroupController.php",
+    "groupTitle": "Admin_Groups_Action"
+  },
+  {
+    "type": "post",
+    "url": "admin/update-group/{id}",
+    "title": "Update Group",
+    "name": "Update_Group",
+    "version": "1.1.1",
+    "group": "Admin_Groups_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "price",
+            "description": "<p>Price</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/update-group/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Group/GroupController.php",
+    "groupTitle": "Admin_Groups_Action"
+  },
+  {
     "type": "post",
     "url": "admin/delete-invoice-image/{id}",
     "title": "Delete document  invoice by id",

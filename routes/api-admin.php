@@ -56,6 +56,13 @@ Route::namespace('ApiAdmin')->group(function () {
             Route::post('restore-invoice-document/{id}','InvoiceController@restoreDocument');
             Route::post('delete-invoice-document/{id}','InvoiceController@deleteDocument');
         });
+        Route::namespace('Group')->group(function () {
+            Route::post('store-group','GroupController@store');
+            Route::get('get-group/{id}','GroupController@show');
+            Route::get('get-groups','GroupController@index');
+            Route::post('update-group/{id}','GroupController@update');
+            Route::delete('delete-group/{id}','GroupController@destroy');
+        });
     });
 });
 
