@@ -692,7 +692,7 @@
     },
     "sampleRequest": [
       {
-        "url": "/api-client/store-note"
+        "url": "/api-admin/store-note"
       }
     ],
     "filename": "app/Http/Controllers/ApiAdmin/Auto/AutoNoteController.php",

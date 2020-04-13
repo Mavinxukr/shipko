@@ -24,7 +24,7 @@ class AutoNoteController extends Controller
      * @apiGroup Admin Auto Action
      * @apiPermission Authorization
      * @apiHeader  Authorization token
-     * @apiSampleRequest  client/store-note
+     * @apiSampleRequest  admin/store-note
      */
 
     public function store(Request $request)
