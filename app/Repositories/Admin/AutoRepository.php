@@ -30,8 +30,14 @@ class AutoRepository implements AutoContract
             $autos[] = $item->auto;
         }
 
+        if($autos){
+            $data = new AutoByTrackingIdResource($autos, $shipInfo->first());
+        }else{
+            $data = null;
+        }
+
         return $this->toJson('Auto get by container successfully',200,
-            new AutoByTrackingIdResource($autos, $shipInfo->first()));
+            $data);
     }
 
     public function index()

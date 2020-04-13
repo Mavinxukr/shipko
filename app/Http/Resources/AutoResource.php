@@ -29,8 +29,8 @@ class AutoResource extends JsonResource
             'id'            => $this->id,
             'model_name'    => $this->model_name,
             'client'        => [
-                'id'        => $this->auto->client->id,
-                'name'      => $this->auto->client->name,
+                'id'        => $this->client->id,
+                'name'      => $this->client->name,
             ],
             'status'        => $this->status,
             'created_at'    => $this->created_at->format('d/m/Y'),
