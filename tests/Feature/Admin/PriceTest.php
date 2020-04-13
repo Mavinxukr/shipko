@@ -6,6 +6,7 @@ use App\Models\Client\Client;
 use App\Models\Group\Group;
 use App\Models\Part\Part;
 use App\Models\Price\Price;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
@@ -27,6 +28,7 @@ class PriceTest extends TestCase implements TokenContract
             'priceable_type'    => 'group',
             'priceable_id'      => 1,
             'cities'            => '1,2,3,4',
+            'due_day'           => Carbon::now(),
         ], ['Authorization' => $this->getToken()]);
         $response->assertStatus(201);
     }
@@ -63,6 +65,7 @@ class PriceTest extends TestCase implements TokenContract
             'priceable_type'    => 'client',
             'priceable_id'      => Client::first()->value('id'),
             'cities'            => '1,2',
+            'due_day'           => Carbon::now(),
         ], ['Authorization' => $this->getToken()]);
         $response->assertOk();
     }
