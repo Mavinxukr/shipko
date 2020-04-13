@@ -3,12 +3,9 @@
 
 namespace App\Repositories\Admin;
 
-use App\Contracts\ContratRepositories\Client\AuthContract;
-use App\Contracts\ContratRepositories\Client\AutoNoteContract;
-use App\Http\Resources\AuthResource;
+use App\Contracts\ContratRepositories\Admin\AutoNoteContract;
 use App\Http\Resources\AutoResource;
 use App\Models\Auto\Auto;
-use App\Models\Client\Client;
 use App\Traits\FormattedJsonResponse;
 use Illuminate\Http\Request;
 
