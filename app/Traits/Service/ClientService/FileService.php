@@ -33,10 +33,10 @@ trait FileService
     public function imageDeleter(Model $model): void
     {
         if (!empty($model->image) &&
-            Storage::disk('public')->exists($model->image->folder_link))
+            Storage::disk('public')->exists($model->image->folder_link)){
             Storage::disk('public')->delete($model->image->folder_link);
-
-        $model->image()->delete();
+            $model->image()->delete();
+        }
     }
 
     public function folderDeleter(string $entity): void
