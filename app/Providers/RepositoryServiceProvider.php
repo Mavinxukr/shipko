@@ -4,7 +4,9 @@ namespace App\Providers;
 
 
 use App\Contracts\ContractRepositories\Admin\GroupContract;
+use App\Contracts\ContractRepositories\Admin\PriceContract;
 use App\Repositories\Admin\GroupRepository;
+use App\Repositories\Admin\PriceRepository;
 use Illuminate\Support\ServiceProvider;
 //Admin
 use App\Contracts\ContractRepositories\Admin\AutoContract as AdminAutoContract;
@@ -80,6 +82,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(AutoDismantingContract::class,AutoDismantingRepository::class);
         $this->app->bind(AdminAutoNoteContract::class, AdminAutoNoteRepository::class);
         $this->app->bind(GroupContract::class, GroupRepository::class);
+        $this->app->bind(PriceContract::class, PriceRepository::class);
 
 
         //Client

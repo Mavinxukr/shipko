@@ -2648,6 +2648,248 @@
     "groupTitle": "Admin_Part_Action"
   },
   {
+    "type": "delete",
+    "url": "admin/delete-price/{id}",
+    "title": "Delete Price",
+    "name": "Delete_Price",
+    "version": "1.1.1",
+    "group": "Admin_Prices_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/delete-price/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Price/PriceController.php",
+    "groupTitle": "Admin_Prices_Action"
+  },
+  {
+    "type": "get",
+    "url": "admin/get-prices",
+    "title": "Show All Prices",
+    "name": "Show_All_Prices",
+    "version": "1.1.1",
+    "group": "Admin_Prices_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/get-prices"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Price/PriceController.php",
+    "groupTitle": "Admin_Prices_Action"
+  },
+  {
+    "type": "get",
+    "url": "admin/get-price/{id}",
+    "title": "Show Price By Id",
+    "name": "Show_Price_By_Id",
+    "version": "1.1.1",
+    "group": "Admin_Prices_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/get-price/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Price/PriceController.php",
+    "groupTitle": "Admin_Prices_Action"
+  },
+  {
+    "type": "post",
+    "url": "admin/store-price",
+    "title": "Store Price",
+    "name": "Store_Price",
+    "version": "1.1.1",
+    "group": "Admin_Prices_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "price",
+            "description": "<p>Price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "priceable_type",
+            "description": "<p>Attach Type (client, group)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "priceable_id",
+            "description": "<p>Client or Group ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "cities",
+            "description": "<p>Cities ID</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/store-price"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Price/PriceController.php",
+    "groupTitle": "Admin_Prices_Action"
+  },
+  {
+    "type": "post",
+    "url": "admin/update-price/{id}",
+    "title": "Update Price",
+    "name": "Update_Price",
+    "version": "1.1.1",
+    "group": "Admin_Prices_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "price",
+            "description": "<p>Price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "priceable_type",
+            "description": "<p>Attach Type (client, group)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "priceable_id",
+            "description": "<p>Client or Group ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "cities",
+            "description": "<p>Cities ID</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/update-price/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Price/PriceController.php",
+    "groupTitle": "Admin_Prices_Action"
+  },
+  {
     "type": "post",
     "url": "client/notifications/create",
     "title": "Create notification",

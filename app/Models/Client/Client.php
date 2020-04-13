@@ -7,6 +7,7 @@ use App\Models\Auto\AutoNotes;
 use App\Models\Group\GroupAttach;
 use App\Models\Notification\Notification;
 use App\Models\Part\Part;
+use App\Models\Price\Price;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
@@ -113,5 +114,10 @@ class Client extends Authenticatable
     public function group()
     {
         return $this->hasOne(GroupAttach::class)->with('group');
+    }
+
+    public function price()
+    {
+        return $this->morphOne(Price::class, 'priceable');
     }
 }

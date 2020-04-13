@@ -63,6 +63,13 @@ Route::namespace('ApiAdmin')->group(function () {
             Route::post('update-group/{id}','GroupController@update');
             Route::delete('delete-group/{id}','GroupController@destroy');
         });
+        Route::namespace('Price')->group(function () {
+            Route::post('store-price','PriceController@store');
+            Route::get('get-price/{id}','PriceController@show');
+            Route::get('get-prices','PriceController@index');
+            Route::post('update-price/{id}','PriceController@update');
+            Route::delete('delete-price/{id}','PriceController@destroy');
+        });
     });
 });
 
