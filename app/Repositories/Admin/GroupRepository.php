@@ -4,7 +4,9 @@ namespace App\Repositories\Admin;
 
 use App\Contracts\ContractRepositories\Admin\GroupContract;
 use App\Http\Resources\GroupResource;
+use App\Models\Client\Client;
 use App\Models\Group\Group;
+use App\Models\Group\GroupAttach;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\SortCollection;
 use Illuminate\Http\Request;
@@ -36,6 +38,17 @@ class GroupRepository implements GroupContract
     public function store(Request $request)
     {
         $group = Group::create($request->all());
+
+        $clients = explode(',', $request->clients);
+        foreach ($clients as $client){
+            if(Client::whereId($client)->exists()) {
+                GroupAttach::create([
+                    'group_id' => $group->id,
+                    'client_id' => $client,
+                ]);
+            }
+        }
+
         return $this->toJson('Store Group successfully', 201,
             new GroupResource($group));
     }
@@ -44,6 +57,18 @@ class GroupRepository implements GroupContract
     {
         $group = Group::findOrFail($id);
         $group->update(array_filter($request->all()));
+
+        $group->clients()->delete();
+        $clients = explode(',', $request->clients);
+        foreach ($clients as $client){
+            if(Client::whereId($client)->exists()){
+                GroupAttach::create([
+                    'group_id'  => $group->id,
+                    'client_id' => $client,
+                ]);
+            }
+        }
+
         return $this->toJson('Update Group successfully', 200,
             new GroupResource($group));
     }

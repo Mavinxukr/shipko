@@ -1775,6 +1775,13 @@ define({ "api": [
             "optional": false,
             "field": "price",
             "description": "<p>Price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "clients",
+            "description": "<p>Clients ID</p>"
           }
         ]
       }
@@ -1827,6 +1834,13 @@ define({ "api": [
             "optional": false,
             "field": "price",
             "description": "<p>Price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "clients",
+            "description": "<p>Clients ID</p>"
           }
         ]
       }

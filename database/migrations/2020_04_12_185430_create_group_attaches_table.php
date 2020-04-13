@@ -20,7 +20,8 @@ class CreateGroupAttachesTable extends Migration
 
             $table->foreign('group_id')
                 ->references('id')
-                ->on('groups');
+                ->on('groups')
+                ->onDelete('cascade');
             $table->foreign('client_id')
                 ->references('id')
                 ->on('clients')
