@@ -20,7 +20,8 @@ class CreateAutoNotesTable extends Migration
             $table->text('comment');
             $table->foreign('client_id')
                 ->references('id')
-                ->on('clients');
+                ->on('clients')
+                ->onDelete('cascade');
             $table->foreign('auto_id')
                 ->references('id')
                 ->on('autos')

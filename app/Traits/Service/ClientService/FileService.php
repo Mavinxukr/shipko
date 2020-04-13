@@ -15,7 +15,7 @@ trait FileService
     public function imageCreator(Model $model, string $entity, Model $modelImage, UploadedFile $file) :void
     {
         if (!is_null($file)){
-            $ext = explode("/", $file->getClientMimeType());
+            $ext = explode("/", $file->getClientOriginalExtension());
             $name = Str::random('60').'.'.end($ext);
             $path = "image/$entity/$model->id/$name";
             $arrayData = [
@@ -36,7 +36,7 @@ trait FileService
             Storage::disk('public')->exists($model->image->folder_link))
             Storage::disk('public')->delete($model->image->folder_link);
 
-        $model->delete();
+        $model->image()->delete();
     }
 
     public function folderDeleter(string $entity): void

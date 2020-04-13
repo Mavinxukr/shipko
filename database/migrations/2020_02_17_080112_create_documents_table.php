@@ -19,7 +19,8 @@ class CreateDocumentsTable extends Migration
             $table->unsignedBigInteger('auto_id');
             $table->foreign('auto_id')
                 ->references('id')
-                ->on('autos');
+                ->on('autos')
+                ->onDelete('cascade');
             $table->string('name');
             $table->string('path_to_front');
             $table->string('path_to_folder');

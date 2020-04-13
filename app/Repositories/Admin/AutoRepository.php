@@ -24,12 +24,20 @@ class AutoRepository implements AutoContract
         $shipInfo = ShipInfo::where('tracking_id', $request->tracking_id)
             ->with('auto')
             ->get();
+
+        $autos = [];
         foreach ($shipInfo as $item){
             $autos[] = $item->auto;
         }
 
+        if($autos){
+            $data = new AutoByTrackingIdResource($autos, $shipInfo->first());
+        }else{
+            $data = null;
+        }
+
         return $this->toJson('Auto get by container successfully',200,
-            new AutoByTrackingIdResource($autos, $shipInfo->first()));
+            $data);
     }
 
     public function index()

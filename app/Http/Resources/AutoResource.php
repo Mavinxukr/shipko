@@ -28,6 +28,10 @@ class AutoResource extends JsonResource
         return [
             'id'            => $this->id,
             'model_name'    => $this->model_name,
+            'client'        => [
+                'id'        => $this->client->id,
+                'name'      => $this->client->name,
+            ],
             'status'        => $this->status,
             'created_at'    => $this->created_at->format('d/m/Y'),
             'ship_info'     => new AutoShipInfoResource($this->shipInfo),
