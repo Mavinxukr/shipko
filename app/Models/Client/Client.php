@@ -3,6 +3,9 @@
 namespace App\Models\Client;
 
 use App\Models\Auto\Auto;
+use App\Models\Auto\AutoNotes;
+use App\Models\Notification\Notification;
+use App\Models\Part\Part;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
@@ -89,5 +92,20 @@ class Client extends Authenticatable
     public function autos()
     {
         return $this->hasMany(Auto::class);
+    }
+
+    public function parts()
+    {
+        return $this->hasMany(Part::class);
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
+
+    public function notes()
+    {
+        return $this->hasMany(AutoNotes::class);
     }
 }

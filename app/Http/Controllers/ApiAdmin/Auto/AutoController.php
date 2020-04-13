@@ -17,10 +17,28 @@ class AutoController extends Controller
     }
 
     /**
+     * @api {get} admin/get-autos-by-container  Show all autos by container
+     * @apiName Show all autos by container
+     * @apiVersion 1.1.1
+     * @apiGroup  Admin Auto Action
+     * @apiParam tracking_id Tracking or Container ID
+     * @apiPermission Authorization
+     * @apiHeader  Authorization token
+     * @apiSampleRequest  admin/get-autos-by-container
+     */
+    public function autoByContainer(Request $request)
+    {
+        return $this->auto->autoByContainer($request);
+    }
+
+    /**
      * @api {get} admin/get-autos  Show all autos
      * @apiName Show all autos
      * @apiVersion 1.1.1
      * @apiGroup  Admin Auto Action
+     * @apiDescription (client_id - for all autos byclient, countpage - for set Item PerPage,
+     * order_type - (asc, desc), order_by - column name for sort,
+     * search - for search by (vin_code))
      * @apiPermission Authorization
      * @apiHeader  Authorization token
      * @apiSampleRequest  admin/get-autos
@@ -38,6 +56,7 @@ class AutoController extends Controller
      * @apiPermission Authorization
      * @apiParam {String} model_name Model name
      * @apiParam {Number} client_id Client id
+     * @apiParam {String} status Status (new, not_approved, pending, delivered)
      * @apiParam {Number} ship Ship block has or has not
      * @apiParam {String} tracking_id Tracking id
      * @apiParam {String} container_id Container id
@@ -98,6 +117,22 @@ class AutoController extends Controller
     }
 
     /**
+     * @api {post} admin/delete-auto  Multiple Delete Auto
+     * @apiName  Multiple Delete Auto
+     * @apiVersion 1.1.1
+     * @apiGroup Admin Auto Action
+     * @apiParam {Array} auto_id Array of Autos ID
+     * @apiPermission Authorization
+     * @apiHeader  Authorization token
+     * @apiSampleRequest  admin/delete-auto
+     */
+
+    public function delete(Request $request)
+    {
+        return $this->auto->delete($request);
+    }
+
+    /**
      * @api {delete} admin/delete-auto/{id}  Delete  auto by id
      * @apiName Delete  auto by id
      * @apiVersion 1.1.1
@@ -107,7 +142,7 @@ class AutoController extends Controller
      * @apiSampleRequest  admin/delete-auto/{id}
      */
 
-    public function delete(int $id)
+    public function destroy(int $id)
     {
         return $this->auto->destroy($id);
     }
@@ -156,6 +191,7 @@ class AutoController extends Controller
      * @apiPermission Authorization
      * @apiParam {String} model_name Model name
      * @apiParam {Number} client_id Client id
+     * @apiParam {String} status Status (new, not_approved, pending, delivered)
      * @apiParam {Number} ship Ship block has or has not
      * @apiParam {String} tracking_id Tracking id
      * @apiParam {String} container_id Container id

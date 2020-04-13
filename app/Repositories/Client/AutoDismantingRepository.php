@@ -7,19 +7,41 @@ use App\Contracts\ContractRepositories\Client\AutoDismantingContract;
 use App\Http\Resources\AutoResource;
 use App\Models\Auto\Auto;
 use App\Traits\FormattedJsonResponse;
+use App\Traits\SortCollection;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class AutoDismantingRepository implements AutoDismantingContract
 {
-    use FormattedJsonResponse;
+    use FormattedJsonResponse, SortCollection;
 
     public function index(Request $request)
     {
-        $user = $request->user();
-        $auto = $user->autos()
+        $search = \request('search');
+        $port = \request('port');
+        $model = $request->user()
+            ->autos()
             ->with('shipping')
-            ->has('shipping')
-            ->paginate(10);
-        return $this->toJson('Auto Dismanting show successfully',200 ,AutoResource::collection($auto));
+            ->has('shipping');
+
+        if(!is_null($search)){
+            $model->whereHas('lotInfo', function (Builder $autoQuery) use ($search) {
+                $autoQuery->where('vin_code', 'like', "%$search%");
+            });
+        }
+
+        if(!is_null($port)){
+            $model->whereHas('shipInfo', function (Builder $query) use ($port){
+                $query->where('point_load_city', $port);
+            });
+        }
+
+        $autos = $this->getWithSort($model,
+            \request('countpage'),
+            \request('order_type'),
+            \request('order_by'));
+
+        return $this->toJson('Auto Dismanting show successfully',200 ,
+            AutoResource::collection($autos), true);
     }
 }

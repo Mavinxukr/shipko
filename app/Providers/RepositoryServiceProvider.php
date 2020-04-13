@@ -2,13 +2,14 @@
 
 namespace App\Providers;
 
+
 use Illuminate\Support\ServiceProvider;
 //Admin
 use App\Contracts\ContractRepositories\Admin\AutoContract as AdminAutoContract;
 use App\Contracts\ContractRepositories\Admin\AutoDismantingContract;
 use App\Contracts\ContractRepositories\Admin\AutoShippingContract;
 use App\Contracts\ContractRepositories\Admin\InvoiceContract;
-use App\Contracts\ContractRepositories\Admin\PartContract;
+use App\Contracts\ContractRepositories\Admin\PartContract as AdminPartContract;
 use App\Contracts\ContratRepositories\Admin\AuthContract as AdminAuthContract;
 use App\Contracts\ContratRepositories\Admin\ClientContract;
 use App\Contracts\ContratRepositories\Admin\ClientFilterContract;
@@ -19,7 +20,10 @@ use App\Repositories\Admin\AutoShippingRepository;
 use App\Repositories\Admin\ClientFilterRepository;
 use App\Repositories\Admin\ClientRepository;
 use App\Repositories\Admin\InvoiceRepository;
-use App\Repositories\Admin\PartRepository;
+use App\Repositories\Admin\PartRepository as AdminPartRepository;
+use App\Contracts\ContratRepositories\Admin\AutoNoteContract as AdminAutoNoteContract;
+use App\Repositories\Admin\AutoNoteRepository as AdminAutoNoteRepository;
+
 
 //Client
 use App\Contracts\ContratRepositories\Client\AuthContract as ClientAuthContract;
@@ -36,6 +40,13 @@ use App\Contracts\ContractRepositories\Client\InvoiceContract as ClientInvoiceCo
 use App\Repositories\Client\InvoiceRepository as ClientInvoiceRepository;
 use App\Contracts\ContratRepositories\Client\ProfileContract;
 use App\Repositories\Client\ProfileRepository;
+use App\Contracts\ContractRepositories\Client\PartContract as ClientPartContract;
+use App\Repositories\Client\PartRepository as ClientPartRepository;
+use App\Contracts\ContratRepositories\Client\AutoNoteContract;
+use App\Contracts\ContratRepositories\Client\NotificationContract;
+use App\Repositories\Client\AutoNoteRepository;
+use App\Repositories\Client\NotificationRepository;
+
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -60,11 +71,12 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(AdminAuthContract::class,AdminAuthRepository::class);
         $this->app->bind(ClientContract::class,ClientRepository::class);
         $this->app->bind(ClientFilterContract::class,ClientFilterRepository::class);
-        $this->app->bind(PartContract::class,PartRepository::class);
+        $this->app->bind(AdminPartContract::class, AdminPartRepository::class);
         $this->app->bind(AdminAutoContract::class,AdminAutoRepository::class);
         $this->app->bind(InvoiceContract::class,InvoiceRepository::class);
         $this->app->bind(AutoShippingContract::class,AutoShippingRepository::class);
         $this->app->bind(AutoDismantingContract::class,AutoDismantingRepository::class);
+        $this->app->bind(AdminAutoNoteContract::class, AdminAutoNoteRepository::class);
 
 
         //Client
@@ -75,5 +87,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ClientAutoContract::class,ClientAutoRepository::class);
         $this->app->bind(ClientInvoiceContract::class, ClientInvoiceRepository::class);
         $this->app->bind(ProfileContract::class,ProfileRepository::class);
+        $this->app->bind(ClientPartContract::class, ClientPartRepository::class);
+        $this->app->bind(NotificationContract::class, NotificationRepository::class);
+        $this->app->bind(AutoNoteContract::class, AutoNoteRepository::class);
     }
 }

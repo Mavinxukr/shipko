@@ -24,10 +24,25 @@ class ProfileRepository implements ProfileContract
     public function update(Request $request)
     {
         $client = $request->user();
-        $location =  LocationFacade::resultCreator($request->only(['country','city','zip','address']));
+
+        if($request->has('password') && !is_null($request->password)){
+            if($client->checkPassword($request->old_password)){
+                $client->update(['password' => bcrypt($request->password)]);
+            }else{
+                return $this->toJson('Password not correct',
+                    400, null);
+            }
+        }
+
         $client->update(
-            array_filter($request->only(['name','phone','email','card_number'])) +
-            $location);
+            array_filter($request->only(['name','phone','username','email','card_number']))
+        );
+
+        if(!empty(array_filter($request->only(['country','city','zip','address'])))){
+            $location =  LocationFacade::resultCreator($request->only(['country','city','zip','address']));
+            $client->update($location);
+        }
+
         $client->save();
 
         if (!empty($request->image)){
@@ -36,23 +51,7 @@ class ProfileRepository implements ProfileContract
         }
 
         return $this->toJson('Client updated successfully',
-                                    200, new ClientResource($client));
+                                    200, new ClientResource($client->fresh()));
 
-    }
-
-
-    public function updatePassword(Request $request)
-    {
-        $client = $request->user();
-
-        if($client->checkPassword($request->old_password)){
-            $client->update(['password' => bcrypt($request->password)]);
-
-            return $this->toJson('Client password updated successfully',
-                200, null);
-        }
-
-        return $this->toJson('Entered not correct',
-            400, null);
     }
 }

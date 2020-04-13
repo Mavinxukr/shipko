@@ -22,6 +22,9 @@ class CreateShipInfosTable extends Migration
             $table->string('point_delivery_city')->nullable();
             $table->string('point_delivery_date')->nullable();
             $table->integer('disassembly')->default(0);
+            $table->enum('damage_status', [
+                'case_closed', 'under_unvestigation', 'compensation_given'
+            ])->default('case_closed');
             $table->unsignedBigInteger('auto_id');
             $table->foreign('auto_id')
                 ->references('id')

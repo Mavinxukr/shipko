@@ -4,7 +4,7 @@ namespace App\Http\Controllers\ApiClient\Profile;
 
 use App\Contracts\ContratRepositories\Client\ProfileContract;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateClientRequest;
+use App\Http\Requests\UpdateProfileRequest;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -39,24 +39,27 @@ class ProfileController extends Controller
      * @apiPermission Authorization
      * @apiParam {String} name Name
      * @apiParam {String} username Username
-     * @apiParam {String} phone Phone exp - +380-00-00-00-000
+     * @apiParam {String} phone Phone exp - +3-8000-000-00-00
      * @apiParam {String} email Email
      * @apiParam {String} country Country
      * @apiParam {String} city City
      * @apiParam {String} zip Zip
      * @apiParam {String} address Address
      * @apiParam {String} card_number Card number exp - 1234-1234-1234-1234
+     * @apiParam {String} old_password Current Password
+     * @apiParam {String} password New Password
+     * @apiParam {String} password_confirmation Password confirmation
      * @apiParam {File} image Client image
      * @apiHeader  Authorization token
      * @apiSampleRequest  client/update-profile
      */
 
-    public function update (UpdateClientRequest $request)
+    public function update (UpdateProfileRequest $request)
     {
         return $this->client->update($request);
     }
 
-    /**
+    /*
      * @api {post} client/update-profile-password  Update Profile Password
      * @apiName Update Profile Password
      * @apiVersion 1.1.1
@@ -69,10 +72,10 @@ class ProfileController extends Controller
      * @apiSampleRequest  client/update-profile-password
      */
 
-    public function updatePassword (Request $request)
+    /*public function updatePassword (Request $request)
     {
         return $this->client->updatePassword($request);
-    }
+    }*/
 
 
 }

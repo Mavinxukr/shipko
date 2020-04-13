@@ -18,7 +18,7 @@ class ClientActionTest extends TestCase implements TokenContract
         $response = $this->post("$this->uri/store-client",[
             'name'     => 'from_test_user_test',
             'username'  => 'from_test_user_test',
-            'phone'  => '380000000001',
+            'phone'  => '+3-8000-000-00-00',
             'email'  => 'from_test_user_test@gmail.com',
             'password'  => bcrypt('111111'),
             'country'  => 'USA',
@@ -58,7 +58,8 @@ class ClientActionTest extends TestCase implements TokenContract
     {
         $response = $this->post("$this->uri/update-client/2",[
             'name'     => 'from_test_user_test_update',
-            'phone'  => '380000000111',
+            'username' => 'from_test_user_test_update',
+            'phone'  => '+3-8000-000-00-00',
             'email'  => 'from_test_user_test_update@gmail.com',
             'country'  => 'USA',
             'city'  => 'Miami',
@@ -87,7 +88,7 @@ class ClientActionTest extends TestCase implements TokenContract
         ];
         $responseLogin = $this->post("$this->uri/login",
             $user)->decodeResponseJson();
-        $token = $responseLogin['data']['auth']['token'];
+        $token = $responseLogin['data']['data']['auth']['token'];
         return $token;
     }
 }

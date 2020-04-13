@@ -25,10 +25,11 @@ class PartController extends Controller
      * @apiParam {String} client_id Client Id
      * @apiParam {String} catalog_number Catalog number
      * @apiParam {String} name Name
-     * @apiParam {String} make Make
+     * @apiParam {String} auto Auto
      * @apiParam {String} vin Vin
      * @apiParam {Number} quality Quality
      * @apiParam {String} container Container
+     * @apiParam {String} status Status
      * @apiParam {File} image Client images  exp  - image[0],image[1]
      * @apiHeader  Authorization token
      * @apiSampleRequest  admin/store-part
@@ -78,10 +79,11 @@ class PartController extends Controller
      * @apiParam {String} client_id Client Id
      * @apiParam {String} catalog_number Catalog number
      * @apiParam {String} name Name
-     * @apiParam {String} make Make
+     * @apiParam {String} auto Auto
      * @apiParam {String} vin Vin
      * @apiParam {Number} quality Quality
      * @apiParam {String} container Container
+     * @apiParam {String} status Status
      * @apiHeader  Authorization token
      * @apiSampleRequest  admin/update-part/{id}
      */
@@ -107,12 +109,11 @@ class PartController extends Controller
     }
 
     /**
-     * @api {delete} admin/delete-part-images/{id}  Remove Part Images
+     * @api {post} admin/delete-part-images/{id}  Remove Part Images
      * @apiName Remove Part Images
      * @apiVersion 1.1.1
      * @apiGroup Admin Part Action
-     * @apiDescription
-     * Example:  Allow get params for delete images exp: ids=1,2,3,4...
+     * @apiParam ids IDs of images (1,2,3,...)
      * @apiPermission Authorization
      * @apiHeader  Authorization token
      * @apiSampleRequest  admin/delete-part-images/{id}

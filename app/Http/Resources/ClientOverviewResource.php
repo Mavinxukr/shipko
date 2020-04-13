@@ -7,7 +7,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class ClientOverviewResource extends JsonResource
 {
     protected $autos;
-    protected $client_autos;
+    protected $client_autos_shipping;
+    protected $client_autos_invoice;
 
     /**
      * Create a new resource instance.
@@ -15,10 +16,11 @@ class ClientOverviewResource extends JsonResource
      * @param  mixed  $resource
      * @return void
      */
-    public function __construct($resource, $autos, $client_autos)
+    public function __construct($resource, $autos, $client_autos_shipping, $client_autos_invoice)
     {
         $this->autos = $autos;
-        $this->client_autos = $client_autos;
+        $this->client_autos_shipping = $client_autos_shipping;
+        $this->client_autos_invoice = $client_autos_invoice;
         parent::__construct($resource);
     }
 
@@ -32,10 +34,18 @@ class ClientOverviewResource extends JsonResource
     {
         $latest_shippings = null;
         $latest_invoices = null;
-        if(!is_null($this->client_autos))
-            foreach ($this->client_autos as $auto){
-                $latest_shippings[] = new AutoShippingResource($auto->shipping);
-                $latest_invoices[] = new InvoiceResource($auto->invoice);
+        if(!is_null($this->client_autos_shipping))
+            foreach ($this->client_autos_shipping as $auto_shipping){
+                if(!is_null($auto_shipping)){
+                    $latest_shippings[] = new AutoResource($auto_shipping);
+                }
+            }
+
+        if(!is_null($this->client_autos_invoice))
+            foreach ($this->client_autos_invoice as $auto_invoice){
+                if(!is_null($auto_invoice)){
+                    $latest_invoices[] = new InvoiceResource($auto_invoice->invoice);
+                }
             }
 
         return [

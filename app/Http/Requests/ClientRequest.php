@@ -26,7 +26,7 @@ class ClientRequest extends FormRequest
         return [
             'name'          => 'required|max:100',
             'username'      => 'required|unique:clients,username',
-            'phone'         => 'required|regex:/[0-9]{12}$/|unique:clients,phone',
+            'phone'         => 'required|regex:/[1-9]{1}-[0-9]{4}-[0-9]{3}-[0-9]{2}-[0-9]{2}$/|unique:clients,phone',
             'email'         => 'required|unique:clients,email',
             'password'      => 'required|min:6',
             'country'       => 'required',
@@ -34,7 +34,7 @@ class ClientRequest extends FormRequest
             'zip'           => 'required|numeric',
             'address'       => 'required',
             'card_number'   => ['required','regex:/^[1-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$/','unique:clients,card_number'],
-            'image'         => 'nullable|file|mimes:jpeg,jpg,png'
+            //'image'         => 'nullable|image|mimes:jpeg,jpg,png'
         ];
     }
 }

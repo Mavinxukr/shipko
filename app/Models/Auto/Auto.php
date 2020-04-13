@@ -37,7 +37,7 @@ use Illuminate\Database\Eloquent\Model;
 class Auto extends Model
 {
     protected $fillable = [
-        'model_name','client_id'
+        'model_name','client_id', 'status'
     ];
 
     public function shipInfo()
@@ -77,5 +77,10 @@ class Auto extends Model
     public function invoice()
     {
         return $this->hasOne(Invoice::class);
+    }
+
+    public function notes()
+    {
+        return $this->hasMany(AutoNotes::class);
     }
 }

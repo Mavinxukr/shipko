@@ -24,17 +24,19 @@ trait FileService
                  $entity.'_id'      => $model->id,
                 'folder_link'       => $path
             ];
-                $modelImage::create($arrayData);
 
+            $modelImage::create($arrayData);
             Storage::disk('public')->put($path,file_get_contents($file));
         }
     }
 
     public function imageDeleter(Model $model): void
     {
-            if (!empty($model->image) &&
-                Storage::disk('public')->exists($model->folder_link))
-                Storage::disk('public')->delete($model->folder_link);
+        if (!empty($model->image) &&
+            Storage::disk('public')->exists($model->image->folder_link))
+            Storage::disk('public')->delete($model->image->folder_link);
+
+        $model->delete();
     }
 
     public function folderDeleter(string $entity): void

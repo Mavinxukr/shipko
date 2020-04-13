@@ -36,7 +36,8 @@ class Invoice extends Model
     protected $fillable = [
         'name_car','status','total_price',
         'paid_price','outstanding_price',
-        'auto_id'
+        'total_shipping_price', 'paid_shipping_price','outstanding_shipping_price',
+        'status_shipping', 'auto_id',
     ];
 
     public function auto()

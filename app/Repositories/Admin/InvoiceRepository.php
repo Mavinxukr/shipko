@@ -9,17 +9,34 @@ use App\Http\Resources\InvoiceResource;
 use App\Models\Invoice\Invoice;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\Service\AutoService\UploadDocuments;
+use App\Traits\SortCollection;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class InvoiceRepository implements InvoiceContract
 {
-    use FormattedJsonResponse, UploadDocuments;
+    use FormattedJsonResponse, UploadDocuments, SortCollection;
 
     public function index()
     {
-        $invoices = Invoice::latest('id')->paginate(10);
+        $search = \request('search');
+        $model = Invoice::latest('id');
+
+        if(!is_null($search)){
+            $model->whereHas('auto', function (Builder $query) use($search) {
+                $query->whereHas('lotInfo', function (Builder $autoQuery) use ($search) {
+                    $autoQuery->where('vin_code', 'like', "%$search%");
+                });
+            });
+        }
+
+        $invoices = $this->getWithSort($model,
+            \request('countpage'),
+            \request('order_type'),
+            \request('order_by'));
+
         return $this->toJson('Get All invoice',200,
-            InvoiceResource::collection($invoices)->additional($this->amountValue()));
+            InvoiceResource::collection($invoices)->additional($this->amountValue()), true);
 
     }
 

@@ -22,29 +22,16 @@ class InvoiceTest extends TestCase
         ];
         $responseLogin = $this->post("$this->uri/login",
             $user)->decodeResponseJson();
-        return $responseLogin['data']['auth']['token'];
+        return $responseLogin['data']['data']['auth']['token'];
     }
 
     /** @test */
 
     public function get_all_invoice_test()
     {
-
+        $this->withoutExceptionHandling();
         $response = $this->get("$this->uri/get-invoices",
             ['Authorization' => $this->getToken()]);
-        $this->withoutExceptionHandling();
         $response->assertOk();
-
     }
-
-    /** @test */
-
-/*    public function get_invoice_by_id_test()
-    {
-        $invoice_id = Invoice::first()->value('id');
-        $this->withoutExceptionHandling();
-        $response = $this->get("$this->uri/get-invoice/$invoice_id",
-            ['Authorization' => $this->getToken()]);
-        $response->assertOk();
-    }*/
 }

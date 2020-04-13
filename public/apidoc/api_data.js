@@ -145,6 +145,51 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "admin/delete-auto",
+    "title": "Multiple Delete Auto",
+    "name": "Multiple_Delete_Auto",
+    "version": "1.1.1",
+    "group": "Admin_Auto_Action",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": false,
+            "field": "auto_id",
+            "description": "<p>Array of Autos ID</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/delete-auto"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Auto/AutoController.php",
+    "groupTitle": "Admin_Auto_Action"
+  },
+  {
+    "type": "post",
     "url": "admin/restore-auto-document/{id}",
     "title": "Restore document  auto by id",
     "name": "Restore_document_auto_by_id",
@@ -195,6 +240,7 @@ define({ "api": [
     "name": "Show_all_autos",
     "version": "1.1.1",
     "group": "Admin_Auto_Action",
+    "description": "<p>(client_id - for all autos byclient, countpage - for set Item PerPage, order_type - (asc, desc), order_by - column name for sort, search - for search by (vin_code))</p>",
     "permission": [
       {
         "name": "Authorization"
@@ -215,6 +261,50 @@ define({ "api": [
     "sampleRequest": [
       {
         "url": "/api-admin/get-autos"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Auto/AutoController.php",
+    "groupTitle": "Admin_Auto_Action"
+  },
+  {
+    "type": "get",
+    "url": "admin/get-autos-by-container",
+    "title": "Show all autos by container",
+    "name": "Show_all_autos_by_container",
+    "version": "1.1.1",
+    "group": "Admin_Auto_Action",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "optional": false,
+            "field": "tracking_id",
+            "description": "<p>Tracking or Container ID</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/get-autos-by-container"
       }
     ],
     "filename": "app/Http/Controllers/ApiAdmin/Auto/AutoController.php",
@@ -280,6 +370,13 @@ define({ "api": [
             "optional": false,
             "field": "client_id",
             "description": "<p>Client id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>Status (new, not_approved, pending, delivered)</p>"
           },
           {
             "group": "Parameter",
@@ -551,6 +648,58 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "admin/store-note",
+    "title": "Store note",
+    "name": "Store_note",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "auto_id",
+            "description": "<p>Auto id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "comment",
+            "description": "<p>Comment</p>"
+          }
+        ]
+      }
+    },
+    "version": "1.1.1",
+    "group": "Admin_Auto_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/store-note"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Auto/AutoNoteController.php",
+    "groupTitle": "Admin_Auto_Action"
+  },
+  {
+    "type": "post",
     "url": "admin/update-auto/{id}",
     "title": "Update Auto",
     "name": "Update_Auto",
@@ -577,6 +726,13 @@ define({ "api": [
             "optional": false,
             "field": "client_id",
             "description": "<p>Client id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>Status (new, not_approved, pending, delivered)</p>"
           },
           {
             "group": "Parameter",
@@ -832,6 +988,7 @@ define({ "api": [
     "name": "Show_all_autos_dismanting",
     "version": "1.1.1",
     "group": "Admin_Auto_Dismanting",
+    "description": "<p>(countpage - for set Item PerPage, order_type - (asc, desc), order_by - column name for sort, port - for filter by port search - for search by (vin_code))</p>",
     "permission": [
       {
         "name": "Authorization"
@@ -941,6 +1098,7 @@ define({ "api": [
     "name": "Show_all_autos_shipping",
     "version": "1.1.1",
     "group": "Admin_Auto_Shipping",
+    "description": "<p>(countpage - for set Item PerPage, order_type - (asc, desc), order_by - column name for sort, port - for filter by port search - for search by (vin_code))</p>",
     "permission": [
       {
         "name": "Authorization"
@@ -1018,14 +1176,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "auto_id",
-            "description": "<p>Auto ID</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "status",
-            "description": "<p>Status (at_loading, on_the_way, at_unloading, finish)</p>"
+            "description": "<p>Auto ID example: [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]</p>"
           }
         ]
       }
@@ -1128,12 +1279,58 @@ define({ "api": [
     "groupTitle": "Admin_Client_Action"
   },
   {
+    "type": "post",
+    "url": "admin/delete-client",
+    "title": "Multiple Delete Client",
+    "name": "Multiple_Delete_Client",
+    "version": "1.1.1",
+    "group": "Admin_Client_Action",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": false,
+            "field": "client_id",
+            "description": "<p>Array of Clients ID</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/delete-client"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Client/ClientController.php",
+    "groupTitle": "Admin_Client_Action"
+  },
+  {
     "type": "get",
     "url": "admin/get-clients",
     "title": "Show All Clients",
     "name": "Show_All_Clients",
     "version": "1.1.1",
     "group": "Admin_Client_Action",
+    "description": "<p>(countpage - for set Item PerPage, order_type - (asc, desc), order_by - column name for sort, search - for search by (name, email))</p>",
     "permission": [
       {
         "name": "Authorization"
@@ -1225,7 +1422,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "phone",
-            "description": "<p>Phone exp - 380000000000</p>"
+            "description": "<p>Phone exp - +3-8000-000-00-00</p>"
           },
           {
             "group": "Parameter",
@@ -1340,7 +1537,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "phone",
-            "description": "<p>Phone exp - +380-00-00-00-000</p>"
+            "description": "<p>Phone exp - +3-8000-000-00-00</p>"
           },
           {
             "group": "Parameter",
@@ -1692,6 +1889,27 @@ define({ "api": [
           },
           {
             "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "total_shipping_price",
+            "description": "<p>Total Shipping price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "paid_shipping_price",
+            "description": "<p>Paid Shipping price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "outstanding_shipping_price",
+            "description": "<p>Outstanding Shipping price</p>"
+          },
+          {
+            "group": "Parameter",
             "type": "Array",
             "optional": false,
             "field": "type",
@@ -1783,6 +2001,27 @@ define({ "api": [
             "optional": false,
             "field": "outstanding_price",
             "description": "<p>Outstanding price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Double",
+            "optional": false,
+            "field": "total_shipping_price",
+            "description": "<p>Total Shipping price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Double",
+            "optional": false,
+            "field": "paid_shipping_price",
+            "description": "<p>Paid Shipping price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Double",
+            "optional": false,
+            "field": "outstanding_shipping_price",
+            "description": "<p>Outstanding Shipping price</p>"
           }
         ]
       }
@@ -1911,13 +2150,24 @@ define({ "api": [
     "groupTitle": "Admin_Part_Action"
   },
   {
-    "type": "delete",
+    "type": "post",
     "url": "admin/delete-part-images/{id}",
     "title": "Remove Part Images",
     "name": "Remove_Part_Images",
     "version": "1.1.1",
     "group": "Admin_Part_Action",
-    "description": "<p>Example:  Allow get params for delete images exp: ids=1,2,3,4...</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "optional": false,
+            "field": "ids",
+            "description": "<p>IDs of images (1,2,3,...)</p>"
+          }
+        ]
+      }
+    },
     "permission": [
       {
         "name": "Authorization"
@@ -2028,8 +2278,8 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "make",
-            "description": "<p>Make</p>"
+            "field": "auto",
+            "description": "<p>Auto</p>"
           },
           {
             "group": "Parameter",
@@ -2051,6 +2301,13 @@ define({ "api": [
             "optional": false,
             "field": "container",
             "description": "<p>Container</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>Status</p>"
           },
           {
             "group": "Parameter",
@@ -2122,8 +2379,8 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "make",
-            "description": "<p>Make</p>"
+            "field": "auto",
+            "description": "<p>Auto</p>"
           },
           {
             "group": "Parameter",
@@ -2145,6 +2402,13 @@ define({ "api": [
             "optional": false,
             "field": "container",
             "description": "<p>Container</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>Status</p>"
           }
         ]
       }
@@ -2168,6 +2432,56 @@ define({ "api": [
     ],
     "filename": "app/Http/Controllers/ApiAdmin/Part/PartController.php",
     "groupTitle": "Admin_Part_Action"
+  },
+  {
+    "type": "post",
+    "url": "client/notifications/create",
+    "title": "Create notification",
+    "name": "Create_notification",
+    "version": "1.1.1",
+    "group": "Client_Action",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "optional": false,
+            "field": "type",
+            "description": "<p>Type (auto, auto_for_dismanting, parts, shipping, invoices)</p>"
+          },
+          {
+            "group": "Parameter",
+            "optional": false,
+            "field": "body",
+            "description": "<p>Notification body</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/notifications/create"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Notification/NotificationController.php",
+    "groupTitle": "Client_Action"
   },
   {
     "type": "get",
@@ -2199,6 +2513,38 @@ define({ "api": [
       }
     ],
     "filename": "app/Http/Controllers/ApiClient/Profile/ProfileController.php",
+    "groupTitle": "Client_Action"
+  },
+  {
+    "type": "get",
+    "url": "client/notifications",
+    "title": "Show all notifications",
+    "name": "Show_all_notifications",
+    "version": "1.1.1",
+    "group": "Client_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/notifications"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Notification/NotificationController.php",
     "groupTitle": "Client_Action"
   },
   {
@@ -2235,7 +2581,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "phone",
-            "description": "<p>Phone exp - +380-00-00-00-000</p>"
+            "description": "<p>Phone exp - +3-8000-000-00-00</p>"
           },
           {
             "group": "Parameter",
@@ -2281,6 +2627,27 @@ define({ "api": [
           },
           {
             "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "old_password",
+            "description": "<p>Current Password</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>New Password</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password_confirmation",
+            "description": "<p>Password confirmation</p>"
+          },
+          {
+            "group": "Parameter",
             "type": "File",
             "optional": false,
             "field": "image",
@@ -2311,9 +2678,9 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "client/update-profile-password",
-    "title": "Update Profile Password",
-    "name": "Update_Profile_Password",
+    "url": "client/notifications",
+    "title": "Update notifications status",
+    "name": "Update_notifications_status",
     "version": "1.1.1",
     "group": "Client_Action",
     "parameter": {
@@ -2321,24 +2688,9 @@ define({ "api": [
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "String",
             "optional": false,
-            "field": "old_password",
-            "description": "<p>Current Password</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "password",
-            "description": "<p>New Password</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "password_confirmation",
-            "description": "<p>Password confirmation</p>"
+            "field": "type",
+            "description": "<p>Notifications Type (auto, auto_for_dismanting, parts, shipping, invoices)</p>"
           }
         ]
       }
@@ -2362,10 +2714,10 @@ define({ "api": [
     },
     "sampleRequest": [
       {
-        "url": "/api-client/update-profile-password"
+        "url": "/api-client/notifications"
       }
     ],
-    "filename": "app/Http/Controllers/ApiClient/Profile/ProfileController.php",
+    "filename": "app/Http/Controllers/ApiClient/Notification/NotificationController.php",
     "groupTitle": "Client_Action"
   },
   {
@@ -2436,6 +2788,55 @@ define({ "api": [
     "groupTitle": "Client_Auth"
   },
   {
+    "type": "post",
+    "url": "client/register",
+    "title": "Register Client",
+    "name": "Register_Client",
+    "version": "1.1.1",
+    "group": "Client_Auth",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>Password</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password_confirmation",
+            "description": "<p>Password Confirmation</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/register"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Auth/AuthController.php",
+    "groupTitle": "Client_Auth"
+  },
+  {
     "type": "get",
     "url": "client/get-invoices",
     "title": "Show All Invoices",
@@ -2474,7 +2875,7 @@ define({ "api": [
     "name": "Show_all_autos",
     "version": "1.1.1",
     "group": "Client_Auto",
-    "description": "<p>This is the Description. Allow get params for filters exp: container, lot_number, model_name, vin, point_load_city</p>",
+    "description": "<p>This is the Description. Allow get params for filters exp: container, lot_number, model_name, vin, point_load_city, status</p>",
     "permission": [
       {
         "name": "Authorization"
@@ -2507,6 +2908,7 @@ define({ "api": [
     "name": "Show_all_autos_dismanting",
     "version": "1.1.1",
     "group": "Client_Auto",
+    "description": "<p>(countpage - for set Item PerPage, order_type - (asc, desc), order_by - column name for sort, port - for filter by port search - for search by (vin_code))</p>",
     "permission": [
       {
         "name": "Authorization"
@@ -2539,6 +2941,7 @@ define({ "api": [
     "name": "Show_all_autos_shipping",
     "version": "1.1.1",
     "group": "Client_Auto",
+    "description": "<p>(countpage - for set Item PerPage, order_type - (asc, desc), order_by - column name for sort, port - for filter by port search - for search by (vin_code))</p>",
     "permission": [
       {
         "name": "Authorization"
@@ -2597,6 +3000,58 @@ define({ "api": [
     "groupTitle": "Client_Auto"
   },
   {
+    "type": "post",
+    "url": "client/store-note",
+    "title": "Store note",
+    "name": "Store_note",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "auto_id",
+            "description": "<p>Auto id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "comment",
+            "description": "<p>Comment</p>"
+          }
+        ]
+      }
+    },
+    "version": "1.1.1",
+    "group": "Client_Auto",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/store-note"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Auto/AutoNoteController.php",
+    "groupTitle": "Client_Auto"
+  },
+  {
     "type": "get",
     "url": "client/overview",
     "title": "Client Overview Page",
@@ -2627,5 +3082,360 @@ define({ "api": [
     ],
     "filename": "app/Http/Controllers/ApiClient/Overview/OverviewController.php",
     "groupTitle": "Client_Overview"
+  },
+  {
+    "type": "delete",
+    "url": "client/delete-part/{id}",
+    "title": "Delete Part",
+    "name": "Delete_Part",
+    "version": "1.1.1",
+    "group": "Client_Part_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/delete-part/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Part/PartController.php",
+    "groupTitle": "Client_Part_Action"
+  },
+  {
+    "type": "get",
+    "url": "client/get-part/{id}",
+    "title": "Get Part",
+    "name": "Get_Part",
+    "version": "1.1.1",
+    "group": "Client_Part_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/get-part/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Part/PartController.php",
+    "groupTitle": "Client_Part_Action"
+  },
+  {
+    "type": "get",
+    "url": "client/get-parts",
+    "title": "Get Parts",
+    "name": "Get_Parts",
+    "version": "1.1.1",
+    "group": "Client_Part_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/get-parts"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Part/PartController.php",
+    "groupTitle": "Client_Part_Action"
+  },
+  {
+    "type": "delete",
+    "url": "client/delete-part-images/{id}",
+    "title": "Remove Part Images",
+    "name": "Remove_Part_Images",
+    "version": "1.1.1",
+    "group": "Client_Part_Action",
+    "description": "<p>Example:  Allow get params for delete images exp: ids=1,2,3,4...</p>",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/delete-part-images/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Part/PartController.php",
+    "groupTitle": "Client_Part_Action"
+  },
+  {
+    "type": "post",
+    "url": "client/restore-part-images/{id}",
+    "title": "Restore Part Images",
+    "name": "Restore_Part_Images",
+    "version": "1.1.1",
+    "group": "Client_Part_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "File",
+            "optional": false,
+            "field": "image",
+            "description": "<p>Client images  exp  - image[0],image[1]</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/restore-part-images/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Part/PartController.php",
+    "groupTitle": "Client_Part_Action"
+  },
+  {
+    "type": "post",
+    "url": "client/store-part",
+    "title": "Store Part",
+    "name": "Store_Part",
+    "version": "1.1.1",
+    "group": "Client_Part_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "catalog_number",
+            "description": "<p>Catalog number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "auto",
+            "description": "<p>Auto</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "vin",
+            "description": "<p>Vin</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "quality",
+            "description": "<p>Quality</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "container",
+            "description": "<p>Container</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "comment",
+            "description": "<p>Comment</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "File",
+            "optional": false,
+            "field": "image",
+            "description": "<p>Client images  exp  - image[0],image[1]</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/store-part"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Part/PartController.php",
+    "groupTitle": "Client_Part_Action"
+  },
+  {
+    "type": "post",
+    "url": "client/update-part/{id}",
+    "title": "Update Part",
+    "name": "Update_Part",
+    "version": "1.1.1",
+    "group": "Client_Part_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "catalog_number",
+            "description": "<p>Catalog number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "auto",
+            "description": "<p>Auto</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "vin",
+            "description": "<p>Vin</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "quality",
+            "description": "<p>Quality</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "container",
+            "description": "<p>Container</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "comment",
+            "description": "<p>Comment</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-client/update-part/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiClient/Part/PartController.php",
+    "groupTitle": "Client_Part_Action"
   }
 ] });

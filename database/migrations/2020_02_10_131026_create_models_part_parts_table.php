@@ -18,11 +18,12 @@ class CreateModelsPartPartsTable extends Migration
             $table->string('client_id');
             $table->string('catalog_number');
             $table->string('name');
-            $table->string('make');
+            $table->string('auto');
             $table->string('vin');
             $table->string('quality');
             $table->string('container');
-            $table->string('status')->default('progress');
+            $table->text('comment')->nullable();
+            $table->string('status')->default('in_warehouse');
             $table->timestamps();
         });
     }

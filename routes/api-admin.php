@@ -6,11 +6,15 @@ Route::namespace('ApiAdmin')->group(function () {
     Route::post('login','Auth\AuthController@login');
     Route::middleware( ['auth:api','role:admin'])->group(function (){
         Route::post('logout','Auth\AuthController@logout');
+
+        Route::post('store-note', 'Auto\AutoNoteController@store');
+
         Route::namespace('Client')->group(function () {
             Route::post('store-client','ClientController@store');
             Route::get('get-client/{id}','ClientController@show');
             Route::get('get-clients','ClientController@index');
             Route::post('update-client/{id}','ClientController@update');
+            Route::post('delete-client','ClientController@delete');
             Route::delete('delete-client/{id}','ClientController@destroy');
             Route::get('get-clients-by-filters','ClientFilterController@filter' );
         });
@@ -20,14 +24,16 @@ Route::namespace('ApiAdmin')->group(function () {
             Route::get('get-part/{id}','PartController@show');
             Route::post('update-part/{id}','PartController@update');
             Route::delete('delete-part/{id}','PartController@destroy');
-            Route::delete('delete-part-images/{id}','PartController@removeImage');
+            Route::post('delete-part-images/{id}','PartController@removeImage');
             Route::post('restore-part-images/{id}','PartController@restoreImage');
         });
         Route::namespace('Auto')->group(function () {
             Route::post('store-auto','AutoController@store');
             Route::get('get-autos','AutoController@index');
+            Route::get('get-autos-by-container','AutoController@autoByContainer');
             Route::get('get-auto/{id}','AutoController@show');
-            Route::delete('delete-auto/{id}','AutoController@delete');
+            Route::post('delete-auto','AutoController@delete');
+            Route::delete('delete-auto/{id}','AutoController@destroy');
             Route::post('restore-auto-document/{id}','AutoController@restoreDocument');
             Route::post('delete-auto-document/{id}','AutoController@deleteDocument');
             Route::post('update-auto/{id}','AutoController@update');
