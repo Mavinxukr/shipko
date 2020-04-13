@@ -24,6 +24,8 @@ class AutoRepository implements AutoContract
         $shipInfo = ShipInfo::where('tracking_id', $request->tracking_id)
             ->with('auto')
             ->get();
+
+        $autos = [];
         foreach ($shipInfo as $item){
             $autos[] = $item->auto;
         }
