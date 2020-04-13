@@ -41,6 +41,7 @@ class PriceController extends Controller
      * @apiParam {String} priceable_type  Attach Type (client, group)
      * @apiParam {String} priceable_id Client or Group ID
      * @apiParam {String} cities Cities ID
+     * @apiParam {Timestamp} due_day Day when mast pay
      * @apiHeader  Authorization token
      * @apiSampleRequest  admin/store-price
      */
@@ -76,6 +77,7 @@ class PriceController extends Controller
      * @apiParam {String} priceable_type  Attach Type (client, group)
      * @apiParam {String} priceable_id Client or Group ID
      * @apiParam {String} cities Cities ID
+     * @apiParam {Timestamp} due_day Day when mast pay
      * @apiHeader  Authorization token
      * @apiSampleRequest  admin/update-price/{id}
      */

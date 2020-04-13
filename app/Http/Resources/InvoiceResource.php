@@ -16,14 +16,20 @@ class InvoiceResource extends JsonResource
      */
     public function toArray($request)
     {
+        if($this->auto->offsite){
+            $totalPrice = $this->tatal_price + $this->auto->offsite_price;
+        }else{
+            $totalPrice = $this->tatal_price;
+        }
+
         return [
             'id'                        => $this->id,
             'name_car'                  => $this->name_car,
             'status'                    => $this->status,
-            'total'                     => [$this->total_price, $this->total_shipping_price],
+            'total'                     => [$totalPrice, $this->total_shipping_price],
             'paid'                      => [$this->paid_price,$this->paid_shipping_price],
             'outstanding'               => [$this->outstanding_price, $this->outstanding_shipping_price],
-            'total_price'               => $this->total_price,
+            'total_price'               => $totalPrice,
             'paid_price'                => $this->paid_price,
             'outstanding_price'         => $this->outstanding_price,
             'total_shipping_price'      => $this->total_shipping_price,

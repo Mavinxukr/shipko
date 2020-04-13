@@ -19,6 +19,7 @@ class CreatePricesTable extends Migration
             $table->integer('price');
             $table->unsignedBigInteger('priceable_id');
             $table->string('priceable_type');
+            $table->dateTime('due_day');
             $table->timestamps();
         });
 

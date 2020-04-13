@@ -57,6 +57,8 @@ class AutoController extends Controller
      * @apiParam {String} model_name Model name
      * @apiParam {Number} client_id Client id
      * @apiParam {String} status Status (new, not_approved, pending, delivered)
+     * @apiParam {Boolean} offsite Offsite (1- true, 0 - false)
+     * @apiParam {Number} offsite_price Offsite Price
      * @apiParam {Number} ship Ship block has or has not
      * @apiParam {String} tracking_id Tracking id
      * @apiParam {String} container_id Container id
@@ -192,6 +194,8 @@ class AutoController extends Controller
      * @apiParam {String} model_name Model name
      * @apiParam {Number} client_id Client id
      * @apiParam {String} status Status (new, not_approved, pending, delivered)
+     * @apiParam {Boolean} offsite Offsite (1- true, 0 - false)
+     * @apiParam {Number} offsite_price Offsite Price
      * @apiParam {Number} ship Ship block has or has not
      * @apiParam {String} tracking_id Tracking id
      * @apiParam {String} container_id Container id

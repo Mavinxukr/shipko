@@ -19,6 +19,8 @@ class CreateAutosTable extends Migration
             $table->unsignedBigInteger('client_id');
             $table->enum('status', ['new', 'not_approved', 'pending', 'delivered'])
                     ->default('new');
+            $table->boolean('offsite')->default(0);
+            $table->integer('offsite_price')->nullable();
             $table->foreign('client_id')
                     ->references('id')
                     ->on('clients')

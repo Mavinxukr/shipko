@@ -2792,6 +2792,13 @@ define({ "api": [
             "optional": false,
             "field": "cities",
             "description": "<p>Cities ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Timestamp",
+            "optional": false,
+            "field": "due_day",
+            "description": "<p>Day when mast pay</p>"
           }
         ]
       }
@@ -2865,6 +2872,13 @@ define({ "api": [
             "optional": false,
             "field": "cities",
             "description": "<p>Cities ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Timestamp",
+            "optional": false,
+            "field": "due_day",
+            "description": "<p>Day when mast pay</p>"
           }
         ]
       }

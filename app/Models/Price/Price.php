@@ -8,7 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Price extends Model
 {
     protected $fillable = [
-        'name', 'price', 'priceable_id', 'priceable_type'
+        'name', 'price', 'priceable_id',
+        'priceable_type', 'due_day'
+    ];
+
+    protected $casts = [
+        'due_day' => 'datetime',
     ];
 
     public static function morphMap($type)

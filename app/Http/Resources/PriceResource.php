@@ -19,6 +19,7 @@ class PriceResource extends JsonResource
             'id'        => $this->id,
             'name'      => $this->name,
             'price'     => $this->price,
+            'due_day'   => $this->due_day->diffInDays(),
             'priceable' =>
                 $this->priceable_type == Price::morphMap('client') ?
                 new ClientResource($this->priceable) :
