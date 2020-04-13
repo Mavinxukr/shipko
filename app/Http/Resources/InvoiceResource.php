@@ -16,10 +16,11 @@ class InvoiceResource extends JsonResource
      */
     public function toArray($request)
     {
+
         if($this->auto->offsite){
-            $totalPrice = $this->tatal_price + $this->auto->offsite_price;
+            $totalPrice = $this->total_price + $this->auto->offsite_price;
         }else{
-            $totalPrice = $this->tatal_price;
+            $totalPrice = $this->total_price;
         }
 
         return [

@@ -380,6 +380,20 @@
           },
           {
             "group": "Parameter",
+            "type": "Boolean",
+            "optional": false,
+            "field": "offsite",
+            "description": "<p>Offsite (1- true, 0 - false)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "offsite_price",
+            "description": "<p>Offsite Price</p>"
+          },
+          {
+            "group": "Parameter",
             "type": "Number",
             "optional": false,
             "field": "ship",
@@ -733,6 +747,20 @@
             "optional": false,
             "field": "status",
             "description": "<p>Status (new, not_approved, pending, delivered)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Boolean",
+            "optional": false,
+            "field": "offsite",
+            "description": "<p>Offsite (1- true, 0 - false)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "offsite_price",
+            "description": "<p>Offsite Price</p>"
           },
           {
             "group": "Parameter",
