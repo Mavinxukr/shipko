@@ -15,7 +15,7 @@ trait FileService
     public function imageCreator(Model $model, string $entity, Model $modelImage, UploadedFile $file) :void
     {
         if (!is_null($file)){
-            $ext = explode("/", $file->getClientMimeType());
+            $ext = explode("/", $file->getClientOriginalExtension());
             $name = Str::random('60').'.'.end($ext);
             $path = "image/$entity/$model->id/$name";
             $arrayData = [

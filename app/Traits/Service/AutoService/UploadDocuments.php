@@ -12,7 +12,7 @@ trait UploadDocuments
     public function saveDocuments(Model $model, array $documents, string $entity) : void
     {
         foreach ($documents as $document){
-            $ext = explode("/", $document['file']->getClientMimeType());
+            $ext = explode("/", $document['file']->getClientOriginalExtension());
             $name = Str::random('60').'.'.end($ext);
             $path = "image/$entity/documents/$model->id/$name";
             $arrayData = [
