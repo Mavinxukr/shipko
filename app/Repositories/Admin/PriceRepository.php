@@ -5,9 +5,6 @@ namespace App\Repositories\Admin;
 use App\Contracts\ContractRepositories\Admin\PriceContract;
 use App\Http\Resources\PriceResource;
 use App\Models\Client\City;
-use App\Models\Client\Client;
-use App\Models\Group\Group;
-use App\Models\Group\GroupAttach;
 use App\Models\Price\Price;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\SortCollection;
@@ -39,9 +36,15 @@ class PriceRepository implements PriceContract
 
     public function store(Request $request)
     {
-        $price = Price::create($request->except('priceable_type', 'cities') + [
-                'priceable_type' => Price::morphMap($request->priceable_type),
-            ]);
+        $data = $request->except('priceable_type', 'cities');
+
+        try {
+            $data['priceable_type'] = Price::morphMap($request->priceable_type);
+        }catch (\Exception $e){
+            return $this->toJson($e->getMessage(), 400, null);
+        }
+
+        $price = Price::create($data);
         $cities_id = explode(',', $request->cities);
         $cities = City::whereIn('id', $cities_id)->get();
         $price->cities()->sync($cities);
@@ -51,16 +54,18 @@ class PriceRepository implements PriceContract
 
     public function update(Request $request, int $id)
     {
-        $price = Price::findOrFail($id);
-        $price->update(array_filter($request->only('name', 'price')));
-
-        if(!is_null($request->priceable_type) && !is_null($request->priceable_id)){
-            $price->update([
-                'priceable_id'  => $request->priceable_id,
-                'priceable_type'=> Price::morphMap($request->priceable_type),
-            ]);
+        $data = array_filter($request->only('name', 'price'));
+        try {
+            if(!is_null($request->priceable_type) && !is_null($request->priceable_id)){
+                $data['priceable_id'] = $request->priceable_id;
+                $data['priceable_type']= Price::morphMap($request->priceable_type);
+            }
+        }catch (\Exception $e){
+            return $this->toJson($e->getMessage(), 400, null);
         }
 
+        $price = Price::findOrFail($id);
+        $price->update($data);
         $cities_id = explode(',', $request->cities);
         $cities = City::whereIn('id', $cities_id)->get();
         $price->cities()->sync($cities);

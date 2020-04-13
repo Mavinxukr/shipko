@@ -17,6 +17,9 @@ class Price extends Model
             'client'    => 'App\Models\Client\Client',
             'group'     => 'App\Models\Group\Group',
         ];
+        if(!isset($types[$type]))
+            throw new \Exception('Type not support', 400);
+
         return $types[$type];
     }
 

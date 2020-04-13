@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
          $this->call(ClientTableSeeder::class);
          $this->call(NotificationTableSeeder::class);
          $this->call(AutoTableTest::class);
+         $this->call(CitiesTableSeeder::class);
     }
 }
