@@ -41,8 +41,8 @@ class AutoRepository implements AutoContract
     public function index()
     {
         $search = \request('search');
-        $status = \request('status');
-        $client = \request('client_id');
+        $status = \request('auto_status');
+        $client = \request('client');
 
         $model = Auto::query();
 
