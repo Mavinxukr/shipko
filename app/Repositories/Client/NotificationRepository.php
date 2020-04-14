@@ -24,6 +24,7 @@ class NotificationRepository implements NotificationContract
             ->where('type', $request->type)
             ->update(['is_new' => 0]);
 
-        return $this->toJson('Client notification status update successfully', 200, null);
+        return $this->toJson('Client notification status update successfully',
+            200, null);
     }
 }

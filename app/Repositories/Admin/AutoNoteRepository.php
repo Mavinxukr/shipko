@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Repositories\Admin;
 
 use App\Contracts\ContratRepositories\Admin\AutoNoteContract;

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Repositories\Admin;
-
 
 use App\Contracts\ContractRepositories\Admin\PartContract;
 use App\Http\Resources\PartResource;
@@ -11,7 +9,6 @@ use App\Models\Part\Photo;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\Service\ClientService\FileService;
 use App\Traits\SortCollection;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class PartRepository implements PartContract

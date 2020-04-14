@@ -1,11 +1,9 @@
 <?php
 
-
 namespace App\Repositories\Client;
 
 use App\Contracts\ContractRepositories\Client\AutoDismantingContract;
 use App\Http\Resources\AutoResource;
-use App\Models\Auto\Auto;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\SortCollection;
 use Illuminate\Database\Eloquent\Builder;

@@ -1,18 +1,11 @@
 <?php
 
-
 namespace App\Repositories\Admin;
 
-use App\Contracts\ContractRepositories\Admin\AutoContract;
 use App\Contracts\ContractRepositories\Admin\AutoShippingContract;
 use App\Http\Resources\AutoResource;
-use App\Http\Resources\AutoShippingResource;
 use App\Models\Auto\Auto;
-use App\Models\Auto\Shipping;
-use App\Models\Invoice\Invoice;
 use App\Traits\FormattedJsonResponse;
-use App\Traits\Service\AutoService\AutoAction;
-use App\Traits\Service\AutoService\UploadDocuments;
 use App\Traits\SortCollection;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;

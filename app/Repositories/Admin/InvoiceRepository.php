@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Repositories\Admin;
-
 
 use App\Contracts\ContractRepositories\Admin\InvoiceContract;
 use App\Http\Resources\InvoiceResource;
