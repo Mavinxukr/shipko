@@ -32,6 +32,4 @@ class AuthRepository implements AuthContract
     {
         return $this->toJson($message,$statusCode,$data);
     }
-
-
 }

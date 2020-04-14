@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 
 class AutoRepository implements AutoContract
 {
-    use FormattedJsonResponse, UploadDocuments,AutoAction, SortCollection;
+    use FormattedJsonResponse, UploadDocuments, AutoAction, SortCollection;
 
     public function autoByContainer(Request $request)
     {
@@ -33,12 +33,10 @@ class AutoRepository implements AutoContract
 
         if($autos){
             $data = new AutoByTrackingIdResource($autos, $shipInfo->first());
-        }else{
-            $data = null;
         }
 
         return $this->toJson('Auto get by container successfully',200,
-            $data);
+            $data ?? null);
     }
 
     public function index()
@@ -70,13 +68,13 @@ class AutoRepository implements AutoContract
             \request('order_type'),
             \request('order_by'));
 
-        return $this->toJson('Auto show successfully',200 ,
+        return $this->toJson('Autos get all successfully',200 ,
             AutoResource::collection($autos), true);
     }
 
     public function show(int $id)
     {
-        return $this->toJson('Auto show by id successfully',200 ,
+        return $this->toJson('Auto get by id successfully',200 ,
             new AutoResource(Auto::findOrFail($id)));
     }
 
@@ -88,8 +86,10 @@ class AutoRepository implements AutoContract
         $data = $request->except(['model_name','client_id']);
         $auto  = Auto::create($request->only(['model_name','client_id', 'status']));
         $this->updateOrCreateAction($data, $auto);
-        return $this->toJson('Auto created successfully',201,
-            new AutoResource($auto));
+
+        return $this->index();
+        /*return $this->toJson('Auto created successfully',201,
+            new AutoResource($auto));*/
     }
 
     public function update(Request $request, int $id)
@@ -101,6 +101,7 @@ class AutoRepository implements AutoContract
         });
         $this->updateOrCreateAction($data, $auto);
         $auto = $auto->fresh();
+
         return $this->toJson('Auto updated successfully',200,
                 new AutoResource($auto));
     }
@@ -115,7 +116,8 @@ class AutoRepository implements AutoContract
             $auto->delete();
         }
 
-        return $this->toJson('Autos deleted successfully', 200, null);
+        return $this->index();
+        /*return $this->toJson('Autos deleted successfully', 200, null);*/
     }
 
     public function destroy(int $id)
@@ -125,13 +127,16 @@ class AutoRepository implements AutoContract
                                         ->toArray();
        if (count($documents)) $this->deleteDocument($documents, $auto,'auto');
        $auto->delete();
-       return $this->toJson('Auto deleted successfully',200, null);
+
+       return $this->index();
+       /*return $this->toJson('Auto deleted successfully',200, null);*/
     }
 
     public function restoreImage(Request $request, int  $id)
     {
         $auto = Auto::findOrFail($id);
         $this->saveDocuments($auto,$request->document,'auto');
+
         return $this->toJson('Auto document restore successfully',
             200, new AutoResource($auto));
     }
@@ -143,8 +148,8 @@ class AutoRepository implements AutoContract
         $documents =  $auto->documents()->find($ids)->pluck('id')
                                                     ->toArray();
         if (count($documents)) $this->deleteDocument($documents, $auto,'auto');
+
         return $this->toJson('Auto document deleted successfully',200,
             new AutoResource($auto->fresh()));
     }
-
 }

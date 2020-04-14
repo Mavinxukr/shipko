@@ -36,7 +36,7 @@ class ClientRepository implements ClientContract
             \request('order_type'),
             \request('order_by'));
 
-        return $this->toJson('Client get all successfully', 200, ClientResource::collection($clients), true);
+        return $this->toJson('Clients get all successfully', 200, ClientResource::collection($clients), true);
     }
 
     public function show(int $id)
@@ -69,6 +69,7 @@ class ClientRepository implements ClientContract
             array_filter($request->only(['name','phone','username','email','card_number'])) +
             $location);
         $client->save();
+
         return $this->toJson('Client updated successfully', 200,
             new ClientResource($client));
     }
@@ -81,6 +82,7 @@ class ClientRepository implements ClientContract
             $this->folderDeleter('client');
         }
         $clients->delete();
+
         return $this->index();
         /*return $this->toJson('Clients deleted successfully', 200, null);*/
     }
@@ -92,6 +94,7 @@ class ClientRepository implements ClientContract
         $this->folderDeleter('client');
         $client->delete();
 
-        return $this->toJson('Client deleted successfully', 200, null);
+        return $this->index();
+        /*return $this->toJson('Client deleted successfully', 200, null);*/
     }
 }

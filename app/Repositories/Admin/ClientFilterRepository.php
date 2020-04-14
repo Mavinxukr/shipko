@@ -35,8 +35,10 @@ class ClientFilterRepository implements ClientFilterContract
                       ->select('clients.*')
                       ->paginate(10);
 
-       return $this->response('All clients by filters',200, ClientResource::collection($pipeline));
+       return $this->response('All clients by filters',200,
+           ClientResource::collection($pipeline));
     }
+
     public function response(string $message, int $statusCode, $data = null)
     {
         return $this->toJson($message,$statusCode, $data);

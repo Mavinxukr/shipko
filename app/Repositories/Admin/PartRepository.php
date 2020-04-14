@@ -54,14 +54,13 @@ class PartRepository implements PartContract
             \request('order_type'),
             \request('order_by'));
 
-        return $this->toJson('Client get by id successfully', 200,
+        return $this->toJson('Parts get all successfully', 200,
             PartResource::collection($parts)->additional($this->additional), true);
     }
 
     public function show(int $id)
     {
-        $part = Part::findOrFail($id);
-        return $this->toJson('Part get by id successfully', 200, new PartResource($part));
+        return $this->toJson('Part get by id successfully', 200, new PartResource(Part::findOrFail($id)));
     }
 
     public function store(Request $request)
@@ -73,9 +72,9 @@ class PartRepository implements PartContract
             }
         }
 
-        return $this->toJson('Part created successfully',
-            200,
-            (new PartResource($part->fresh()))->additional($this->additional));
+        return $this->index();
+       /* return $this->toJson('Part created successfully', 201,
+            (new PartResource($part->fresh()))->additional($this->additional));*/
     }
 
     public function update(Request $request, int $id)
@@ -99,7 +98,9 @@ class PartRepository implements PartContract
             $this->imageDeleter($image);
         }
         $part->delete();
-        return $this->toJson('Part deleted successfully', 200,null);
+
+        return $this->index();
+        /*return $this->toJson('Part deleted successfully',200,null);*/
     }
 
     public function removeImage(array $ids, int $id)
@@ -110,7 +111,8 @@ class PartRepository implements PartContract
             $this->imageDeleter($image);
             $image->delete();
         }
-        return $this->toJson('Part images deleted successfully', 200,null);
+
+        return $this->toJson('Part images deleted successfully',200,null);
     }
 
     public function restoreImage(Request $request, int $id)
@@ -119,6 +121,7 @@ class PartRepository implements PartContract
         foreach ($request->image as $image){
             $this->imageCreator($part,'part', new Photo, $image);
         }
-        return $this->toJson('Part images restore successfully', 200,null);
+
+        return $this->toJson('Part images restore successfully',200,null);
     }
 }
