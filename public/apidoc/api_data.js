@@ -3935,5 +3935,57 @@ define({ "api": [
     ],
     "filename": "app/Http/Controllers/ApiClient/Part/PartController.php",
     "groupTitle": "Client_Part_Action"
+  },
+  {
+    "type": "post",
+    "url": "admin/parser",
+    "title": "Get Excel document",
+    "name": "Get_Excel_document",
+    "version": "1.1.1",
+    "group": "Excel",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "model",
+            "description": "<p>Model ()</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "fields",
+            "description": "<p>Fields for pars Exm: id,status,name,...</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/parser"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Parser/ParserController.php",
+    "groupTitle": "Excel"
   }
 ] });
