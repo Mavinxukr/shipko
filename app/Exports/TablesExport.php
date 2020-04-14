@@ -3,25 +3,19 @@
 namespace App\Exports;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class TablesExport implements FromCollection
+abstract class TablesExport implements FromCollection, WithHeadings
 {
-    private $model;
-    private $select;
+    protected $select;
 
-    public function __construct($model, array $select)
+    public function __construct(array $select)
     {
-        $this->model = $model;
         $this->select = $select;
     }
 
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    public function collection()
-    {
-        return $this->model::all($this->select);
-    }
+    abstract public function collection();
+
     public function headings(): array
     {
         return $this->select;

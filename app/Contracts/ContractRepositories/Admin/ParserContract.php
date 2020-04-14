@@ -9,5 +9,5 @@ use Illuminate\Http\Request;
 
 interface ParserContract
 {
-   public function index(Request $request);
+   public function index(Request $request, string $table);
 }

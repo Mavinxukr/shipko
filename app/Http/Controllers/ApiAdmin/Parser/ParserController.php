@@ -16,19 +16,21 @@ class ParserController extends Controller
     }
 
     /**
-     * @api {post} admin/parser  Get Excel document
+     * @api {post} admin/parser/{table}  Get Excel document
      * @apiName Get Excel document
      * @apiVersion 1.1.1
      * @apiGroup Excel
-     * @apiParam {String} model Model (auto, client)
+     * @apiDescription Allowed Tables
+     * (client, base_clients, groups, parts, autos, invoices, shippings)
+     * @apiParam {Number} client_id Client ID for Client
      * @apiParam {String} fields Fields for pars Exm: id,status,name,...
      * @apiPermission Authorization
      * @apiHeader  Authorization token
-     * @apiSampleRequest  admin/parser
+     * @apiSampleRequest  admin/parser/{table}
      */
 
-    public function index(Request $request)
+    public function index(Request $request, $table)
     {
-        return $this->parser->index($request);
+        return $this->parser->index($request, $table);
     }
 }

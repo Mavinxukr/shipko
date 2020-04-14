@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('parser', 'ApiAdmin\Parser\ParserController@index');
+Route::get('parser/{table}', 'ApiAdmin\Parser\ParserController@index');
 
 Route::namespace('ApiAdmin')->group(function () {
     Route::post('login','Auth\AuthController@login');
@@ -10,7 +10,7 @@ Route::namespace('ApiAdmin')->group(function () {
         Route::post('logout','Auth\AuthController@logout');
 
         Route::post('store-note', 'Auto\AutoNoteController@store');
-        Route::post('parser', 'Parser\ParserController@index');
+        Route::post('parser/{table}', 'Parser\ParserController@index');
 
         Route::namespace('Client')->group(function () {
             Route::post('store-client','ClientController@store');
