@@ -8,6 +8,7 @@ use App\Http\Resources\AutoByTrackingIdResource;
 use App\Http\Resources\AutoResource;
 use App\Models\Auto\Auto;
 use App\Models\Auto\ShipInfo;
+use App\Models\Client\Client;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\Service\AutoService\AutoAction;
 use App\Traits\Service\AutoService\UploadDocuments;
@@ -81,12 +82,12 @@ class AutoRepository implements AutoContract
 
     public function store(Request $request)
     {
+        Client::findOrFail($request->client_id);
         $data = $request->except(['model_name','client_id']);
         $auto  = Auto::create($request->only(['model_name','client_id', 'status']));
         $this->updateOrCreateAction($data, $auto);
         return $this->toJson('Auto created successfully',201,
             new AutoResource($auto));
-
     }
 
     public function update(Request $request, int $id)
