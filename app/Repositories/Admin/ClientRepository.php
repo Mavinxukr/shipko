@@ -56,6 +56,9 @@ class ClientRepository implements ClientContract
         if (!empty($request->image)){
             $this->imageCreator($client,'client',new ClientImage ,$request->image);
         }
+
+        return $this->index();
+
         return $this->toJson('Client created successfully', 201,
                     new ClientResource(Client::findOrFail($client->id)));
     }
