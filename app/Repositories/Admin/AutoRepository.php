@@ -82,7 +82,9 @@ class AutoRepository implements AutoContract
 
     public function store(Request $request)
     {
-        Client::findOrFail($request->client_id);
+        if(!Client::whereId($request->client_id)->exists())
+            return $this->toJson('Client not found',404, null);
+
         $data = $request->except(['model_name','client_id']);
         $auto  = Auto::create($request->only(['model_name','client_id', 'status']));
         $this->updateOrCreateAction($data, $auto);
