@@ -60,8 +60,9 @@ class PartRepository implements PartContract
             }
         }
 
-        return $this->toJson('Part created successfully', 200,
-            (new PartResource($part->fresh()))->additional($this->additional));
+        return $this->index();
+        /*return $this->toJson('Part created successfully', 200,
+            (new PartResource($part->fresh()))->additional($this->additional));*/
     }
 
     public function update(Request $request, int $id)
