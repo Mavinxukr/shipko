@@ -84,7 +84,8 @@ class PartRepository implements PartContract
         $this->folderDeleter('part');
         $part->delete();
 
-        return $this->toJson('Part deleted successfully',200,null);
+        return $this->index();
+        /*return $this->toJson('Part deleted successfully',200,null);*/
     }
 
     public function removeImage(array $ids, int $id)
