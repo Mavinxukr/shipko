@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Repositories\Admin;
 
 use App\Contracts\ContratRepositories\Admin\ClientContract;
@@ -37,9 +36,9 @@ class ClientRepository implements ClientContract
             \request('order_type'),
             \request('order_by'));
 
-        return $this->toJson('Client get by id successfully', 200, ClientResource::collection($clients), true);
-
+        return $this->toJson('Clients get all successfully', 200, ClientResource::collection($clients), true);
     }
+
     public function show(int $id)
     {
         return $this->toJson('Client get by id successfully', 200, new ClientResource(Client::findOrFail($id)));
@@ -56,8 +55,10 @@ class ClientRepository implements ClientContract
         if (!empty($request->image)){
             $this->imageCreator($client,'client',new ClientImage ,$request->image);
         }
-        return $this->toJson('Client created successfully', 201,
-                    new ClientResource(Client::findOrFail($client->id)));
+
+        return $this->index();
+        /*return $this->toJson('Client created successfully', 201,
+                    new ClientResource(Client::findOrFail($client->id)));*/
     }
 
     public function update(Request $request, int $id)
@@ -68,9 +69,9 @@ class ClientRepository implements ClientContract
             array_filter($request->only(['name','phone','username','email','card_number'])) +
             $location);
         $client->save();
-        return $this->toJson('Client updated successfully',
-                                    200, new ClientResource($client));
 
+        return $this->toJson('Client updated successfully', 200,
+            new ClientResource($client));
     }
 
     public function delete(Request $request)
@@ -84,7 +85,6 @@ class ClientRepository implements ClientContract
 
         return $this->index();
         /*return $this->toJson('Clients deleted successfully', 200, null);*/
-
     }
 
     public function destroy(int $id)
@@ -96,7 +96,5 @@ class ClientRepository implements ClientContract
 
         return $this->index();
         /*return $this->toJson('Client deleted successfully', 200, null);*/
-
     }
-
 }

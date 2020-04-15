@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Repositories\Admin;
 
 use App\Contracts\ContratRepositories\Admin\AutoNoteContract;
@@ -25,11 +24,4 @@ class AutoNoteRepository implements AutoNoteContract
         return $this->toJson('Auto note store success',201,
             new AutoResource($auto->fresh()));
     }
-
-    public function response( string $message, int $statusCode, $data = null)
-    {
-        return $this->toJson($message,$statusCode,$data);
-    }
-
-
 }

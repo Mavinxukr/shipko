@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Repositories\Admin;
 
 use App\Contracts\ContratRepositories\Admin\AuthContract;
@@ -32,6 +31,4 @@ class AuthRepository implements AuthContract
     {
         return $this->toJson($message,$statusCode,$data);
     }
-
-
 }

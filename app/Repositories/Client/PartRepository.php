@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Repositories\Client;
-
 
 use App\Contracts\ContractRepositories\Client\PartContract;
 use App\Http\Resources\PartResource;
@@ -11,7 +9,6 @@ use App\Models\Part\Photo;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\Service\ClientService\FileService;
 use App\Traits\SortCollection;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class PartRepository implements PartContract
@@ -32,7 +29,7 @@ class PartRepository implements PartContract
 
     public function index()
     {
-        $status = \request('status');
+        $status = \request('part_status');
         $model = \request()->user()->parts()->latest('id');
 
         if(!is_null($status)){
@@ -44,13 +41,14 @@ class PartRepository implements PartContract
             \request('order_type'),
             \request('order_by'));
 
-        return $this->toJson('Get all client parts successfully', 200, PartResource::collection($parts)->additional($this->additional), true);
+        return $this->toJson('Get all client parts successfully', 200,
+            PartResource::collection($parts)
+                ->additional($this->additional), true);
     }
 
     public function show(int $id)
     {
-        $part = Part::findOrFail($id);
-        return $this->toJson('Part get by id successfully', 200, new PartResource($part));
+        return $this->toJson('Part get by id successfully', 200, new PartResource(Part::findOrFail($id)));
     }
 
     public function store(Request $request)
@@ -62,13 +60,17 @@ class PartRepository implements PartContract
             }
         }
 
-        return $this->toJson('Part created successfully', 200,
-            (new PartResource($part->fresh()))->additional($this->additional));
+        return $this->index();
+        /*return $this->toJson('Part created successfully', 200,
+            (new PartResource($part->fresh()))->additional($this->additional));*/
     }
 
     public function update(Request $request, int $id)
     {
-        Part::updateOrCreate(['id'=> $id],array_filter($request->except('client_id')));
+        Part::updateOrCreate([
+            'id'=> $id
+        ], array_filter($request->except('client_id')));
+
         return $this->toJson('Part get by id successfully', 200,
             (new PartResource(Part::findOrFail($id)))->additional($this->additional));
     }
@@ -81,7 +83,9 @@ class PartRepository implements PartContract
         }
         $this->folderDeleter('part');
         $part->delete();
-        return $this->toJson('Part deleted successfully', 200,null);
+
+        return $this->index();
+        /*return $this->toJson('Part deleted successfully',200,null);*/
     }
 
     public function removeImage(array $ids, int $id)
@@ -93,7 +97,9 @@ class PartRepository implements PartContract
             $image->delete();
         }
         $this->folderDeleter('part');
-        return $this->toJson('Part images deleted successfully', 200,null);
+
+        return $this->toJson('Part images deleted successfully',200,
+            null);
     }
 
     public function restoreImage(Request $request, int $id)
@@ -102,6 +108,8 @@ class PartRepository implements PartContract
         foreach ($request->image as $image){
             $this->imageCreator($part,'part', new Photo, $image);
         }
-        return $this->toJson('Part images restore successfully', 200,null);
+
+        return $this->toJson('Part images restore successfully',200,
+            null);
     }
 }

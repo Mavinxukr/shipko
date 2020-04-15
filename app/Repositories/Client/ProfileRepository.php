@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Repositories\Client;
 
 use App\Contracts\ContratRepositories\Client\ProfileContract;
@@ -50,8 +49,7 @@ class ProfileRepository implements ProfileContract
             $this->imageCreator($client,'client',new ClientImage ,$request->image);
         }
 
-        return $this->toJson('Client updated successfully',
-                                    200, new ClientResource($client->fresh()));
-
+        return $this->toJson('Client updated successfully', 200,
+            new ClientResource($client->fresh()));
     }
 }

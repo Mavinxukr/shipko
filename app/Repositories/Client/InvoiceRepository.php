@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Repositories\Client;
-
 
 use App\Contracts\ContractRepositories\Client\InvoiceContract;
 use App\Http\Resources\InvoiceResource;
@@ -37,9 +35,9 @@ class InvoiceRepository implements InvoiceContract
             \request('order_type'),
             \request('order_by'));
 
-
         return $this->toJson('Get All invoice',200,
-            InvoiceResource::collection($invoices)->additional($this->amountValue()), true);
+            InvoiceResource::collection($invoices)
+                ->additional($this->amountValue()), true);
 
     }
 

@@ -1,19 +1,13 @@
 <?php
 
-
 namespace App\Repositories\Client;
 
-use App\Contracts\ContratRepositories\Client\AuthContract;
 use App\Contracts\ContratRepositories\Client\OverviewContract;
-use App\Http\Resources\AuthResource;
 use App\Http\Resources\ClientOverviewResource;
-use App\Models\Auto\Auto;
-use App\Models\Client\Client;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\Service\AutoService\AutoAction;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Laravel\Passport\Bridge\UserRepository;
 
 class OverviewRepository implements OverviewContract
 {
@@ -30,14 +24,8 @@ class OverviewRepository implements OverviewContract
             $query->whereNotNull('id');
         })->latest()->limit(6)->get();
 
-        return $this->response('Get overview success',200,
-            new ClientOverviewResource($user, $autos, $client_autos_shipping, $client_autos_invoice));
+        return $this->toJson('Get overview success',200,
+            new ClientOverviewResource(
+                $user, $autos, $client_autos_shipping, $client_autos_invoice));
     }
-
-    public function response( string $message, int $statusCode, $data = null)
-    {
-        return $this->toJson($message,$statusCode,$data);
-    }
-
-
 }

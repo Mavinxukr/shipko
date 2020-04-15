@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Repositories\Client;
 
 use App\Contracts\ContractRepositories\Client\AutoContract;
@@ -43,13 +42,14 @@ class AutoRepository implements AutoContract
 
         $modelName = Auto::select('model_name')->distinct()->get();
 
-        return $this->toJson('All Auto by filters',200, AutoResource::collection($autos)->additional(['model_name' => $modelName]), true);
+        return $this->toJson('All Auto by filters',200,
+            AutoResource::collection($autos)
+                ->additional(['model_name' => $modelName]), true);
     }
 
     public function show(int $id)
     {
-        $autos = $this->getPopular(4);
         return $this->toJson('Auto show by id successfully',200 ,
-             new AutoResource(Auto::findOrFail($id), $autos));
+             new AutoResource(Auto::findOrFail($id), $this->getPopular(4)));
     }
 }

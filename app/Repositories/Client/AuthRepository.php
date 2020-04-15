@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Repositories\Client;
 
 use App\Contracts\ContratRepositories\Client\AuthContract;
@@ -19,6 +18,7 @@ class AuthRepository implements AuthContract
             'password' => bcrypt($request->password),
             ]);
         \Auth::login($client);
+
         return $this->response('Register success',200,
             new AuthResource(\Auth::user()));
     }
@@ -32,6 +32,7 @@ class AuthRepository implements AuthContract
             return $this->response('Unauthorized',401,null);
 
         \Auth::login($client);
+
         return $this->response('Login success',200,
             new AuthResource(\Auth::user()));
     }
@@ -46,6 +47,4 @@ class AuthRepository implements AuthContract
     {
         return $this->toJson($message,$statusCode,$data);
     }
-
-
 }

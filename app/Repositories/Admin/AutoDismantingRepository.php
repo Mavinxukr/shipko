@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Repositories\Admin;
 
 use App\Contracts\ContractRepositories\Admin\AutoDismantingContract;
@@ -40,7 +39,8 @@ class AutoDismantingRepository implements AutoDismantingContract
             \request('order_type'),
             \request('order_by'));
 
-        return $this->toJson('Auto Dismanting show successfully',200 ,AutoResource::collection($autos), true);
+        return $this->toJson('Auto Dismantings get all successfully',200 ,
+            AutoResource::collection($autos), true);
     }
 
     public function show(int $id)
@@ -61,6 +61,7 @@ class AutoDismantingRepository implements AutoDismantingContract
             return !is_null($value);
         }));
         $auto = $auto->fresh();
+
         return $this->toJson('Auto Dismanting updated successfully',200,
             new AutoResource($auto));
     }
