@@ -3938,27 +3938,28 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "admin/parser",
+    "url": "admin/parser/{table}",
     "title": "Get Excel document",
     "name": "Get_Excel_document",
     "version": "1.1.1",
     "group": "Excel",
+    "description": "<p>Allowed Tables (client, base_clients, groups, parts, autos, invoices, shippings, dismantings)</p>",
     "parameter": {
       "fields": {
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "Number",
             "optional": false,
-            "field": "model",
-            "description": "<p>Model ()</p>"
+            "field": "client_id",
+            "description": "<p>Client ID for Client</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
             "field": "fields",
-            "description": "<p>Fields for pars Exm: id,status,name,...</p>"
+            "description": "<p>Fields for pars Exm: id,status,name,..., auto.id,auto.status,lot_infos.vin_code,ship_infos.point_load_city</p>"
           }
         ]
       }
@@ -3982,7 +3983,7 @@ define({ "api": [
     },
     "sampleRequest": [
       {
-        "url": "/api-admin/parser"
+        "url": "/api-admin/parser/{table}"
       }
     ],
     "filename": "app/Http/Controllers/ApiAdmin/Parser/ParserController.php",

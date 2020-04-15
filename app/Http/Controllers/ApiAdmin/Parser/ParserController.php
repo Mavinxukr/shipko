@@ -21,9 +21,9 @@ class ParserController extends Controller
      * @apiVersion 1.1.1
      * @apiGroup Excel
      * @apiDescription Allowed Tables
-     * (client, base_clients, groups, parts, autos, invoices, shippings)
+     * (client, base_clients, groups, parts, autos, invoices, shippings, dismantings)
      * @apiParam {Number} client_id Client ID for Client
-     * @apiParam {String} fields Fields for pars Exm: id,status,name,...
+     * @apiParam {String} fields Fields for pars Exm: id,status,name,..., auto.id,auto.status,lot_infos.vin_code,ship_infos.point_load_city
      * @apiPermission Authorization
      * @apiHeader  Authorization token
      * @apiSampleRequest  admin/parser/{table}
