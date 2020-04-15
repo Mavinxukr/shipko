@@ -19,6 +19,7 @@ class InvoiceResource extends JsonResource
         return [
             'id'                        => $this->id,
             'name_car'                  => $this->name_car,
+            'paiment_for'               => ['Auction invoice', 'Shipping charge invoice'],
             'total'                     => [$this->total_price, $this->total_shipping_price],
             'paid'                      => [$this->paid_price,$this->paid_shipping_price],
             'outstanding'               => [$this->outstanding_price, $this->outstanding_shipping_price],
