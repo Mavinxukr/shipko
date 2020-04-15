@@ -3935,5 +3935,58 @@ define({ "api": [
     ],
     "filename": "app/Http/Controllers/ApiClient/Part/PartController.php",
     "groupTitle": "Client_Part_Action"
+  },
+  {
+    "type": "post",
+    "url": "admin/parser/{table}",
+    "title": "Get Excel document",
+    "name": "Get_Excel_document",
+    "version": "1.1.1",
+    "group": "Excel",
+    "description": "<p>Allowed Tables (client, base_clients, groups, parts, autos, invoices, shippings, dismantings)</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "client_id",
+            "description": "<p>Client ID for Client</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "fields",
+            "description": "<p>Fields for pars Exm: id,status,name,..., auto.id,auto.status,lot_infos.vin_code,ship_infos.point_load_city</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/parser/{table}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Parser/ParserController.php",
+    "groupTitle": "Excel"
   }
 ] });
