@@ -17,10 +17,16 @@ class AutoShippingRepository implements AutoShippingContract
     public function index()
     {
         $search = \request('search');
+        $status = \request('shipping_status');
+        $modelName = \request('auto_name');
         $port = \request('port');
         $model = Auto::latest('id')
             ->with('shipping')
             ->has('shipping');
+
+        if(!is_null($modelName)){
+            $model->where('model_name', $modelName);
+        }
 
         if(!is_null($search)){
             $model->whereHas('lotInfo', function (Builder $autoQuery) use ($search) {
@@ -34,12 +40,22 @@ class AutoShippingRepository implements AutoShippingContract
             });
         }
 
+        if(!is_null($status)){
+            $model->whereHas('shipping', function (Builder $query) use ($status){
+                $query->where('status', $status);
+            });
+        }
+
         $autos = $this->getWithSort($model,
             \request('countpage'),
             \request('order_type'),
             \request('order_by'));
 
-        return $this->toJson('Auto Shipping get all successfully',200,                   AutoResource::collection($autos), true);
+        $allModels = Auto::select('model_name')->distinct()->get();
+
+        return $this->toJson('Auto Shipping get all successfully',200,                   AutoResource::collection($autos)->additional([
+            'models'    => $allModels,
+        ]), true);
     }
 
     public function show(int $id)
