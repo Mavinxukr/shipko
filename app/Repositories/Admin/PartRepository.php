@@ -30,7 +30,7 @@ class PartRepository implements PartContract
     public function index()
     {
         $search = \request('search');
-        $status = \request('status');
+        $status = \request('part_status');
         $model = Part::latest('id');
 
         if(!is_null($search)){
