@@ -49,7 +49,7 @@ trait AutoFilterCollection
         $data = \request('date');
         if($data){
             $model->whereHas('shipping', function (Builder $query) use ($data){
-                $query->where('created_at',
+                $query->where('created_at', 'LIKE',
                     Carbon::createFromFormat('Y-m-d', $data)->timestamp);
             });
         }
