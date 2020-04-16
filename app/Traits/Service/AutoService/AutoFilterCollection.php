@@ -3,6 +3,7 @@
 namespace App\Traits\Service\AutoService;
 
 use App\Models\Auto\Auto;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 
 trait AutoFilterCollection
@@ -19,6 +20,10 @@ trait AutoFilterCollection
                 'relationship'  => 'shipping',
                 'field'         => 'status'
             ],
+            'date'   => [
+                'relationship'  => 'shipping',
+                'field'         => 'created_at'
+            ],
             'port'              => [
                 'relationship'  => 'shipInfo',
                 'field'         => 'point_load_city'
@@ -32,6 +37,7 @@ trait AutoFilterCollection
                 if(is_array($filters[$k])){
                     $model->whereHas($filters[$k]['relationship'],
                         function (Builder $query) use ($filters, $k, $item){
+                            if($k == 'date') $item = Carbon::make($item);
                             $query->where($filters[$k]['field'], $item);
                         });
                 }else{
