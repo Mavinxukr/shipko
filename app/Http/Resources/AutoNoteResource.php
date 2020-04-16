@@ -19,7 +19,7 @@ class AutoNoteResource extends JsonResource
                 'name'  => $this->user->name,
             ];
         }else{
-            $client = new ClientResource($this->user),
+            $client = new ClientResource($this->user);
         }
 
         return [
