@@ -32,7 +32,7 @@ trait AutoFilterCollection
                 if(is_array($filters[$k])){
                     $model->whereHas($filters[$k]['relationship'],
                         function (Builder $query) use ($filters, $k, $item){
-                            $query->where($filters[$k]['relationship'], $item);
+                            $query->where($filters[$k]['field'], $item);
                         });
                 }else{
                     $model->where($filters[$k], $item);
