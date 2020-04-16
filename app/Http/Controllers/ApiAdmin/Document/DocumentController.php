@@ -4,7 +4,7 @@ namespace App\Http\Controllers\ApiAdmin\Document;
 
 use App\Http\Controllers\Controller;
 use App\Models\Auto\Document;
-use App\Models\Invoice\InvoiceDocument;
+use App\Models\Invoice\InvoiceDocument;;
 
 class DocumentController extends Controller
 {
@@ -21,16 +21,21 @@ class DocumentController extends Controller
     public function index()
     {
         $data = \request()->all();
-        if($data['type'] == 'document'){
-            $document = Document::whereId($data['id'])->first();
-        }elseif ($data['type'] == 'invoice'){
+        if($data['type'] == 'invoice'){
             $document = InvoiceDocument::whereId($data['id'])->first();
+        }else{
+            $document = Document::whereId($data['id'])->first();
         }
 
         if($document){
-            return \Response::download('storage/' . $document->path_to_folder, $document->name);
+            return response()->download('storage/' . $document->path_to_folder, $document->name);
         }else{
-            return "Fail";
+            return response()->json([
+                'message'   => "File not found",
+                'status'    => false,
+                'code'      => 404,
+                'data'      => null,
+            ], 404);
         }
     }
 }

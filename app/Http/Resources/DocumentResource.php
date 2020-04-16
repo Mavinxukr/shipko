@@ -18,7 +18,10 @@ class DocumentResource extends JsonResource
             'id'    => $this->id,
             'name'  => $this->name,
             'type'  => $this->type,
-            'link'  => $this->path_to_front
+            'link'  => $this->path_to_front,
+            'link_for_download' =>
+                getenv('APP_URL_DOWNLOAD') .
+                '?type=' . $this->type . '&id=' . $this->id,
         ];
     }
 }
