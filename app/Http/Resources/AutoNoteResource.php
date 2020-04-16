@@ -14,8 +14,16 @@ class AutoNoteResource extends JsonResource
      */
     public function toArray($request)
     {
+        if($this->user_type == 'admin'){
+            $client = [
+                'name'  => $this->user->name,
+            ];
+        }else{
+            $client = new ClientResource($this->user),
+        }
+
         return [
-            'client'        => new ClientResource($this->client),
+            'client'        => $client,
             'comment'       => $this->comment,
             'created_at'    => $this->created_at
         ];

@@ -3,12 +3,13 @@
 namespace App\Models\Auto;
 
 use App\Models\Client\Client;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class AutoNotes extends Model
 {
     protected $fillable = [
-        'client_id', 'auto_id', 'comment',
+        'client_id', 'auto_id', 'comment', 'user_type',
     ];
 
     public function auto()
@@ -16,8 +17,12 @@ class AutoNotes extends Model
         return $this->belongsTo(Auto::class);
     }
 
-    public function client()
+    public function user()
     {
-        return $this->belongsTo(Client::class);
+        if($this->user_type == 'admin'){
+            return $this->belongsTo(User::class);
+        }else{
+            return $this->belongsTo(Client::class);
+        }
     }
 }

@@ -18,6 +18,7 @@ class AutoNoteRepository implements AutoNoteContract
         $auto = Auto::findOrFail($request->auto_id);
         $auto->notes()->create([
             'client_id' => $user->id,
+            'user_type' => 'admin',
             'comment'   => $request->comment,
         ]);
 
