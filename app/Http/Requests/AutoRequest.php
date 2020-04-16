@@ -24,7 +24,9 @@ class AutoRequest extends FormRequest
     public function rules()
     {
         return [
-            'model_name' => 'required'
+            'year' => 'required',
+            'make_name' => 'required',
+            'model_name' => 'required',
         ];
     }
 }

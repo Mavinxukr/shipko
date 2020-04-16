@@ -15,6 +15,8 @@ class CreateAutosTable extends Migration
     {
         Schema::create('autos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('year');
+            $table->string('make_name');
             $table->string('model_name');
             $table->unsignedBigInteger('client_id');
             $table->enum('status', ['new', 'not_approved', 'pending', 'delivered'])
