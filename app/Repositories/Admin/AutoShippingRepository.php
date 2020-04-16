@@ -6,56 +6,30 @@ use App\Contracts\ContractRepositories\Admin\AutoShippingContract;
 use App\Http\Resources\AutoResource;
 use App\Models\Auto\Auto;
 use App\Traits\FormattedJsonResponse;
+use App\Traits\Service\AutoService\AutoFilterCollection;
 use App\Traits\SortCollection;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class AutoShippingRepository implements AutoShippingContract
 {
-    use FormattedJsonResponse, SortCollection;
+    use FormattedJsonResponse, SortCollection, AutoFilterCollection;
 
     public function index()
     {
-        $search = \request('search');
-        $status = \request('shipping_status');
-        $modelName = \request('auto_name');
-        $port = \request('port');
         $model = Auto::latest('id')
             ->with('shipping')
             ->has('shipping');
 
-        if(!is_null($modelName)){
-            $model->where('model_name', $modelName);
-        }
-
-        if(!is_null($search)){
-            $model->whereHas('lotInfo', function (Builder $autoQuery) use ($search) {
-                    $autoQuery->where('vin_code', 'like', "%$search%");
-                });
-        }
-
-        if(!is_null($port)){
-            $model->whereHas('shipInfo', function (Builder $query) use ($port){
-                $query->where('point_load_city', $port);
-            });
-        }
-
-        if(!is_null($status)){
-            $model->whereHas('shipping', function (Builder $query) use ($status){
-                $query->where('status', $status);
-            });
-        }
+        $model = $this->getAutoWithFilter($model);
 
         $autos = $this->getWithSort($model,
             \request('countpage'),
             \request('order_type'),
             \request('order_by'));
 
-        $allModels = Auto::select('model_name')->distinct()->get();
-
-        return $this->toJson('Auto Shipping get all successfully',200,                   AutoResource::collection($autos)->additional([
-            'models'    => $allModels,
-        ]), true);
+        return $this->toJson('Auto Shipping get all successfully',200,                   AutoResource::collection($autos)
+            ->additional($this->getFilters()), true);
     }
 
     public function show(int $id)
