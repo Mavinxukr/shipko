@@ -37,7 +37,7 @@ trait AutoFilterCollection
                 if(is_array($filters[$k])){
                     $model->whereHas($filters[$k]['relationship'],
                         function (Builder $query) use ($filters, $k, $item){
-                            if($k == 'date') $item = Carbon::make($item);
+                            if($k == 'date') $item = Carbon::make($item)->timestamp;
                             $query->where($filters[$k]['field'], $item);
                         });
                 }else{
