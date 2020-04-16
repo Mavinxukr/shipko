@@ -23,7 +23,10 @@ trait AutoFilterCollection
             ],
         ];
 
-        $data = array_filter(\request()->all());
+        $data = array_filter(\request()->only([
+            'auto_year', 'auto_make', 'auto_model', 'shipping_status', 'port',
+        ]));
+
         foreach ($data as $k => $item){
             if(!is_null($item)){
                 if(is_array($filters[$k])){
