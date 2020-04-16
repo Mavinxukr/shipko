@@ -71,7 +71,7 @@ class AutoShippingRepository implements AutoShippingContract
 
         foreach ($autos as $auto){
             if(is_null($auto->shipping)){
-                $auto->shipping()->create(['status' => 'at_loading']);
+                $auto->shipping()->create(['status' => 'in_warehouse']);
             }
         }
 
