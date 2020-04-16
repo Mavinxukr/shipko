@@ -14,7 +14,7 @@ trait AutoFilterCollection
         $filters = [
             'auto_year'         => 'year',
             'auto_make'         => 'make_name',
-            'auto_model'        => 'model_name',
+            'auto_name'         => 'model_name',
             'shipping_status'   => [
                 'relationship'  => 'shipping',
                 'field'         => 'status'
