@@ -17,12 +17,13 @@ class AutoNotes extends Model
         return $this->belongsTo(Auto::class);
     }
 
-    public function user()
+    public function client()
     {
-        if($this->user_type == 'admin'){
-            return $this->belongsTo(User::class);
-        }else{
-            return $this->belongsTo(Client::class);
-        }
+        return $this->belongsTo(Client::class);
+    }
+
+    public function admin()
+    {
+        return $this->belongsTo(User::class, 'client_id', 'id');
     }
 }
