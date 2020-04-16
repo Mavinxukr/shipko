@@ -23,15 +23,18 @@ trait AutoFilterCollection
             ],
         ];
 
-        $data = \request()->all();
+        $data = array_filter(\request()->all());
         foreach ($data as $k => $item){
-            if(is_array($filters[$k])){
-                $model->whereHas($filters[$k]['relationship'],
-                    function (Builder $query) use ($filters, $k, $item){
-                        $query->where($filters[$k]['relationship'], $item);
-                    });
-            }else{
-                $model->where($filters[$k], $item);
+            if(!is_null($item)){
+                if(is_array($filters[$k])){
+                    $model->whereHas($filters[$k]['relationship'],
+                        function (Builder $query) use ($filters, $k, $item){
+                            $query->where($filters[$k]['relationship'], $item);
+                        });
+                }else{
+                    $model->where($filters[$k], $item);
+                }
+
             }
         }
 
