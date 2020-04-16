@@ -52,8 +52,9 @@ class AutoDismantingRepository implements AutoDismantingContract
         }));
         $auto = $auto->fresh();
 
-        return $this->toJson('Auto Dismanting updated successfully',200,
-            new AutoResource($auto));
+        return $this->index();
+        /*return $this->toJson('Auto Dismanting updated successfully',200,
+            new AutoResource($auto));*/
     }
 
     public function destroy(int $id)

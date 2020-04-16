@@ -60,8 +60,9 @@ class AutoShippingRepository implements AutoShippingContract
         $auto->shipping()->update(array_filter($request->only(['status'])));
         $auto = $auto->fresh();
 
-        return $this->toJson('Auto Shipping updated successfully',200,
-            new AutoResource($auto));
+        return $this->index();
+        /*return $this->toJson('Auto Shipping updated successfully',200,
+            new AutoResource($auto));*/
     }
 
     public function destroy(int $id)
