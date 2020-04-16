@@ -20,10 +20,6 @@ trait AutoFilterCollection
                 'relationship'  => 'shipping',
                 'field'         => 'status'
             ],
-            'date'   => [
-                'relationship'  => 'shipping',
-                'field'         => 'created_at'
-            ],
             'port'              => [
                 'relationship'  => 'shipInfo',
                 'field'         => 'point_load_city'
@@ -37,14 +33,20 @@ trait AutoFilterCollection
                 if(is_array($filters[$k])){
                     $model->whereHas($filters[$k]['relationship'],
                         function (Builder $query) use ($filters, $k, $item){
-                            if($k == 'date')
-                                $item = Carbon::make($item)->format('Y-m-d');
                             $query->where($filters[$k]['field'], $item);
                         });
                 }else{
                     $model->where($filters[$k], $item);
                 }
             }
+        }
+
+        $data = \request('date');
+        if($data){
+            $model->whereHas('shipping', function (Builder $query) use ($data){
+                $query->whereDate('created_at',
+                    Carbon::make($data)->format('Y-m-d'));
+            });
         }
 
         if(!is_null($search)){
