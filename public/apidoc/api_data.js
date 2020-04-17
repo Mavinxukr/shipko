@@ -1708,7 +1708,38 @@ define({ "api": [
     "groupTitle": "Admin_Client_Filter"
   },
   {
-<<<<<<< HEAD
+    "type": "get",
+    "url": "admin/download",
+    "title": "Download document",
+    "name": "Download_document",
+    "version": "1.1.1",
+    "group": "Admin_Download_document",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/download"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Document/DocumentController.php",
+    "groupTitle": "Admin_Download_document"
+  },
+  {
     "type": "delete",
     "url": "admin/delete-group/{id}",
     "title": "Delete Group",
@@ -1779,14 +1810,6 @@ define({ "api": [
     "name": "Show_Group_By_Id",
     "version": "1.1.1",
     "group": "Admin_Groups_Action",
-=======
-    "type": "get",
-    "url": "admin/download",
-    "title": "Download document",
-    "name": "Download_document",
-    "version": "1.1.1",
-    "group": "Admin_Download_document",
->>>>>>> master
     "permission": [
       {
         "name": "Authorization"
@@ -1806,7 +1829,6 @@ define({ "api": [
     },
     "sampleRequest": [
       {
-<<<<<<< HEAD
         "url": "/api-admin/get-group/{id}"
       }
     ],
@@ -1930,13 +1952,6 @@ define({ "api": [
     ],
     "filename": "app/Http/Controllers/ApiAdmin/Group/GroupController.php",
     "groupTitle": "Admin_Groups_Action"
-=======
-        "url": "/api-admin/download"
-      }
-    ],
-    "filename": "app/Http/Controllers/ApiAdmin/Document/DocumentController.php",
-    "groupTitle": "Admin_Download_document"
->>>>>>> master
   },
   {
     "type": "post",
