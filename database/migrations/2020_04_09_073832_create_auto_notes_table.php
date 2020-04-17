@@ -15,13 +15,10 @@ class CreateAutoNotesTable extends Migration
     {
         Schema::create('auto_notes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('user_type');
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('auto_id');
             $table->text('comment');
-            $table->foreign('client_id')
-                ->references('id')
-                ->on('clients')
-                ->onDelete('cascade');
             $table->foreign('auto_id')
                 ->references('id')
                 ->on('autos')

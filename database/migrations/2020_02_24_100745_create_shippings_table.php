@@ -16,7 +16,7 @@ class CreateShippingsTable extends Migration
         Schema::create('shippings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('auto_id');
-            $table->enum('status', ['at_loading', 'on_the_way', 'at_unloading', 'finish']);
+            $table->enum('status', ['in_warehouse', 'in_the_sea', 'at_the_port', 'delivered']);
 
             $table->foreign('auto_id')->references('id')
                 ->on('autos')->onDelete('cascade');

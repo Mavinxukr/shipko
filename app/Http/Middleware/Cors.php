@@ -15,23 +15,18 @@ class Cors
      */
     public function handle($request, Closure $next)
     {
-        $response = $next($request);
+        $responce = $next($request);
 
-        $response->headers
-            ->set('Access-Control-Allow-Origin','*');
-        $response->headers
-            ->set('Access-Control-Allow-Methods','GET, POST, PUT, PATCH, DELETE, OPTIONS');
-        $response->headers
-            ->set('Access-Control-Allow-Headers','Content-Type, Authorization, Accept, X-CSRF-TOKEN, X-Requested-With, Application');
+        $responce->headers->set('Access-Control-Allow-Origin','*');
+        $responce->headers->set('Access-Control-Allow-Methods','GET, POST, PUT, PATCH, DELETE, OPTIONS');
+        $responce->headers->set('Access-Control-Allow-Headers','Content-Type, Authorization, Accept, X-CSRF-TOKEN');
 
-        return $response;
+        return  $responce;
 
         /*return $next($request)
             ->header('Access-Control-Allow-Origin','*')
             ->header('Access-Control-Allow-Methods','GET, POST, PUT, PATCH, DELETE, OPTIONS')
             ->header('Access-Control-Allow-Headers','Content-Type, Authorization, Accept,
                       X-CSRF-TOKEN, X-Requested-With, Application');*/
-
-
     }
 }

@@ -6,33 +6,22 @@ use App\Contracts\ContractRepositories\Admin\AutoDismantingContract;
 use App\Http\Resources\AutoResource;
 use App\Models\Auto\Auto;
 use App\Traits\FormattedJsonResponse;
+use App\Traits\Service\AutoService\AutoFilterCollection;
 use App\Traits\SortCollection;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class AutoDismantingRepository implements AutoDismantingContract
 {
-    use FormattedJsonResponse, SortCollection;
+    use FormattedJsonResponse, SortCollection, AutoFilterCollection;
 
     public function index()
     {
-        $search = \request('search');
-        $port = \request('port');
         $model = Auto::latest('id')
             ->with('shipping')
             ->has('shipping');
 
-        if(!is_null($search)){
-            $model->whereHas('lotInfo', function (Builder $autoQuery) use ($search) {
-                $autoQuery->where('vin_code', 'like', "%$search%");
-            });
-        }
-
-        if(!is_null($port)){
-            $model->whereHas('shipInfo', function (Builder $query) use ($port){
-                $query->where('point_load_city', $port);
-            });
-        }
+        $model = $this->getAutoWithFilter($model);
 
         $autos = $this->getWithSort($model,
             \request('countpage'),
@@ -40,7 +29,8 @@ class AutoDismantingRepository implements AutoDismantingContract
             \request('order_by'));
 
         return $this->toJson('Auto Dismantings get all successfully',200 ,
-            AutoResource::collection($autos), true);
+            AutoResource::collection($autos)
+                ->additional($this->getFilters()), true);
     }
 
     public function show(int $id)
@@ -62,8 +52,9 @@ class AutoDismantingRepository implements AutoDismantingContract
         }));
         $auto = $auto->fresh();
 
-        return $this->toJson('Auto Dismanting updated successfully',200,
-            new AutoResource($auto));
+        return $this->index();
+        /*return $this->toJson('Auto Dismanting updated successfully',200,
+            new AutoResource($auto));*/
     }
 
     public function destroy(int $id)

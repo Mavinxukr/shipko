@@ -361,6 +361,20 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
+            "field": "year",
+            "description": "<p>Year</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "make_name",
+            "description": "<p>Make name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
             "field": "model_name",
             "description": "<p>Model name</p>"
           },
@@ -727,6 +741,20 @@ define({ "api": [
     "parameter": {
       "fields": {
         "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "year",
+            "description": "<p>Year</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "make_name",
+            "description": "<p>Make name</p>"
+          },
           {
             "group": "Parameter",
             "type": "String",
@@ -1680,6 +1708,7 @@ define({ "api": [
     "groupTitle": "Admin_Client_Filter"
   },
   {
+<<<<<<< HEAD
     "type": "delete",
     "url": "admin/delete-group/{id}",
     "title": "Delete Group",
@@ -1750,6 +1779,14 @@ define({ "api": [
     "name": "Show_Group_By_Id",
     "version": "1.1.1",
     "group": "Admin_Groups_Action",
+=======
+    "type": "get",
+    "url": "admin/download",
+    "title": "Download document",
+    "name": "Download_document",
+    "version": "1.1.1",
+    "group": "Admin_Download_document",
+>>>>>>> master
     "permission": [
       {
         "name": "Authorization"
@@ -1769,6 +1806,7 @@ define({ "api": [
     },
     "sampleRequest": [
       {
+<<<<<<< HEAD
         "url": "/api-admin/get-group/{id}"
       }
     ],
@@ -1892,6 +1930,13 @@ define({ "api": [
     ],
     "filename": "app/Http/Controllers/ApiAdmin/Group/GroupController.php",
     "groupTitle": "Admin_Groups_Action"
+=======
+        "url": "/api-admin/download"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Document/DocumentController.php",
+    "groupTitle": "Admin_Download_document"
+>>>>>>> master
   },
   {
     "type": "post",

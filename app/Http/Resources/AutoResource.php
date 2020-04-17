@@ -27,6 +27,9 @@ class AutoResource extends JsonResource
 
         return [
             'id'            => $this->id,
+            'auto'          => $this->year . ' ' . $this->make_name . ' ' . $this->model_name,
+            'year'          => $this->year,
+            'make_name'     => $this->make_name,
             'model_name'    => $this->model_name,
             'client'        => [
                 'id'        => $this->client->id,

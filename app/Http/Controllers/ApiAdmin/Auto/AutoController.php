@@ -54,6 +54,8 @@ class AutoController extends Controller
      * @apiVersion 1.1.1
      * @apiGroup Admin Auto Action
      * @apiPermission Authorization
+     * @apiParam {String} year Year
+     * @apiParam {String} make_name Make name
      * @apiParam {String} model_name Model name
      * @apiParam {Number} client_id Client id
      * @apiParam {String} status Status (new, not_approved, pending, delivered)
@@ -191,6 +193,8 @@ class AutoController extends Controller
      * @apiVersion 1.1.1
      * @apiGroup Admin Auto Action
      * @apiPermission Authorization
+     * @apiParam {String} year Year
+     * @apiParam {String} make_name Make name
      * @apiParam {String} model_name Model name
      * @apiParam {Number} client_id Client id
      * @apiParam {String} status Status (new, not_approved, pending, delivered)
