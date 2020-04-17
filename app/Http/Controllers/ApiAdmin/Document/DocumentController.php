@@ -4,10 +4,14 @@ namespace App\Http\Controllers\ApiAdmin\Document;
 
 use App\Http\Controllers\Controller;
 use App\Models\Auto\Document;
-use App\Models\Invoice\InvoiceDocument;;
+use App\Models\Invoice\InvoiceDocument;
+use App\Traits\FormattedJsonResponse;
+
+;
 
 class DocumentController extends Controller
 {
+    use FormattedJsonResponse;
     /**
      * @api {get} admin/download  Download document
      * @apiName Download document
@@ -30,12 +34,7 @@ class DocumentController extends Controller
         if($document){
             return response()->download('storage/' . $document->path_to_folder, $document->name);
         }else{
-            return response()->json([
-                'message'   => "File not found",
-                'status'    => false,
-                'code'      => 404,
-                'data'      => null,
-            ], 404);
+            return $this->toJson("File not found", 404, null);
         }
     }
 }
