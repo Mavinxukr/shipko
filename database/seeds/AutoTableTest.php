@@ -12,8 +12,10 @@ class AutoTableTest extends Seeder
     public function run()
     {
         \App\Models\Auto\Auto::create([
+            'year'          => '2014',
+            'make_name'     => 'Mercedes',
             'model_name'    => 'Mercedes',
-            'client_id'        => 1
+            'client_id'     => 1
         ]);
     }
 }
