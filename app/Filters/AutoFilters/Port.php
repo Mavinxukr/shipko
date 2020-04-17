@@ -11,7 +11,7 @@ class Port extends AbstractFilters
 {
     protected function applyFilter(Builder $builders)
     {
-        if(is_null(request($this->filterName())))
+        if(!is_null(request($this->filterName())))
             return $builders->whereHas('shipInfo',function (Builder $shipInfo){
                 return $shipInfo->where('point_load_city', request($this->filterName()));
             });

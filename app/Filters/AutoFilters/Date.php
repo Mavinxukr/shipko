@@ -13,7 +13,7 @@ class Date extends AbstractFilters
     protected function applyFilter(Builder $builders)
     {
         try {
-            if(is_null(request($this->filterName()))) {
+            if(!is_null(request($this->filterName()))) {
                 $date = request($this->filterName());
                 $builders->whereHas('shipping', function (Builder $shipping) use ($date) {
                     return $shipping->whereDate('created_at',
