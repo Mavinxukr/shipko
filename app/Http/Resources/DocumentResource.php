@@ -21,7 +21,7 @@ class DocumentResource extends JsonResource
             'link'  => $this->path_to_front,
             'link_for_download' =>
                 getenv('APP_URL_DOWNLOAD') .
-                '?type=' . $this->type . '&id=' . $this->id,
+                '?type=' . $this->type . '&id=' . $this->id . '&name=' . $this->name,
         ];
     }
 }

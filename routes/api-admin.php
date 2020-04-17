@@ -3,12 +3,14 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('parser/{table}', 'ApiAdmin\Parser\ParserController@index');
+Route::get('download', 'ApiAdmin\Document\DocumentController@index');
+
 
 Route::namespace('ApiAdmin')->group(function () {
     Route::post('login','Auth\AuthController@login');
     Route::middleware( ['auth:api','role:admin'])->group(function (){
         Route::post('logout','Auth\AuthController@logout');
-        Route::get('download', 'Document\DocumentController@index');
+
         Route::post('store-note', 'Auto\AutoNoteController@store');
         Route::post('parser/{table}', 'Parser\ParserController@index');
 

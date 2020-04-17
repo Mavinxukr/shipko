@@ -26,9 +26,13 @@ class DocumentController extends Controller
     {
         $data = \request()->all();
         if($data['type'] == 'invoice'){
-            $document = InvoiceDocument::whereId($data['id'])->first();
+            $document = InvoiceDocument::whereId($data['id'])
+                ->whereName($data['name'])
+                ->first();
         }else{
-            $document = Document::whereId($data['id'])->first();
+            $document = Document::whereId($data['id'])
+                ->whereName($data['name'])
+                ->first();
         }
 
         if($document){
