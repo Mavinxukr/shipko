@@ -12,7 +12,7 @@ class ShippingStatus extends AbstractFilters
     protected function applyFilter(Builder $builders)
     {
         if(!is_null(request($this->filterName())))
-            return $builders->whereHas('shipInfo',function (Builder $shipInfo){
+            return $builders->whereHas('shipping',function (Builder $shipInfo){
                 return $shipInfo->where('status', request($this->filterName()));
             });
         return  $builders;
