@@ -94,7 +94,11 @@ class AutoRepository implements AutoContract
     public function update(Request $request, int $id)
     {
         $auto =  Auto::findOrFail($id);
-        $auto->update(array_filter($request->only(['year','make_name','model_name','client_id', 'status', 'offsite', 'offsite_price'])));
+        $auto->update(array_filter($request->only([
+            'year','make_name','model_name','client_id', 'status', 'offsite', 'offsite_price'
+        ], function ($value){
+            return !is_null($value);
+        })));
         $data = array_filter($request->except(['year','make_name','model_name','client_id', 'status', 'offsite', 'offsite_price']), function ($value){
             return !is_null($value);
         });
