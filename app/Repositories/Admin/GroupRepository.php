@@ -48,8 +48,9 @@ class GroupRepository implements GroupContract
             }
         }
 
-        return $this->toJson('Store Group successfully', 201,
-            new GroupResource($group));
+        return $this->index();
+        /*return $this->toJson('Store Group successfully', 201,
+            new GroupResource($group));*/
     }
 
     public function update(Request $request, int $id)
@@ -76,7 +77,9 @@ class GroupRepository implements GroupContract
     {
         $group = Group::findOrFail($id);
         $group->delete();
-        return $this->toJson('Delete Group successfully',200,null);
+
+        return $this->index();
+        /*return $this->toJson('Delete Group successfully',200,null);*/
     }
 
     public function getClients()
