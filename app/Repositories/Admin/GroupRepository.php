@@ -17,7 +17,6 @@ class GroupRepository implements GroupContract
 
     public function index()
     {
-        $search = \request('search');
         $model = Group::query();
 
         $groups = $this->getWithSort($model,
@@ -25,7 +24,7 @@ class GroupRepository implements GroupContract
             \request('order_type'),
             \request('order_by'));
 
-        return $this->toJson('Get all Groups successfully', 200, GroupResource::collection($groups), true);
+        return $this->toJson('Get all Groups successfully', 200, GroupResource::collection($groups)->additional($this->getClients()), true);
     }
 
     public function show(int $id)
@@ -78,5 +77,11 @@ class GroupRepository implements GroupContract
         $group = Group::findOrFail($id);
         $group->delete();
         return $this->toJson('Delete Group successfully',200,null);
+    }
+
+    public function getClients()
+    {
+        $data['clients'] = Client::all()->pluck('name', 'id');
+        return $data;
     }
 }
