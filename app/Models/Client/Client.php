@@ -118,6 +118,6 @@ class Client extends Authenticatable
 
     public function price()
     {
-        return $this->morphOne(Price::class, 'priceable');
+        return $this->morphOne(Price::class, 'priceable', 'priceable_type');
     }
 }

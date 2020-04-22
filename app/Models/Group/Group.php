@@ -16,9 +16,9 @@ class Group extends Model
         return $this->hasMany(GroupAttach::class)->with('client');
     }
 
-    public function price()
+    public function priceable()
     {
-        return $this->morphOne(Price::class, 'priceable');
+        return $this->morphOne(Price::class, 'priceable', 'priceable_type');
     }
 
 }

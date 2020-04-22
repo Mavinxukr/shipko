@@ -5,6 +5,8 @@ namespace App\Repositories\Admin;
 use App\Contracts\ContractRepositories\Admin\PriceContract;
 use App\Http\Resources\PriceResource;
 use App\Models\Client\City;
+use App\Models\Client\Client;
+use App\Models\Group\Group;
 use App\Models\Price\Price;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\SortCollection;
@@ -16,7 +18,6 @@ class PriceRepository implements PriceContract
 
     public function index()
     {
-        $search = \request('search');
         $model = Price::query();
 
         $prices = $this->getWithSort($model,
@@ -24,7 +25,7 @@ class PriceRepository implements PriceContract
             \request('order_type'),
             \request('order_by'));
 
-        return $this->toJson('Get all Prices successfully', 200, PriceResource::collection($prices), true);
+        return $this->toJson('Get all Prices successfully', 200, PriceResource::collection($prices)->additional($this->getAdditional()), true);
     }
 
     public function show(int $id)
@@ -48,8 +49,10 @@ class PriceRepository implements PriceContract
         $cities_id = explode(',', $request->cities);
         $cities = City::whereIn('id', $cities_id)->get();
         $price->cities()->sync($cities);
-        return $this->toJson('Store Price successfully', 201,
-            new PriceResource($price));
+
+        return $this->index();
+        /*return $this->toJson('Store Price successfully', 201,
+            new PriceResource($price));*/
     }
 
     public function update(Request $request, int $id)
@@ -78,6 +81,15 @@ class PriceRepository implements PriceContract
     {
         $group = Price::findOrFail($id);
         $group->delete();
-        return $this->toJson('Delete Price successfully',200,null);
+
+        return $this->index();
+        /*return $this->toJson('Delete Price successfully',200,null);*/
+    }
+
+    public function getAdditional()
+    {
+        $data['clients'] = Client::all('id', 'name');
+        $data['groups'] = Group::all('id', 'name');
+        return $data;
     }
 }
