@@ -17,8 +17,8 @@ class AutoDismantingRepository implements AutoDismantingContract
 
     public function index(Request $request)
     {
-        $model = $request->user()
-            ->autos()
+
+        $model = Auto::where('client_id', $request->user()->id)
             ->with('shipping')
             ->has('shipping');
 
