@@ -84,7 +84,7 @@ class GroupRepository implements GroupContract
 
     public function getClients()
     {
-        $data['clients'] = Client::all()->pluck('name', 'id');
+        $data['clients'] = Client::all()->pluck('name', 'id')->toArray();
         return $data;
     }
 }
