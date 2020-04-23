@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Traits\Service\ClientService\DueDayService;
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\Resource;
 
 class ClientResource extends Resource
@@ -23,9 +25,10 @@ class ClientResource extends Resource
 
         $full_address = $country . " " . $city . " " . $address . " " . $zip;
 
-        $client_price = !is_null($this->price) ? $this->price->due_day->diffInDays() : null;
-        $client_group = !is_null($this->group) ?
-            new GroupResource($this->group->group, false) : null;
+        $dueDay = null;
+        if(!is_null($this->price) || !is_null($this->group->group->priceable)){
+            $dueDay = DueDayService::getFirst($this);
+        }
 
         return  [
             'id'                =>  $this->id,
@@ -42,9 +45,9 @@ class ClientResource extends Resource
             'date_register'     =>  $this->created_at->format('d.m.Y'),
             'full_address'      =>  $full_address,
             'new_notification'  =>  $this->notifications()->where('is_new', 1)->count(),
-            'client_price'      =>  $client_price,
-            'client_group'      =>  $client_group,
+            'price_id'          =>  !is_null($dueDay) ? $dueDay['price_id'] : null,
+            'due_day'           =>  !is_null($dueDay) ? $dueDay['pastDays']->d : null,
+            'is_finish'         =>  !is_null($dueDay) ? $dueDay['finish'] : false,
             ];
     }
-
 }

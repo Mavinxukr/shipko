@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use Carbon\Carbon;
+use App\Traits\Service\ClientService\DueDayService;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class GroupResource extends JsonResource
@@ -23,17 +23,9 @@ class GroupResource extends JsonResource
      */
     public function toArray($request)
     {
-        $pastDays = null;
-        $finish = false;
+        $dueDay = null;
         if(!is_null($this->priceable)){
-            $pastDays = Carbon::now()->diff($this->priceable->created_at);
-            $allDays = $this->priceable->due_day->diff($this->priceable->created_at);
-
-            if($allDays->d <= $pastDays->d){
-                $finish = true;
-            }else{
-                $finish = false;
-            }
+            $dueDay = DueDayService::dueDay($this->priceable);
         }
 
         $clients = null;
@@ -47,8 +39,9 @@ class GroupResource extends JsonResource
             'name'          => $this->name,
             'price'         => $this->price,
             'clients'       => $clients,
-            'due_day'       => !is_null($pastDays) ? $pastDays->d : null,
-            'is_finish'     => $finish,
+            'price_id'      => !is_null($dueDay) ? $dueDay['price_id'] : null,
+            'due_day'       => !is_null($dueDay) ? $dueDay['pastDays']->d : null,
+            'is_finish'     => !is_null($dueDay) ? $dueDay['finish'] : false,
         ];
     }
 }
