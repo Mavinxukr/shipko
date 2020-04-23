@@ -23,18 +23,17 @@ class GroupResource extends JsonResource
      */
     public function toArray($request)
     {
-        $calcDays = null;
         $finish = false;
         if(!is_null($this->priceable)){
-            $calcDays = Carbon::now()->diff($this->priceable->created_at);
+            $pastDays = Carbon::now()->diff($this->priceable->created_at);
+            $allDays = $this->priceable->due_day->diff($this->priceable->created_at);
 
-            if($this->priceable->due_day <= $calcDays){
+            if($allDays->d <= $pastDays->d){
                 $finish = true;
             }else{
                 $finish = false;
             }
         }
-
 
         $clients = null;
         if($this->nesting){
@@ -47,7 +46,7 @@ class GroupResource extends JsonResource
             'name'          => $this->name,
             'price'         => $this->price,
             'clients'       => $clients,
-            'due_day'       => $calcDays->d,
+            'due_day'       => !is_null($pastDays) ? $pastDays->d : null,
             'is_finish'     => $finish,
         ];
     }
