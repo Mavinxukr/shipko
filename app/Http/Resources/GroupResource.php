@@ -33,8 +33,7 @@ class GroupResource extends JsonResource
             'name'          => $this->name,
             'price'         => $this->price,
             'clients'       => $clients,
-            'group_price'   => !is_null($this->priceable) ?
-                new PriceResource($this->priceable, false) : null,
+            'group_price'   => !is_null($this->priceable) ? $this->priceable->due_day->diffDays() : null,
         ];
     }
 }

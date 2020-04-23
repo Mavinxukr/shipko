@@ -40,7 +40,7 @@ class PriceRepository implements PriceContract
         $data = $request->except('priceable_type', 'cities');
 
         try {
-            $data['priceable_type'] = Price::morphMap($request->priceable_type);
+            $data['priceable_type'] = Price::morphMap('model', $request->priceable_type);
         }catch (\Exception $e){
             return $this->toJson($e->getMessage(), 400, null);
         }
@@ -61,7 +61,7 @@ class PriceRepository implements PriceContract
         try {
             if(!is_null($request->priceable_type) && !is_null($request->priceable_id)){
                 $data['priceable_id'] = $request->priceable_id;
-                $data['priceable_type']= Price::morphMap($request->priceable_type);
+                $data['priceable_type']= Price::morphMap('model', $request->priceable_type);
             }
         }catch (\Exception $e){
             return $this->toJson($e->getMessage(), 400, null);

@@ -23,7 +23,7 @@ class ClientResource extends Resource
 
         $full_address = $country . " " . $city . " " . $address . " " . $zip;
 
-        $client_price = !is_null($this->price) ? new PriceResource($this->price, false) : null;
+        $client_price = !is_null($this->price) ? $this->price->due_day->diffDays() : null;
         $client_group = !is_null($this->group) ?
             new GroupResource($this->group->group, false) : null;
 
