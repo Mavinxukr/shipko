@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class GroupResource extends JsonResource
@@ -22,6 +23,19 @@ class GroupResource extends JsonResource
      */
     public function toArray($request)
     {
+        $calcDays = null;
+        $finish = false;
+        if(!is_null($this->priceable)){
+            $calcDays = Carbon::now()->diff($this->priceable->created_at);
+
+            if($this->priceable->due_day <= $calcDays){
+                $finish = true;
+            }else{
+                $finish = false;
+            }
+        }
+
+
         $clients = null;
         if($this->nesting){
             $clients = !is_null($this->clients) ?
@@ -33,7 +47,8 @@ class GroupResource extends JsonResource
             'name'          => $this->name,
             'price'         => $this->price,
             'clients'       => $clients,
-            'group_price'   => !is_null($this->priceable) ? $this->priceable->due_day->diffInDays() : null,
+            'due_day'       => $calcDays->d,
+            'is_finish'     => $finish,
         ];
     }
 }
