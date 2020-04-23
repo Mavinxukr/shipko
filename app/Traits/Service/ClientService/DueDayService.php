@@ -46,6 +46,6 @@ trait DueDayService
             $price = $client->group->priceable;
         }
 
-        return self::dueDay($price) ?? null;
+        return !is_null($price) ? self::dueDay($price) : null;
     }
 }
