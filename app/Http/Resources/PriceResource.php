@@ -27,7 +27,7 @@ class PriceResource extends JsonResource
             'priceable_type'    => Price::morphMap('type', $this->priceable_type),
             'priceable_id'      => $this->priceable_id,
             'priceable'         => $priceable,
-            'cities'            => $this->cities()->pluck('name'),
+            'cities'            => $this->cities()->get('name', 'id'),
         ];
     }
 }
