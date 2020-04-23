@@ -23,6 +23,7 @@ class GroupResource extends JsonResource
      */
     public function toArray($request)
     {
+        $pastDays = null;
         $finish = false;
         if(!is_null($this->priceable)){
             $pastDays = Carbon::now()->diff($this->priceable->created_at);
