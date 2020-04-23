@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Traits\Service\ClientService\DueDayService;
-use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\Resource;
 
 class ClientResource extends Resource
@@ -26,7 +25,7 @@ class ClientResource extends Resource
         $full_address = $country . " " . $city . " " . $address . " " . $zip;
 
         $dueDay = null;
-        if(!is_null($this->price) || !is_null($this->group->group->priceable)){
+        if(!is_null($this->price) || !is_null($this->group) && !is_null($this->group->group->priceable)){
             $dueDay = DueDayService::getFirst($this);
         }
 
