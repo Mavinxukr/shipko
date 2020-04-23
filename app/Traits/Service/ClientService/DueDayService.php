@@ -30,6 +30,7 @@ trait DueDayService
 
     public static function getFirst($client)
     {
+        $price = null;
         if(!is_null($client->price) && !is_null($client->group) && !is_null($client->group->group->priceable)){
             $dueDay_client = $client->price;
             $dueDay_group = $client->group->group->priceable;
@@ -45,6 +46,6 @@ trait DueDayService
             $price = $client->group->priceable;
         }
 
-        return self::dueDay($price);
+        return self::dueDay($price) ?? null;
     }
 }
