@@ -32,7 +32,7 @@ class PriceRepository implements PriceContract
     {
         $price = Price::findOrFail($id);
         return $this->toJson('Get Price by id successfully', 200,
-            new PriceResource($price));
+            (new PriceResource($price))->additional($this->getAdditional()));
     }
 
     public function store(Request $request)
