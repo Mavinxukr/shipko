@@ -85,7 +85,11 @@ class AutoRepository implements AutoContract
         $data = $request->except(['year','make_name','model_name','client_id', 'offsite', 'offsite_price']);
         $auto  = Auto::create($request->only(['year','make_name','model_name','client_id', 'status', 'offsite', 'offsite_price']));
         $this->updateOrCreateAction($data, $auto);
-        $this->updateOrCreateInvoice($request, $auto);
+
+        $document = $request->only('invoice_document');
+        $invoice = $this->updateOrCreateInvoice($request, $auto);
+        if (isset($document['invoice_document'])) $this->saveDocuments($invoice,$document['invoice_document'],'invoice');
+
 
         return $this->index();
         /*return $this->toJson('Auto created successfully',201,

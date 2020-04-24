@@ -35,7 +35,7 @@ trait AutoAction
                 'outstanding_price' => $request->invoice_outstanding_price,
                 'status' => $request->invoice_status,
             ];
-            $auto->invoice()->updateOrCreate(['auto_id' => $auto->id],$data);
+            return $auto->invoice()->updateOrCreate(['auto_id' => $auto->id],$data);
         }
     }
 }
