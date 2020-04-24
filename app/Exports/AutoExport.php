@@ -33,10 +33,14 @@ class AutoExport extends TablesExport
 
     private function join($model)
     {
+        $joined = [];
         foreach ($this->select as $item){
             $object = explode('.', $item);
             if(count($object) > 1 && $object[0] != 'autos'){
-                $model->leftJoin($object[0], 'autos.id', $object[0] . '.auto_id');
+                if(array_search($object[0], $joined) === false){
+                    $model->leftJoin($object[0], 'autos.id', $object[0] . '.auto_id');
+                    $joined[] = $object[0];
+                }
             }
         }
         return $model;
