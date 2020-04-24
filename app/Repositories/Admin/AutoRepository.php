@@ -85,6 +85,7 @@ class AutoRepository implements AutoContract
         $data = $request->except(['year','make_name','model_name','client_id', 'offsite', 'offsite_price']);
         $auto  = Auto::create($request->only(['year','make_name','model_name','client_id', 'status', 'offsite', 'offsite_price']));
         $this->updateOrCreateAction($data, $auto);
+        $this->updateOrCreateInvoice($request, $auto);
 
         return $this->index();
         /*return $this->toJson('Auto created successfully',201,
@@ -103,6 +104,7 @@ class AutoRepository implements AutoContract
             return !is_null($value);
         });
         $this->updateOrCreateAction($data, $auto);
+        $this->updateOrCreateInvoice($request, $auto);
         $auto = $auto->fresh();
 
         return $this->toJson('Auto updated successfully',200,

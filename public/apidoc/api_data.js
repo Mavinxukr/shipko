@@ -634,6 +634,41 @@ define({ "api": [
             "group": "Parameter",
             "type": "Number",
             "optional": false,
+            "field": "invoice",
+            "description": "<p>Invoice block has or has not</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "invoice_total_price",
+            "description": "<p>Invoice Total Price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "invoice_paid_price",
+            "description": "<p>Invoice Paid Price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "invoice_outstanding_price",
+            "description": "<p>Invoice Outstanding Price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "invoice_status",
+            "description": "<p>Invoice Status</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
             "field": "document",
             "description": "<p>Document block has or has not</p>"
           },
@@ -1013,6 +1048,41 @@ define({ "api": [
             "optional": false,
             "field": "note",
             "description": "<p>Note</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "invoice",
+            "description": "<p>Invoice block has or has not</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "invoice_total_price",
+            "description": "<p>Invoice Total Price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "invoice_paid_price",
+            "description": "<p>Invoice Paid Price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "invoice_outstanding_price",
+            "description": "<p>Invoice Outstanding Price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "invoice_status",
+            "description": "<p>Invoice Status</p>"
           }
         ]
       }

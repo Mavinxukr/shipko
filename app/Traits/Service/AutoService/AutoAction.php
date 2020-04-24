@@ -6,6 +6,7 @@ namespace App\Traits\Service\AutoService;
 
 use App\Http\Resources\PopularAutoResource;
 use App\Models\Auto\Auto;
+use http\Client\Request;
 
 trait AutoAction
 {
@@ -22,5 +23,19 @@ trait AutoAction
     {
         $autos = Auto::latest()->limit($count)->get();
         return PopularAutoResource::collection($autos);
+    }
+
+    public function updateOrCreateInvoice($request, Auto $auto)
+    {
+        if($request->invoice){
+            $data = [
+                'name_car' => $auto->year . ' ' . $auto->make_name . ' ' . $auto->model_name,
+                'total_price' => $request->invoice_total_price,
+                'paid_price' => $request->invoice_paid_price,
+                'outstanding_price' => $request->invoice_outstanding_price,
+                'status' => $request->invoice_status,
+            ];
+            $auto->invoice()->updateOrCreate(['auto_id' => $auto->id],$data);
+        }
     }
 }
