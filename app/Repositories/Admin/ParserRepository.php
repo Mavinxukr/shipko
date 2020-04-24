@@ -18,6 +18,7 @@ class ParserRepository implements ParserContract
             'client'        => 'App\Exports\AutoExport',
             'base_clients'  => 'App\Exports\ClientExport',
             'groups'        => 'App\Exports\GroupExport',
+            'invoices'      => 'App\Exports\InvoiceExport',
             'parts'         => 'App\Exports\PartExport',
             'autos'         => 'App\Exports\AutoExport',
             'shippings'     => 'App\Exports\AutoExport',
