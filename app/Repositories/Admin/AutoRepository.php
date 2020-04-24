@@ -104,7 +104,11 @@ class AutoRepository implements AutoContract
             return !is_null($value);
         });
         $this->updateOrCreateAction($data, $auto);
-        $this->updateOrCreateInvoice($request, $auto);
+
+        $document = $request->only('invoice_document');
+        $invoice = $this->updateOrCreateInvoice($request, $auto);
+        if (isset($document['invoice_document'])) $this->saveDocuments($invoice,$document['invoice_document'],'invoice');
+
         $auto = $auto->fresh();
 
         return $this->toJson('Auto updated successfully',200,
