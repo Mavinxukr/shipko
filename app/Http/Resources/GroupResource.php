@@ -28,8 +28,9 @@ class GroupResource extends JsonResource
             $dueDay = DueDayService::dueDay($this->priceable);
         }
 
+
         $clients = null;
-        if($this->nesting){
+        if($this->nesting || $this->nesting === 0){
             $clients = !is_null($this->clients) ?
                 GroupAttachResource::collection($this->clients) : null;
         }
