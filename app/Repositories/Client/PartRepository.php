@@ -96,8 +96,9 @@ class PartRepository implements PartContract
             $image->delete();
         }
 
-        return $this->toJson('Part images deleted successfully',200,
-            null);
+        return $this->index();
+        /*return $this->toJson('Part images deleted successfully',200,
+            null);*/
     }
 
     public function restoreImage(Request $request, int $id)
@@ -107,7 +108,8 @@ class PartRepository implements PartContract
             $this->imageCreator($part,'part', new Photo, $image);
         }
 
-        return $this->toJson('Part images restore successfully',200,
-            null);
+        return $this->index();
+        /*return $this->toJson('Part images restore successfully',200,
+            null);*/
     }
 }
