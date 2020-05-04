@@ -16,10 +16,10 @@ trait DueDayService
     public static function dueDay($price)
     {
         $data['price_id'] = $price->id;
-        $data['pastDays'] = Carbon::now()->diff($price->created_at);
-        $data['allDays'] = $price->due_day->diff($price->created_at);
+        $data['pastDays'] = Carbon::now()->diffInDays($price->created_at);
+        $data['allDays'] = $price->due_day->diffInDays($price->created_at);
 
-        if($data['allDays']->d <= $data['pastDays']->d){
+        if($data['allDays'] <= $data['pastDays']){
             $data['finish'] = true;
         }else{
             $data['finish'] = false;

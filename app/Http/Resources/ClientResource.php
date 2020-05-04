@@ -45,7 +45,7 @@ class ClientResource extends Resource
             'full_address'      =>  $full_address,
             'new_notification'  =>  $this->notifications()->where('is_new', 1)->count(),
             'price_id'          =>  !is_null($dueDay) ? $dueDay['price_id'] : null,
-            'due_day'           =>  !is_null($dueDay) ? $dueDay['pastDays']->d : null,
+            'due_day'           =>  !is_null($dueDay) ? $dueDay['pastDays'] : null,
             'is_finish'         =>  !is_null($dueDay) ? $dueDay['finish'] : false,
             ];
     }
