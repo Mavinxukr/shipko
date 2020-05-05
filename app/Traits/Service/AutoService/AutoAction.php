@@ -28,13 +28,16 @@ trait AutoAction
     public function updateOrCreateInvoice($request, Auto $auto)
     {
         if($request->invoice){
-            $data = [
-                'name_car' => $auto->year . ' ' . $auto->make_name . ' ' . $auto->model_name,
-                'total_price' => $request->invoice_total_price,
-                'paid_price' => $request->invoice_paid_price,
-                'outstanding_price' => $request->invoice_outstanding_price,
-                'status' => $request->invoice_status,
-            ];
+            $data['name_car'] = $auto->year . ' ' . $auto->make_name . ' ' . $auto->model_name;
+            if(!is_null($request->invoice_total_price))
+                $data['total_price'] = $request->invoice_total_price;
+            if(!is_null($request->invoice_paid_price))
+                $data['paid_price'] = $request->invoice_paid_price;
+            if(!is_null($request->invoice_outstanding_price))
+                $data['outstanding_price'] = $request->invoice_outstanding_price;
+            if(!is_null($request->invoice_status))
+                $data['status'] = $request->invoice_status;
+
             return $auto->invoice()->updateOrCreate(['auto_id' => $auto->id],$data);
         }
     }

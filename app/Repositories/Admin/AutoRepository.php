@@ -88,7 +88,8 @@ class AutoRepository implements AutoContract
 
         $document = $request->only('invoice_document');
         $invoice = $this->updateOrCreateInvoice($request, $auto);
-        if (isset($document['invoice_document'])) $this->saveDocuments($invoice,$document['invoice_document'],'invoice');
+        if (isset($document['invoice_document']))
+            $this->saveDocuments($invoice,$document['invoice_document'],'invoice');
 
 
         return $this->index();
