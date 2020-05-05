@@ -88,8 +88,8 @@ class PriceRepository implements PriceContract
 
     public function getAdditional()
     {
-        $data['clients'] = Client::all('id', 'name');
-        $data['groups'] = Group::all('id', 'name');
+        $data['clients'] = Client::orderByDesc('id')->get(['id', 'name']);
+        $data['groups'] = Group::orderByDesc('id')->get(['id', 'name']);
         return $data;
     }
 }
