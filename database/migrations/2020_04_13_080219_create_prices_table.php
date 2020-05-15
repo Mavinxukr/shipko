@@ -16,10 +16,9 @@ class CreatePricesTable extends Migration
         Schema::create('prices', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('price');
+            $table->unsignedBigInteger('country_id');
             $table->unsignedBigInteger('priceable_id');
             $table->string('priceable_type');
-            $table->dateTime('due_day');
             $table->timestamps();
         });
 

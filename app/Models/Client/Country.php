@@ -23,6 +23,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Country extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = [
+        'name', 'short_name',
+    ];
+
+    public function cities()
+    {
+        return $this->hasMany(City::class);
+    }
 
 }

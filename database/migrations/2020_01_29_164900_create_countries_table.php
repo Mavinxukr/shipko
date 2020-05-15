@@ -16,11 +16,19 @@ class CreateCountriesTable extends Migration
         Schema::create('countries', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('short_name');
             $table->timestamps();
 
         });
 
         Schema::table('clients', function (Blueprint $table) {
+            $table->foreign('country_id')
+                ->references('id')
+                ->on('countries')
+                ->onDelete('cascade');
+        });
+
+        Schema::table('cities', function (Blueprint $table) {
             $table->foreign('country_id')
                 ->references('id')
                 ->on('countries')

@@ -1,15 +1,19 @@
 <?php
 
-namespace App\Models\Price;
+namespace App\Models\Payment;
 
 use App\Models\Client\City;
 use Illuminate\Database\Eloquent\Model;
 
-class Price extends Model
+class Payment extends Model
 {
     protected $fillable = [
-        'name', 'priceable_id',
-        'priceable_type', 'country_id',
+        'name', 'applicable_id',
+        'applicable_type', 'due_day'
+    ];
+
+    protected $casts = [
+        'due_day' => 'datetime',
     ];
 
     public static function morphMap($convert, $type)
@@ -29,13 +33,8 @@ class Price extends Model
         }
     }
 
-    public function priceable()
+    public function applicable()
     {
         return $this->morphTo();
-    }
-
-    public function cities()
-    {
-        return $this->belongsToMany(City::class, 'price_city');
     }
 }

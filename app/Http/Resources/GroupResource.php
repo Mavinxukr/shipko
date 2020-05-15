@@ -24,8 +24,8 @@ class GroupResource extends JsonResource
     public function toArray($request)
     {
         $dueDay = null;
-        if(!is_null($this->priceable)){
-            $dueDay = DueDayService::dueDay($this->priceable);
+        if(!is_null($this->applicable)){
+            $dueDay = DueDayService::dueDay($this->applicable);
         }
 
 

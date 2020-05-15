@@ -6,6 +6,7 @@ use App\Contracts\ContractRepositories\Admin\PriceContract;
 use App\Http\Resources\PriceResource;
 use App\Models\Client\City;
 use App\Models\Client\Client;
+use App\Models\Client\Country;
 use App\Models\Group\Group;
 use App\Models\Price\Price;
 use App\Traits\FormattedJsonResponse;
@@ -57,7 +58,7 @@ class PriceRepository implements PriceContract
 
     public function update(Request $request, int $id)
     {
-        $data = array_filter($request->only('name', 'price', 'due_day'));
+        $data = array_filter($request->only('name'));
         try {
             if(!is_null($request->priceable_type) && !is_null($request->priceable_id)){
                 $data['priceable_id'] = $request->priceable_id;
@@ -90,6 +91,8 @@ class PriceRepository implements PriceContract
     {
         $data['clients'] = Client::orderByDesc('id')->get(['id', 'name']);
         $data['groups'] = Group::orderByDesc('id')->get(['id', 'name']);
+        $data['states'] = Country::orderByDesc('id')->get(['id', 'name']);
+        $data['cities'] = City::orderByDesc('id')->get(['id', 'name', 'price']);
         return $data;
     }
 }

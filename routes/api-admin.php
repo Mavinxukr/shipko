@@ -75,6 +75,13 @@ Route::namespace('ApiAdmin')->group(function () {
             Route::post('update-price/{id}','PriceController@update');
             Route::delete('delete-price/{id}','PriceController@destroy');
         });
+        Route::namespace('Payment')->group(function () {
+            Route::post('store-payment','PaymentController@store');
+            Route::get('get-payment/{id}','PaymentController@show');
+            Route::get('get-payments','PaymentController@index');
+            Route::post('update-payment/{id}','PaymentController@update');
+            Route::delete('delete-payment/{id}','PaymentController@destroy');
+        });
     });
 });
 
