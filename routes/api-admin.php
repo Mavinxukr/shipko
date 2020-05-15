@@ -2,12 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('parser/{table}', 'ApiAdmin\Parser\ParserController@index');
+Route::get('download', 'ApiAdmin\Document\DocumentController@index');
+
+
 Route::namespace('ApiAdmin')->group(function () {
     Route::post('login','Auth\AuthController@login');
     Route::middleware( ['auth:api','role:admin'])->group(function (){
         Route::post('logout','Auth\AuthController@logout');
-        Route::get('download', 'Document\DocumentController@index');
+
         Route::post('store-note', 'Auto\AutoNoteController@store');
+        Route::post('parser/{table}', 'Parser\ParserController@index');
 
         Route::namespace('Client')->group(function () {
             Route::post('store-client','ClientController@store');
@@ -55,6 +60,20 @@ Route::namespace('ApiAdmin')->group(function () {
             Route::delete('delete-invoice/{id}','InvoiceController@delete');
             Route::post('restore-invoice-document/{id}','InvoiceController@restoreDocument');
             Route::post('delete-invoice-document/{id}','InvoiceController@deleteDocument');
+        });
+        Route::namespace('Group')->group(function () {
+            Route::post('store-group','GroupController@store');
+            Route::get('get-group/{id}','GroupController@show');
+            Route::get('get-groups','GroupController@index');
+            Route::post('update-group/{id}','GroupController@update');
+            Route::delete('delete-group/{id}','GroupController@destroy');
+        });
+        Route::namespace('Price')->group(function () {
+            Route::post('store-price','PriceController@store');
+            Route::get('get-price/{id}','PriceController@show');
+            Route::get('get-prices','PriceController@index');
+            Route::post('update-price/{id}','PriceController@update');
+            Route::delete('delete-price/{id}','PriceController@destroy');
         });
     });
 });

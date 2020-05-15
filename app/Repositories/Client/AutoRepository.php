@@ -3,10 +3,12 @@
 namespace App\Repositories\Client;
 
 use App\Contracts\ContractRepositories\Client\AutoContract;
+use App\Filters\AutoFilters\AutoName;
 use App\Filters\AutoFilters\Container;
 use App\Filters\AutoFilters\LotNumber;
 use App\Filters\AutoFilters\ModelName;
 use App\Filters\AutoFilters\PointLoadCity;
+use App\Filters\AutoFilters\Port;
 use App\Filters\AutoFilters\Status;
 use App\Filters\AutoFilters\Vin;
 use App\Http\Resources\AutoResource;
@@ -26,8 +28,8 @@ class AutoRepository implements AutoContract
         $model =  app(Pipeline::class)
             ->send(Auto::where('client_id', $request->user()->id))
             ->through([
-                ModelName::class,
-                PointLoadCity::class,
+                AutoName::class,
+                Port::class,
                 Container::class,
                 LotNumber::class,
                 Vin::class,

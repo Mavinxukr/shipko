@@ -394,6 +394,20 @@ define({ "api": [
           },
           {
             "group": "Parameter",
+            "type": "Boolean",
+            "optional": false,
+            "field": "offsite",
+            "description": "<p>Offsite (1- true, 0 - false)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "offsite_price",
+            "description": "<p>Offsite Price</p>"
+          },
+          {
+            "group": "Parameter",
             "type": "Number",
             "optional": false,
             "field": "ship",
@@ -620,6 +634,41 @@ define({ "api": [
             "group": "Parameter",
             "type": "Number",
             "optional": false,
+            "field": "invoice",
+            "description": "<p>Invoice block has or has not</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "invoice_total_price",
+            "description": "<p>Invoice Total Price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "invoice_paid_price",
+            "description": "<p>Invoice Paid Price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "invoice_outstanding_price",
+            "description": "<p>Invoice Outstanding Price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "invoice_status",
+            "description": "<p>Invoice Status</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
             "field": "document",
             "description": "<p>Document block has or has not</p>"
           },
@@ -761,6 +810,20 @@ define({ "api": [
             "optional": false,
             "field": "status",
             "description": "<p>Status (new, not_approved, pending, delivered)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Boolean",
+            "optional": false,
+            "field": "offsite",
+            "description": "<p>Offsite (1- true, 0 - false)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "offsite_price",
+            "description": "<p>Offsite Price</p>"
           },
           {
             "group": "Parameter",
@@ -985,6 +1048,41 @@ define({ "api": [
             "optional": false,
             "field": "note",
             "description": "<p>Note</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "invoice",
+            "description": "<p>Invoice block has or has not</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "invoice_total_price",
+            "description": "<p>Invoice Total Price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "invoice_paid_price",
+            "description": "<p>Invoice Paid Price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "invoice_outstanding_price",
+            "description": "<p>Invoice Outstanding Price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "invoice_status",
+            "description": "<p>Invoice Status</p>"
           }
         ]
       }
@@ -1710,6 +1808,220 @@ define({ "api": [
     ],
     "filename": "app/Http/Controllers/ApiAdmin/Document/DocumentController.php",
     "groupTitle": "Admin_Download_document"
+  },
+  {
+    "type": "delete",
+    "url": "admin/delete-group/{id}",
+    "title": "Delete Group",
+    "name": "Delete_Group",
+    "version": "1.1.1",
+    "group": "Admin_Groups_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/delete-group/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Group/GroupController.php",
+    "groupTitle": "Admin_Groups_Action"
+  },
+  {
+    "type": "get",
+    "url": "admin/get-groups",
+    "title": "Show All Groups",
+    "name": "Show_All_Groups",
+    "version": "1.1.1",
+    "group": "Admin_Groups_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/get-groups"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Group/GroupController.php",
+    "groupTitle": "Admin_Groups_Action"
+  },
+  {
+    "type": "get",
+    "url": "admin/get-group/{id}",
+    "title": "Show Group By Id",
+    "name": "Show_Group_By_Id",
+    "version": "1.1.1",
+    "group": "Admin_Groups_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/get-group/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Group/GroupController.php",
+    "groupTitle": "Admin_Groups_Action"
+  },
+  {
+    "type": "post",
+    "url": "admin/store-group",
+    "title": "Store Group",
+    "name": "Store_Group",
+    "version": "1.1.1",
+    "group": "Admin_Groups_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "price",
+            "description": "<p>Price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "clients",
+            "description": "<p>Clients ID Exm: 1,2,3,4,...</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/store-group"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Group/GroupController.php",
+    "groupTitle": "Admin_Groups_Action"
+  },
+  {
+    "type": "post",
+    "url": "admin/update-group/{id}",
+    "title": "Update Group",
+    "name": "Update_Group",
+    "version": "1.1.1",
+    "group": "Admin_Groups_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "price",
+            "description": "<p>Price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "clients",
+            "description": "<p>Clients ID Exm: 1,2,3,4,...</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/update-group/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Group/GroupController.php",
+    "groupTitle": "Admin_Groups_Action"
   },
   {
     "type": "post",
@@ -2492,6 +2804,262 @@ define({ "api": [
     ],
     "filename": "app/Http/Controllers/ApiAdmin/Part/PartController.php",
     "groupTitle": "Admin_Part_Action"
+  },
+  {
+    "type": "delete",
+    "url": "admin/delete-price/{id}",
+    "title": "Delete Price",
+    "name": "Delete_Price",
+    "version": "1.1.1",
+    "group": "Admin_Prices_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/delete-price/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Price/PriceController.php",
+    "groupTitle": "Admin_Prices_Action"
+  },
+  {
+    "type": "get",
+    "url": "admin/get-prices",
+    "title": "Show All Prices",
+    "name": "Show_All_Prices",
+    "version": "1.1.1",
+    "group": "Admin_Prices_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/get-prices"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Price/PriceController.php",
+    "groupTitle": "Admin_Prices_Action"
+  },
+  {
+    "type": "get",
+    "url": "admin/get-price/{id}",
+    "title": "Show Price By Id",
+    "name": "Show_Price_By_Id",
+    "version": "1.1.1",
+    "group": "Admin_Prices_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/get-price/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Price/PriceController.php",
+    "groupTitle": "Admin_Prices_Action"
+  },
+  {
+    "type": "post",
+    "url": "admin/store-price",
+    "title": "Store Price",
+    "name": "Store_Price",
+    "version": "1.1.1",
+    "group": "Admin_Prices_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "price",
+            "description": "<p>Price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "priceable_type",
+            "description": "<p>Attach Type (client, group)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "priceable_id",
+            "description": "<p>Client or Group ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "cities",
+            "description": "<p>Cities ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Timestamp",
+            "optional": false,
+            "field": "due_day",
+            "description": "<p>Day when mast pay</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/store-price"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Price/PriceController.php",
+    "groupTitle": "Admin_Prices_Action"
+  },
+  {
+    "type": "post",
+    "url": "admin/update-price/{id}",
+    "title": "Update Price",
+    "name": "Update_Price",
+    "version": "1.1.1",
+    "group": "Admin_Prices_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "price",
+            "description": "<p>Price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "priceable_type",
+            "description": "<p>Attach Type (client, group)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "priceable_id",
+            "description": "<p>Client or Group ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "cities",
+            "description": "<p>Cities ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Timestamp",
+            "optional": false,
+            "field": "due_day",
+            "description": "<p>Day when mast pay</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/update-price/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Price/PriceController.php",
+    "groupTitle": "Admin_Prices_Action"
   },
   {
     "type": "post",
@@ -3497,5 +4065,58 @@ define({ "api": [
     ],
     "filename": "app/Http/Controllers/ApiClient/Part/PartController.php",
     "groupTitle": "Client_Part_Action"
+  },
+  {
+    "type": "post",
+    "url": "admin/parser/{table}",
+    "title": "Get Excel document",
+    "name": "Get_Excel_document",
+    "version": "1.1.1",
+    "group": "Excel",
+    "description": "<p>Allowed Tables (client, base_clients, groups, parts, autos, invoices, shippings, dismantings)</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "client_id",
+            "description": "<p>Client ID for Client</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "fields",
+            "description": "<p>Fields for pars Exm: id,status,name,..., auto.id,auto.status,lot_infos.vin_code,ship_infos.point_load_city</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/parser/{table}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Parser/ParserController.php",
+    "groupTitle": "Excel"
   }
 ] });

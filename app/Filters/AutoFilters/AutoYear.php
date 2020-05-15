@@ -7,10 +7,12 @@ use App\Filters\AbstractFilters;
 use Illuminate\Database\Eloquent\Builder;
 
 
-class ModelName extends AbstractFilters
+class AutoYear extends AbstractFilters
 {
     protected function applyFilter(Builder $builders)
     {
-        return $builders->where($this->filterName(), request($this->filterName()));
+        if(!is_null(request($this->filterName())))
+            return $builders->where('year', request($this->filterName()));
+        return $builders;
     }
 }

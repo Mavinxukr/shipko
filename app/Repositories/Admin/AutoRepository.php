@@ -82,9 +82,15 @@ class AutoRepository implements AutoContract
         if(!Client::whereId($request->client_id)->exists())
             return $this->toJson('Client not found',404, null);
 
-        $data = $request->except(['year','make_name','model_name','client_id']);
-        $auto  = Auto::create($request->only(['year','make_name','model_name','client_id', 'status']));
+        $data = $request->except(['year','make_name','model_name','client_id', 'offsite', 'offsite_price']);
+        $auto  = Auto::create($request->only(['year','make_name','model_name','client_id', 'status', 'offsite', 'offsite_price']));
         $this->updateOrCreateAction($data, $auto);
+
+        $document = $request->only('invoice_document');
+        $invoice = $this->updateOrCreateInvoice($request, $auto);
+        if (isset($document['invoice_document']))
+            $this->saveDocuments($invoice,$document['invoice_document'],'invoice');
+
 
         return $this->index();
         /*return $this->toJson('Auto created successfully',201,
@@ -94,11 +100,16 @@ class AutoRepository implements AutoContract
     public function update(Request $request, int $id)
     {
         $auto =  Auto::findOrFail($id);
-        $auto->update(array_filter($request->only(['year','make_name','model_name','client_id', 'status'])));
-        $data = array_filter($request->except(['year','make_name','model_name','client_id', 'status']), function ($value){
+        $auto->update(array_filter($request->only([
+            'year','make_name','model_name','client_id', 'status', 'offsite', 'offsite_price'
+        ]), function ($value){
+            return !is_null($value);
+        }));
+        $data = array_filter($request->except(['year','make_name','model_name','client_id', 'status', 'offsite', 'offsite_price']), function ($value){
             return !is_null($value);
         });
         $this->updateOrCreateAction($data, $auto);
+        $this->updateOrCreateInvoice($request, $auto);
         $auto = $auto->fresh();
 
         return $this->toJson('Auto updated successfully',200,

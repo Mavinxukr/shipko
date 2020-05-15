@@ -97,7 +97,7 @@ class PartRepository implements PartContract
         }
 
         return $this->toJson('Part images deleted successfully',200,
-            null);
+            new PartResource($part->fresh()));
     }
 
     public function restoreImage(Request $request, int $id)
@@ -108,6 +108,6 @@ class PartRepository implements PartContract
         }
 
         return $this->toJson('Part images restore successfully',200,
-            null);
+            new PartResource($part->fresh()));
     }
 }

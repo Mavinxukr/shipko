@@ -2,10 +2,18 @@
 
 namespace App\Http\Resources;
 
+use App\Traits\Service\ClientService\DueDayService;
 use Illuminate\Http\Resources\Json\Resource;
 
 class ClientResource extends Resource
 {
+    private $nesting;
+
+    public function __construct($resource, $nesting=true)
+    {
+        $this->nesting = $nesting;
+        parent::__construct($resource);
+    }
 
     public function toArray($request)
     {
@@ -15,6 +23,11 @@ class ClientResource extends Resource
         $address       =  $this->address->name ?? "";
 
         $full_address = $country . " " . $city . " " . $address . " " . $zip;
+
+        $dueDay = null;
+        if(!is_null($this->price) || !is_null($this->group) && !is_null($this->group->group->priceable)){
+            $dueDay = DueDayService::getFirst($this);
+        }
 
         return  [
             'id'                =>  $this->id,
@@ -31,7 +44,9 @@ class ClientResource extends Resource
             'date_register'     =>  $this->created_at->format('d.m.Y'),
             'full_address'      =>  $full_address,
             'new_notification'  =>  $this->notifications()->where('is_new', 1)->count(),
+            'price_id'          =>  !is_null($dueDay) ? $dueDay['price_id'] : null,
+            'due_day'           =>  !is_null($dueDay) ? $dueDay['pastDays'] : null,
+            'is_finish'         =>  !is_null($dueDay) ? $dueDay['finish'] : false,
             ];
     }
-
 }

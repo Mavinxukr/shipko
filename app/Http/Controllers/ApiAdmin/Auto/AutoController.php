@@ -59,6 +59,8 @@ class AutoController extends Controller
      * @apiParam {String} model_name Model name
      * @apiParam {Number} client_id Client id
      * @apiParam {String} status Status (new, not_approved, pending, delivered)
+     * @apiParam {Boolean} offsite Offsite (1- true, 0 - false)
+     * @apiParam {Number} offsite_price Offsite Price
      * @apiParam {Number} ship Ship block has or has not
      * @apiParam {String} tracking_id Tracking id
      * @apiParam {String} container_id Container id
@@ -91,6 +93,11 @@ class AutoController extends Controller
      * @apiParam {String} fuel Fuel
      * @apiParam {String} key Key
      * @apiParam {String} note Note
+     * @apiParam {Number} invoice Invoice block has or has not
+     * @apiParam {String} invoice_total_price Invoice Total Price
+     * @apiParam {String} invoice_paid_price Invoice Paid Price
+     * @apiParam {String} invoice_outstanding_price Invoice Outstanding Price
+     * @apiParam {String} invoice_status Invoice Status
      * @apiParam {Number} document Document block has or has not
      * @apiParam {Array} type Document type Exp : (auction_picture, warehouse_picture,container_picture <br>
      *                          car_fax_report , invoice, checklist_report , shipping_damage
@@ -196,6 +203,8 @@ class AutoController extends Controller
      * @apiParam {String} model_name Model name
      * @apiParam {Number} client_id Client id
      * @apiParam {String} status Status (new, not_approved, pending, delivered)
+     * @apiParam {Boolean} offsite Offsite (1- true, 0 - false)
+     * @apiParam {Number} offsite_price Offsite Price
      * @apiParam {Number} ship Ship block has or has not
      * @apiParam {String} tracking_id Tracking id
      * @apiParam {String} container_id Container id
@@ -228,6 +237,11 @@ class AutoController extends Controller
      * @apiParam {String} fuel Fuel
      * @apiParam {String} key Key
      * @apiParam {String} note Note
+     * @apiParam {Number} invoice Invoice block has or has not
+     * @apiParam {String} invoice_total_price Invoice Total Price
+     * @apiParam {String} invoice_paid_price Invoice Paid Price
+     * @apiParam {String} invoice_outstanding_price Invoice Outstanding Price
+     * @apiParam {String} invoice_status Invoice Status
      * @apiHeader  Authorization token
      * @apiSampleRequest  admin/update-auto/{id}
      */

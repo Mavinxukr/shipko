@@ -22,7 +22,8 @@ class CreateInvoiceDocumentsTable extends Migration
             $table->unsignedBigInteger('invoice_id');
             $table->foreign('invoice_id')
                 ->references('id')
-                ->on('invoices');
+                ->on('invoices')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
