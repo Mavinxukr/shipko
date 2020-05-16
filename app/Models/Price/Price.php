@@ -3,6 +3,7 @@
 namespace App\Models\Price;
 
 use App\Models\Client\City;
+use App\Models\Client\Country;
 use Illuminate\Database\Eloquent\Model;
 
 class Price extends Model
@@ -37,5 +38,10 @@ class Price extends Model
     public function cities()
     {
         return $this->belongsToMany(City::class, 'price_city');
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
     }
 }
