@@ -3139,6 +3139,13 @@ define({ "api": [
           },
           {
             "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "price",
+            "description": "<p>Price</p>"
+          },
+          {
+            "group": "Parameter",
             "type": "String",
             "optional": false,
             "field": "priceable_type",
@@ -3209,6 +3216,13 @@ define({ "api": [
             "optional": false,
             "field": "name",
             "description": "<p>Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "price",
+            "description": "<p>Price</p>"
           },
           {
             "group": "Parameter",

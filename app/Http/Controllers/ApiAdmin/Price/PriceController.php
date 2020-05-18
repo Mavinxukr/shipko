@@ -37,6 +37,7 @@ class PriceController extends Controller
      * @apiGroup Admin Prices Action
      * @apiPermission Authorization
      * @apiParam {String} name Name
+     * @apiParam {Integer} price Price
      * @apiParam {String} priceable_type  Attach Type (client, group)
      * @apiParam {String} priceable_id Client or Group ID
      * @apiParam {Integer} country_id Country ID
@@ -72,6 +73,7 @@ class PriceController extends Controller
      * @apiGroup Admin Prices Action
      * @apiPermission Authorization
      * @apiParam {String} name Name
+     * @apiParam {Integer} price Price
      * @apiParam {String} priceable_type  Attach Type (client, group)
      * @apiParam {String} priceable_id Client or Group ID
      * * @apiParam {Integer} country_id Country ID

@@ -10,7 +10,7 @@ class Price extends Model
 {
     protected $fillable = [
         'name', 'priceable_id',
-        'priceable_type', 'country_id',
+        'priceable_type', 'country_id', 'price'
     ];
 
     public static function morphMap($convert, $type)

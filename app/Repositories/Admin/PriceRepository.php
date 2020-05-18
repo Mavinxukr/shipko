@@ -58,7 +58,7 @@ class PriceRepository implements PriceContract
 
     public function update(Request $request, int $id)
     {
-        $data = array_filter($request->only('name', 'country_id'));
+        $data = array_filter($request->only('name', 'country_id', 'price'));
         try {
             if(!is_null($request->priceable_type) && !is_null($request->priceable_id)){
                 $data['priceable_id'] = $request->priceable_id;
