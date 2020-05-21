@@ -38,7 +38,7 @@ class GroupResource extends JsonResource
         return [
             'id'            => $this->id,
             'name'          => $this->name,
-            'price'         => $this->price,
+            'price'         => $this->priceable->cities,
             'clients'       => $clients,
             'price_id'      => !is_null($dueDay) ? $dueDay['price_id'] : null,
             'due_day'       => !is_null($dueDay) ? $dueDay['pastDays'] : null,
