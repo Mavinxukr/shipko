@@ -38,27 +38,29 @@ class PriceRepository implements PriceContract
 
     public function store(Request $request)
     {
-        $data = $request->except('priceable_type', 'dependency');
+        if(!is_null($request->dependency)){
+            $data = $request->except('priceable_type', 'dependency');
 
-        try {
-            $data['priceable_type'] = Price::morphMap('model', $request->priceable_type);
-        }catch (\Exception $e){
-            return $this->toJson($e->getMessage(), 400, null);
-        }
-
-        $price = Price::create($data);
-
-        $dependency = explode(';', $request->dependency);
-        $price->cities()->delete();
-        foreach ($dependency as $k => $item) {
-            $values = explode(',', $item);
-            foreach ($values as $value) {
-                $temp = explode('=', $value);
-                $params[$temp[0]] = $temp[1];
+            try {
+                $data['priceable_type'] = Price::morphMap('model', $request->priceable_type);
+            }catch (\Exception $e){
+                return $this->toJson($e->getMessage(), 400, null);
             }
-            $price->cities()->attach($params['c'], [
-                'price_value' => $params['p'],
-            ]);
+
+            $price = Price::create($data);
+
+
+            $dependency = explode(';', $request->dependency);
+            foreach ($dependency as $k => $item) {
+                $values = explode(',', $item);
+                foreach ($values as $value) {
+                    $temp = explode('=', $value);
+                    $params[$temp[0]] = $temp[1];
+                }
+                $price->cities()->attach($params['c'], [
+                    'price_value' => $params['p'],
+                ]);
+            }
         }
 
         return $this->index();
@@ -80,14 +82,14 @@ class PriceRepository implements PriceContract
 
         $price = Price::findOrFail($id);
         $price->update($data);
-        $dependency = explode(';', $request->dependency);
 
         if(!is_null($price->cities)){
             foreach ($price->cities as $city){
                 $price->cities()->detach($city->id);
             }
         }
-        if(!is_null($dependency)){
+        if(!is_null($request->dependency)){
+            $dependency = explode(';', $request->dependency);
             foreach ($dependency as $k => $item) {
                 $values = explode(',', $item);
                 foreach ($values as $value) {
