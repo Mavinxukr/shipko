@@ -82,21 +82,23 @@ class PriceRepository implements PriceContract
         $price->update($data);
         $dependency = explode(';', $request->dependency);
 
-        foreach ($price->cities as $city){
-            $price->cities()->detach($city->id);
-        }
-
-        foreach ($dependency as $k => $item) {
-            $values = explode(',', $item);
-            foreach ($values as $value) {
-                $temp = explode('=', $value);
-                $params[$temp[0]] = $temp[1];
+        if(!is_null($price->cities)){
+            foreach ($price->cities as $city){
+                $price->cities()->detach($city->id);
             }
-            $price->cities()->attach($params['c'], [
-                'price_value' => $params['p'],
-            ]);
         }
-
+        if(!is_null($dependency)){
+            foreach ($dependency as $k => $item) {
+                $values = explode(',', $item);
+                foreach ($values as $value) {
+                    $temp = explode('=', $value);
+                    $params[$temp[0]] = $temp[1];
+                }
+                $price->cities()->attach($params['c'], [
+                    'price_value' => $params['p'],
+                ]);
+            }
+        }
 
         return $this->toJson('Update Price successfully', 200,
             new PriceResource($price));
