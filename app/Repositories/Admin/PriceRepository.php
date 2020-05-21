@@ -81,7 +81,11 @@ class PriceRepository implements PriceContract
         $price = Price::findOrFail($id);
         $price->update($data);
         $dependency = explode(';', $request->dependency);
-        $price->cities()->delete();
+
+        foreach ($price->cities as $city){
+            $city->delete();
+        }
+
         foreach ($dependency as $k => $item) {
             $values = explode(',', $item);
             foreach ($values as $value) {
