@@ -27,13 +27,6 @@ class CreateCountriesTable extends Migration
                 ->on('countries')
                 ->onDelete('cascade');
         });
-
-        Schema::table('cities', function (Blueprint $table) {
-            $table->foreign('country_id')
-                ->references('id')
-                ->on('countries')
-                ->onDelete('cascade');
-        });
     }
 
     /**

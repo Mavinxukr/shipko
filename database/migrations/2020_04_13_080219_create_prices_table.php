@@ -16,16 +16,15 @@ class CreatePricesTable extends Migration
         Schema::create('prices', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->unsignedBigInteger('country_id');
             $table->unsignedBigInteger('priceable_id');
             $table->string('priceable_type');
-            $table->integer('price');
             $table->timestamps();
         });
 
         Schema::create('price_city', function (Blueprint $table){
             $table->unsignedBigInteger('price_id');
             $table->unsignedBigInteger('city_id');
+            $table->integer('price_value');
             $table->foreign('price_id')
                 ->references('id')
                 ->on('prices')

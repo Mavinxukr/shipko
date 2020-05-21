@@ -10,8 +10,16 @@ class Price extends Model
 {
     protected $fillable = [
         'name', 'priceable_id',
-        'priceable_type', 'country_id', 'price'
+        'priceable_type'
     ];
+
+    public $appends = [
+        'price_value'
+    ];
+
+    public function getValueAttribute(){
+        return $this->pivot->price_value;
+    }
 
     public static function morphMap($convert, $type)
     {
@@ -37,7 +45,7 @@ class Price extends Model
 
     public function cities()
     {
-        return $this->belongsToMany(City::class, 'price_city');
+        return $this->belongsToMany(City::class, 'price_city')->withPivot('price_value');
     }
 
     public function country()

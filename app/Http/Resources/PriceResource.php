@@ -27,7 +27,7 @@ class PriceResource extends JsonResource
             'priceable'         => $priceable,
             'price'             => $this->price,
             'country'           => $this->country()->select('id', 'name')->get(),
-            'cities'            => $this->cities()->select('id', 'name', 'price')->get(),
+            'cities'            => $this->cities()->select('id', 'name', 'state', 'price')->get(),
         ];
     }
 }

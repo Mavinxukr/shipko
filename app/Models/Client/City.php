@@ -23,11 +23,6 @@ use Illuminate\Database\Eloquent\Model;
 class City extends Model
 {
     protected  $fillable = [
-        'name', 'short_name', 'country_id'
+        'name', 'state'
     ];
-
-    public function country()
-    {
-        return $this->belongsTo(Country::class);
-    }
 }

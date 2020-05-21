@@ -3139,13 +3139,6 @@ define({ "api": [
           },
           {
             "group": "Parameter",
-            "type": "Integer",
-            "optional": false,
-            "field": "price",
-            "description": "<p>Price</p>"
-          },
-          {
-            "group": "Parameter",
             "type": "String",
             "optional": false,
             "field": "priceable_type",
@@ -3160,17 +3153,10 @@ define({ "api": [
           },
           {
             "group": "Parameter",
-            "type": "Integer",
-            "optional": false,
-            "field": "country_id",
-            "description": "<p>Country ID</p>"
-          },
-          {
-            "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "cities",
-            "description": "<p>Cities ID</p>"
+            "field": "dependency",
+            "description": "<p>Example: c=1,p=100;c=2,p=200 Where c - City ID, p - Price, delimiter by ;</p>"
           }
         ]
       }
@@ -3219,13 +3205,6 @@ define({ "api": [
           },
           {
             "group": "Parameter",
-            "type": "Integer",
-            "optional": false,
-            "field": "price",
-            "description": "<p>Price</p>"
-          },
-          {
-            "group": "Parameter",
             "type": "String",
             "optional": false,
             "field": "priceable_type",
@@ -3240,17 +3219,10 @@ define({ "api": [
           },
           {
             "group": "Parameter",
-            "type": "Integer",
-            "optional": false,
-            "field": "country_id",
-            "description": "<p>Country ID</p>"
-          },
-          {
-            "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "cities",
-            "description": "<p>Cities ID</p>"
+            "field": "dependency",
+            "description": "<p>Example: c=1,p=100;c=2,p=200 Where c - City ID, p - Price, delimiter by ;</p>"
           }
         ]
       }
