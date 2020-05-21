@@ -83,7 +83,7 @@ class PriceRepository implements PriceContract
         $dependency = explode(';', $request->dependency);
 
         foreach ($price->cities as $city){
-            $city->delete();
+            $price->cities()->detach($city->id);
         }
 
         foreach ($dependency as $k => $item) {
