@@ -37,11 +37,10 @@ class PriceController extends Controller
      * @apiGroup Admin Prices Action
      * @apiPermission Authorization
      * @apiParam {String} name Name
-     * @apiParam {Integer} price Price
      * @apiParam {String} priceable_type  Attach Type (client, group)
      * @apiParam {String} priceable_id Client or Group ID
-     * @apiParam {String} cities Cities ID
-     * @apiParam {Timestamp} due_day Day when mast pay
+     * @apiParam {String} dependency Example: c=1,p=100;c=2,p=200
+     * Where c - City ID, p - Price, delimiter by ;
      * @apiHeader  Authorization token
      * @apiSampleRequest  admin/store-price
      */
@@ -73,11 +72,10 @@ class PriceController extends Controller
      * @apiGroup Admin Prices Action
      * @apiPermission Authorization
      * @apiParam {String} name Name
-     * @apiParam {Integer} price Price
      * @apiParam {String} priceable_type  Attach Type (client, group)
      * @apiParam {String} priceable_id Client or Group ID
-     * @apiParam {String} cities Cities ID
-     * @apiParam {Timestamp} due_day Day when mast pay
+     * @apiParam {String} dependency Example: c=1,p=100;c=2,p=200
+     * Where c - City ID, p - Price, delimiter by ;
      * @apiHeader  Authorization token
      * @apiSampleRequest  admin/update-price/{id}
      */

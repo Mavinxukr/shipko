@@ -7,6 +7,7 @@ use App\Models\Auto\AutoNotes;
 use App\Models\Group\GroupAttach;
 use App\Models\Notification\Notification;
 use App\Models\Part\Part;
+use App\Models\Payment\Payment;
 use App\Models\Price\Price;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -119,5 +120,10 @@ class Client extends Authenticatable
     public function price()
     {
         return $this->morphOne(Price::class, 'priceable', 'priceable_type');
+    }
+
+    public function applicable()
+    {
+        return $this->morphOne(Payment::class, 'applicable', 'applicable_type');
     }
 }

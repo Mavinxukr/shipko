@@ -19,15 +19,17 @@ class PriceResource extends JsonResource
             new ClientResource($this->priceable, false) :
             new GroupResource($this->priceable, false);
 
+
+
         return [
             'id'                => $this->id,
             'name'              => $this->name,
-            'price'             => $this->price,
-            'due_day'           => $this->due_day->format('Y-m-d'),
             'priceable_type'    => Price::morphMap('type', $this->priceable_type),
             'priceable_id'      => $this->priceable_id,
             'priceable'         => $priceable,
-            'cities'            => $this->cities()->select('id', 'name')->get(),
+            'state'            => $this->cities()->select('id', 'name', 'state', 'price')->get(),
+            'cities'            => $this->cities()->select('id', 'name', 'state', 'price')->get(),
+            'price'            => $this->cities()->select('id', 'name', 'state', 'price')->get(),
         ];
     }
 }

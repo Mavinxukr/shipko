@@ -38,7 +38,6 @@ class GroupController extends Controller
      * @apiGroup Admin Groups Action
      * @apiPermission Authorization
      * @apiParam {String} name Name
-     * @apiParam {Integer} price Price
      * @apiParam {String} clients Clients ID Exm: 1,2,3,4,...
      * @apiHeader  Authorization token
      * @apiSampleRequest  admin/store-group
@@ -71,7 +70,6 @@ class GroupController extends Controller
      * @apiGroup Admin Groups Action
      * @apiPermission Authorization
      * @apiParam {String} name Name
-     * @apiParam {String} price Price
      * @apiParam {String} clients Clients ID Exm: 1,2,3,4,...
      * @apiHeader  Authorization token
      * @apiSampleRequest  admin/update-group/{id}

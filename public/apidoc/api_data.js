@@ -1929,13 +1929,6 @@ define({ "api": [
           },
           {
             "group": "Parameter",
-            "type": "Integer",
-            "optional": false,
-            "field": "price",
-            "description": "<p>Price</p>"
-          },
-          {
-            "group": "Parameter",
             "type": "String",
             "optional": false,
             "field": "clients",
@@ -1985,13 +1978,6 @@ define({ "api": [
             "optional": false,
             "field": "name",
             "description": "<p>Name</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "price",
-            "description": "<p>Price</p>"
           },
           {
             "group": "Parameter",
@@ -2807,6 +2793,234 @@ define({ "api": [
   },
   {
     "type": "delete",
+    "url": "admin/delete-payment/{id}",
+    "title": "Delete Payment",
+    "name": "Delete_Payment",
+    "version": "1.1.1",
+    "group": "Admin_Payments_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/delete-payment/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Payment/PaymentController.php",
+    "groupTitle": "Admin_Payments_Action"
+  },
+  {
+    "type": "get",
+    "url": "admin/get-payments",
+    "title": "Show All Payments",
+    "name": "Show_All_Payments",
+    "version": "1.1.1",
+    "group": "Admin_Payments_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/get-payments"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Payment/PaymentController.php",
+    "groupTitle": "Admin_Payments_Action"
+  },
+  {
+    "type": "get",
+    "url": "admin/get-payment/{id}",
+    "title": "Show Payment By Id",
+    "name": "Show_Payment_By_Id",
+    "version": "1.1.1",
+    "group": "Admin_Payments_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/get-payment/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Payment/PaymentController.php",
+    "groupTitle": "Admin_Payments_Action"
+  },
+  {
+    "type": "post",
+    "url": "admin/store-payment",
+    "title": "Store Payment",
+    "name": "Store_Payment",
+    "version": "1.1.1",
+    "group": "Admin_Payments_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "applicable_type",
+            "description": "<p>Attach Type (client, group)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "applicable_id",
+            "description": "<p>Client or Group ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Timestamp",
+            "optional": false,
+            "field": "due_day",
+            "description": "<p>Day when mast pay</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/store-payment"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Payment/PaymentController.php",
+    "groupTitle": "Admin_Payments_Action"
+  },
+  {
+    "type": "post",
+    "url": "admin/update-payment/{id}",
+    "title": "Update Payment",
+    "name": "Update_Payment",
+    "version": "1.1.1",
+    "group": "Admin_Payments_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name\\</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "applicable_type",
+            "description": "<p>Attach Type (client, group)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "applicable_id",
+            "description": "<p>Client or Group ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Timestamp",
+            "optional": false,
+            "field": "due_day",
+            "description": "<p>Day when mast pay</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/update-payment/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Payment/PaymentController.php",
+    "groupTitle": "Admin_Payments_Action"
+  },
+  {
+    "type": "delete",
     "url": "admin/delete-price/{id}",
     "title": "Delete Price",
     "name": "Delete_Price",
@@ -2925,13 +3139,6 @@ define({ "api": [
           },
           {
             "group": "Parameter",
-            "type": "Integer",
-            "optional": false,
-            "field": "price",
-            "description": "<p>Price</p>"
-          },
-          {
-            "group": "Parameter",
             "type": "String",
             "optional": false,
             "field": "priceable_type",
@@ -2948,15 +3155,8 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "cities",
-            "description": "<p>Cities ID</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Timestamp",
-            "optional": false,
-            "field": "due_day",
-            "description": "<p>Day when mast pay</p>"
+            "field": "dependency",
+            "description": "<p>Example: c=1,p=100;c=2,p=200 Where c - City ID, p - Price, delimiter by ;</p>"
           }
         ]
       }
@@ -3005,13 +3205,6 @@ define({ "api": [
           },
           {
             "group": "Parameter",
-            "type": "Integer",
-            "optional": false,
-            "field": "price",
-            "description": "<p>Price</p>"
-          },
-          {
-            "group": "Parameter",
             "type": "String",
             "optional": false,
             "field": "priceable_type",
@@ -3028,15 +3221,8 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "cities",
-            "description": "<p>Cities ID</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Timestamp",
-            "optional": false,
-            "field": "due_day",
-            "description": "<p>Day when mast pay</p>"
+            "field": "dependency",
+            "description": "<p>Example: c=1,p=100;c=2,p=200 Where c - City ID, p - Price, delimiter by ;</p>"
           }
         ]
       }

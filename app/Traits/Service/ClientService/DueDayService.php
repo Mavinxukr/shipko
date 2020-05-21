@@ -31,19 +31,19 @@ trait DueDayService
     public static function getFirst($client)
     {
         $price = null;
-        if(!is_null($client->price) && !is_null($client->group) && !is_null($client->group->group->priceable)){
-            $dueDay_client = $client->price;
-            $dueDay_group = $client->group->group->priceable;
+        if(!is_null($client->applicable) && !is_null($client->group) && !is_null($client->group->group->applicable)){
+            $dueDay_client = $client->applicable;
+            $dueDay_group = $client->group->group->applicable;
 
             if($dueDay_client->created_at < $dueDay_group->created_at){
                 $price = $dueDay_client;
             }else{
                 $price = $dueDay_group;
             }
-        }elseif(!is_null($client->price)){
-            $price = $client->price;
-        }elseif (!is_null($client->group) && !is_null($client->group->priceable)){
-            $price = $client->group->priceable;
+        }elseif(!is_null($client->applicable)){
+            $price = $client->applicable;
+        }elseif (!is_null($client->group) && !is_null($client->group->group->applicable)){
+            $price = $client->group->group->applicable;
         }
 
         return !is_null($price) ? self::dueDay($price) : null;

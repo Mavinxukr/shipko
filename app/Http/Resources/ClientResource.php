@@ -25,7 +25,7 @@ class ClientResource extends Resource
         $full_address = $country . " " . $city . " " . $address . " " . $zip;
 
         $dueDay = null;
-        if(!is_null($this->price) || !is_null($this->group) && !is_null($this->group->group->priceable)){
+        if(!is_null($this->applicable) || !is_null($this->group) && !is_null($this->group->group->applicable)){
             $dueDay = DueDayService::getFirst($this);
         }
 

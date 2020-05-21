@@ -11,13 +11,15 @@ class CitiesTableSeeder extends Seeder
      */
     public function run()
     {
-        $cities = [
-            ['name' => 'Dnepr'],
-            ['name' => 'Kiev'],
-            ['name' => 'London'],
-            ['name' => 'Paris'],
-        ];
+        $file = file(base_path("cities/cities.txt"),
+            FILE_IGNORE_NEW_LINES);
 
-        \App\Models\Client\City::insert($cities);
+        for ($i = 0; $i < count($file); $i = $i + 3){
+            \App\Models\Client\City::create([
+                'name'          => $file[$i],
+                'state'    => $file[$i+1],
+                'price'         => $file[$i+2],
+            ]);
+        }
     }
 }
