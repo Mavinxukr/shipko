@@ -8,6 +8,7 @@ use App\Models\Client\Client;
 use App\Models\Group\Group;
 use App\Models\Group\GroupAttach;
 use App\Traits\FormattedJsonResponse;
+use App\Traits\GetAdditional;
 use App\Traits\SortCollection;
 use Illuminate\Http\Request;
 
@@ -84,7 +85,6 @@ class GroupRepository implements GroupContract
 
     public function getAdditional()
     {
-        $data['clients'] = Client::all('id', 'name');
-        return $data;
+        return GetAdditional::get(['clients']);
     }
 }

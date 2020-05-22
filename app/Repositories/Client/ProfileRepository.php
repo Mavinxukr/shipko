@@ -7,6 +7,7 @@ use App\Facades\Clients\LocationFacade;
 use App\Http\Resources\ClientResource;
 use App\Models\Client\ClientImage;
 use App\Traits\FormattedJsonResponse;
+use App\Traits\GetAdditional;
 use App\Traits\Service\ClientService\FileService;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class ProfileRepository implements ProfileContract
     public function index(Request $request)
     {
         return $this->toJson('Client get by id successfully', 200,
-                new ClientResource($request->user()));
+            (new ClientResource($request->user()))->additional($this->getAdditional()));
     }
 
     public function update(Request $request)
@@ -51,5 +52,10 @@ class ProfileRepository implements ProfileContract
 
         return $this->toJson('Client updated successfully', 200,
             new ClientResource($client->fresh()));
+    }
+
+    public function getAdditional()
+    {
+        return GetAdditional::get(['cities', 'states']);
     }
 }

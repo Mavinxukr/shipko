@@ -10,6 +10,7 @@ use App\Models\Client\Country;
 use App\Models\Group\Group;
 use App\Models\Price\Price;
 use App\Traits\FormattedJsonResponse;
+use App\Traits\GetAdditional;
 use App\Traits\SortCollection;
 use Illuminate\Http\Request;
 
@@ -117,9 +118,6 @@ class PriceRepository implements PriceContract
 
     public function getAdditional()
     {
-        $data['clients'] = Client::orderByDesc('id')->get(['id', 'name']);
-        $data['groups'] = Group::orderByDesc('id')->get(['id', 'name']);
-        $data['cities'] = City::orderByDesc('id')->get(['id', 'name', 'state', 'price']);
-        return $data;
+        return GetAdditional::get(['clients', 'groups', 'cities']);
     }
 }

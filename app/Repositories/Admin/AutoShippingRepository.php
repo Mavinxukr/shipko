@@ -28,7 +28,8 @@ class AutoShippingRepository implements AutoShippingContract
             \request('order_type'),
             \request('order_by'));
 
-        return $this->toJson('Auto Shipping get all successfully',200,                   AutoResource::collection($autos)
+        return $this->toJson('Auto Shipping get all successfully',200,
+            AutoResource::collection($autos)
             ->additional($this->getFilters()), true);
     }
 

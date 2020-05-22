@@ -8,6 +8,7 @@ use App\Http\Resources\ClientResource;
 use App\Models\Client\Client;
 use App\Models\Client\ClientImage;
 use App\Traits\FormattedJsonResponse;
+use App\Traits\GetAdditional;
 use App\Traits\Service\ClientService\FileService;
 use App\Traits\SortCollection;
 use Illuminate\Database\Eloquent\Builder;
@@ -36,7 +37,7 @@ class ClientRepository implements ClientContract
             \request('order_type'),
             \request('order_by'));
 
-        return $this->toJson('Clients get all successfully', 200, ClientResource::collection($clients), true);
+        return $this->toJson('Clients get all successfully', 200, ClientResource::collection($clients)->additional($this->getAdditional()), true);
     }
 
     public function show(int $id)
@@ -96,5 +97,10 @@ class ClientRepository implements ClientContract
 
         return $this->index();
         /*return $this->toJson('Client deleted successfully', 200, null);*/
+    }
+
+    public function getAdditional()
+    {
+        return GetAdditional::get(['cities', 'states']);
     }
 }
