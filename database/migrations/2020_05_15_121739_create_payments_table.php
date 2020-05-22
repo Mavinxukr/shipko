@@ -18,7 +18,7 @@ class CreatePaymentsTable extends Migration
             $table->string('name');
             $table->unsignedBigInteger('applicable_id');
             $table->string('applicable_type');
-            $table->dateTime('due_day');
+            $table->integer('due_day');
             $table->timestamps();
         });
     }

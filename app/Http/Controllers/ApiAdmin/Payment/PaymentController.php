@@ -39,7 +39,7 @@ class PaymentController extends Controller
      * @apiParam {String} name Name
      * @apiParam {String} applicable_type  Attach Type (client, group)
      * @apiParam {String} applicable_id Client or Group ID
-     * @apiParam {Timestamp} due_day Day when mast pay
+     * @apiParam {Integer} due_day Days To Pay
      * @apiHeader  Authorization token
      * @apiSampleRequest  admin/store-payment
      */
@@ -70,10 +70,10 @@ class PaymentController extends Controller
      * @apiVersion 1.1.1
      * @apiGroup Admin Payments Action
      * @apiPermission Authorization
-     * @apiParam {String} name Name\
+     * @apiParam {String} name Name
      * @apiParam {String} applicable_type  Attach Type (client, group)
      * @apiParam {String} applicable_id Client or Group ID
-     * @apiParam {Timestamp} due_day Day when mast pay
+     * @apiParam {Integer} due_day Days To Pay
      * @apiHeader  Authorization token
      * @apiSampleRequest  admin/update-payment/{id}
      */
