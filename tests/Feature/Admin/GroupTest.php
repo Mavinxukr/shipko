@@ -25,7 +25,7 @@ class GroupTest extends TestCase implements TokenContract
             'price'     => 100,
             'clients'   => '1,2,3,4'
         ], ['Authorization' => $this->getToken()]);
-        $response->assertStatus(201);
+        $response->assertStatus(200);
     }
 
     /** @test */
