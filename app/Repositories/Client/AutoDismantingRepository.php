@@ -19,6 +19,9 @@ class AutoDismantingRepository implements AutoDismantingContract
     {
 
         $model = Auto::where('client_id', $request->user()->id)
+            ->whereHas('shipInfo', function (Builder $q){
+                $q->where('disassembly', 1);
+            })
             ->with('shipping')
             ->has('shipping');
 
