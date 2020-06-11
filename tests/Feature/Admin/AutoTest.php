@@ -32,6 +32,8 @@ class AutoTest extends TestCase
 
         $this->withoutExceptionHandling();
         $response = $this->post("$this->uri/store-auto",[
+            'year'                  => '2001',
+            'make_name'             => 'Mercedes',
             'model_name'            => 'Mercedes',
             'client_id'             => 1,
             'status'                => "new",
@@ -69,7 +71,7 @@ class AutoTest extends TestCase
             'note'                  => 'good car',
             'document'              => $document
         ], ['Authorization' => $this->getToken()]);
-        $response->assertStatus(201);
+        $response->assertStatus(200);
     }
 
     /** @test */
@@ -101,6 +103,8 @@ class AutoTest extends TestCase
         $auto_id = Auto::first()->value('id');
         $this->withoutExceptionHandling();
         $response = $this->post("$this->uri/update-auto/$auto_id",[
+            'year'                  => '2002',
+            'make_name'             => 'Mercedes',
             'model_name'            => 'Mercedes',
             'client_id'             => 1,
             'status'                => 'not_approved',

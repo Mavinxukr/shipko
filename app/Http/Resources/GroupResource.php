@@ -23,11 +23,6 @@ class GroupResource extends JsonResource
      */
     public function toArray($request)
     {
-        $dueDay = null;
-        if(!is_null($this->applicable)){
-            $dueDay = DueDayService::dueDay($this->applicable);
-        }
-
 
         $clients = null;
         if($this->nesting || $this->nesting === 0){
@@ -40,9 +35,7 @@ class GroupResource extends JsonResource
             'name'          => $this->name,
             'price'         => !is_null($this->priceable) ? $this->priceable->cities : null,
             'clients'       => $clients,
-            'price_id'      => !is_null($dueDay) ? $dueDay['price_id'] : null,
-            'due_day'       => !is_null($dueDay) ? $dueDay['pastDays'] : null,
-            'is_finish'     => !is_null($dueDay) ? $dueDay['finish'] : false,
+            'due_day'       => !is_null($this->applicable) ? $this->applicable->due_day : null
         ];
     }
 }

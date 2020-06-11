@@ -22,13 +22,13 @@ class ClientActionTest extends TestCase implements TokenContract
             'email'  => 'from_test_user_test@gmail.com',
             'password'  => bcrypt('111111'),
             'country'  => 'USA',
-            'city'  => 'Miami',
+            'city'  => 'ANAHEIM',
             'zip'  => '12345',
             'address'  => 'beach street 123',
             'card_number'  => '1234-1234-1234-1311',
             'image' => $file = UploadedFile::fake()->image('random.jpg')
         ], ['Authorization' => $this->getToken()]);
-        $response->assertStatus(201);
+        $response->assertStatus(200);
     }
 
     /** @test */
@@ -62,7 +62,7 @@ class ClientActionTest extends TestCase implements TokenContract
             'phone'  => '+3-8000-000-00-00',
             'email'  => 'from_test_user_test_update@gmail.com',
             'country'  => 'USA',
-            'city'  => 'Miami',
+            'city'  => 'ANAHEIM',
             'zip'  => '12345',
             'address'  => 'beach street 123',
             'card_number'  => '1234-1234-0000-1311',

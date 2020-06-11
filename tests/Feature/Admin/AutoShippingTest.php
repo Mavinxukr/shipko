@@ -31,7 +31,7 @@ class AutoShippingTest extends TestCase
         $response = $this->post("$this->uri/store-auto-shipping",[
             'auto_id'            => json_encode([Auto::first()->value('id')]),
         ], ['Authorization' => $this->getToken()]);
-        $response->assertStatus(201);
+        $response->assertStatus(200);
     }
 
     /** @test */
@@ -63,7 +63,7 @@ class AutoShippingTest extends TestCase
         $auto_id = Auto::first()->value('id');
         $this->withoutExceptionHandling();
         $response = $this->post("$this->uri/update-auto-shipping/$auto_id",[
-            'status'             => 'at_unloading',
+            'status'             => 'in_the_sea',
         ], ['Authorization' => $this->getToken()]);
         $response->assertStatus(200);
     }

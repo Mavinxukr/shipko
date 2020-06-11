@@ -4,11 +4,14 @@ namespace App\Repositories\Admin;
 
 use App\Contracts\ContractRepositories\Admin\PartContract;
 use App\Http\Resources\PartResource;
+use App\Models\Auto\Auto;
+use App\Models\Auto\LotInfo;
 use App\Models\Part\Part;
 use App\Models\Part\Photo;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\Service\ClientService\FileService;
 use App\Traits\SortCollection;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class PartRepository implements PartContract
@@ -20,7 +23,7 @@ class PartRepository implements PartContract
     public function __construct()
     {
         $catalog_numbers = Part::select('catalog_number')->distinct()->get();
-        $vin_numbers = Part::select('vin')->distinct()->get();
+        $vin_numbers = LotInfo::select('vin_code')->distinct()->get();
         $this->additional = [
             'catalog_numbers'   => $catalog_numbers,
             'vin_numbers'       => $vin_numbers,

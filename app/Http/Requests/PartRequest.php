@@ -28,7 +28,7 @@ class PartRequest extends FormRequest
             'catalog_number'    => 'required',
             'name'              => 'required',
             'auto'              => 'required',
-            'vin'               => 'required',
+            //'vin'               => 'required',
             'quality'           => 'required|numeric',
             'container'         => 'required',
             'image'             => 'nullable|array'

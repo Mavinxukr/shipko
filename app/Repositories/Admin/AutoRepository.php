@@ -9,6 +9,7 @@ use App\Models\Auto\Auto;
 use App\Models\Auto\ShipInfo;
 use App\Models\Client\Client;
 use App\Traits\FormattedJsonResponse;
+use App\Traits\GetAdditional;
 use App\Traits\Service\AutoService\AutoAction;
 use App\Traits\Service\AutoService\UploadDocuments;
 use App\Traits\SortCollection;
@@ -68,7 +69,7 @@ class AutoRepository implements AutoContract
             \request('order_by'));
 
         return $this->toJson('Autos get all successfully',200 ,
-            AutoResource::collection($autos), true);
+            AutoResource::collection($autos)->additional($this->getAdditional()), true);
     }
 
     public function show(int $id)
@@ -162,4 +163,9 @@ class AutoRepository implements AutoContract
         return $this->toJson('Auto document deleted successfully',200,
             new AutoResource($auto->fresh()));
     }
+    public function getAdditional()
+    {
+        return GetAdditional::get(['cities', 'states']);
+    }
+
 }

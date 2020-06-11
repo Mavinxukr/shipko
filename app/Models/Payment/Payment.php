@@ -12,10 +12,6 @@ class Payment extends Model
         'applicable_type', 'due_day'
     ];
 
-    protected $casts = [
-        'due_day' => 'datetime',
-    ];
-
     public static function morphMap($convert, $type)
     {
         $types = [

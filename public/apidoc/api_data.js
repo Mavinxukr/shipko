@@ -2925,10 +2925,10 @@ define({ "api": [
           },
           {
             "group": "Parameter",
-            "type": "Timestamp",
+            "type": "Integer",
             "optional": false,
             "field": "due_day",
-            "description": "<p>Day when mast pay</p>"
+            "description": "<p>Days To Pay</p>"
           }
         ]
       }
@@ -2973,7 +2973,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "name",
-            "description": "<p>Name\\</p>"
+            "description": "<p>Name</p>"
           },
           {
             "group": "Parameter",
@@ -2991,10 +2991,10 @@ define({ "api": [
           },
           {
             "group": "Parameter",
-            "type": "Timestamp",
+            "type": "Integer",
             "optional": false,
             "field": "due_day",
-            "description": "<p>Day when mast pay</p>"
+            "description": "<p>Days To Pay</p>"
           }
         ]
       }

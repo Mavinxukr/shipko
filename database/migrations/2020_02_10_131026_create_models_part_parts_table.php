@@ -19,7 +19,7 @@ class CreateModelsPartPartsTable extends Migration
             $table->string('catalog_number');
             $table->string('name');
             $table->string('auto');
-            $table->string('vin');
+            $table->string('vin')->nullable();
             $table->string('quality');
             $table->string('container');
             $table->text('comment')->nullable();
