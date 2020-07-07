@@ -47,7 +47,7 @@ class InvoiceTest extends TestCase
             'document'              => $document
         ], ['Authorization' => $this->getToken()]);
         $this->withoutExceptionHandling();
-        $response->assertStatus(201);
+        $response->assertStatus(200);
     }
 
     /** @test */

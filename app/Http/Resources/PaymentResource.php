@@ -24,7 +24,7 @@ class PaymentResource extends JsonResource
         return [
             'id'                => $this->id,
             'name'              => $this->name,
-            'due_day'           => $this->due_day->format('Y-m-d'),
+            'due_day'           => $this->due_day,
             'applicable_type'   => Payment::morphMap('type', $this->applicable_type),
             'applicable_id'     => $this->applicable_id,
             'applicable'        => $applicable,

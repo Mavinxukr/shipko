@@ -11,6 +11,7 @@ use App\Models\Group\Group;
 use App\Models\Payment\Payment;
 use App\Models\Price\Price;
 use App\Traits\FormattedJsonResponse;
+use App\Traits\GetAdditional;
 use App\Traits\SortCollection;
 use Illuminate\Http\Request;
 
@@ -86,8 +87,6 @@ class PaymentRepository implements PaymentContract
 
     public function getAdditional()
     {
-        $data['clients'] = Client::orderByDesc('id')->get(['id', 'name']);
-        $data['groups'] = Group::orderByDesc('id')->get(['id', 'name']);
-        return $data;
+        return GetAdditional::get(['clients', 'groups']);
     }
 }

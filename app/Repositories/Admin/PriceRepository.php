@@ -10,6 +10,7 @@ use App\Models\Client\Country;
 use App\Models\Group\Group;
 use App\Models\Price\Price;
 use App\Traits\FormattedJsonResponse;
+use App\Traits\GetAdditional;
 use App\Traits\SortCollection;
 use Illuminate\Http\Request;
 
@@ -38,27 +39,29 @@ class PriceRepository implements PriceContract
 
     public function store(Request $request)
     {
-        $data = $request->except('priceable_type', 'dependency');
+        if(!is_null($request->dependency)){
+            $data = $request->except('priceable_type', 'dependency');
 
-        try {
-            $data['priceable_type'] = Price::morphMap('model', $request->priceable_type);
-        }catch (\Exception $e){
-            return $this->toJson($e->getMessage(), 400, null);
-        }
-
-        $price = Price::create($data);
-
-        $dependency = explode(';', $request->dependency);
-        $price->cities()->delete();
-        foreach ($dependency as $k => $item) {
-            $values = explode(',', $item);
-            foreach ($values as $value) {
-                $temp = explode('=', $value);
-                $params[$temp[0]] = $temp[1];
+            try {
+                $data['priceable_type'] = Price::morphMap('model', $request->priceable_type);
+            }catch (\Exception $e){
+                return $this->toJson($e->getMessage(), 400, null);
             }
-            $price->cities()->attach($params['c'], [
-                'price_value' => $params['p'],
-            ]);
+
+            $price = Price::create($data);
+
+
+            $dependency = explode(';', $request->dependency);
+            foreach ($dependency as $k => $item) {
+                $values = explode(',', $item);
+                foreach ($values as $value) {
+                    $temp = explode('=', $value);
+                    $params[$temp[0]] = $temp[1];
+                }
+                $price->cities()->attach($params['c'], [
+                    'price_value' => $params['p'],
+                ]);
+            }
         }
 
         return $this->index();
@@ -80,23 +83,25 @@ class PriceRepository implements PriceContract
 
         $price = Price::findOrFail($id);
         $price->update($data);
-        $dependency = explode(';', $request->dependency);
 
-        foreach ($price->cities as $city){
-            $price->cities()->detach($city->id);
-        }
-
-        foreach ($dependency as $k => $item) {
-            $values = explode(',', $item);
-            foreach ($values as $value) {
-                $temp = explode('=', $value);
-                $params[$temp[0]] = $temp[1];
+        if(!is_null($price->cities)){
+            foreach ($price->cities as $city){
+                $price->cities()->detach($city->id);
             }
-            $price->cities()->attach($params['c'], [
-                'price_value' => $params['p'],
-            ]);
         }
-
+        if(!is_null($request->dependency)){
+            $dependency = explode(';', $request->dependency);
+            foreach ($dependency as $k => $item) {
+                $values = explode(',', $item);
+                foreach ($values as $value) {
+                    $temp = explode('=', $value);
+                    $params[$temp[0]] = $temp[1];
+                }
+                $price->cities()->attach($params['c'], [
+                    'price_value' => $params['p'],
+                ]);
+            }
+        }
 
         return $this->toJson('Update Price successfully', 200,
             new PriceResource($price));
@@ -113,9 +118,6 @@ class PriceRepository implements PriceContract
 
     public function getAdditional()
     {
-        $data['clients'] = Client::orderByDesc('id')->get(['id', 'name']);
-        $data['groups'] = Group::orderByDesc('id')->get(['id', 'name']);
-        $data['cities'] = City::orderByDesc('id')->get(['id', 'name', 'state', 'price']);
-        return $data;
+        return GetAdditional::get(['clients', 'groups', 'cities']);
     }
 }

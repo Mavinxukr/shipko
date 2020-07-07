@@ -5,6 +5,7 @@ namespace Tests\Feature\Admin;
 use App\Models\Client\Client;
 use App\Models\Group\Group;
 use App\Models\Part\Part;
+use App\Models\Payment\Payment;
 use App\Models\Price\Price;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -13,65 +14,65 @@ use Illuminate\Http\UploadedFile;
 use Tests\Feature\TokenContract\TokenContract;
 use Tests\TestCase;
 
-class PriceTest extends TestCase implements TokenContract
+class PaymentTest extends TestCase implements TokenContract
 {
     protected $uri =  'api-admin';
 
     /** @test */
 
-    public function create_price_test()
+    public function create_payment_test()
     {
         $this->withoutExceptionHandling();
-        $response = $this->post("$this->uri/store-price",[
-            'name'              => 'Test Price',
-            'priceable_type'    => 'group',
-            'priceable_id'      => 1,
-            'dependency'        => 'c=1,p=110;c=2,p=210',
+        $response = $this->post("$this->uri/store-payment",[
+            'name'               => 'Test Payment',
+            'applicable_type'    => 'group',
+            'applicable_id'      => 1,
+            'due_day'            => 10,
         ], ['Authorization' => $this->getToken()]);
         $response->assertStatus(200);
     }
 
     /** @test */
 
-    public function show_all_price_test()
+    public function show_all_payment_test()
     {
         $this->withoutExceptionHandling();
-        $response = $this->get("$this->uri/get-prices"
+        $response = $this->get("$this->uri/get-payments"
         , ['Authorization' => $this->getToken()]);
         $response->assertOk();
     }
 
     /** @test */
 
-    public function show_price_test()
+    public function show_payment_test()
     {
         $this->withoutExceptionHandling();
-        $price = Price::first()->value('id');
-        $response = $this->get("$this->uri/get-price/$price"
+        $price = Payment::first()->value('id');
+        $response = $this->get("$this->uri/get-payment/$price"
             , ['Authorization' => $this->getToken()]);
         $response->assertOk();
     }
 
     /** @test */
-    public function update_price_test()
+    public function update_payment_test()
     {
         $this->withoutExceptionHandling();
-        $price = Price::first()->value('id');
-        $response = $this->post("$this->uri/update-price/$price",[
-            'name'              => 'Test Group Update',
-            'priceable_type'    => 'client',
-            'priceable_id'      => Client::first()->value('id'),
-            'dependency'        => 'c=1,p=100;c=2,p=200',
+        $price = Payment::first()->value('id');
+        $response = $this->post("$this->uri/update-payment/$price",[
+            'name'               => 'Test Payment',
+            'applicable_type'    => 'client',
+            'applicable_id'      => 1,
+            'due_day'            => 11,
         ], ['Authorization' => $this->getToken()]);
         $response->assertOk();
     }
 
     /** @test */
-    public function delete_price_test()
+    public function delete_payment_test()
     {
         $this->withoutExceptionHandling();
-        $price = Price::first()->value('id');
-        $response = $this->delete("$this->uri/delete-price/$price",[
+        $price = Payment::first()->value('id');
+        $response = $this->delete("$this->uri/delete-payment/$price",[
         ], ['Authorization' => $this->getToken()]);
         $response->assertOk();
     }
