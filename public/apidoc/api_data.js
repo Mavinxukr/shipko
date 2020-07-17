@@ -408,6 +408,13 @@ define({ "api": [
           },
           {
             "group": "Parameter",
+            "type": "Date",
+            "optional": false,
+            "field": "purchased_date",
+            "description": "<p>Purchased Date</p>"
+          },
+          {
+            "group": "Parameter",
             "type": "Number",
             "optional": false,
             "field": "ship",
@@ -824,6 +831,13 @@ define({ "api": [
             "optional": false,
             "field": "offsite_price",
             "description": "<p>Offsite Price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date",
+            "optional": false,
+            "field": "purchased_date",
+            "description": "<p>Purchased Date</p>"
           },
           {
             "group": "Parameter",

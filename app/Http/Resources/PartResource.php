@@ -24,8 +24,11 @@ class PartResource extends JsonResource
             'quality'       => $this->quality,
             'container'     => $this->container,
             'comment'       => $this->comment,
-            'status'        => $this->status,
-            'images'        => PartImagesResource::collection($this->images)
+            'status'        => !is_null($this->lot) ? $this->lot->auto->status : 'new',
+            'delivery_date' => !is_null($this->lot) ?
+                $this->lot->auto->shipInfo->point_delivery_date : null,
+            'images'        => PartImagesResource::collection($this->images),
+
         ];
     }
 }

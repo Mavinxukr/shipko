@@ -15,7 +15,8 @@ class AutoTableTest extends Seeder
             'year'          => '2014',
             'make_name'     => 'Mercedes',
             'model_name'    => 'Mercedes',
-            'client_id'     => 1
+            'client_id'     => 1,
+            'purchased_date'=> \Carbon\Carbon::now()->format('Y-m-d'),
         ]);
     }
 }

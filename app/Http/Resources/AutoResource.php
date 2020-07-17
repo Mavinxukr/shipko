@@ -35,7 +35,7 @@ class AutoResource extends JsonResource
             'offsite_price' => $this->offsite_price,
             'client'        => new ClientResource($this->client, false),
             'status'        => $this->status,
-            'created_at'    => $this->created_at->format('d/m/Y'),
+            'created_at'    => $this->purchased_date->format('d/m/Y'),
             'ship_info'     => new AutoShipInfoResource($this->shipInfo),
             'sale_info'     => new AutoSaleInfoResource($this->saleInfo),
             'feature_info'  => new AutoFeatureInfoResource($this->featureInfo),

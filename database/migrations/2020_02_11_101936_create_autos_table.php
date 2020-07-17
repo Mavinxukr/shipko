@@ -23,6 +23,8 @@ class CreateAutosTable extends Migration
                     ->default('new');
             $table->boolean('offsite')->default(0);
             $table->integer('offsite_price')->nullable();
+            $table->string('auction')->nullable();
+            $table->date('purchased_date');
             $table->foreign('client_id')
                     ->references('id')
                     ->on('clients')

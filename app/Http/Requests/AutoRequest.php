@@ -27,6 +27,7 @@ class AutoRequest extends FormRequest
             'year' => 'required',
             'make_name' => 'required',
             'model_name' => 'required',
+            'purchased_date'    => 'required',
         ];
     }
 }

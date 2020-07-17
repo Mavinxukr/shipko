@@ -41,4 +41,9 @@ class LotInfo extends Model
         'highlight', 'pri_damage','sec_damage',
         'ret_value', 'vin_code','auto_id'
     ];
+
+    public function auto()
+    {
+        return $this->belongsTo(Auto::class);
+    }
 }

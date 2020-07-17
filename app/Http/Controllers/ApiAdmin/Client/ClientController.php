@@ -42,14 +42,11 @@ class ClientController extends Controller
      * @apiPermission Authorization
      * @apiParam {String} name Name
      * @apiParam {String} username Username
-     * @apiParam {String} phone Phone exp - +3-8000-000-00-00
+     * @apiParam {String} phone Phone
      * @apiParam {String} email Email
      * @apiParam {String} password Password
      * @apiParam {String} country Country
      * @apiParam {String} city City
-     * @apiParam {String} zip Zip
-     * @apiParam {String} address Address
-     * @apiParam {String} card_number Card number exp - 1234-1234-1234-1234
      * @apiParam {File} image Client image
      * @apiHeader  Authorization token
      * @apiSampleRequest  admin/store-client
@@ -83,14 +80,11 @@ class ClientController extends Controller
      * @apiPermission Authorization
      * @apiParam {String} name Name
      * @apiParam {String} username Username
-     * @apiParam {String} phone Phone exp - +3-8000-000-00-00
+     * @apiParam {String} phone Phone
      * @apiParam {String} email Email
      * @apiParam {String} password Password
      * @apiParam {String} country Country
      * @apiParam {String} city City
-     * @apiParam {String} zip Zip
-     * @apiParam {String} address Address
-     * @apiParam {String} card_number Card number exp - 1234-1234-1234-1234
      * @apiParam {File} image Client image
      * @apiHeader  Authorization token
      * @apiSampleRequest  admin/update-client/{id}

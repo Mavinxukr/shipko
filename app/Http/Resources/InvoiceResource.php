@@ -25,6 +25,20 @@ class InvoiceResource extends JsonResource
             $outstandingPrice = $this->outstanding_price;
         }
 
+        if($this->auto->auction){
+            $totalShippingPrice = $this->total_shipping_price + 50;
+        }else{
+            $totalShippingPrice = $this->total_shipping_price;
+        }
+
+        $due_day = $this->due_day->diff(Carbon::now());
+
+        if($due_day->h > 0){
+            $due_day = $due_day->d + 1;
+        }else{
+            $due_day = $due_day->d;
+        }
+
         return [
             'id'                        => $this->id,
             'name_car'                  => $this->name_car,
@@ -36,12 +50,13 @@ class InvoiceResource extends JsonResource
             'total_price'               => $totalPrice,
             'paid_price'                => $this->paid_price,
             'outstanding_price'         => $outstandingPrice,
-            'total_shipping_price'      => $this->total_shipping_price,
+            'total_shipping_price'      => $totalShippingPrice,
             'paid_shipping_price'       => $this->paid_shipping_price,
             'outstanding_shipping_price'=> $this->outstanding_shipping_price,
             //'status'                    => $this->status,
             'status_shipping'           => $this->status_shipping,
-            'date'                      => $this->created_at->format('d/m/Y'),
+            'date'                      => $this->auto->purchased_date->format('d/m/Y'),
+            'due_day'                   => $due_day,
             'documents'                 => DocumentResource::collection($this->documents),
         ];
     }

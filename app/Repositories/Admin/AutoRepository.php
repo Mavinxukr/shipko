@@ -11,6 +11,7 @@ use App\Models\Client\Client;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\GetAdditional;
 use App\Traits\Service\AutoService\AutoAction;
+use App\Traits\Service\AutoService\AutoFilterCollection;
 use App\Traits\Service\AutoService\UploadDocuments;
 use App\Traits\SortCollection;
 use Illuminate\Database\Eloquent\Builder;
@@ -18,7 +19,7 @@ use Illuminate\Http\Request;
 
 class AutoRepository implements AutoContract
 {
-    use FormattedJsonResponse, UploadDocuments, AutoAction, SortCollection;
+    use FormattedJsonResponse, UploadDocuments, AutoAction, SortCollection, AutoFilterCollection;
 
     public function autoByContainer(Request $request)
     {
@@ -41,27 +42,15 @@ class AutoRepository implements AutoContract
 
     public function index()
     {
-        $search = \request('search');
         $status = \request('auto_status');
-        $client = \request('client');
 
         $model = Auto::query();
-
-        if(!is_null($search)){
-            $model->whereHas('lotInfo', function (Builder $query) use($search){
-                $query->where('vin_code', 'like', "%$search%" );
-            });
-        }
-
-        if(!is_null($client)){
-            $model->whereHas('client', function (Builder $query) use($client){
-               $query->where('id', $client);
-            });
-        }
 
         if(!is_null($status)){
             $model->where('status', $status);
         }
+
+        $model = $this->getAutoWithFilter($model);
 
         $autos = $this->getWithSort($model,
             \request('countpage'),
@@ -69,7 +58,7 @@ class AutoRepository implements AutoContract
             \request('order_by'));
 
         return $this->toJson('Autos get all successfully',200 ,
-            AutoResource::collection($autos)->additional($this->getAdditional()), true);
+            AutoResource::collection($autos)->additional(array_merge($this->getAdditional(), $this->getFilters())), true);
     }
 
     public function show(int $id)
@@ -165,7 +154,7 @@ class AutoRepository implements AutoContract
     }
     public function getAdditional()
     {
-        return GetAdditional::get(['cities', 'states']);
+        return GetAdditional::get(['cities', 'states', 'clients']);
     }
 
 }

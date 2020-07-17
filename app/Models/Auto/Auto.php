@@ -39,6 +39,11 @@ class Auto extends Model
     protected $fillable = [
         'year','make_name','model_name',
         'client_id', 'status', 'offsite', 'offsite_price',
+        'purchased_date', 'auction',
+    ];
+
+    protected $casts = [
+        'purchased_date' => 'date'
     ];
 
     public function shipInfo()

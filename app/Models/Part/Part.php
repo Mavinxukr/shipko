@@ -2,6 +2,8 @@
 
 namespace App\Models\Part;
 
+use App\Models\Auto\Auto;
+use App\Models\Auto\LotInfo;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -40,12 +42,22 @@ class Part extends Model
 {
     protected $fillable = [
         'client_id','catalog_number',
-        'name','auto','vin','quality',
-        'container', 'comment', 'status',
+        'name','auto','quality',
+        'container', 'auto_id'
     ];
 
     public function images()
     {
         return $this->hasMany(Photo::class,'part_id');
+    }
+
+    public function lot()
+    {
+        return $this->belongsTo(LotInfo::class, 'vin', 'vin_code');
+    }
+
+    public function getAuto()
+    {
+        return $this->belongsTo(Auto::class);
     }
 }
