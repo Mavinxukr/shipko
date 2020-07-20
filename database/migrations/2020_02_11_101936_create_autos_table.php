@@ -19,8 +19,8 @@ class CreateAutosTable extends Migration
             $table->string('make_name');
             $table->string('model_name');
             $table->unsignedBigInteger('client_id');
-            $table->enum('status', ['new', 'not_approved', 'pending', 'delivered'])
-                    ->default('new');
+            $table->enum('status', ['dispatched', 'title_delay', 'ready_to_load', 'loaded', 'shipped', 'delivered'])
+                    ->default('dispatched');
             $table->boolean('offsite')->default(0);
             $table->integer('offsite_price')->nullable();
             $table->string('auction')->nullable();
