@@ -72,7 +72,7 @@ class AutoRepository implements AutoContract
         if(!Client::whereId($request->client_id)->exists())
             return $this->toJson('Client not found',404, null);
 
-        $data = $request->except(['year','make_name','model_name','client_id', 'offsite', 'offsite_price']);
+        $data = $request->except(['year','make_name','model_name','client_id', 'offsite', 'offsite_price', 'purchased_date']);
         $auto  = Auto::create($request->only(['year','make_name','model_name','client_id', 'status', 'offsite', 'offsite_price']));
         $this->updateOrCreateAction($data, $auto);
 
@@ -91,7 +91,7 @@ class AutoRepository implements AutoContract
     {
         $auto =  Auto::findOrFail($id);
         $auto->update(array_filter($request->only([
-            'year','make_name','model_name','client_id', 'status', 'offsite', 'offsite_price'
+            'year','make_name','model_name','client_id', 'status', 'offsite', 'offsite_price', 'purchased_date'
         ]), function ($value){
             return !is_null($value);
         }));
