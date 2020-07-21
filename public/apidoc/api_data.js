@@ -394,6 +394,13 @@ define({ "api": [
           },
           {
             "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "auction",
+            "description": "<p>Auction</p>"
+          },
+          {
+            "group": "Parameter",
             "type": "Boolean",
             "optional": false,
             "field": "offsite",
@@ -817,6 +824,13 @@ define({ "api": [
             "optional": false,
             "field": "status",
             "description": "<p>Status (new, not_approved, pending, delivered)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "auction",
+            "description": "<p>Auction</p>"
           },
           {
             "group": "Parameter",
@@ -1562,7 +1576,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "phone",
-            "description": "<p>Phone exp - +3-8000-000-00-00</p>"
+            "description": "<p>Phone</p>"
           },
           {
             "group": "Parameter",
@@ -1591,27 +1605,6 @@ define({ "api": [
             "optional": false,
             "field": "city",
             "description": "<p>City</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "zip",
-            "description": "<p>Zip</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "address",
-            "description": "<p>Address</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "card_number",
-            "description": "<p>Card number exp - 1234-1234-1234-1234</p>"
           },
           {
             "group": "Parameter",
@@ -1677,7 +1670,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "phone",
-            "description": "<p>Phone exp - +3-8000-000-00-00</p>"
+            "description": "<p>Phone</p>"
           },
           {
             "group": "Parameter",
@@ -1706,27 +1699,6 @@ define({ "api": [
             "optional": false,
             "field": "city",
             "description": "<p>City</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "zip",
-            "description": "<p>Zip</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "address",
-            "description": "<p>Address</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "card_number",
-            "description": "<p>Card number exp - 1234-1234-1234-1234</p>"
           },
           {
             "group": "Parameter",
