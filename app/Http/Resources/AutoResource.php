@@ -33,6 +33,7 @@ class AutoResource extends JsonResource
             'model_name'    => $this->model_name,
             'offsite'       => $this->offsite,
             'offsite_price' => $this->offsite_price,
+            'auction'       => $this->auction,
             'client'        => new ClientResource($this->client, false),
             'status'        => $this->status,
             'created_at'    => $this->purchased_date->format('d/m/Y'),
