@@ -39,7 +39,7 @@ class Auto extends Model
     protected $fillable = [
         'year','make_name','model_name',
         'client_id', 'status', 'offsite', 'offsite_price',
-        'purchased_date', 'auction',
+        'purchased_date', 'auction', 'container_id'
     ];
 
     protected $casts = [
@@ -88,5 +88,10 @@ class Auto extends Model
     public function notes()
     {
         return $this->hasMany(AutoNotes::class);
+    }
+
+    public function container()
+    {
+        return $this->belongsTo(Container::class, 'container_id', 'id');
     }
 }

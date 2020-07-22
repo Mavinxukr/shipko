@@ -4,11 +4,13 @@ namespace App\Repositories\Client;
 
 use App\Contracts\ContractRepositories\Client\PartContract;
 use App\Http\Resources\PartResource;
+use App\Models\Auto\Auto;
 use App\Models\Part\Part;
 use App\Models\Part\Photo;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\Service\ClientService\FileService;
 use App\Traits\SortCollection;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class PartRepository implements PartContract
@@ -53,7 +55,20 @@ class PartRepository implements PartContract
 
     public function store(Request $request)
     {
-        $part = Part::create($request->except('client_id') + ['client_id' => $request->user()->id]);
+        $auto = null;
+        if(!is_null($request->vin)){
+            $auto = Auto::whereHas('lotInfo', function (Builder $q) use ($request){
+                return $q->where('vin_code', $request->vin);
+            })->first();
+
+            if(!$auto)
+                throw new \Exception('Vin code not find', 404);
+        }
+
+        $part = Part::create($request->except('client_id') + [
+            'client_id' => $request->user()->id,
+                'auto_id' => !is_null($auto) ? $auto->id : null
+            ]);
         if (!empty($request->image)){
             foreach ($request->image as $image){
                 $this->imageCreator($part,'part', new Photo, $image);

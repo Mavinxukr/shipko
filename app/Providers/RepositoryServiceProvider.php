@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 
+
 use App\Contracts\ContractRepositories\Admin\GroupContract;
 use App\Contracts\ContractRepositories\Admin\ParserContract;
 use App\Contracts\ContractRepositories\Admin\PaymentContract;
@@ -12,6 +13,7 @@ use App\Repositories\Admin\ParserRepository;
 use App\Repositories\Admin\PaymentRepository;
 use App\Repositories\Admin\PriceRepository;
 use Illuminate\Support\ServiceProvider;
+
 //Admin
 use App\Contracts\ContractRepositories\Admin\AutoContract as AdminAutoContract;
 use App\Contracts\ContractRepositories\Admin\AutoDismantingContract;
@@ -31,6 +33,8 @@ use App\Repositories\Admin\InvoiceRepository;
 use App\Repositories\Admin\PartRepository as AdminPartRepository;
 use App\Contracts\ContratRepositories\Admin\AutoNoteContract as AdminAutoNoteContract;
 use App\Repositories\Admin\AutoNoteRepository as AdminAutoNoteRepository;
+use App\Contracts\ContractRepositories\Admin\ContainerContract;
+use App\Repositories\Admin\ContainerRepository;
 
 
 //Client
@@ -89,6 +93,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(PriceContract::class, PriceRepository::class);
         $this->app->bind(PaymentContract::class, PaymentRepository::class);
         $this->app->bind(ParserContract::class, ParserRepository::class);
+        $this->app->bind(ContainerContract::class, ContainerRepository::class);
 
 
         //Client

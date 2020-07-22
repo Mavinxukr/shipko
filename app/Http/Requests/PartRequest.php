@@ -29,7 +29,6 @@ class PartRequest extends FormRequest
             'name'              => 'required',
             'auto'              => 'required',
             'quality'           => 'required|numeric',
-            'container'         => 'required',
             'image'             => 'nullable|array'
         ];
     }

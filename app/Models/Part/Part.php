@@ -42,8 +42,7 @@ class Part extends Model
 {
     protected $fillable = [
         'client_id','catalog_number',
-        'name','auto','quality',
-        'container', 'auto_id'
+        'name','auto','quality', 'auto_id'
     ];
 
     public function images()
@@ -58,6 +57,6 @@ class Part extends Model
 
     public function getAuto()
     {
-        return $this->belongsTo(Auto::class);
+        return $this->belongsTo(Auto::class, 'auto_id', 'id');
     }
 }

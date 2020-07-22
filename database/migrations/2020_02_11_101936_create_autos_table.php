@@ -25,6 +25,7 @@ class CreateAutosTable extends Migration
             $table->integer('offsite_price')->nullable();
             $table->string('auction')->nullable();
             $table->date('purchased_date');
+            $table->unsignedBigInteger('container_id')->nullable();
             $table->foreign('client_id')
                     ->references('id')
                     ->on('clients')

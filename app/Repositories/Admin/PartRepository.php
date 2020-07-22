@@ -65,17 +65,20 @@ class PartRepository implements PartContract
 
     public function store(Request $request)
     {
-
+        $auto = null;
         if(!is_null($request->vin)){
             $auto = Auto::whereHas('lotInfo', function (Builder $q) use ($request){
                 return $q->where('vin_code', $request->vin);
-            })->count();
+            })->first();
 
             if(!$auto)
                 throw new \Exception('Vin code not find', 404);
         }
 
-        $part = Part::create($request->all());
+        $part = Part::create($request->all() + [
+            'auto_id' => !is_null($auto) ? $auto->id : null
+            ]);
+
         if (!empty($request->image)){
             foreach ($request->image as $image){
                 $this->imageCreator($part,'part', new Photo, $image);

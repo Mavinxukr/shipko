@@ -21,7 +21,6 @@ class CreateModelsPartPartsTable extends Migration
             $table->string('auto');
             $table->unsignedBigInteger('auto_id')->nullable();
             $table->string('quality');
-            $table->string('container');
             $table->timestamps();
         });
     }

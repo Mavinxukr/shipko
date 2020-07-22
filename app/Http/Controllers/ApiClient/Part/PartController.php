@@ -27,7 +27,6 @@ class PartController extends Controller
      * @apiParam {String} auto Auto
      * @apiParam {String} vin Vin
      * @apiParam {Number} quality Quality
-     * @apiParam {String} container Container
      * @apiParam {String} comment Comment
      * @apiParam {File} image Client images  exp  - image[0],image[1]
      * @apiHeader  Authorization token
@@ -80,7 +79,6 @@ class PartController extends Controller
      * @apiParam {String} auto Auto
      * @apiParam {String} vin Vin
      * @apiParam {Number} quality Quality
-     * @apiParam {String} container Container
      * @apiParam {String} comment Comment
      * @apiHeader  Authorization token
      * @apiSampleRequest  client/update-part/{id}
