@@ -18,14 +18,11 @@ class ClientActionTest extends TestCase implements TokenContract
         $response = $this->post("$this->uri/store-client",[
             'name'     => 'from_test_user_test',
             'username'  => 'from_test_user_test',
-            'phone'  => '+3-8000-000-00-00',
+            'phone'  => '+3800000000',
             'email'  => 'from_test_user_test@gmail.com',
-            'password'  => bcrypt('111111'),
+            'password'  => bcrypt('11111111'),
             'country'  => 'USA',
             'city'  => 'ANAHEIM',
-            'zip'  => '12345',
-            'address'  => 'beach street 123',
-            'card_number'  => '1234-1234-1234-1311',
             'image' => $file = UploadedFile::fake()->image('random.jpg')
         ], ['Authorization' => $this->getToken()]);
         $response->assertStatus(200);
@@ -63,9 +60,6 @@ class ClientActionTest extends TestCase implements TokenContract
             'email'  => 'from_test_user_test_update@gmail.com',
             'country'  => 'USA',
             'city'  => 'ANAHEIM',
-            'zip'  => '12345',
-            'address'  => 'beach street 123',
-            'card_number'  => '1234-1234-0000-1311',
         ], ['Authorization' => $this->getToken()]);
         $this->withoutExceptionHandling();
         $response->assertOk();

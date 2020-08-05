@@ -48,7 +48,7 @@ class ClientRepository implements ClientContract
     public function store(Request $request)
     {
         $client = Client::create($request->only(
-            ['name','username','phone','email','card_number']) +
+            ['name','username','phone','email']) +
             ['password'      => bcrypt($request->password)]);
         $location = LocationFacade::resultCreator($request->only(
             ['country','city','zip','address']));
@@ -67,7 +67,7 @@ class ClientRepository implements ClientContract
         $client = Client::findOrFail($id);
         $location =  LocationFacade::resultCreator($request->only(['country','city','zip','address']));
         $client->update(
-            array_filter($request->only(['name','phone','username','email','card_number'])) +
+            array_filter($request->only(['name','phone','username','email'])) +
             $location);
         $client->save();
 
@@ -91,7 +91,8 @@ class ClientRepository implements ClientContract
     public function destroy(int $id)
     {
         $client =  Client::findOrFail($id);
-        $this->imageDeleter($client->image);
+        if (!is_null($client->image))
+            $this->imageDeleter($client->image);
         $this->folderDeleter('client');
         $client->delete();
 

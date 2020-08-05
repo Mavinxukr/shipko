@@ -26,8 +26,8 @@ class ClientActionTest extends TestCase
         $response = $this->post("/$this->uri/register", [
             'name' => 'test_client',
             'email' => 'test_client@gmail.com',
-            'password' => '111111',
-            'password_confirmation' => '111111'
+            'password' => '11111111',
+            'password_confirmation' => '11111111'
         ]);
         $response->assertOk();
     }

@@ -20,13 +20,12 @@ class PartTest extends TestCase implements TokenContract
     {
         $this->withoutExceptionHandling();
         $response = $this->post("$this->uri/store-part",[
-            'client_id'         => '12345',
+            'client_id'         => '1',
             'catalog_number'    => 'new12344_99',
             'name'              => 'hello_test',
             'auto'              => 'VW',
-            'vin'               => '74749393',
+            'status'            => 'new',
             'quality'           => '12',
-            'container'         => '#23232',
             'image'             => [UploadedFile::fake()->image('random.jpg')]
         ], ['Authorization' => $this->getToken()]);
         $response->assertOk();
@@ -59,13 +58,12 @@ class PartTest extends TestCase implements TokenContract
         $this->withoutExceptionHandling();
         $part = Part::first()->value('id');
         $response = $this->post("$this->uri/update-part/$part",[
-            'client_id'             => '12345',
-            'catalog_number'        => 'new12344_99',
-            'name'                  => 'hello_test',
-            'auto'                  => 'VW',
-            'vin'                   => '74749393',
-            'quality'               => 12,
-            'container'             => '#23232',
+            'client_id'         => '1',
+            'catalog_number'    => 'new12344_99',
+            'name'              => 'hello_test',
+            'auto'              => 'VW',
+            'status'            => 'new',
+            'quality'           => '12',
         ], ['Authorization' => $this->getToken()]);
         $response->assertOk();
     }

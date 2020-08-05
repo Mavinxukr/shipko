@@ -3,8 +3,6 @@
 namespace Tests\Feature\Client;
 
 use App\Models\Auto\Auto;
-use App\Models\Client\Client;
-use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 
 class AutoTest extends TestCase

@@ -27,7 +27,7 @@ class InvoiceTest extends TestCase
 
     /** @test */
 
-    public function create_invoice_test()
+    /*public function create_invoice_test()
     {
         $auto_id = Auto::first()->value('id');
         $document = [];
@@ -48,7 +48,7 @@ class InvoiceTest extends TestCase
         ], ['Authorization' => $this->getToken()]);
         $this->withoutExceptionHandling();
         $response->assertStatus(200);
-    }
+    }*/
 
     /** @test */
 
@@ -64,19 +64,19 @@ class InvoiceTest extends TestCase
 
     /** @test */
 
-    public function get_invoice_by_id_test()
+    /*public function get_invoice_by_id_test()
     {
         $invoice_id = Invoice::first()->value('id');
         $this->withoutExceptionHandling();
         $response = $this->get("$this->uri/get-invoice/$invoice_id",
             ['Authorization' => $this->getToken()]);
         $response->assertOk();
-    }
+    }*/
 
 
 
     /** @test */
-    public function update_invoice_test()
+    /*public function update_invoice_test()
     {
         $auto_id = Auto::first()->value('id');
         $invoice_id = Invoice::first()->value('id');
@@ -94,11 +94,11 @@ class InvoiceTest extends TestCase
             'status_shipping'       => 'unpaid',
         ], ['Authorization' => $this->getToken()]);
         $response->assertStatus(200);
-    }
+    }*/
 
     /** @test */
 
-    public function restore_invoice_document_test()
+    /*public function restore_invoice_document_test()
     {
         $document = [];
         $document[0]['type'] = 'auction';
@@ -113,10 +113,10 @@ class InvoiceTest extends TestCase
             ['Authorization' => $this->getToken()]);
         $response->assertOk();
 
-    }
+    }*/
 
     /** @test */
-    public function delete_invoice_document_test()
+    /*public function delete_invoice_document_test()
     {
         $invoice = Invoice::first();
         $documents =  implode(',',$invoice->documents()->take(5)->pluck('id')->toArray());
@@ -126,11 +126,11 @@ class InvoiceTest extends TestCase
         ],
             ['Authorization' => $this->getToken()]);
         $response->assertOk();
-    }
+    }*/
 
 
     /** @test */
-    public function delete_invoice_test()
+    /*public function delete_invoice_test()
     {
         $this->withoutExceptionHandling();
         $invoice_id = Invoice::first()->value('id');
@@ -138,5 +138,5 @@ class InvoiceTest extends TestCase
         ], ['Authorization' => $this->getToken()]);
         $response->assertOk();
 
-    }
+    }*/
 }
