@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Admin;
+namespace Tests\Feature\Admin\Tests;
 
 use App\Models\Auto\Auto;
 use App\Models\Client\Client;
@@ -8,23 +8,11 @@ use App\Models\Invoice\Invoice;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
+use Tests\Feature\Admin\AdminCase;
 use Tests\TestCase;
 
-class InvoiceTest extends TestCase
+class InvoiceTest extends AdminCase
 {
-    protected $uri =  'api-admin';
-
-    public function getToken(): string
-    {
-        $user =  [
-            'email'     => 'admin@gmail.com',
-            'password'  => '111111'
-        ];
-        $responseLogin = $this->post("$this->uri/login",
-            $user)->decodeResponseJson();
-        return $responseLogin['data']['data']['auth']['token'];
-    }
-
     /** @test */
 
     /*public function create_invoice_test()

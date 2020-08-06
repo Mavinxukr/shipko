@@ -1,14 +1,11 @@
 <?php
 
-namespace Tests\Feature\Client;
+namespace Tests\Feature\Client\Tests;
 
-use Tests\Feature\TokenContract\TokenContract;
-use Tests\TestCase;
+use Tests\Feature\Client\ClientCase;
 
-class ProfileTest extends TestCase implements TokenContract
+class ProfileTest extends ClientCase
 {
-    protected $uri =  'api-client';
-
     /** @test */
 
     public function get_profile()
@@ -16,6 +13,7 @@ class ProfileTest extends TestCase implements TokenContract
         $this->withoutExceptionHandling();
         $response = $this->get("$this->uri/get-profile",
             ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
     }
 
@@ -49,21 +47,7 @@ class ProfileTest extends TestCase implements TokenContract
             'password'              => '111111',
             'password_confirmation' => '111111',
         ], ['Authorization' => $token]);
-
         $this->withoutExceptionHandling();
         $response->assertOk();
-
-    }
-
-    public function getToken() :string
-    {
-        $user =  [
-            'email'     => 'client12@gmail.com',
-            'password'  => '111111'
-        ];
-        $responseLogin = $this->post("$this->uri/login",
-            $user)->decodeResponseJson();
-        $token = $responseLogin['data']['data']['auth']['token'];
-        return $token;
     }
 }

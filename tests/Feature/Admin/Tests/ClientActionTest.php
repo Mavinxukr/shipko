@@ -1,20 +1,19 @@
 <?php
 
-namespace Tests\Feature\Admin;
+namespace Tests\Feature\Admin\Tests;
 
 use App\Models\Client\Client;
 use Illuminate\Http\UploadedFile;
+use Tests\Feature\Admin\AdminCase;
 use Tests\Feature\TokenContract\TokenContract;
 use Tests\TestCase;
 
-class ClientActionTest extends TestCase implements TokenContract
+class ClientActionTest extends AdminCase
 {
-    protected $uri =  'api-admin';
     /** @test */
 
     public function store_client_test()
     {
-        $this->withoutExceptionHandling();
         $response = $this->post("$this->uri/store-client",[
             'name'     => 'from_test_user_test',
             'username'  => 'from_test_user_test',
@@ -25,41 +24,35 @@ class ClientActionTest extends TestCase implements TokenContract
             'city'  => 'ANAHEIM',
             'image' => $file = UploadedFile::fake()->image('random.jpg')
         ], ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertStatus(200);
     }
 
     /** @test */
 
-
     public function get_all_client_test()
     {
-        $this->withoutExceptionHandling();
         $response = $this->get("$this->uri/get-clients",
             ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
-
-
     }
+
     /** @test */
+
     public function get_client_by_id()
     {
-        $client_id  = Client::first()->value('id');
-        $this->withoutExceptionHandling();
-        $response = $this->get("$this->uri/get-client/$client_id",
+        $response = $this->get("$this->uri/get-client/" . $this->getTestClient(),
             ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
     }
     /** @test */
 
     public function update_client_test()
     {
-        $response = $this->post("$this->uri/update-client/2",[
+        $response = $this->post("$this->uri/update-client/" . $this->getTestClient(),[
             'name'     => 'from_test_user_test_update',
-            'username' => 'from_test_user_test_update',
-            'phone'  => '+3-8000-000-00-00',
-            'email'  => 'from_test_user_test_update@gmail.com',
-            'country'  => 'USA',
-            'city'  => 'ANAHEIM',
         ], ['Authorization' => $this->getToken()]);
         $this->withoutExceptionHandling();
         $response->assertOk();
@@ -69,20 +62,14 @@ class ClientActionTest extends TestCase implements TokenContract
 
     public function delete_client_test()
     {
-        $this->withoutExceptionHandling();
-        $response = $this->delete("$this->uri/delete-client/2",[
+        $response = $this->delete("$this->uri/delete-client/" . $this->getTestClient(),[
             ], ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
     }
-    public function getToken() :string
+
+    public function getTestClient()
     {
-        $user =  [
-            'email'     => 'admin@gmail.com',
-            'password'  => '111111'
-        ];
-        $responseLogin = $this->post("$this->uri/login",
-            $user)->decodeResponseJson();
-        $token = $responseLogin['data']['data']['auth']['token'];
-        return $token;
+        return Client::whereEmail('from_test_user_test@gmail.com')->first()->id;
     }
 }

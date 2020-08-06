@@ -1,27 +1,15 @@
 <?php
 
-namespace Tests\Feature\Admin;
+namespace Tests\Feature\Admin\Tests;
 
 use App\Models\Auto\Auto;
 use App\Models\Client\Client;
 use Illuminate\Http\UploadedFile;
+use Tests\Feature\Admin\AdminCase;
 use Tests\TestCase;
 
-class AutoTest extends TestCase
+class AutoTest extends AdminCase
 {
-    protected $uri =  'api-admin';
-
-    public function getToken(): string
-    {
-        $user =  [
-            'email'     => 'admin@gmail.com',
-            'password'  => '111111'
-        ];
-        $responseLogin = $this->post("$this->uri/login",
-            $user)->decodeResponseJson();
-        return $responseLogin['data']['data']['auth']['token'];
-    }
-
     /** @test */
 
     public function create_auto_test()
@@ -30,11 +18,10 @@ class AutoTest extends TestCase
         $document[0]['type'] = 'auction';
         $document[0]['file'] = UploadedFile::fake()->image('random.jpg');
 
-        $this->withoutExceptionHandling();
         $response = $this->post("$this->uri/store-auto",[
             'year'                  => '2001',
             'make_name'             => 'Mercedes',
-            'model_name'            => 'Mercedes',
+            'model_name'            => '123455HH998',
             'client_id'             => 1,
             'status'                => "dispatched",
             'auction'               => 'auction',
@@ -73,6 +60,7 @@ class AutoTest extends TestCase
             'note'                  => 'good car',
             'document'              => $document
         ], ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertStatus(200);
     }
 
@@ -80,9 +68,9 @@ class AutoTest extends TestCase
 
     public function get_all_auto_test()
     {
-        $this->withoutExceptionHandling();
         $response = $this->get("$this->uri/get-autos",
             ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
 
     }
@@ -91,10 +79,9 @@ class AutoTest extends TestCase
 
     public function get_auto_by_id_test()
     {
-        $auto_id = Auto::first()->value('id');
-        $this->withoutExceptionHandling();
-        $response = $this->get("$this->uri/get-auto/$auto_id",
+        $response = $this->get("$this->uri/get-auto/" . $this->getTestAuto(),
             ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
     }
 
@@ -102,12 +89,9 @@ class AutoTest extends TestCase
 
     public function update_auto_test()
     {
-        $auto_id = Auto::first()->value('id');
-        $this->withoutExceptionHandling();
-        $response = $this->post("$this->uri/update-auto/$auto_id",[
+        $response = $this->post("$this->uri/update-auto/" . $this->getTestAuto(),[
             'year'                  => '2002',
             'make_name'             => 'Mercedes',
-            'model_name'            => 'Mercedes',
             'client_id'             => 1,
             'status'                => 'dispatched',
             'purchased_date'        => '2020-12-12',
@@ -146,6 +130,7 @@ class AutoTest extends TestCase
             'key'                   => 'yes',
             'note'                  => 'good car',
         ], ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertStatus(200);
     }
 
@@ -158,12 +143,11 @@ class AutoTest extends TestCase
         $document[0]['file'] = UploadedFile::fake()->image('random.jpg');
         $document[1]['type'] = 'new';
         $document[1]['file'] = UploadedFile::fake()->image('random.jpg');
-        $auto_id = Auto::first()->value('id');
-        $this->withoutExceptionHandling();
-        $response = $this->post("$this->uri/restore-auto-document/$auto_id",[
+        $response = $this->post("$this->uri/restore-auto-document/" . $this->getTestAuto(),[
             'document'  => $document
         ],
             ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
 
     }
@@ -172,13 +156,13 @@ class AutoTest extends TestCase
 
     public function delete_auto_document_test()
     {
-        $auto = Auto::first();
+        $auto = Auto::findOrFail($this->getTestAuto());
         $documents =  implode(',',$auto->documents()->take(5)->pluck('id')->toArray());
-        $this->withoutExceptionHandling();
         $response = $this->post("$this->uri/delete-auto-document/$auto->id",[
             'ids'  => $documents
         ],
             ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
     }
 
@@ -186,11 +170,14 @@ class AutoTest extends TestCase
 
     public function delete_auto_test()
     {
-        $this->withoutExceptionHandling();
-        $auto_id = Auto::first()->value('id');
-        $response = $this->delete("$this->uri/delete-auto/$auto_id",[
+        $response = $this->delete("$this->uri/delete-auto/" . $this->getTestAuto(),[
         ], ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
+    }
 
+    public function getTestAuto()
+    {
+        return Auto::whereModelName('123455HH998')->first()->id;
     }
 }
