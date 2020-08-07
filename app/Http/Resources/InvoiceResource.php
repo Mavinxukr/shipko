@@ -56,6 +56,8 @@ class InvoiceResource extends JsonResource
             //'status'                    => $this->status,
             'status_shipping'           => $this->status_shipping,
             'date'                      => $this->auto->purchased_date->format('d/m/Y'),
+            'vin'                       => $this->auto->lotInfo->vin_code,
+            'client_id'                 => $this->auto->client_id,
             'due_day'                   => $due_day,
             'documents'                 => DocumentResource::collection($this->documents),
         ];
