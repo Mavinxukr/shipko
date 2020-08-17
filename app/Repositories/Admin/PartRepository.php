@@ -46,7 +46,9 @@ class PartRepository implements PartContract
         }
 
         if(!is_null($status)){
-            $model->where('status', $status);
+            $model->whereHas('getAuto', function (Builder $q) use ($status){
+                $q->where('status', $status);
+            });
         }
 
         $parts = $this->getWithSort($model,
@@ -92,29 +94,33 @@ class PartRepository implements PartContract
 
     public function update(Request $request, int $id)
     {
-        $part = Part::findOrFail($id);
+        try {
+            $part = Part::findOrFail($id);
 
-        $auto = null;
-        if(!is_null($request->vin)){
-            $auto = Auto::whereHas('lotInfo', function (Builder $q) use ($request){
-                return $q->where('vin_code', $request->vin);
-            })->first();
+            $auto = null;
+            if(!is_null($request->vin)){
+                $auto = Auto::whereHas('lotInfo', function (Builder $q) use ($request){
+                    return $q->where('vin_code', $request->vin);
+                })->first();
 
-            if(!$auto)
-                throw new \Exception('Vin code not find', 404);
-        }
-
-        $part->update(array_filter($request->all())  + [
-                'auto_id' => !is_null($auto) ? $auto->id : null
-            ]);
-        if (!empty($request->image)){
-            foreach ($request->image as $image){
-                $this->imageCreator($part,'part', new Photo, $image);
+                if(!$auto)
+                    throw new \Exception('Vin code not find', 404);
             }
-        }
 
-        return $this->toJson('Part get by id successfully', 200,
-            (new PartResource($part->fresh()))->additional($this->additional));
+            $part->update(array_filter($request->all())  + [
+                    'auto_id' => !is_null($auto) ? $auto->id : null
+                ]);
+            if (!empty($request->image)){
+                foreach ($request->image as $image){
+                    $this->imageCreator($part,'part', new Photo, $image);
+                }
+            }
+
+            return $this->toJson('Part get by id successfully', 200,
+                (new PartResource($part->fresh()))->additional($this->additional));
+        }catch (\Exception $e){
+            return $this->toJson($e->getMessage(), $e->getCode());
+        }
     }
 
     public function destroy(int $id)
