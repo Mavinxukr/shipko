@@ -13,7 +13,7 @@ class AuctionStatus extends AbstractFilters
     protected function applyFilter(Builder $builders)
     {
         if(!is_null(request($this->filterName())))
-            return $builders->where('client_id', request($this->filterName()));
+            return $builders->where('status', request($this->filterName()));
         return $builders;
     }
 }
