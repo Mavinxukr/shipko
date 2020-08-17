@@ -12,6 +12,7 @@ use App\Filters\InvoiceFilters\ShippingStatus;
 use App\Http\Resources\InvoiceResource;
 use App\Models\Invoice\Invoice;
 use App\Traits\FormattedJsonResponse;
+use App\Traits\GetAdditional;
 use App\Traits\Service\AutoService\UploadDocuments;
 use App\Traits\SortCollection;
 use Carbon\Carbon;
@@ -54,7 +55,7 @@ class InvoiceRepository implements InvoiceContract
             \request('order_by'));
 
         return $this->toJson('Invoices get all successfully',200,
-            InvoiceResource::collection($invoices)->additional($this->amountValue()), true);
+            InvoiceResource::collection($invoices)->additional(array_merge($this->getAdditional(), $this->amountValue())), true);
     }
 
     public function show(int $id)
@@ -127,5 +128,10 @@ class InvoiceRepository implements InvoiceContract
             $amount['amount'][$item] = Invoice::whereNotNull($item)->sum($item);
         }
         return $amount;
+    }
+
+    public function getAdditional()
+    {
+        return GetAdditional::get(['clients']);
     }
 }
