@@ -5,6 +5,7 @@ namespace App\Repositories\Client;
 use App\Contracts\ContractRepositories\Client\PartContract;
 use App\Http\Resources\PartResource;
 use App\Models\Auto\Auto;
+use App\Models\Auto\LotInfo;
 use App\Models\Part\Part;
 use App\Models\Part\Photo;
 use App\Traits\FormattedJsonResponse;
@@ -22,8 +23,10 @@ class PartRepository implements PartContract
     public function __construct()
     {
         $catalogNumbers = Part::select('catalog_number')->distinct()->get();
+        $vinNumbers = LotInfo::whereNotNull('vin_code')->get()->unique()->pluck('vin_code');
         $this->additional = [
             'catalog_numbers'   => $catalogNumbers,
+            'vin_numbers'       => $vinNumbers,
         ];
     }
 
