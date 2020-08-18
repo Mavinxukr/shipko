@@ -23,7 +23,8 @@ class PartRepository implements PartContract
     public function __construct()
     {
         $catalogNumbers = Part::select('catalog_number')->distinct()->get();
-        $vinNumbers = LotInfo::whereNotNull('vin_code')->get('vin_code')->unique();
+        $vinNumbers = LotInfo::select('vin_code')->distinct()->get();
+
         $this->additional = [
             'catalog_numbers'   => $catalogNumbers,
             'vin_numbers'       => $vinNumbers,
