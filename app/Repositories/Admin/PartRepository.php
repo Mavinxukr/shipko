@@ -46,9 +46,14 @@ class PartRepository implements PartContract
         }
 
         if(!is_null($status)){
-            $model->whereHas('getAuto', function (Builder $q) use ($status){
-                $q->where('status', $status);
-            });
+            if($status === 'new'){
+                $model->where('status', $status);
+            }else{
+                $model->whereHas('getAuto', function (Builder $q) use ($status){
+                    $q->where('status', $status);
+                });
+            }
+
         }
 
         $parts = $this->getWithSort($model,
