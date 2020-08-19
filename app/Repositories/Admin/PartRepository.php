@@ -47,7 +47,7 @@ class PartRepository implements PartContract
 
         if(!is_null($status)){
             if($status === 'new'){
-                $model->where('status', $status);
+                $model->whereNull('auto_id');
             }else{
                 $model->whereHas('getAuto', function (Builder $q) use ($status){
                     $q->where('status', $status);
