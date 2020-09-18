@@ -34,10 +34,17 @@ class PartRepository implements PartContract
     public function index()
     {
         $status = \request('part_status');
-        $model = \request()->user()->parts()->latest('id');
+        $model = Part::latest('id');
 
         if(!is_null($status)){
-            $model->where('status', $status);
+            if($status === 'new'){
+                $model->whereNull('auto_id');
+            }else{
+                $model->whereHas('getAuto', function (Builder $q) use ($status){
+                    $q->where('status', $status);
+                });
+            }
+
         }
 
         $parts = $this->getWithSort($model,
@@ -45,9 +52,8 @@ class PartRepository implements PartContract
             \request('order_type'),
             \request('order_by'));
 
-        return $this->toJson('Get all client parts successfully', 200,
-            PartResource::collection($parts)
-                ->additional($this->additional), true);
+        return $this->toJson('Parts get all successfully', 200,
+            PartResource::collection($parts)->additional($this->additional), true);
     }
 
     public function show(int $id)
