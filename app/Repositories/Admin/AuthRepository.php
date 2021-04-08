@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Admin;
 
-use App\Contracts\ContratRepositories\Admin\AuthContract;
+use App\Contracts\ContractRepositories\Admin\AuthContract;
 use App\Http\Resources\AuthResource;
 use App\Traits\FormattedJsonResponse;
 use Illuminate\Http\Request;

@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Admin;
 
-use App\Contracts\ContratRepositories\Admin\ClientContract;
+use App\Contracts\ContractRepositories\Admin\ClientContract;
 use App\Facades\Clients\LocationFacade;
 use App\Http\Resources\ClientResource;
 use App\Models\Client\Client;

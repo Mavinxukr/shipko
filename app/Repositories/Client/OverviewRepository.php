@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Client;
 
-use App\Contracts\ContratRepositories\Client\OverviewContract;
+use App\Contracts\ContractRepositories\Client\OverviewContract;
 use App\Http\Resources\ClientOverviewResource;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\Service\AutoService\AutoAction;

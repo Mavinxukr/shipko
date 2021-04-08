@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Client;
 
-use App\Contracts\ContratRepositories\Client\AutoNoteContract;
+use App\Contracts\ContractRepositories\Client\AutoNoteContract;
 use App\Http\Resources\AutoResource;
 use App\Traits\FormattedJsonResponse;
 use Illuminate\Http\Request;

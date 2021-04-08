@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Admin;
 
-use App\Contracts\ContratRepositories\Admin\ClientFilterContract;
+use App\Contracts\ContractRepositories\Admin\ClientFilterContract;
 use App\Filters\ClientFilters\Address;
 use App\Filters\ClientFilters\CardNumber;
 use App\Filters\ClientFilters\Email;

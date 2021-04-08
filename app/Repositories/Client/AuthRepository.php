@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Client;
 
-use App\Contracts\ContratRepositories\Client\AuthContract;
+use App\Contracts\ContractRepositories\Client\AuthContract;
 use App\Http\Resources\AuthResource;
 use App\Models\Client\Client;
 use App\Traits\FormattedJsonResponse;
