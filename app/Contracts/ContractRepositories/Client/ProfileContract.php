@@ -3,6 +3,7 @@
 
 namespace App\Contracts\ContractRepositories\Client;
 
+
 use Illuminate\Http\Request;
 
 interface ProfileContract
