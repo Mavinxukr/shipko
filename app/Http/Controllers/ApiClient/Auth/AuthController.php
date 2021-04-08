@@ -3,7 +3,7 @@
 
 namespace App\Http\Controllers\ApiClient\Auth;
 
-use App\Contracts\ContratRepositories\Client\AuthContract;
+use App\Contracts\ContractRepositories\Client\AuthContract;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientRequest;
 use App\Http\Requests\LoginRequest;

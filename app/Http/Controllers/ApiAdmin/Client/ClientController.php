@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\ApiAdmin\Client;
 
-use App\Contracts\ContratRepositories\Admin\ClientContract;
+use App\Contracts\ContractRepositories\Admin\ClientContract;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientRequest;
 use App\Http\Requests\UpdateClientRequest;

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\ApiAdmin\Group;
 
 use App\Contracts\ContractRepositories\Admin\GroupContract;
-use App\Contracts\ContratRepositories\Admin\ClientContract;
+use App\Contracts\ContractRepositories\Admin\ClientContract;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

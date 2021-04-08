@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\ApiClient\Notification;
 
-use App\Contracts\ContratRepositories\Client\NotificationContract;
+use App\Contracts\ContractRepositories\Client\NotificationContract;
 use App\Http\Controllers\Controller;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\Service\ClientService\NotificationService;
