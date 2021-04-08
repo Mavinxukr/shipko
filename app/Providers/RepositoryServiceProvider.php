@@ -20,9 +20,9 @@ use App\Contracts\ContractRepositories\Admin\AutoDismantingContract;
 use App\Contracts\ContractRepositories\Admin\AutoShippingContract;
 use App\Contracts\ContractRepositories\Admin\InvoiceContract;
 use App\Contracts\ContractRepositories\Admin\PartContract as AdminPartContract;
-use App\Contracts\ContratRepositories\Admin\AuthContract as AdminAuthContract;
-use App\Contracts\ContratRepositories\Admin\ClientContract;
-use App\Contracts\ContratRepositories\Admin\ClientFilterContract;
+use App\Contracts\ContractRepositories\Admin\AuthContract as AdminAuthContract;
+use App\Contracts\ContractRepositories\Admin\ClientContract;
+use App\Contracts\ContractRepositories\Admin\ClientFilterContract;
 use App\Repositories\Admin\AuthRepository as AdminAuthRepository;
 use App\Repositories\Admin\AutoDismantingRepository;
 use App\Repositories\Admin\AutoRepository as AdminAutoRepository;
@@ -31,16 +31,16 @@ use App\Repositories\Admin\ClientFilterRepository;
 use App\Repositories\Admin\ClientRepository;
 use App\Repositories\Admin\InvoiceRepository;
 use App\Repositories\Admin\PartRepository as AdminPartRepository;
-use App\Contracts\ContratRepositories\Admin\AutoNoteContract as AdminAutoNoteContract;
+use App\Contracts\ContractRepositories\Admin\AutoNoteContract as AdminAutoNoteContract;
 use App\Repositories\Admin\AutoNoteRepository as AdminAutoNoteRepository;
 use App\Contracts\ContractRepositories\Admin\ContainerContract;
 use App\Repositories\Admin\ContainerRepository;
 
 
 //Client
-use App\Contracts\ContratRepositories\Client\AuthContract as ClientAuthContract;
+use App\Contracts\ContractRepositories\Client\AuthContract as ClientAuthContract;
 use App\Repositories\Client\AuthRepository as ClientAuthRepository;
-use App\Contracts\ContratRepositories\Client\OverviewContract;
+use App\Contracts\ContractRepositories\Client\OverviewContract;
 use App\Repositories\Client\OverviewRepository;
 use App\Contracts\ContractRepositories\Client\AutoContract as ClientAutoContract;
 use App\Repositories\Client\AutoRepository as ClientAutoRepository;
@@ -50,12 +50,12 @@ use App\Contracts\ContractRepositories\Client\AutoShippingContract as ClientAuto
 use App\Repositories\Client\AutoShippingRepository as ClientAutoShippingRepository;
 use App\Contracts\ContractRepositories\Client\InvoiceContract as ClientInvoiceContract;
 use App\Repositories\Client\InvoiceRepository as ClientInvoiceRepository;
-use App\Contracts\ContratRepositories\Client\ProfileContract;
+use App\Contracts\ContractRepositories\Client\ProfileContract;
 use App\Repositories\Client\ProfileRepository;
 use App\Contracts\ContractRepositories\Client\PartContract as ClientPartContract;
 use App\Repositories\Client\PartRepository as ClientPartRepository;
-use App\Contracts\ContratRepositories\Client\AutoNoteContract;
-use App\Contracts\ContratRepositories\Client\NotificationContract;
+use App\Contracts\ContractRepositories\Client\AutoNoteContract;
+use App\Contracts\ContractRepositories\Client\NotificationContract;
 use App\Repositories\Client\AutoNoteRepository;
 use App\Repositories\Client\NotificationRepository;
 
