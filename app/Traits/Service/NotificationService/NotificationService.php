@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits\Service\ClientService;
+namespace App\Traits\Service\NotificationService;
 
 use App\Models\Notification\Notification;
 use Illuminate\Support\Facades\Log;
