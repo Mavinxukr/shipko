@@ -12,19 +12,10 @@
 ## About Install
 1) copy ".env.example" to ".env" with new parameters
 2) composer install
-3) php artisan cache:clear
-4) php artisan config:clear
-5) php artisan config:cache
-6) php artisan migrate --seed
-7) Install [apidocjs](https://apidocjs.com/#install)
+2) composer update 
+3) php artisan key:generate
+4) php artisan optimize:clear
+5) php artisan migrate --seed
+6) Install [apidocjs](https://apidocjs.com/#install)
+7) edit parameter "url" in file apadoc.json 
 8) php artisan apidoc
-
-## Synchronizations
-1) php artisan synchronize:cookie
-2) php artisan synchronize:database
-3) php artisan synchronize:status
-4) php artisan synchronize:plan
-5) php artisan synchronize:contract
-6) php artisan synchronize:procurement
-7) php artisan synchronize:reason
-7) php artisan synchronize:cause
