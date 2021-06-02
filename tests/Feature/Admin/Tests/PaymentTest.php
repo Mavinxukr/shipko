@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Admin;
+namespace Tests\Feature\Admin\Tests;
 
 use App\Models\Client\Client;
 use App\Models\Group\Group;
@@ -11,24 +11,23 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
+use Tests\Feature\Admin\AdminCase;
 use Tests\Feature\TokenContract\TokenContract;
 use Tests\TestCase;
 
-class PaymentTest extends TestCase implements TokenContract
+class PaymentTest extends AdminCase
 {
-    protected $uri =  'api-admin';
-
     /** @test */
 
     public function create_payment_test()
     {
-        $this->withoutExceptionHandling();
         $response = $this->post("$this->uri/store-payment",[
             'name'               => 'Test Payment',
             'applicable_type'    => 'group',
             'applicable_id'      => 1,
             'due_day'            => 10,
         ], ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertStatus(200);
     }
 
@@ -36,9 +35,9 @@ class PaymentTest extends TestCase implements TokenContract
 
     public function show_all_payment_test()
     {
-        $this->withoutExceptionHandling();
         $response = $this->get("$this->uri/get-payments"
         , ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
     }
 
@@ -46,45 +45,35 @@ class PaymentTest extends TestCase implements TokenContract
 
     public function show_payment_test()
     {
-        $this->withoutExceptionHandling();
-        $price = Payment::first()->value('id');
-        $response = $this->get("$this->uri/get-payment/$price"
+        $response = $this->get("$this->uri/get-payment/" . $this->getTestPayment()
             , ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
     }
 
     /** @test */
     public function update_payment_test()
     {
-        $this->withoutExceptionHandling();
-        $price = Payment::first()->value('id');
-        $response = $this->post("$this->uri/update-payment/$price",[
-            'name'               => 'Test Payment',
+        $response = $this->post("$this->uri/update-payment/" . $this->getTestPayment(),[
             'applicable_type'    => 'client',
             'applicable_id'      => 1,
             'due_day'            => 11,
         ], ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
     }
 
     /** @test */
     public function delete_payment_test()
     {
-        $this->withoutExceptionHandling();
-        $price = Payment::first()->value('id');
-        $response = $this->delete("$this->uri/delete-payment/$price",[
+        $response = $this->delete("$this->uri/delete-payment/" . $this->getTestPayment(),[
         ], ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
     }
 
-    public function getToken(): string
+    public function getTestPayment()
     {
-        $user =  [
-            'email'     => 'admin@gmail.com',
-            'password'  => '111111'
-        ];
-        $responseLogin = $this->post("$this->uri/login",
-            $user)->decodeResponseJson();
-        return $responseLogin['data']['data']['auth']['token'];
+        return Payment::whereName('Test Payment')->first()->value('id');
     }
 }

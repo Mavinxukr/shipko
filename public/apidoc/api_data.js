@@ -394,6 +394,13 @@ define({ "api": [
           },
           {
             "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "auction",
+            "description": "<p>Auction</p>"
+          },
+          {
+            "group": "Parameter",
             "type": "Boolean",
             "optional": false,
             "field": "offsite",
@@ -405,6 +412,13 @@ define({ "api": [
             "optional": false,
             "field": "offsite_price",
             "description": "<p>Offsite Price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date",
+            "optional": false,
+            "field": "purchased_date",
+            "description": "<p>Purchased Date</p>"
           },
           {
             "group": "Parameter",
@@ -813,6 +827,13 @@ define({ "api": [
           },
           {
             "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "auction",
+            "description": "<p>Auction</p>"
+          },
+          {
+            "group": "Parameter",
             "type": "Boolean",
             "optional": false,
             "field": "offsite",
@@ -824,6 +845,13 @@ define({ "api": [
             "optional": false,
             "field": "offsite_price",
             "description": "<p>Offsite Price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date",
+            "optional": false,
+            "field": "purchased_date",
+            "description": "<p>Purchased Date</p>"
           },
           {
             "group": "Parameter",
@@ -1548,7 +1576,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "phone",
-            "description": "<p>Phone exp - +3-8000-000-00-00</p>"
+            "description": "<p>Phone</p>"
           },
           {
             "group": "Parameter",
@@ -1577,27 +1605,6 @@ define({ "api": [
             "optional": false,
             "field": "city",
             "description": "<p>City</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "zip",
-            "description": "<p>Zip</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "address",
-            "description": "<p>Address</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "card_number",
-            "description": "<p>Card number exp - 1234-1234-1234-1234</p>"
           },
           {
             "group": "Parameter",
@@ -1663,7 +1670,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "phone",
-            "description": "<p>Phone exp - +3-8000-000-00-00</p>"
+            "description": "<p>Phone</p>"
           },
           {
             "group": "Parameter",
@@ -1692,27 +1699,6 @@ define({ "api": [
             "optional": false,
             "field": "city",
             "description": "<p>City</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "zip",
-            "description": "<p>Zip</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "address",
-            "description": "<p>Address</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "card_number",
-            "description": "<p>Card number exp - 1234-1234-1234-1234</p>"
           },
           {
             "group": "Parameter",
@@ -1776,6 +1762,349 @@ define({ "api": [
     ],
     "filename": "app/Http/Controllers/ApiAdmin/Client/ClientFilterController.php",
     "groupTitle": "Admin_Client_Filter"
+  },
+  {
+    "type": "delete",
+    "url": "admin/delete-container/{id}",
+    "title": "Delete  container by id",
+    "name": "Delete_container_by_id",
+    "version": "1.1.1",
+    "group": "Admin_Container_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/delete-container/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Auto/ContainerController.php",
+    "groupTitle": "Admin_Container_Action"
+  },
+  {
+    "type": "post",
+    "url": "admin/delete-container",
+    "title": "Multiple Delete container",
+    "name": "Multiple_Delete_container",
+    "version": "1.1.1",
+    "group": "Admin_Container_Action",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": false,
+            "field": "container_id",
+            "description": "<p>Array of Containers ID</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/delete-container"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Auto/ContainerController.php",
+    "groupTitle": "Admin_Container_Action"
+  },
+  {
+    "type": "get",
+    "url": "admin/get-container",
+    "title": "Show all containers",
+    "name": "Show_all_containers",
+    "version": "1.1.1",
+    "group": "Admin_Container_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/get-container"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Auto/ContainerController.php",
+    "groupTitle": "Admin_Container_Action"
+  },
+  {
+    "type": "get",
+    "url": "admin/get-container/{id}",
+    "title": "Show  container by id",
+    "name": "Show_container_by_id",
+    "version": "1.1.1",
+    "group": "Admin_Container_Action",
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/get-container/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Auto/ContainerController.php",
+    "groupTitle": "Admin_Container_Action"
+  },
+  {
+    "type": "post",
+    "url": "admin/store-container",
+    "title": "Store container",
+    "name": "Store_Container",
+    "version": "1.1.1",
+    "group": "Admin_Container_Action",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "container_number",
+            "description": "<p>Container Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "booking_number",
+            "description": "<p>Booking Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "shipping_line",
+            "description": "<p>Shipping Line</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "point_of_loading",
+            "description": "<p>Point of Loading</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "destination_port",
+            "description": "<p>Destination Port</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date",
+            "optional": false,
+            "field": "loading_date",
+            "description": "<p>Loading Date (2020-12-12)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date",
+            "optional": false,
+            "field": "expected_sailing_date",
+            "description": "<p>Expected Sailing Date (2020-12-12)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date",
+            "optional": false,
+            "field": "expected_arrival_date",
+            "description": "<p>Expected Arrival Date (2020-12-12)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "vins",
+            "description": "<p>Vin`s numbers (vin_number, vin_number) - delimiter by ','</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/store-container"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Auto/ContainerController.php",
+    "groupTitle": "Admin_Container_Action"
+  },
+  {
+    "type": "post",
+    "url": "admin/update-container/{id}",
+    "title": "Update container",
+    "name": "Update_container",
+    "version": "1.1.1",
+    "group": "Admin_Container_Action",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "container_number",
+            "description": "<p>Container Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "booking_number",
+            "description": "<p>Booking Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "shipping_line",
+            "description": "<p>Shipping Line</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "point_of_loading",
+            "description": "<p>Point of Loading</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "destination_port",
+            "description": "<p>Destination Port</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date",
+            "optional": false,
+            "field": "loading_date",
+            "description": "<p>Loading Date (2020-12-12)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date",
+            "optional": false,
+            "field": "expected_sailing_date",
+            "description": "<p>Expected Sailing Date (2020-12-12)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date",
+            "optional": false,
+            "field": "expected_arrival_date",
+            "description": "<p>Expected Arrival Date (2020-12-12)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "vins",
+            "description": "<p>Vin`s numbers (vin_number, vin_number) - delimiter by ','</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "Authorization"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api-admin/update-container/{id}"
+      }
+    ],
+    "filename": "app/Http/Controllers/ApiAdmin/Auto/ContainerController.php",
+    "groupTitle": "Admin_Container_Action"
   },
   {
     "type": "get",
@@ -2657,13 +2986,6 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "container",
-            "description": "<p>Container</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
             "field": "status",
             "description": "<p>Status</p>"
           },
@@ -2753,13 +3075,6 @@ define({ "api": [
             "optional": false,
             "field": "quality",
             "description": "<p>Quality</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "container",
-            "description": "<p>Container</p>"
           },
           {
             "group": "Parameter",
@@ -4125,13 +4440,6 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "container",
-            "description": "<p>Container</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
             "field": "comment",
             "description": "<p>Comment</p>"
           },
@@ -4214,13 +4522,6 @@ define({ "api": [
             "optional": false,
             "field": "quality",
             "description": "<p>Quality</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "container",
-            "description": "<p>Container</p>"
           },
           {
             "group": "Parameter",

@@ -54,6 +54,7 @@ class InvoiceController extends Controller
      * @apiParam {String} name_car Name car
      * @apiParam {Number} auto_id Auto id
      * @apiParam {String} status Status
+     * @apiParam {String} status_shipping Status shipping
      * @apiParam {Number} total_price Total price
      * @apiParam {Number} paid_price Paid price
      * @apiParam {Number} outstanding_price Outstanding price
@@ -82,6 +83,7 @@ class InvoiceController extends Controller
      * @apiParam {String} name_car Name car
      * @apiParam {Number} auto_id Auto id
      * @apiParam {String} status Status
+     * @apiParam {String} status_shipping Status shipping
      * @apiParam {Double} total_price Total price
      * @apiParam {Double} paid_price Paid price
      * @apiParam {Double} outstanding_price Outstanding price

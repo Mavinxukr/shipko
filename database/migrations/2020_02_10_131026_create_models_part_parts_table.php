@@ -19,11 +19,8 @@ class CreateModelsPartPartsTable extends Migration
             $table->string('catalog_number');
             $table->string('name');
             $table->string('auto');
-            $table->string('vin')->nullable();
+            $table->unsignedBigInteger('auto_id')->nullable();
             $table->string('quality');
-            $table->string('container');
-            $table->text('comment')->nullable();
-            $table->string('status')->default('in_warehouse');
             $table->timestamps();
         });
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Admin;
+namespace Tests\Feature\Admin\Tests;
 
 use App\Models\Auto\Auto;
 use App\Models\Client\Client;
@@ -8,23 +8,11 @@ use App\Models\Invoice\Invoice;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
+use Tests\Feature\Admin\AdminCase;
 use Tests\TestCase;
 
-class InvoiceTest extends TestCase
+class InvoiceTest extends AdminCase
 {
-    protected $uri =  'api-admin';
-
-    public function getToken(): string
-    {
-        $user =  [
-            'email'     => 'admin@gmail.com',
-            'password'  => '111111'
-        ];
-        $responseLogin = $this->post("$this->uri/login",
-            $user)->decodeResponseJson();
-        return $responseLogin['data']['data']['auth']['token'];
-    }
-
     /** @test */
 
     public function create_invoice_test()
@@ -36,14 +24,14 @@ class InvoiceTest extends TestCase
         $response = $this->post("$this->uri/store-invoice",[
             'name_car'              => 'Mercedes',
             'auto_id'               => $auto_id,
-            'status'                => 'new',
+            'status'                => 'paid',
             'total_price'           => 10000,
             'paid_price'            => 14000,
             'outstanding_price'     => 43000,
             'total_shipping_price'           => 10000,
             'paid_shipping_price'            => 14000,
             'outstanding_shipping_price'     => 43000,
-            'status_shipping'       => 'unpaid',
+            'status_shipping'       => 'paid',
             'document'              => $document
         ], ['Authorization' => $this->getToken()]);
         $this->withoutExceptionHandling();
@@ -54,7 +42,6 @@ class InvoiceTest extends TestCase
 
     public function get_all_invoice_test()
     {
-
         $response = $this->get("$this->uri/get-invoices",
             ['Authorization' => $this->getToken()]);
         $this->withoutExceptionHandling();
@@ -66,10 +53,9 @@ class InvoiceTest extends TestCase
 
     public function get_invoice_by_id_test()
     {
-        $invoice_id = Invoice::first()->value('id');
-        $this->withoutExceptionHandling();
-        $response = $this->get("$this->uri/get-invoice/$invoice_id",
+        $response = $this->get("$this->uri/get-invoice/" . $this->getTestInvoice(),
             ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
     }
 
@@ -79,20 +65,19 @@ class InvoiceTest extends TestCase
     public function update_invoice_test()
     {
         $auto_id = Auto::first()->value('id');
-        $invoice_id = Invoice::first()->value('id');
-        $this->withoutExceptionHandling();
-        $response = $this->post("$this->uri/update-invoice/$invoice_id",[
+        $response = $this->post("$this->uri/update-invoice/" . $this->getTestInvoice(),[
             'name_car'              => 'Mercedes',
             'auto_id'               => $auto_id,
-            'status'                => 'new',
+            'status'                => 'paid',
             'total_price'           => 10000,
             'paid_price'            => 14000,
             'outstanding_price'     => 43000,
             'total_shipping_price'           => 10000,
             'paid_shipping_price'            => 14000,
             'outstanding_shipping_price'     => 43000,
-            'status_shipping'       => 'unpaid',
+            'status_shipping'       => 'paid',
         ], ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertStatus(200);
     }
 
@@ -105,12 +90,11 @@ class InvoiceTest extends TestCase
         $document[0]['file'] = UploadedFile::fake()->image('random.jpg');
         $document[1]['type'] = 'new';
         $document[1]['file'] = UploadedFile::fake()->image('random.jpg');
-        $invoice_id = Invoice::first()->value('id');
-        $this->withoutExceptionHandling();
-        $response = $this->post("$this->uri/restore-invoice-document/$invoice_id",[
+        $response = $this->post("$this->uri/restore-invoice-document/" . $this->getTestInvoice(),[
             'document'  => $document
         ],
             ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
 
     }
@@ -118,13 +102,13 @@ class InvoiceTest extends TestCase
     /** @test */
     public function delete_invoice_document_test()
     {
-        $invoice = Invoice::first();
+        $invoice = Invoice::find($this->getTestInvoice());
         $documents =  implode(',',$invoice->documents()->take(5)->pluck('id')->toArray());
-        $this->withoutExceptionHandling();
         $response = $this->post("$this->uri/delete-invoice-document/$invoice->id",[
             'ids'  => $documents
         ],
             ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
     }
 
@@ -132,11 +116,15 @@ class InvoiceTest extends TestCase
     /** @test */
     public function delete_invoice_test()
     {
-        $this->withoutExceptionHandling();
-        $invoice_id = Invoice::first()->value('id');
-        $response = $this->delete("$this->uri/delete-invoice/$invoice_id",[
+        $response = $this->delete("$this->uri/delete-invoice/" . $this->getTestInvoice(),[
         ], ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
 
+    }
+
+    public function getTestInvoice()
+    {
+        return Invoice::where('name_car', 'Mercedes')->first()->id;
     }
 }

@@ -23,16 +23,12 @@ use Laravel\Passport\HasApiTokens;
  * @property string $phone
  * @property string $password
  * @property int $city_id
- * @property int $zip_id
- * @property int $address_id
- * @property int $card_number_id
  * @property int $country_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client\Client newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client\Client newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client\Client query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client\Client whereAddressId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client\Client whereCardNumberId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client\Client whereCityId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client\Client whereCountryId($value)
@@ -44,7 +40,6 @@ use Laravel\Passport\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client\Client wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client\Client whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client\Client whereUsername($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client\Client whereZipId($value)
  * @mixin \Eloquent
  * @property string $card_number
  * @property-read \App\Models\Client\Address|null $address
@@ -61,8 +56,7 @@ class Client extends Authenticatable
     protected  $fillable = [
         'name','username','phone',
         'email','password','city_id',
-        'zip_id','address_id',
-        'country_id','card_number'
+        'country_id'
     ];
 
 

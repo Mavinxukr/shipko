@@ -5,7 +5,12 @@ namespace App\Traits\Service\AutoService;
 use App\Filters\AutoFilters\AutoMake;
 use App\Filters\AutoFilters\AutoName;
 use App\Filters\AutoFilters\AutoYear;
+use App\Filters\AutoFilters\Client;
+use App\Filters\AutoFilters\ClientName;
+use App\Filters\AutoFilters\DamageStatus;
 use App\Filters\AutoFilters\Date;
+use App\Filters\AutoFilters\DateFrom;
+use App\Filters\AutoFilters\DateTo;
 use App\Filters\AutoFilters\Port;
 use App\Filters\AutoFilters\ShippingStatus;
 use App\Models\Auto\Auto;
@@ -25,8 +30,13 @@ trait AutoFilterCollection
                 AutoMake::class,
                 AutoYear::class,
                 ShippingStatus::class,
+                DamageStatus::class,
                 Port::class,
                 Date::class,
+                DateFrom::class,
+                DateTo::class,
+                Client::class,
+                ClientName::class,
             ])->thenReturn()
             ->select('autos.*');
 

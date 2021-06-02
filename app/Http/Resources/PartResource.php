@@ -20,12 +20,15 @@ class PartResource extends JsonResource
             'catalog_number'=> $this->catalog_number,
             'name'          => $this->name,
             'auto'          => $this->auto,
-            'vin'           => $this->vin,
+            'vin'           => !is_null($this->getAuto) ? $this->getAuto->lotInfo->vin_code : null,
             'quality'       => $this->quality,
-            'container'     => $this->container,
             'comment'       => $this->comment,
-            'status'        => $this->status,
-            'images'        => PartImagesResource::collection($this->images)
+            'status'        => !is_null($this->getAuto) ? $this->getAuto->status : 'new',
+            'delivery_date' => !is_null($this->getAuto) ?
+                $this->getAuto->shipInfo->point_delivery_date : null,
+            'images'        => PartImagesResource::collection($this->images),
+            'container'     => !is_null($this->getAuto) && !is_null($this->getAuto->container) ?
+                $this->getAuto->container->container_number : null,
         ];
     }
 }

@@ -1,21 +1,20 @@
 <?php
 
-namespace Tests\Feature\Admin;
-use Tests\TestCase;
+namespace Tests\Feature\Admin\Tests;
 
-class AdminActionTest extends TestCase
+use Tests\Feature\Admin\AdminCase;
+
+class AdminActionTest extends AdminCase
 {
-    protected $uri =  'api-admin';
-
     /** @test */
 
     public function admin_login_test()
     {
-        $this->withoutExceptionHandling();
         $response = $this->post("/$this->uri/login",[
             'email'     => 'admin@gmail.com',
             'password'  => '111111'
         ]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
     }
 
@@ -23,13 +22,14 @@ class AdminActionTest extends TestCase
 
     public function admin_logout_test()
     {
-        $this->withoutExceptionHandling();
+
         $responseLogin = $this->post("/$this->uri/login",[
             'email'     => 'admin@gmail.com',
             'password'  => '111111'
         ])->decodeResponseJson();
         $token = $responseLogin['data']['data']['auth']['token'];
         $responseLogout = $this->post("$this->uri/logout",[],['Authorization' => $token]);
+        $this->withoutExceptionHandling();
         $responseLogout->assertOk();
     }
 }

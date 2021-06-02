@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Contracts\ContratRepositories\Client;
+namespace App\Contracts\ContractRepositories\Client;
 
 use Illuminate\Http\Request;
 

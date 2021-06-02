@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\ApiClient\Overview;
 
-use App\Contracts\ContratRepositories\Client\OverviewContract;
+use App\Contracts\ContractRepositories\Client\OverviewContract;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

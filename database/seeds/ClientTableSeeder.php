@@ -20,6 +20,24 @@ class ClientTableSeeder extends Seeder
                 'email'             =>'client12@gmail.com' ,
                 'card_number'       => '1200-1234-1234-1234',
 
+            ],
+            1 => [
+                'name'              => 'client_seed_2',
+                'username'          => 'client_name_seed_2',
+                'password'          => bcrypt('111111'),
+                'phone'             => '380000002123',
+                'email'             =>'client13@gmail.com' ,
+                'card_number'       => '1200-1234-1234-1234',
+
+            ],
+            2 => [
+                'name'              => 'client_seed_3',
+                'username'          => 'client_name_seed_3',
+                'password'          => bcrypt('111111'),
+                'phone'             => '380000003123',
+                'email'             =>'client14@gmail.com' ,
+                'card_number'       => '1200-1234-1234-1234',
+
             ]
         ];
         foreach ($clients as $client){

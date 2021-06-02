@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Client;
 
-use App\Contracts\ContratRepositories\Client\ProfileContract;
+use App\Contracts\ContractRepositories\Client\ProfileContract;
 use App\Facades\Clients\LocationFacade;
 use App\Http\Resources\ClientResource;
 use App\Models\Client\ClientImage;

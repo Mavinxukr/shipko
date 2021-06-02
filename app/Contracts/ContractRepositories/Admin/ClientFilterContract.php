@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Contracts\ContratRepositories\Admin;
+namespace App\Contracts\ContractRepositories\Admin;
 
 
 use App\Contracts\vendor\ClientService\FilterContract;

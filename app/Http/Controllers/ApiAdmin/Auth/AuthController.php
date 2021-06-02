@@ -3,7 +3,7 @@
 
 namespace App\Http\Controllers\ApiAdmin\Auth;
 
-use App\Contracts\ContratRepositories\Admin\AuthContract;
+use App\Contracts\ContractRepositories\Admin\AuthContract;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;

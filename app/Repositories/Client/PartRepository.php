@@ -4,11 +4,14 @@ namespace App\Repositories\Client;
 
 use App\Contracts\ContractRepositories\Client\PartContract;
 use App\Http\Resources\PartResource;
+use App\Models\Auto\Auto;
+use App\Models\Auto\LotInfo;
 use App\Models\Part\Part;
 use App\Models\Part\Photo;
 use App\Traits\FormattedJsonResponse;
 use App\Traits\Service\ClientService\FileService;
 use App\Traits\SortCollection;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class PartRepository implements PartContract
@@ -20,7 +23,8 @@ class PartRepository implements PartContract
     public function __construct()
     {
         $catalogNumbers = Part::select('catalog_number')->distinct()->get();
-        $vinNumbers = Part::select('vin')->distinct()->get();
+        $vinNumbers = LotInfo::select('vin_code')->distinct()->get();
+
         $this->additional = [
             'catalog_numbers'   => $catalogNumbers,
             'vin_numbers'       => $vinNumbers,
@@ -30,10 +34,17 @@ class PartRepository implements PartContract
     public function index()
     {
         $status = \request('part_status');
-        $model = \request()->user()->parts()->latest('id');
+        $model = Part::latest('id');
 
         if(!is_null($status)){
-            $model->where('status', $status);
+            if($status === 'new'){
+                $model->whereNull('auto_id');
+            }else{
+                $model->whereHas('getAuto', function (Builder $q) use ($status){
+                    $q->where('status', $status);
+                });
+            }
+
         }
 
         $parts = $this->getWithSort($model,
@@ -41,9 +52,8 @@ class PartRepository implements PartContract
             \request('order_type'),
             \request('order_by'));
 
-        return $this->toJson('Get all client parts successfully', 200,
-            PartResource::collection($parts)
-                ->additional($this->additional), true);
+        return $this->toJson('Parts get all successfully', 200,
+            PartResource::collection($parts)->additional($this->additional), true);
     }
 
     public function show(int $id)
@@ -53,7 +63,20 @@ class PartRepository implements PartContract
 
     public function store(Request $request)
     {
-        $part = Part::create($request->except('client_id') + ['client_id' => $request->user()->id]);
+        $auto = null;
+        if(!is_null($request->vin)){
+            $auto = Auto::whereHas('lotInfo', function (Builder $q) use ($request){
+                return $q->where('vin_code', $request->vin);
+            })->first();
+
+            if(!$auto)
+                throw new \Exception('Vin code not find', 404);
+        }
+
+        $part = Part::create($request->except('client_id') + [
+            'client_id' => $request->user()->id,
+                'auto_id' => !is_null($auto) ? $auto->id : null
+            ]);
         if (!empty($request->image)){
             foreach ($request->image as $image){
                 $this->imageCreator($part,'part', new Photo, $image);

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\ApiClient\Auto;
 
-use App\Contracts\ContratRepositories\Client\AutoNoteContract;
+use App\Contracts\ContractRepositories\Client\AutoNoteContract;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

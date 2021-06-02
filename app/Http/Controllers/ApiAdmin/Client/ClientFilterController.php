@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\ApiAdmin\Client;
 
-use App\Contracts\ContratRepositories\Admin\ClientFilterContract;
+use App\Contracts\ContractRepositories\Admin\ClientFilterContract;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

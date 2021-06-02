@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Client;
 
-use App\Contracts\ContratRepositories\Client\NotificationContract;
+use App\Contracts\ContractRepositories\Client\NotificationContract;
 use App\Http\Resources\NotificationResource;
 use App\Traits\FormattedJsonResponse;
 use Illuminate\Http\Request;

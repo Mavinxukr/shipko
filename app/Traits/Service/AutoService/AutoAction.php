@@ -6,6 +6,7 @@ namespace App\Traits\Service\AutoService;
 
 use App\Http\Resources\PopularAutoResource;
 use App\Models\Auto\Auto;
+use Carbon\Carbon;
 use http\Client\Request;
 
 trait AutoAction
@@ -38,6 +39,7 @@ trait AutoAction
             if(!is_null($request->invoice_status))
                 $data['status'] = $request->invoice_status;
 
+            $data['due_day'] = Carbon::now();
             return $auto->invoice()->updateOrCreate(['auto_id' => $auto->id],$data);
         }
     }

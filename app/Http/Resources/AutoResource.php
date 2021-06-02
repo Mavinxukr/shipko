@@ -33,9 +33,10 @@ class AutoResource extends JsonResource
             'model_name'    => $this->model_name,
             'offsite'       => $this->offsite,
             'offsite_price' => $this->offsite_price,
+            'auction'       => $this->auction,
             'client'        => new ClientResource($this->client, false),
             'status'        => $this->status,
-            'created_at'    => $this->created_at->format('d/m/Y'),
+            'created_at'    => $this->purchased_date->format('d/m/Y'),
             'ship_info'     => new AutoShipInfoResource($this->shipInfo),
             'sale_info'     => new AutoSaleInfoResource($this->saleInfo),
             'feature_info'  => new AutoFeatureInfoResource($this->featureInfo),
@@ -46,6 +47,18 @@ class AutoResource extends JsonResource
             'vehicles'      => $this->autos,
             'image'         => new DocumentResource($avatar),
             'notes'         => AutoNoteResource::collection($this->notes),
+            'container'     => !is_null($this->container) ?
+                [
+                    'id'                        => $this->container->id,
+                    'container_number'          => $this->container->container_number,
+                    'booking_number'            => $this->container->booking_number,
+                    'shipping_line'             => $this->container->shipping_line,
+                    'point_of_loading'          => $this->container->point_of_loading,
+                    'destination_port'          => $this->container->destination_port,
+                    'loading_date'              => $this->container->loading_date->format('Y-m-d'),
+                    'expected_sailing_date'     => $this->container->expected_sailing_date->format('Y-m-d'),
+                    'expected_arrival_date'     => $this->container->expected_arrival_date->format('Y-m-d'),
+                ] : null
         ];
     }
 }

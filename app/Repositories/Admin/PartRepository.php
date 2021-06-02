@@ -46,7 +46,14 @@ class PartRepository implements PartContract
         }
 
         if(!is_null($status)){
-            $model->where('status', $status);
+            if($status === 'new'){
+                $model->whereNull('auto_id');
+            }else{
+                $model->whereHas('getAuto', function (Builder $q) use ($status){
+                    $q->where('status', $status);
+                });
+            }
+
         }
 
         $parts = $this->getWithSort($model,
@@ -65,7 +72,20 @@ class PartRepository implements PartContract
 
     public function store(Request $request)
     {
-        $part = Part::create($request->all());
+        $auto = null;
+        if(!is_null($request->vin)){
+            $auto = Auto::whereHas('lotInfo', function (Builder $q) use ($request){
+                return $q->where('vin_code', $request->vin);
+            })->first();
+
+            if(!$auto)
+                throw new \Exception('Vin code not find', 404);
+        }
+
+        $part = Part::create($request->all() + [
+            'auto_id' => !is_null($auto) ? $auto->id : null
+            ]);
+
         if (!empty($request->image)){
             foreach ($request->image as $image){
                 $this->imageCreator($part,'part', new Photo, $image);
@@ -79,16 +99,33 @@ class PartRepository implements PartContract
 
     public function update(Request $request, int $id)
     {
-        $part = Part::findOrFail($id);
-        $part->update(array_filter($request->all()));
-        if (!empty($request->image)){
-            foreach ($request->image as $image){
-                $this->imageCreator($part,'part', new Photo, $image);
-            }
-        }
+        try {
+            $part = Part::findOrFail($id);
 
-        return $this->toJson('Part get by id successfully', 200,
-            (new PartResource($part->fresh()))->additional($this->additional));
+            $auto = null;
+            if(!is_null($request->vin)){
+                $auto = Auto::whereHas('lotInfo', function (Builder $q) use ($request){
+                    return $q->where('vin_code', $request->vin);
+                })->first();
+
+                if(!$auto)
+                    throw new \Exception('Vin code not find', 404);
+            }
+
+            $part->update(array_filter($request->all())  + [
+                    'auto_id' => !is_null($auto) ? $auto->id : null
+                ]);
+            if (!empty($request->image)){
+                foreach ($request->image as $image){
+                    $this->imageCreator($part,'part', new Photo, $image);
+                }
+            }
+
+            return $this->toJson('Part get by id successfully', 200,
+                (new PartResource($part->fresh()))->additional($this->additional));
+        }catch (\Exception $e){
+            return $this->toJson($e->getMessage(), $e->getCode());
+        }
     }
 
     public function destroy(int $id)

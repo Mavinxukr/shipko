@@ -1,34 +1,32 @@
 <?php
 
-namespace Tests\Feature\Admin;
+namespace Tests\Feature\Admin\Tests;
 
 use App\Models\Client\Client;
 use App\Models\Part\Part;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
+use Tests\Feature\Admin\AdminCase;
 use Tests\Feature\TokenContract\TokenContract;
 use Tests\TestCase;
 
-class PartTest extends TestCase implements TokenContract
+class PartTest extends AdminCase
 {
-    protected $uri =  'api-admin';
-
     /** @test */
 
     public function create_part_test()
     {
-        $this->withoutExceptionHandling();
         $response = $this->post("$this->uri/store-part",[
-            'client_id'         => '12345',
+            'client_id'         => '1',
             'catalog_number'    => 'new12344_99',
             'name'              => 'hello_test',
             'auto'              => 'VW',
-            'vin'               => '74749393',
+            'status'            => 'new',
             'quality'           => '12',
-            'container'         => '#23232',
             'image'             => [UploadedFile::fake()->image('random.jpg')]
         ], ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
     }
 
@@ -36,9 +34,9 @@ class PartTest extends TestCase implements TokenContract
 
     public function show_all_part_test()
     {
-        $this->withoutExceptionHandling();
         $response = $this->get("$this->uri/get-parts"
         , ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
     }
 
@@ -46,27 +44,24 @@ class PartTest extends TestCase implements TokenContract
 
     public function show_part_test()
     {
-        $this->withoutExceptionHandling();
-        $part = Part::first()->value('id');
-        $response = $this->get("$this->uri/get-part/$part"
+        $response = $this->get("$this->uri/get-part/" . $this->getTestPart()
             , ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
     }
 
     /** @test */
     public function update_part_test()
     {
-        $this->withoutExceptionHandling();
-        $part = Part::first()->value('id');
-        $response = $this->post("$this->uri/update-part/$part",[
-            'client_id'             => '12345',
-            'catalog_number'        => 'new12344_99',
-            'name'                  => 'hello_test',
-            'auto'                  => 'VW',
-            'vin'                   => '74749393',
-            'quality'               => 12,
-            'container'             => '#23232',
+        $response = $this->post("$this->uri/update-part/" . $this->getTestPart(),[
+            'client_id'         => '1',
+            'catalog_number'    => 'new12344_99',
+            'name'              => 'hello_test',
+            'auto'              => 'VW',
+            'status'            => 'new',
+            'quality'           => '12',
         ], ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
     }
 
@@ -76,46 +71,37 @@ class PartTest extends TestCase implements TokenContract
 
     public function restore_part_images_test()
     {
-        $this->withoutExceptionHandling();
-        $part = Part::first()->value('id');
-        $response = $this->post("$this->uri/restore-part-images/$part",[
+        $response = $this->post("$this->uri/restore-part-images/" . $this->getTestPart(),[
             'image'             => [
                 UploadedFile::fake()->image('random.jpg'),
                 UploadedFile::fake()->image('random.jpg'),
                 UploadedFile::fake()->image('random.jpg'),
             ]
         ], ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
     }
 
     /** @test */
     public function delete_part_images_test()
     {
-        $this->withoutExceptionHandling();
-        $part = Part::first()->value('id');
-        $response = $this->post("$this->uri/delete-part-images/$part?ids=1,2,3",[
+        $response = $this->post("$this->uri/delete-part-images/".$this->getTestPart()."?ids=1,2,3",[
         ], ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
     }
 
     /** @test */
     public function delete_part_test()
     {
-        $this->withoutExceptionHandling();
-        $part = Part::first()->value('id');
-        $response = $this->delete("$this->uri/delete-part/$part",[
+        $response = $this->delete("$this->uri/delete-part/" . $this->getTestPart(),[
         ], ['Authorization' => $this->getToken()]);
+        $this->withoutExceptionHandling();
         $response->assertOk();
     }
 
-    public function getToken(): string
+    public function getTestPart()
     {
-        $user =  [
-            'email'     => 'admin@gmail.com',
-            'password'  => '111111'
-        ];
-        $responseLogin = $this->post("$this->uri/login",
-            $user)->decodeResponseJson();
-        return $responseLogin['data']['data']['auth']['token'];
+        return Part::whereName('hello_test')->first()->value('id');
     }
 }

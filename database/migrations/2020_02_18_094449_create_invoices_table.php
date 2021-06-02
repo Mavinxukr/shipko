@@ -19,11 +19,12 @@ class CreateInvoicesTable extends Migration
             $table->bigInteger('total_price')->nullable();
             $table->bigInteger('paid_price')->nullable();
             $table->bigInteger('outstanding_price')->nullable();
-            $table->string('status')->nullable();
+            $table->enum('status', ['paid', 'not paid', 'relist', 'refund'])->default('not paid');
             $table->bigInteger('total_shipping_price')->nullable();
             $table->bigInteger('paid_shipping_price')->nullable();
             $table->bigInteger('outstanding_shipping_price')->nullable();
-            $table->string('status_shipping')->nullable();
+            $table->enum('status_shipping', ['not due yet', 'past due', 'not paid', 'paid'])->default('not due yet');
+            $table->dateTime('due_day');
             $table->unsignedBigInteger('auto_id')->nullable();
             $table->foreign('auto_id')
                 ->references('id')

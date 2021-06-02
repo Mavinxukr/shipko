@@ -51,6 +51,13 @@ Route::namespace('ApiAdmin')->group(function () {
             Route::get('get-autos-dismanting','AutoDismantingController@index');
             Route::get('get-auto-dismanting/{id}','AutoDismantingController@show');
             Route::post('update-auto-dismanting/{id}','AutoDismantingController@update');
+
+            Route::post('store-container','ContainerController@store');
+            Route::get('get-container','ContainerController@index');
+            Route::get('get-container/{id}','ContainerController@show');
+            Route::post('delete-container','ContainerController@delete');
+            Route::delete('delete-container/{id}','ContainerController@destroy');
+            Route::post('update-container/{id}','ContainerController@update');
         });
         Route::namespace('Invoice')->group(function () {
             Route::get('get-invoices','InvoiceController@index');

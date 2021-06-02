@@ -3,13 +3,22 @@
 namespace App\Repositories\Admin;
 
 use App\Contracts\ContractRepositories\Admin\InvoiceContract;
+use App\Filters\InvoiceFilters\AuctionStatus;
+use App\Filters\InvoiceFilters\ClientId;
+use App\Filters\InvoiceFilters\DateFrom;
+use App\Filters\InvoiceFilters\DateTo;
+use App\Filters\InvoiceFilters\PastDue;
+use App\Filters\InvoiceFilters\ShippingStatus;
 use App\Http\Resources\InvoiceResource;
 use App\Models\Invoice\Invoice;
 use App\Traits\FormattedJsonResponse;
+use App\Traits\GetAdditional;
 use App\Traits\Service\AutoService\UploadDocuments;
 use App\Traits\SortCollection;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Pipeline\Pipeline;
 
 class InvoiceRepository implements InvoiceContract
 {
@@ -28,13 +37,25 @@ class InvoiceRepository implements InvoiceContract
             });
         }
 
+        $model =  app(Pipeline::class)
+            ->send($model)
+            ->through([
+                ClientId::class,
+                DateFrom::class,
+                DateTo::class,
+                AuctionStatus::class,
+                ShippingStatus::class,
+                PastDue::class,
+            ])->thenReturn()
+            ->select('invoices.*');
+
         $invoices = $this->getWithSort($model,
             \request('countpage'),
             \request('order_type'),
             \request('order_by'));
 
         return $this->toJson('Invoices get all successfully',200,
-            InvoiceResource::collection($invoices)->additional($this->amountValue()), true);
+            InvoiceResource::collection($invoices)->additional(array_merge($this->getAdditional(), $this->amountValue())), true);
     }
 
     public function show(int $id)
@@ -46,7 +67,9 @@ class InvoiceRepository implements InvoiceContract
     public function store(Request $request)
     {
         $document = $request->only('document');
-        $invoice = Invoice::create($request->except(['type','file']));
+        $invoice = Invoice::create($request->except(['type','file']) + [
+            'due_day' => Carbon::now(),
+        ]);
         if (isset($document['document'])) $this->saveDocuments($invoice,$document['document'],'invoice');
 
         return $this->index();
@@ -105,5 +128,10 @@ class InvoiceRepository implements InvoiceContract
             $amount['amount'][$item] = Invoice::whereNotNull($item)->sum($item);
         }
         return $amount;
+    }
+
+    public function getAdditional()
+    {
+        return GetAdditional::get(['clients']);
     }
 }
